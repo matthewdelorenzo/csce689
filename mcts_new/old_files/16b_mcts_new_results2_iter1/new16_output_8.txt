@@ -1,0 +1,103 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Edgedetect2.v
+Prompt str:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  548675
+----GREEDY LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+original text:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    // Edge detection can be done using a single 8-entry truth table.
+    // The truth table has 4 inputs (X, Y, Z, or i), and 4 outputs (Q, Q_n, M, or m).
+    // Each output is the same as the input, except when X, Y, Z, or i changes.
+    // For example, when X changes, Q_n changes, and M stays the same.
+    // In this case, the output of the truth table is:
+    // X Y Z I | Q Q_n M |
+    // 0 0 0 0 | 0  0  0 |
+    // 0 0 1 0 | 0  0  1 |
+    // 0 1 0 0 | 0  1  0 |
+    // 0 1 1 1 | 1  1  1 |
+    // 1 0 0 0 | 1  0  0 |
+    // 1 0 1 1 | 1  0  1 |
+    // 1 1 0 0 | 1  1  0 |
+    // 1 1 1 1 | 1  1  1 |
+    //
+    // In this truth table, the output (Q) changes when X, Y, or Z changes.
+    // The output (Q_n) changes when X or Y changes to 0.
+    // The output (M) changes when X, Y, or Z changes to 1.
+    // The output (m) is the same as the input (i).
+    // In this case, the outputs are called "latch outputs".
+
+    // The truth table is implemented in the following Verilog code.
+    // The outputs are named q, q_n, m, and m_n.
+    // The inputs are named x, y, z, and i.
+    // The first line is a comment.
+    // The next three lines initialize the truth table.
+    // The final four lines implement the truth table.
+    // The code uses the case statement statement.
+    // The case statement is similar to if-else statements.
+    // It is used to generate the output values.
+    // The case statement has four parts:
+    //   1. An "edge condition" that determines on what conditions the truth table is being generated.
+    //   2. A "case" statement that determines which output values are generated.
+    //   3. A "case" statement that determines which output values are generated.
+    //   4. A "case" statement that determines which output values are generated.
+    // The edge condition is implemented by using a system of if-else statements.
+    // The case statements are implemented using a system of if-else statements.
+    // The case statements are implemented using a system of case statements.
+    // The case statements are implemented using a system of case statements.
+
+    // Edge condition
+    // The edge condition is implemented using a system of if-else statements.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+
+    // Case statement 1
+    // Case 1 is implemented using a system of if-else statements.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+
+    // Case statement 2
+    // Case 2 is implemented using a system of if-else statements.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+
+    // Case statement 3
+    // Case 3 is implemented using a system of if-else statements.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    // The if-else statements are used to generate the output values.
+    
+[[ 1003  1114  1123 ...    13   198 50284]]
+tensor([[ 1003,  1114,  1123,  ...,    13,   198, 50284]], device='cuda:0')
+Checking if done:
+tokens generated:  943
+Calling isPromptComplete: 
+Running getPromptScore: 

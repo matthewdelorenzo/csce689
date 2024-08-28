@@ -1,0 +1,77 @@
+Area,Delay,Score,Current Run,Episode,Verilog,Error
+N/A,N/A,-1,2.0,1,"//Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin); 
+
+  wire [31:0] temp_sum;
+  wire temp_cout;
+
+  //The first adder
+  adder_16 adder_16_1(temp_sum[15:0], temp_cout, in1[15:0], in2[15:0], cin);
+
+  //The second adder
+  adder_16 adder_16_2(temp_sum[31:16], cout, in1[31:16], in2[31:16], temp_cout);
+
+  //Assign the sum to the output
+  assign sum = temp_sum;
+
+endmodule 
+
+  wire [31:0] temp_sum;
+  wire temp_cout;
+
+  //The first adder
+  adder_16 adder_16_1(temp_sum[15:0], temp_cout, in1[15:0], in2[15:0], cin);
+
+  //The second adder
+  adder_16 adder_16_2(temp_sum[31:16], cout, in1[31:16], in2[31:16], temp_cout);
+
+  //Assign the sum to the output
+  assign sum = temp_sum;
+
+endmodule",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama_dump_2048_nl_2/3827385_adder_32/3827385_adder_32.v:24: syntax error\nI give up.\n'
+N/A,N/A,-0.1,3.0,1,"//Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin); 
+
+  wire [32:0] sum_wire;
+  assign sum = sum_wire[31:0];
+  assign cout = sum_wire[32];
+
+  assign sum_wire = {in1, in2} + cin;
+
+endmodule",Success
+N/A,N/A,-1,4.0,1,"//Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin); 
+
+    wire [31:0] sum_temp;
+    wire cout_temp;
+
+    adder_16 adder_16_0(sum[15:0], cout_temp, in1[15:0], in2[15:0], cin);
+    adder_16 adder_16_1(sum[31:16], cout, in1[31:16], in2[31:16], cout_temp);
+
+endmodule 
+
+    wire [31:0] sum_temp;
+    wire cout_temp;
+
+    adder_16 adder_16_0(sum[15:0], cout_temp, in1[15:0], in2[15:0], cin);
+    adder_16 adder_16_1(sum[31:16], cout, in1[31:16], in2[31:16], cout_temp);
+
+endmodule",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama_dump_2048_nl_2/3827385_adder_32/3827385_adder_32.v:18: syntax error\nI give up.\n'

@@ -1,0 +1,174 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Fsm_serialdata.v
+Prompt str:  // Assume you have a finite state machine that will identify when bytes have been correctly received when given a stream of bits. It needs to identify the start bit, wait for all 8 data bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+// Now that you have a finite state machine that can identify when bytes are correctly received in a serial bitstream, add a datapath that will output the correctly-received data byte. out_byte needs to be valid when done is 1, and is don't-care otherwise.
+
+// Note that the serial protocol sends the least significant bit first.
+
+// Hint: The serial bitstream needs to be shifted in one bit at a time, then read out in parallel. 
+// Use FSM from Fsm_serial
+// New: Datapath to latch input bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  78335
+----GREEDY LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Setting terminal state to random.
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+original text:  // Assume you have a finite state machine that will identify when bytes have been correctly received when given a stream of bits. It needs to identify the start bit, wait for all 8 data bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+// Now that you have a finite state machine that can identify when bytes are correctly received in a serial bitstream, add a datapath that will output the correctly-received data byte. out_byte needs to be valid when done is 1, and is don't-care otherwise.
+
+// Note that the serial protocol sends the least significant bit first.
+
+// Hint: The serial bitstream needs to be shifted in one bit at a time, then read out in parallel. 
+// Use FSM from Fsm_serial
+// New: Datapath to latch input bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// You may use these parameters to access the RAM
+parameter RAM_WIDTH = 8; // Specify RAM data width
+parameter RAM_ADDR_BITS = 5; // Specify RAM address width
+
+// Declare the RAM variable
+reg [RAM_WIDTH-1:0] ram[2**RAM_ADDR_BITS-1:0];
+
+// Variable to hold the registered read address
+reg [RAM_ADDR_BITS-1:0] addr_reg;
+
+// Specify the byte size. This is a power of 2 because we are using 2**n sized blocks
+// for our RAM.
+parameter BYTE_SIZE = 1;
+
+// Input shift registers of the byte
+reg [7:0] in_byte [BYTE_SIZE-1:0];
+
+// State machine to control reading/writing to the RAM
+reg [2:0] state;
+
+// Specify the number of clock cycles to delay deassertion of the reset signal
+parameter RESET_CYCLES = 5;
+
+// Total number of clock cycles to hold the data in the FIFO
+parameter TOTAL_CYCLES = RESET_CYCLES + (2**BYTE_SIZE - 1) + 5;
+
+// Control signals for the shift register
+reg load_byte;
+reg load_addr;
+reg clear_addr;
+reg [7:0] out_byte_reg;
+
+// Control signals for the state machine
+reg write_enable;
+reg read_enable;
+reg [1:0] next_state;
+
+// Assign output
+assign done = (state == 3);
+
+// RAM read
+always @(posedge clk)
+begin
+    // Write to the RAM
+    if(write_enable)
+    begin
+        ram[addr_reg] <= in_byte_reg;
+    end
+
+    // Read from the RAM
+    if(read_enable)
+    begin
+        out_byte_reg <= ram[addr_reg];
+    end
+end
+
+// FSM
+always @(posedge clk)
+begin
+    if(reset)
+    begin
+        state <= 0;
+        load_byte <= 0;
+        load_addr <= 0;
+        clear_addr <= 0;
+        write_enable <= 0;
+        read_enable <= 0;
+    end
+    else
+    begin
+        // Default values
+        load_byte <= 0;
+        load_addr <= 0;
+        clear_addr <= 0;
+        write_enable <= 0;
+        read_enable <= 0;
+
+        case(state)
+            0:
+            begin
+                if(~in)
+                begin
+                    next_state <= 1;
+                    clear_addr <= 1;
+                end
+                else
+                begin
+                    next_state <= 0;
+                end
+            end
+            1:
+            begin
+                if(in)
+                begin
+                    next_state <= 2;
+                    load_addr <= 1;
+                end
+                else
+                begin
+                    next_state <= 0;
+                end
+            end
+            2:
+            begin
+                if(in)
+                begin
+                    next_state <= 3;
+                    load_byte <= 1;
+                end
+                else
+                begin
+                    next_state <= 0;
+                end
+            end
+            3:
+            begin
+                if(in)
+                begin
+[[ 1003  2195  2454 ...   198 50272 27471]]
+tensor([[ 1003,  2195,  2454,  ...,   198, 50272, 27471]], device='cuda:0')
+Checking if done:
+tokens generated:  774
+Calling isPromptComplete: 
+Running getPromptScore: 

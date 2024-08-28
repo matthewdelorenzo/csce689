@@ -1,0 +1,72 @@
+[2024-07-23 06:17:55,117] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/prompt_tb_files/adder/prompt1_adder_32.v
+Prompt str:  //Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin);
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  404529
+----RANDOM LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Init state length:  133
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+generating terminal state (main module)
+Setting terminal state to random.
+original text:  //Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin);
+  wire [31:0] sum_temp;
+  wire cout_temp;
+  wire [32:0] temp;
+  assign temp = {1'b0,in1} + {1'b0,in2} + {1'b0,cin};
+  assign sum = temp[31:0];
+  assign cout = temp[32];
+endmodule
+Checking if done:
+tokens generated:  88
+Calling isPromptComplete: 
+Ends with endmodule.
+Running functionality check.
+//Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin);
+  wire [31:0] sum_temp;
+  wire cout_temp;
+  wire [32:0] temp;
+  assign temp = {1'b0,in1} + {1'b0,in2} + {1'b0,cin};
+  assign sum = temp[31:0];
+  assign cout = temp[32];
+endmodule
+LOGGING VERILOG CODE.
+Output Verilog module compiles successfully.
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nTest 9 passed\nTest 10 passed\nall tests passed\n'
+
+All testbench tests passed!
+MCTS tree has reached the end.
+Terminal state found - returning state.
+Running getPromptScore: 
+adder_32

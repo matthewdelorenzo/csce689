@@ -1,0 +1,2991 @@
+Area,Delay,Score,Current Run,Episode,Verilog
+N/A,N/A,-1,0,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [127:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    always @(A, B) begin
+        product <= A * B;
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,1,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= {accumulator[127:64], product};
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,2,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            temp <= A * B;
+            accumulator <= temp + accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,3,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+    reg [63:0] C;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            temp <= 0;
+            C <= 0;
+        end
+        else begin
+            temp <= A * B;
+            C <= C + temp[63:0];
+        end
+    end
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= C;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,4,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accum;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            accum <= 0;
+        end
+        else begin
+            product <= A * B;
+            accum <= accum + product;
+        end
+    end
+
+    assign accumulator = {accum, product};
+
+endmodule"
+N/A,N/A,-0.1,5,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] product;
+    reg [127:0] accumulator_next;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end else begin
+            accumulator <= accumulator_next;
+        end
+    end
+
+    always @* begin
+        product = A * B;
+        accumulator_next = accumulator + product;
+    end
+
+endmodule"
+N/A,N/A,-1,6,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,7,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] sum;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            sum <= 0;
+        end
+        else begin
+            product <= A * B;
+            sum <= sum + product;
+        end
+    end
+
+    assign accumulator = sum;
+
+endmodule"
+N/A,N/A,-0.1,8,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            temp <= A * B;
+            accumulator <= temp + accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,9,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            accumulator_reg <= accumulator_reg + A * B;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,10,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] C;
+reg [63:0] temp;
+
+always @(posedge clk)
+begin
+    if(reset)
+    begin
+        accumulator <= 0;
+        C <= 0;
+    end
+    else
+    begin
+        temp <= A * B;
+        C <= C + temp;
+        accumulator <= C;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,11,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_reg;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,12,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] accumulator_reg;
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator_reg <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_reg <= accumulator_reg + product;
+    end
+end
+
+assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-1,13,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    always @(*) begin
+        product = A * B;
+    end
+
+    assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-0.1,14,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] product;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,15,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,16,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-0.1,17,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+reg [63:0] C;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        C <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator <= C + product;
+        C <= accumulator[127:64];
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,18,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+    reg [127:0] temp_accumulator;
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if(reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            temp <= A * B;
+            temp_accumulator <= accumulator_reg + temp;
+            accumulator_reg <= temp_accumulator;
+            accumulator <= temp_accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,19,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if(reset) begin
+        accumulator_temp <= 0;
+    end else begin
+        accumulator_temp <= accumulator_temp + A * B;
+    end
+end
+
+always @(posedge clk) begin
+    if(reset) begin
+        accumulator <= 0;
+    end else begin
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,20,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,21,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        product <= 0;
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,22,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            product <= A * B;
+            temp <= {accumulator_reg, product};
+            accumulator_reg <= temp[127:0];
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,23,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [127:0] product;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    always @ (*) begin
+        product = A * B;
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,24,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if(reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,25,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,26,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] temp;
+
+always @(posedge clk)
+begin
+    if (reset)
+        accumulator <= 0;
+    else
+        accumulator <= temp;
+end
+
+always @(posedge clk)
+begin
+    temp <= A * B + accumulator;
+end
+
+endmodule"
+N/A,N/A,-0.1,27,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= accumulator + product;
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,28,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 64'b0;
+            accumulator <= 128'b0;
+        end
+        else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,29,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] accumulator_reg;
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator_reg <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_reg <= accumulator_reg + product;
+    end
+end
+
+assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-0.1,30,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+
+always @ (posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,31,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end else begin
+            product <= A * B;
+            temp <= accumulator + product;
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,32,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= accumulator + product;
+            accumulator <= accumulator_temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,33,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_next;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= accumulator_next;
+        end
+    end
+
+    always @(*) begin
+        accumulator_next = accumulator;
+        product = A * B;
+        accumulator_next = accumulator + product;
+    end
+
+endmodule"
+N/A,N/A,-0.1,34,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        product <= 0;
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,35,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            temp <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= {accumulator[127:64], product[63:0]};
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,36,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] temp;
+
+always @ (posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        temp <= {accumulator[127:64], product};
+        accumulator <= temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,37,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    always @ (*) begin
+        product = A * B;
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,38,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= accumulator + product;
+            accumulator <= accumulator_temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,39,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product = A * B;
+            temp = {accumulator[127:64], accumulator[63:0]};
+            temp = temp + product;
+            accumulator <= {temp[127:64], temp[63:0]};
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,40,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            temp <= 0;
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= {accumulator[127:64], product};
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,41,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] accumulator_reg;
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if(reset) begin
+        accumulator_reg <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_reg <= accumulator_reg + product;
+    end
+end
+
+assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-1,42,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,43,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,44,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [63:0] accumulator_reg;
+
+always @(posedge clk) begin
+    if(reset) begin
+        product <= 0;
+        accumulator_reg <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_reg <= accumulator_reg + product;
+    end
+end
+
+assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,45,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            temp <= A * B;
+            accumulator <= temp + accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,46,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] temp;
+
+always @ (posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        temp <= A * B;
+        accumulator <= accumulator + temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,47,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,48,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= {accumulator[127:64], product[63:0]};
+            accumulator <= accumulator_temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,49,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        temp <= {accumulator[127:64], accumulator[63:0]};
+        accumulator <= temp + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,50,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,51,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_reg;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,52,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,53,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,54,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 64'b0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,55,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+        end
+        else begin
+            product <= A * B;
+        end
+    end
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,56,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,57,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+            accumulator <= {accumulator_reg, product};
+        end
+    end
+endmodule"
+N/A,N/A,-0.1,58,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,59,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= accumulator + product;
+            accumulator <= accumulator_temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,60,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+    reg [63:0] temp_A;
+    reg [63:0] temp_B;
+    reg [63:0] temp_C;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            temp <= 0;
+            temp_A <= 0;
+            temp_B <= 0;
+            temp_C <= 0;
+        end
+        else begin
+            temp_A <= A;
+            temp_B <= B;
+            temp_C <= accumulator[127:64];
+            temp <= temp_A * temp_B + temp_C;
+            accumulator <= {temp, temp_A * temp_B};
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,61,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        product <= 0;
+    end
+    else begin
+        product <= A * B;
+    end
+end
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,62,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+
+always @(posedge clk)
+begin
+    if(reset)
+        product <= 0;
+    else
+        product <= A * B;
+end
+
+always @(posedge clk)
+begin
+    if(reset)
+        accumulator <= 0;
+    else
+        accumulator <= product + accumulator;
+end
+
+endmodule"
+N/A,N/A,-1,63,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,64,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,65,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= {accumulator[127:64], product};
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,66,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,67,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [63:0] product;
+    reg [63:0] product_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+            product_reg <= 0;
+        end
+        else begin
+            accumulator_reg <= accumulator_reg + product_reg;
+            product_reg <= A * B;
+        end
+    end
+
+    assign accumulator = {accumulator_reg, product_reg};
+
+endmodule"
+N/A,N/A,-1,68,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator_temp <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_temp <= accumulator_temp + product;
+    end
+end
+
+assign accumulator = accumulator_temp;
+
+endmodule"
+N/A,N/A,-1,69,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_temp <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= accumulator_temp + product;
+        end
+    end
+
+    assign accumulator = accumulator_temp;
+
+endmodule"
+N/A,N/A,-0.1,70,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            accumulator <= 0;
+        end else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,71,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,72,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            temp <= A * B;
+            accumulator <= temp + accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,73,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end else begin
+            temp <= A * B;
+            accumulator <= accumulator + temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,74,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] accumulator_reg;
+
+always @(posedge clk)
+begin
+    if(reset)
+        accumulator_reg <= 0;
+    else
+        accumulator_reg <= accumulator_reg + A*B;
+end
+
+assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,75,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] accumulator_next;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        accumulator <= accumulator_next;
+    end
+end
+
+always @* begin
+    product = A * B;
+    accumulator_next = accumulator + product;
+end
+
+endmodule"
+N/A,N/A,-0.1,76,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,77,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [127:0] accumulator_next;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        accumulator <= accumulator_next;
+    end
+end
+
+always @* begin
+    accumulator_next = A * B + accumulator;
+end
+
+endmodule"
+N/A,N/A,-0.1,78,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator <= accumulator + product;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,79,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] sum;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            sum <= 0;
+        end
+        else begin
+            product <= A * B;
+            sum <= sum + product;
+        end
+    end
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= sum;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,80,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= accumulator + product;
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,81,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] accumulator_reg;
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-0.1,82,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,83,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] accumulator_temp;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_temp <= accumulator + product;
+            accumulator <= accumulator_temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,84,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_next;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= accumulator_next;
+        end
+    end
+
+    always @ (*) begin
+        accumulator_next = A * B + accumulator;
+    end
+
+endmodule"
+N/A,N/A,-1,85,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] sum;
+
+always @(posedge clk) begin
+    if (reset) begin
+        product <= 0;
+        sum <= 0;
+    end
+    else begin
+        product <= A * B;
+        sum <= sum + product;
+    end
+end
+
+assign accumulator = sum;
+
+endmodule"
+N/A,N/A,-0.1,86,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 64'b0;
+        end
+        else begin
+            product <= A * B;
+        end
+    end
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 128'b0;
+        end
+        else begin
+            accumulator <= {accumulator[126:0], product[63]};
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,87,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            temp <= A * B;
+            accumulator <= accumulator + temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,88,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_reg;
+    reg [63:0] product;
+    reg [63:0] product_reg;
+    reg [63:0] C;
+    reg [63:0] C_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+            product_reg <= 0;
+            C_reg <= 0;
+        end
+        else begin
+            accumulator_reg <= accumulator;
+            product_reg <= product;
+            C_reg <= C;
+        end
+    end
+
+    assign product = A * B;
+    assign C = accumulator_reg + product_reg;
+    assign accumulator = C_reg;
+
+endmodule"
+N/A,N/A,-1,89,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-1,90,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] accumulator_reg;
+reg [63:0] product;
+
+always @(posedge clk)
+begin
+    if(reset)
+        accumulator_reg <= 0;
+    else
+        accumulator_reg <= accumulator_reg + product;
+end
+
+always @(A, B)
+begin
+    product <= A * B;
+end
+
+assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-0.1,91,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+reg [127:0] accumulator_temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+    end else begin
+        product <= A * B;
+        accumulator_temp <= accumulator + product;
+        accumulator <= accumulator_temp;
+    end
+end
+
+endmodule"
+N/A,N/A,-1,92,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 64'b0;
+            accumulator_reg <= 64'b0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = {accumulator_reg, product};
+
+endmodule"
+N/A,N/A,-1,93,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [63:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            product <= 0;
+            accumulator_reg <= 0;
+        end
+        else begin
+            product <= A * B;
+            accumulator_reg <= accumulator_reg + product;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"
+N/A,N/A,-0.1,94,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] C;
+
+always @(posedge clk) begin
+    if(reset) begin
+        accumulator <= 0;
+    end
+    else begin
+        accumulator <= accumulator + A*B;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,95,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [63:0] product;
+    reg [127:0] temp;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            product <= A * B;
+            temp <= accumulator + product;
+            accumulator <= temp;
+        end
+    end
+
+endmodule"
+N/A,N/A,-0.1,96,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_next;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end else begin
+            accumulator <= accumulator_next;
+        end
+    end
+
+    always @(*) begin
+        accumulator_next = A * B + accumulator;
+    end
+
+endmodule"
+N/A,N/A,-0.1,97,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [63:0] product;
+
+always @(posedge clk) begin
+    if (reset) begin
+        product <= 0;
+        accumulator <= 0;
+    end
+    else begin
+        product <= A * B;
+        accumulator <= accumulator + product;
+    end
+end
+
+endmodule"
+N/A,N/A,-0.1,98,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] product;
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            product <= 0;
+        end
+        else begin
+            product <= A * B;
+        end
+    end
+
+    always @ (posedge clk) begin
+        if (reset) begin
+            accumulator <= 0;
+        end
+        else begin
+            accumulator <= product + accumulator;
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,99,0,"//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+    reg [127:0] accumulator_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            accumulator_reg <= 0;
+        end else begin
+            accumulator_reg <= accumulator_reg + A * B;
+        end
+    end
+
+    assign accumulator = accumulator_reg;
+
+endmodule"

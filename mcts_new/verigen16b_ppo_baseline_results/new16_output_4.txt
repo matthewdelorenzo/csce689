@@ -1,0 +1,330 @@
+[2024-07-23 06:28:15,969] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/prompt_tb_files/mac/mac_64.v
+Prompt str:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  700448
+----RANDOM LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Init state length:  166
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+generating terminal state (main module)
+Setting terminal state to random.
+original text:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_a, acc_b;
+reg [31:0] acc_c;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        acc_a <= 0;
+        acc_b <= 0;
+        acc_c <= 0;
+    end
+    else begin
+        acc_a <= A;
+        acc_b <= B;
+        acc_c <= acc_a * acc_b;
+        accumulator <= {acc_c, acc_b, acc_a};
+    end
+end
+
+endmodule
+Checking if done:
+tokens generated:  141
+Calling isPromptComplete: 
+Ends with endmodule.
+Running functionality check.
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_a, acc_b;
+reg [31:0] acc_c;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        acc_a <= 0;
+        acc_b <= 0;
+        acc_c <= 0;
+    end
+    else begin
+        acc_a <= A;
+        acc_b <= B;
+        acc_c <= acc_a * acc_b;
+        accumulator <= {acc_c, acc_b, acc_a};
+    end
+end
+
+endmodule
+LOGGING VERILOG CODE.
+Output Verilog module compiles successfully.
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Time:                 5000, A: 0000000000000000, B: 0000000000000000, Accumulator: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nTime:                15000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTime:                25000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTest 1 passed\nTime:                35000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTime:                45000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTest 2 failed\n'
+
+MCTS tree has reached the end.
+Terminal state found - returning state.
+Running getPromptScore: 
+----RANDOM LLM OUTPUT - ITERATION:  1  ----
+---------------
+Done setting up env.
+Init state length:  166
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+generating terminal state (main module)
+Setting terminal state to random.
+original text:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_r;
+reg [31:0] temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        acc_r <= 0;
+    end
+    else begin
+        acc_r <= A * B;
+        accumulator <= {accumulator[126:0], acc_r};
+    end
+end
+
+always @(posedge clk) begin
+    if (reset) begin
+        temp <= 0;
+    end
+    else begin
+        temp <= acc_r[31:0];
+    end
+end
+
+endmodule
+Checking if done:
+tokens generated:  147
+Calling isPromptComplete: 
+Ends with endmodule.
+Running functionality check.
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_r;
+reg [31:0] temp;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        acc_r <= 0;
+    end
+    else begin
+        acc_r <= A * B;
+        accumulator <= {accumulator[126:0], acc_r};
+    end
+end
+
+always @(posedge clk) begin
+    if (reset) begin
+        temp <= 0;
+    end
+    else begin
+        temp <= acc_r[31:0];
+    end
+end
+
+endmodule
+LOGGING VERILOG CODE.
+Output Verilog module compiles successfully.
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Time:                 5000, A: 0000000000000000, B: 0000000000000000, Accumulator: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nTime:                15000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTime:                25000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTest 1 passed\nTime:                35000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTime:                45000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTest 2 failed\n'
+
+MCTS tree has reached the end.
+Terminal state found - returning state.
+Running getPromptScore: 
+----RANDOM LLM OUTPUT - ITERATION:  2  ----
+---------------
+Done setting up env.
+Init state length:  166
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+generating terminal state (main module)
+Setting terminal state to random.
+original text:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_a;
+reg [31:0] acc_b;
+reg [31:0] acc_c;
+
+always @(posedge clk)
+begin
+    if (reset)
+    begin
+        acc_a <= 0;
+        acc_b <= 0;
+        acc_c <= 0;
+    end
+    else
+    begin
+        acc_a <= A[31:0];
+        acc_b <= B[31:0];
+        acc_c <= acc_a * acc_b;
+    end
+end
+
+always @(posedge clk)
+begin
+    if (reset)
+        accumulator <= 0;
+    else
+        accumulator <= {acc_c, 128'b0};
+end
+
+endmodule
+Checking if done:
+tokens generated:  181
+Calling isPromptComplete: 
+Ends with endmodule.
+Running functionality check.
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_64(
+    input wire clk,
+    input wire reset,
+    input wire [63:0] A,
+    input wire [63:0] B,
+    output reg [127:0] accumulator
+);
+
+reg [31:0] acc_a;
+reg [31:0] acc_b;
+reg [31:0] acc_c;
+
+always @(posedge clk)
+begin
+    if (reset)
+    begin
+        acc_a <= 0;
+        acc_b <= 0;
+        acc_c <= 0;
+    end
+    else
+    begin
+        acc_a <= A[31:0];
+        acc_b <= B[31:0];
+        acc_c <= acc_a * acc_b;
+    end
+end
+
+always @(posedge clk)
+begin
+    if (reset)
+        accumulator <= 0;
+    else
+        accumulator <= {acc_c, 128'b0};
+end
+
+endmodule
+LOGGING VERILOG CODE.
+Output Verilog module compiles successfully.
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Time:                 5000, A: 0000000000000000, B: 0000000000000000, Accumulator: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nTime:                15000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTime:                25000, A: 0000000000000000, B: 0000000000000000, Accumulator: 00000000000000000000000000000000\nTest 1 passed\nTime:                35000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTime:                45000, A: 0000000000000002, B: 0000000000000003, Accumulator: 00000000000000000000000000000000\nTest 2 failed\n'
+
+MCTS tree has reached the end.
+Terminal state found - returning state.
+Running getPromptScore: 
+----RANDOM LLM OUTPUT - ITERATION:  3  ----
+---------------
+Done setting up env.
+Init state length:  166
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+generating terminal state (main module)
+Setting terminal state to random.

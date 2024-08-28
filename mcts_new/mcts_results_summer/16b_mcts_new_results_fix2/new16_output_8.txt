@@ -1,0 +1,140 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Edgedetect2.v
+Prompt str:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  555409
+----GREEDY LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Setting terminal state to random.
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+original text:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] state;
+    reg [7:0] next_state;
+    
+    // State transition logic (combinational)
+    always @(*) begin
+        next_state = state;
+        case (state)
+            8'h00: begin
+                if (in[0])
+                    next_state = 8'h01;
+                else if (in[1])
+                    next_state = 8'h02;
+                else if (in[2])
+                    next_state = 8'h04;
+                else if (in[3])
+                    next_state = 8'h08;
+                else if (in[4])
+                    next_state = 8'h10;
+                else if (in[5])
+                    next_state = 8'h20;
+                else if (in[6])
+                    next_state = 8'h40;
+                else if (in[7])
+                    next_state = 8'h80;
+                else
+                    next_state = 8'h00;
+            end
+            8'h01: begin
+                if (in[0])
+                    next_state = 8'h02;
+                else if (in[1])
+                    next_state = 8'h04;
+                else if (in[2])
+                    next_state = 8'h08;
+                else if (in[3])
+                    next_state = 8'h10;
+                else if (in[4])
+                    next_state = 8'h20;
+                else if (in[5])
+                    next_state = 8'h40;
+                else if (in[6])
+                    next_state = 8'h80;
+                else if (in[7])
+                    next_state = 8'h00;
+                else
+                    next_state = 8'h01;
+            end
+            8'h02: begin
+                if (in[0])
+                    next_state = 8'h04;
+                else if (in[1])
+                    next_state = 8'h08;
+                else if (in[2])
+                    next_state = 8'h10;
+                else if (in[3])
+                    next_state = 8'h20;
+                else if (in[4])
+                    next_state = 8'h40;
+                else if (in[5])
+                    next_state = 8'h80;
+                else if (in[6])
+                    next_state = 8'h00;
+                else if (in[7])
+                    next_state = 8'h01;
+                else
+                    next_state = 8'h02;
+            end
+            8'h04: begin
+                if (in[0])
+                    next_state = 8'h08;
+                else if (in[1])
+                    next_state = 8'h10;
+                else if (in[2])
+                    next_state = 8'h20;
+                else if (in[3])
+                    next_state = 8'h40;
+                else if (in[4])
+                    next_state = 8'h80;
+                else if (in[5])
+                    next_state = 8'h00;
+                else if (in[6])
+                    next_state = 8'h01;
+                else if (in[7])
+                    next_state = 8'h02;
+                else
+                    next_state = 8'h04;
+            end
+            8'h08: begin
+                if (in[0])
+                    next_state = 8'h10;
+                else if (in[1])
+                    next_state = 8'h20;
+                else if (in[2])
+                    next_state = 8'h40;
+                else if (in[3])
+                    next_state = 8'h80;
+                else if (in[4])
+                    next_state = 8'h00;
+                else if (in[5])
+                    next_state = 8'h01;
+                else if (in[6])
+                    next_state = 8'h02;
+                else if
+[[ 1003  1114  1123 ... 50272 17772   611]]
+tensor([[ 1003,  1114,  1123,  ..., 50272, 17772,   611]], device='cuda:0')
+Checking if done:
+tokens generated:  943
+Calling isPromptComplete: 
+Running getPromptScore: 

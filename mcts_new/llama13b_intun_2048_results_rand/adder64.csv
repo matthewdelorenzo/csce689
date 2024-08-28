@@ -1,0 +1,2360 @@
+Area,Delay,Score,Current Run,Episode,Verilog,Error
+N/A,N/A,-0.1,0,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,1,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,2,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_wire;
+  wire cout_wire;
+
+  assign sum_wire = in1 + in2 + cin;
+  assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_wire;
+  assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,3,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 32-bit adder module
+    adder_32 adder_32_inst(sum_wire[31:0], cout_wire, in1[31:0], in2[31:0], cin);
+    adder_32 adder_32_inst2(sum_wire[63:32], cout_wire, in1[63:32], in2[63:32], cout_wire);
+
+endmodule
+
+//Design a 32-bit adder.
+//There are two 32 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 32 bit value, [31:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_32(output [31:0] sum,
+                      output cout,
+                      input [31:0] in1, in2,
+                      input cin);
+
+    wire [31:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 16-bit adder module
+    adder_16 adder_16_inst(sum_wire[15:0], cout_wire, in1[15:0], in2[15:0], cin);
+    adder_16 adder_16_inst2(sum_wire[31:16], cout_wire, in1[31:16], in2[31:16], cout_wire);
+
+endmodule
+
+//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_16(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+    wire [15:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 8-bit adder module
+    adder_8 adder_8_inst(sum_wire[7:0], cout_wire, in1[7:0], in2[7:0], cin);
+    adder_8 adder_8_inst2(sum_wire[15:8], cout_wire, in1[15:8], in2[15:8], cout_wire);
+
+endmodule
+
+//Design a 8-bit adder.
+//There are two 8 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 8 bit value, [7:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_8(output [7:0] sum,
+                     output cout,
+                     input [7:0] in1, in2,
+                     input cin);
+
+    wire [7:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 4-bit adder module
+    adder_4 adder_4_inst(sum_wire[3:0], cout_wire, in1[3:0], in2[3:0], cin);
+    adder_4 adder_4_inst2(sum_wire[7:4], cout_wire, in1[7:4], in2[7:4], cout_wire);
+
+endmodule
+
+//Design a 4-bit adder.
+//There are two 4 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 4 bit value, [3:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_4(output [3:0] sum,
+                     output cout,
+                     input [3:0] in1, in2,
+                     input cin);
+
+    wire [3:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 2-bit adder module
+    adder_2 adder_2_inst(sum_wire[1:0], cout_wire, in1[1:0], in2[1:0], cin);
+    adder_2 adder_2_inst2(sum_wire[3:2], cout_wire, in1[3:2], in2[3:2], cout_wire);
+
+endmodule
+
+//Design a 2-bit adder.
+//There are two 2 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 2 bit value, [1:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_2(output [1:0] sum,
+                     output cout,
+                     input [1:0] in1, in2,
+                     input cin);
+
+    wire [1:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 1-bit adder module
+    adder_1 adder_1_inst(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    adder_1 adder_1_inst2(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+
+endmodule
+
+//Design a 1-bit adder.
+//There are two 1 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 1 bit value, [0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_1(output [0:0] sum,
+                     output cout,
+                     input [0:0] in1, in2,
+                     input cin);
+
+    wire [0:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    //Instantiate the 1-bit adder module
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1 + in2 + cin) > 1;
+
+endmodule",Success
+N/A,N/A,-0.1,4,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,5,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,6,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,7,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,8,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-1,9,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    full_adder fa1(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+    full_adder fa2(sum_wire[2], cout_wire, in1[2], in2[2], cout_wire);
+    full_adder fa3(sum_wire[3], cout_wire, in1[3], in2[3], cout_wire);
+    full_adder fa4(sum_wire[4], cout_wire, in1[4], in2[4], cout_wire);
+    full_adder fa5(sum_wire[5], cout_wire, in1[5], in2[5], cout_wire);
+    full_adder fa6(sum_wire[6], cout_wire, in1[6], in2[6], cout_wire);
+    full_adder fa7(sum_wire[7], cout_wire, in1[7], in2[7], cout_wire);
+    full_adder fa8(sum_wire[8], cout_wire, in1[8], in2[8], cout_wire);
+    full_adder fa9(sum_wire[9], cout_wire, in1[9], in2[9], cout_wire);
+    full_adder fa10(sum_wire[10], cout_wire, in1[10], in2[10], cout_wire);
+    full_adder fa11(sum_wire[11], cout_wire, in1[11], in2[11], cout_wire);
+    full_adder fa12(sum_wire[12], cout_wire, in1[12], in2[12], cout_wire);
+    full_adder fa13(sum_wire[13], cout_wire, in1[13], in2[13], cout_wire);
+    full_adder fa14(sum_wire[14], cout_wire, in1[14], in2[14], cout_wire);
+    full_adder fa15(sum_wire[15], cout_wire, in1[15], in2[15], cout_wire);
+    full_adder fa16(sum_wire[16], cout_wire, in1[16], in2[16], cout_wire);
+    full_adder fa17(sum_wire[17], cout_wire, in1[17], in2[17], cout_wire);
+    full_adder fa18(sum_wire[18], cout_wire, in1[18], in2[18], cout_wire);
+    full_adder fa19(sum_wire[19], cout_wire, in1[19], in2[19], cout_wire);
+    full_adder fa20(sum_wire[20], cout_wire, in1[20], in2[20], cout_wire);
+    full_adder fa21(sum_wire[21], cout_wire, in1[21], in2[21], cout_wire);
+    full_adder fa22(sum_wire[22], cout_wire, in1[22], in2[22], cout_wire);
+    full_adder fa23(sum_wire[23], cout_wire, in1[23], in2[23], cout_wire);
+    full_adder fa24(sum_wire[24], cout_wire, in1[24], in2[24], cout_wire);
+    full_adder fa25(sum_wire[25], cout_wire, in1[25], in2[25], cout_wire);
+    full_adder fa26(sum_wire[26], cout_wire, in1[26], in2[26], cout_wire);
+    full_adder fa27(sum_wire[27], cout_wire, in1[27], in2[27], cout_wire);
+    full_adder fa28(sum_wire[28], cout_wire, in1[28], in2[28], cout_wire);
+    full_adder fa29(sum_wire[29], cout_wire, in1[29], in2[29], cout_wire);
+    full_adder fa30(sum_wire[30], cout_wire, in1[30], in2[30], cout_wire);
+    full_adder fa31(sum_wire[31], cout_wire, in1[31], in2[31], cout_wire);
+    full_adder fa32(sum_wire[32], cout_wire, in1[32], in2[32], cout_wire);
+    full_adder fa33(sum_wire[33], cout_wire, in1[33], in2[33], cout_wire);
+    full_adder fa34(sum_wire[34], cout_wire, in1[34], in2[34], cout_wire);
+    full_adder fa35(sum_wire[35], cout_wire, in1[35], in2[35], cout_wire);
+    full_adder fa36(sum_wire[36], cout_wire, in1[36], in2[36], cout_wire);
+    full_adder fa37(sum_wire[37], cout_wire, in1[37], in2[37], cout_wire);
+    full_adder fa38(sum_wire[38], cout_wire, in1[38], in2[38], cout_wire);
+    full_adder fa39(sum_wire[39], cout_wire, in1[39], in2[39], cout_wire);
+    full_adder fa40(sum_wire[40], cout_wire, in1[40], in2[40], cout_wire);
+    full_adder fa41(sum_wire[41], cout_wire, in1[41], in2[41], cout_wire);
+    full_adder fa42(sum_wire[42], cout_wire, in1[42], in2[42], cout_wire);
+    full_adder fa43(sum_wire[43], cout_wire, in1[43], in2[43], cout_wire);
+    full_adder fa44(sum_wire[44], cout_wire, in1[44], in2[44], cout_wire);
+    full_adder fa45(sum_wire[45], cout_wire, in1[45], in2[45], cout_wire);
+    full_adder fa46(sum_wire[46], cout_wire, in1[46], in2[46], cout_wire);
+    full_adder fa47(sum_wire[47], cout_wire, in1[47], in2[47], cout_wire);
+    full_adder fa48(sum_wire[48], cout_wire, in1[48], in2[48], cout_wire);
+    full_adder fa49(sum_wire[49], cout_wire, in1[49], in2[49], cout_wire);
+    full_adder fa50(sum_wire[50], cout_wire, in1[50], in2[50], cout_wire);
+    full_adder fa51(sum_wire[51], cout_wire, in1[51], in2[51], cout_wire);
+    full_adder fa52(sum_wire[52], cout_wire, in1[52], in2[52], cout_wire);
+    full_adder fa53(sum_wire[53], cout_wire, in1[53], in2[53], cout_wire);
+    full_adder fa54(sum_wire[54], cout_wire, in1[54], in2[54], cout_wire);
+    full_adder fa55(sum_wire[5",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:71: syntax error\nI give up.\n'
+N/A,N/A,-0.1,10,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-1,11,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    full_adder fa1(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+    full_adder fa2(sum_wire[2], cout_wire, in1[2], in2[2], cout_wire);
+    full_adder fa3(sum_wire[3], cout_wire, in1[3], in2[3], cout_wire);
+    full_adder fa4(sum_wire[4], cout_wire, in1[4], in2[4], cout_wire);
+    full_adder fa5(sum_wire[5], cout_wire, in1[5], in2[5], cout_wire);
+    full_adder fa6(sum_wire[6], cout_wire, in1[6], in2[6], cout_wire);
+    full_adder fa7(sum_wire[7], cout_wire, in1[7], in2[7], cout_wire);
+    full_adder fa8(sum_wire[8], cout_wire, in1[8], in2[8], cout_wire);
+    full_adder fa9(sum_wire[9], cout_wire, in1[9], in2[9], cout_wire);
+    full_adder fa10(sum_wire[10], cout_wire, in1[10], in2[10], cout_wire);
+    full_adder fa11(sum_wire[11], cout_wire, in1[11], in2[11], cout_wire);
+    full_adder fa12(sum_wire[12], cout_wire, in1[12], in2[12], cout_wire);
+    full_adder fa13(sum_wire[13], cout_wire, in1[13], in2[13], cout_wire);
+    full_adder fa14(sum_wire[14], cout_wire, in1[14], in2[14], cout_wire);
+    full_adder fa15(sum_wire[15], cout_wire, in1[15], in2[15], cout_wire);
+    full_adder fa16(sum_wire[16], cout_wire, in1[16], in2[16], cout_wire);
+    full_adder fa17(sum_wire[17], cout_wire, in1[17], in2[17], cout_wire);
+    full_adder fa18(sum_wire[18], cout_wire, in1[18], in2[18], cout_wire);
+    full_adder fa19(sum_wire[19], cout_wire, in1[19], in2[19], cout_wire);
+    full_adder fa20(sum_wire[20], cout_wire, in1[20], in2[20], cout_wire);
+    full_adder fa21(sum_wire[21], cout_wire, in1[21], in2[21], cout_wire);
+    full_adder fa22(sum_wire[22], cout_wire, in1[22], in2[22], cout_wire);
+    full_adder fa23(sum_wire[23], cout_wire, in1[23], in2[23], cout_wire);
+    full_adder fa24(sum_wire[24], cout_wire, in1[24], in2[24], cout_wire);
+    full_adder fa25(sum_wire[25], cout_wire, in1[25], in2[25], cout_wire);
+    full_adder fa26(sum_wire[26], cout_wire, in1[26], in2[26], cout_wire);
+    full_adder fa27(sum_wire[27], cout_wire, in1[27], in2[27], cout_wire);
+    full_adder fa28(sum_wire[28], cout_wire, in1[28], in2[28], cout_wire);
+    full_adder fa29(sum_wire[29], cout_wire, in1[29], in2[29], cout_wire);
+    full_adder fa30(sum_wire[30], cout_wire, in1[30], in2[30], cout_wire);
+    full_adder fa31(sum_wire[31], cout_wire, in1[31], in2[31], cout_wire);
+    full_adder fa32(sum_wire[32], cout_wire, in1[32], in2[32], cout_wire);
+    full_adder fa33(sum_wire[33], cout_wire, in1[33], in2[33], cout_wire);
+    full_adder fa34(sum_wire[34], cout_wire, in1[34], in2[34], cout_wire);
+    full_adder fa35(sum_wire[35], cout_wire, in1[35], in2[35], cout_wire);
+    full_adder fa36(sum_wire[36], cout_wire, in1[36], in2[36], cout_wire);
+    full_adder fa37(sum_wire[37], cout_wire, in1[37], in2[37], cout_wire);
+    full_adder fa38(sum_wire[38], cout_wire, in1[38], in2[38], cout_wire);
+    full_adder fa39(sum_wire[39], cout_wire, in1[39], in2[39], cout_wire);
+    full_adder fa40(sum_wire[40], cout_wire, in1[40], in2[40], cout_wire);
+    full_adder fa41(sum_wire[41], cout_wire, in1[41], in2[41], cout_wire);
+    full_adder fa42(sum_wire[42], cout_wire, in1[42], in2[42], cout_wire);
+    full_adder fa43(sum_wire[43], cout_wire, in1[43], in2[43], cout_wire);
+    full_adder fa44(sum_wire[44], cout_wire, in1[44], in2[44], cout_wire);
+    full_adder fa45(sum_wire[45], cout_wire, in1[45], in2[45], cout_wire);
+    full_adder fa46(sum_wire[46], cout_wire, in1[46], in2[46], cout_wire);
+    full_adder fa47(sum_wire[47], cout_wire, in1[47], in2[47], cout_wire);
+    full_adder fa48(sum_wire[48], cout_wire, in1[48], in2[48], cout_wire);
+    full_adder fa49(sum_wire[49], cout_wire, in1[49], in2[49], cout_wire);
+    full_adder fa50(sum_wire[50], cout_wire, in1[50], in2[50], cout_wire);
+    full_adder fa51(sum_wire[51], cout_wire, in1[51], in2[51], cout_wire);
+    full_adder fa52(sum_wire[52], cout_wire, in1[52], in2[52], cout_wire);
+    full_adder fa53(sum_wire[53], cout_wire, in1[53], in2[53], cout_wire);
+    full_adder fa54(sum_wire[54], cout_wire, in1[54], in2[54], cout_wire);
+    full_adder fa55(sum_wire[5",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:71: syntax error\nI give up.\n'
+N/A,N/A,-0.1,12,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,13,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,14,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,15,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,16,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,17,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,18,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,19,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_wire;
+  wire cout_wire;
+
+  assign sum_wire = in1 + in2 + cin;
+  assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_wire;
+  assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,20,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,21,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,22,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,23,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-1,24,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(.sum(sum_wire[0]), .cout(cout_wire), .a(in1[0]), .b(in2[0]), .cin(cin));
+    full_adder fa1(.sum(sum_wire[1]), .cout(cout_wire), .a(in1[1]), .b(in2[1]), .cin(cout_wire));
+    full_adder fa2(.sum(sum_wire[2]), .cout(cout_wire), .a(in1[2]), .b(in2[2]), .cin(cout_wire));
+    full_adder fa3(.sum(sum_wire[3]), .cout(cout_wire), .a(in1[3]), .b(in2[3]), .cin(cout_wire));
+    full_adder fa4(.sum(sum_wire[4]), .cout(cout_wire), .a(in1[4]), .b(in2[4]), .cin(cout_wire));
+    full_adder fa5(.sum(sum_wire[5]), .cout(cout_wire), .a(in1[5]), .b(in2[5]), .cin(cout_wire));
+    full_adder fa6(.sum(sum_wire[6]), .cout(cout_wire), .a(in1[6]), .b(in2[6]), .cin(cout_wire));
+    full_adder fa7(.sum(sum_wire[7]), .cout(cout_wire), .a(in1[7]), .b(in2[7]), .cin(cout_wire));
+    full_adder fa8(.sum(sum_wire[8]), .cout(cout_wire), .a(in1[8]), .b(in2[8]), .cin(cout_wire));
+    full_adder fa9(.sum(sum_wire[9]), .cout(cout_wire), .a(in1[9]), .b(in2[9]), .cin(cout_wire));
+    full_adder fa10(.sum(sum_wire[10]), .cout(cout_wire), .a(in1[10]), .b(in2[10]), .cin(cout_wire));
+    full_adder fa11(.sum(sum_wire[11]), .cout(cout_wire), .a(in1[11]), .b(in2[11]), .cin(cout_wire));
+    full_adder fa12(.sum(sum_wire[12]), .cout(cout_wire), .a(in1[12]), .b(in2[12]), .cin(cout_wire));
+    full_adder fa13(.sum(sum_wire[13]), .cout(cout_wire), .a(in1[13]), .b(in2[13]), .cin(cout_wire));
+    full_adder fa14(.sum(sum_wire[14]), .cout(cout_wire), .a(in1[14]), .b(in2[14]), .cin(cout_wire));
+    full_adder fa15(.sum(sum_wire[15]), .cout(cout_wire), .a(in1[15]), .b(in2[15]), .cin(cout_wire));
+    full_adder fa16(.sum(sum_wire[16]), .cout(cout_wire), .a(in1[16]), .b(in2[16]), .cin(cout_wire));
+    full_adder fa17(.sum(sum_wire[17]), .cout(cout_wire), .a(in1[17]), .b(in2[17]), .cin(cout_wire));
+    full_adder fa18(.sum(sum_wire[18]), .cout(cout_wire), .a(in1[18]), .b(in2[18]), .cin(cout_wire));
+    full_adder fa19(.sum(sum_wire[19]), .cout(cout_wire), .a(in1[19]), .b(in2[19]), .cin(cout_wire));
+    full_adder fa20(.sum(sum_wire[20]), .cout(cout_wire), .a(in1[20]), .b(in2[20]), .cin(cout_wire));
+    full_adder fa21(.sum(sum_wire[21]), .cout(cout_wire), .a(in1[21]), .b(in2[21]), .cin(cout_wire));
+    full_adder fa22(.sum(sum_wire[22]), .cout(cout_wire), .a(in1[22]), .b(in2[22]), .cin(cout_wire));
+    full_adder fa23(.sum(sum_wire[23]), .cout(cout_wire), .a(in1[23]), .b(in2[23]), .cin(cout_wire));
+    full_adder fa24(.sum(sum_wire[24]), .cout(cout_wire), .a(in1[24]), .b(in2[24]), .cin(cout_wire));
+    full_adder fa25(.sum(sum_wire[25]), .cout(cout_wire), .a(in1[25]), .b(in2[25]), .cin(cout_wire));
+    full_adder fa26(.sum(sum_wire[26]), .cout(cout_wire), .a(in1[26]), .b(in2[26]), .cin(cout_wire));
+    full_adder fa27(.sum(sum_wire[27]), .cout(cout_wire), .a(in1[27]), .b(in2[27]), .cin(cout_wire));
+    full_adder fa28(.sum(sum_wire[28]), .cout(cout_wire), .a(in1[28]), .b(in2[28]), .cin(cout_wire));
+    full_adder fa29(.sum(sum_wire[29]), .cout(cout_wire), .a(in1[29]), .b(in2[29]), .cin(cout_wire));
+    full_adder fa30(.sum(sum_wire[30]), .cout(cout_wire), .a(in1[30]), .b(in2[30]), .cin(cout_wire));
+    full_adder fa31(.sum(sum_wire[31]), .cout(cout_wire), .a(in1[31]), .b(in2[31]), .cin(cout_wire));
+    full_adder fa32(.sum(sum_wire[32]), .cout(cout_wire), .a(in1[32]), .b(in2[32]), .cin(cout_wire));
+    full_adder fa33(.sum(sum_wire[33]), .cout(cout_wire), .a(in1[33]), .b(in2[33]), .cin(cout_wire));
+    full_adder fa34(.sum(sum_wire[34]), .cout(cout_wire), .a(in1[34]), .b(in2[34]), .cin(cout_wire));
+    full_adder fa35(.sum(sum_wire[35]), .cout(cout_wire), .a(in1[35]), .b(in2[35]), .cin(cout_wire));
+    full_adder fa36(.sum(sum_wire[36]), .cout(cout_wire), .a(in1[36]), .b(in2[36]), .cin(cout_wire));
+    full_adder fa37(.sum(sum_wire[37]), .cout(cout_wire), .a(in1[37]), .b(in2[37]), .cin(cout_wire));
+    full_adder fa38(.sum(sum_wire[38]), .cout(cout_wire), .a(in1[38]), .b(in2[38]), .cin(cout_wire));
+    full_adder fa39(.sum(sum_wire[39]), .cout(cout_wire), .a(in1[39]), .b(in2[39]), .cin(cout_wire));
+    full_adder fa40(.",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:56: syntax error\nI give up.\n'
+N/A,N/A,-0.1,25,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,26,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,27,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,28,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,29,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,30,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,31,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,32,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,33,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,34,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,35,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_wire;
+  wire cout_wire;
+
+  assign sum_wire = in1 + in2 + cin;
+  assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_wire;
+  assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,36,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire cout_temp;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign cout_temp = temp_sum[64];
+    assign sum = temp_sum[63:0];
+    assign cout = cout_temp;
+
+endmodule",Success
+N/A,N/A,-0.1,37,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-1,38,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    full_adder fa1(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+    full_adder fa2(sum_wire[2], cout_wire, in1[2], in2[2], cout_wire);
+    full_adder fa3(sum_wire[3], cout_wire, in1[3], in2[3], cout_wire);
+    full_adder fa4(sum_wire[4], cout_wire, in1[4], in2[4], cout_wire);
+    full_adder fa5(sum_wire[5], cout_wire, in1[5], in2[5], cout_wire);
+    full_adder fa6(sum_wire[6], cout_wire, in1[6], in2[6], cout_wire);
+    full_adder fa7(sum_wire[7], cout_wire, in1[7], in2[7], cout_wire);
+    full_adder fa8(sum_wire[8], cout_wire, in1[8], in2[8], cout_wire);
+    full_adder fa9(sum_wire[9], cout_wire, in1[9], in2[9], cout_wire);
+    full_adder fa10(sum_wire[10], cout_wire, in1[10], in2[10], cout_wire);
+    full_adder fa11(sum_wire[11], cout_wire, in1[11], in2[11], cout_wire);
+    full_adder fa12(sum_wire[12], cout_wire, in1[12], in2[12], cout_wire);
+    full_adder fa13(sum_wire[13], cout_wire, in1[13], in2[13], cout_wire);
+    full_adder fa14(sum_wire[14], cout_wire, in1[14], in2[14], cout_wire);
+    full_adder fa15(sum_wire[15], cout_wire, in1[15], in2[15], cout_wire);
+    full_adder fa16(sum_wire[16], cout_wire, in1[16], in2[16], cout_wire);
+    full_adder fa17(sum_wire[17], cout_wire, in1[17], in2[17], cout_wire);
+    full_adder fa18(sum_wire[18], cout_wire, in1[18], in2[18], cout_wire);
+    full_adder fa19(sum_wire[19], cout_wire, in1[19], in2[19], cout_wire);
+    full_adder fa20(sum_wire[20], cout_wire, in1[20], in2[20], cout_wire);
+    full_adder fa21(sum_wire[21], cout_wire, in1[21], in2[21], cout_wire);
+    full_adder fa22(sum_wire[22], cout_wire, in1[22], in2[22], cout_wire);
+    full_adder fa23(sum_wire[23], cout_wire, in1[23], in2[23], cout_wire);
+    full_adder fa24(sum_wire[24], cout_wire, in1[24], in2[24], cout_wire);
+    full_adder fa25(sum_wire[25], cout_wire, in1[25], in2[25], cout_wire);
+    full_adder fa26(sum_wire[26], cout_wire, in1[26], in2[26], cout_wire);
+    full_adder fa27(sum_wire[27], cout_wire, in1[27], in2[27], cout_wire);
+    full_adder fa28(sum_wire[28], cout_wire, in1[28], in2[28], cout_wire);
+    full_adder fa29(sum_wire[29], cout_wire, in1[29], in2[29], cout_wire);
+    full_adder fa30(sum_wire[30], cout_wire, in1[30], in2[30], cout_wire);
+    full_adder fa31(sum_wire[31], cout_wire, in1[31], in2[31], cout_wire);
+    full_adder fa32(sum_wire[32], cout_wire, in1[32], in2[32], cout_wire);
+    full_adder fa33(sum_wire[33], cout_wire, in1[33], in2[33], cout_wire);
+    full_adder fa34(sum_wire[34], cout_wire, in1[34], in2[34], cout_wire);
+    full_adder fa35(sum_wire[35], cout_wire, in1[35], in2[35], cout_wire);
+    full_adder fa36(sum_wire[36], cout_wire, in1[36], in2[36], cout_wire);
+    full_adder fa37(sum_wire[37], cout_wire, in1[37], in2[37], cout_wire);
+    full_adder fa38(sum_wire[38], cout_wire, in1[38], in2[38], cout_wire);
+    full_adder fa39(sum_wire[39], cout_wire, in1[39], in2[39], cout_wire);
+    full_adder fa40(sum_wire[40], cout_wire, in1[40], in2[40], cout_wire);
+    full_adder fa41(sum_wire[41], cout_wire, in1[41], in2[41], cout_wire);
+    full_adder fa42(sum_wire[42], cout_wire, in1[42], in2[42], cout_wire);
+    full_adder fa43(sum_wire[43], cout_wire, in1[43], in2[43], cout_wire);
+    full_adder fa44(sum_wire[44], cout_wire, in1[44], in2[44], cout_wire);
+    full_adder fa45(sum_wire[45], cout_wire, in1[45], in2[45], cout_wire);
+    full_adder fa46(sum_wire[46], cout_wire, in1[46], in2[46], cout_wire);
+    full_adder fa47(sum_wire[47], cout_wire, in1[47], in2[47], cout_wire);
+    full_adder fa48(sum_wire[48], cout_wire, in1[48], in2[48], cout_wire);
+    full_adder fa49(sum_wire[49], cout_wire, in1[49], in2[49], cout_wire);
+    full_adder fa50(sum_wire[50], cout_wire, in1[50], in2[50], cout_wire);
+    full_adder fa51(sum_wire[51], cout_wire, in1[51], in2[51], cout_wire);
+    full_adder fa52(sum_wire[52], cout_wire, in1[52], in2[52], cout_wire);
+    full_adder fa53(sum_wire[53], cout_wire, in1[53], in2[53], cout_wire);
+    full_adder fa54(sum_wire[54], cout_wire, in1[54], in2[54], cout_wire);
+    full_adder fa55(sum_wire[5",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:71: syntax error\nI give up.\n'
+N/A,N/A,-0.1,39,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = temp_sum[64];
+    assign sum = temp_sum[63:0];
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,40,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,41,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-1,42,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(.sum(sum_wire[0]), .cout(cout_wire), .a(in1[0]), .b(in2[0]), .cin(cin));
+    full_adder fa1(.sum(sum_wire[1]), .cout(cout_wire), .a(in1[1]), .b(in2[1]), .cin(cout_wire));
+    full_adder fa2(.sum(sum_wire[2]), .cout(cout_wire), .a(in1[2]), .b(in2[2]), .cin(cout_wire));
+    full_adder fa3(.sum(sum_wire[3]), .cout(cout_wire), .a(in1[3]), .b(in2[3]), .cin(cout_wire));
+    full_adder fa4(.sum(sum_wire[4]), .cout(cout_wire), .a(in1[4]), .b(in2[4]), .cin(cout_wire));
+    full_adder fa5(.sum(sum_wire[5]), .cout(cout_wire), .a(in1[5]), .b(in2[5]), .cin(cout_wire));
+    full_adder fa6(.sum(sum_wire[6]), .cout(cout_wire), .a(in1[6]), .b(in2[6]), .cin(cout_wire));
+    full_adder fa7(.sum(sum_wire[7]), .cout(cout_wire), .a(in1[7]), .b(in2[7]), .cin(cout_wire));
+    full_adder fa8(.sum(sum_wire[8]), .cout(cout_wire), .a(in1[8]), .b(in2[8]), .cin(cout_wire));
+    full_adder fa9(.sum(sum_wire[9]), .cout(cout_wire), .a(in1[9]), .b(in2[9]), .cin(cout_wire));
+    full_adder fa10(.sum(sum_wire[10]), .cout(cout_wire), .a(in1[10]), .b(in2[10]), .cin(cout_wire));
+    full_adder fa11(.sum(sum_wire[11]), .cout(cout_wire), .a(in1[11]), .b(in2[11]), .cin(cout_wire));
+    full_adder fa12(.sum(sum_wire[12]), .cout(cout_wire), .a(in1[12]), .b(in2[12]), .cin(cout_wire));
+    full_adder fa13(.sum(sum_wire[13]), .cout(cout_wire), .a(in1[13]), .b(in2[13]), .cin(cout_wire));
+    full_adder fa14(.sum(sum_wire[14]), .cout(cout_wire), .a(in1[14]), .b(in2[14]), .cin(cout_wire));
+    full_adder fa15(.sum(sum_wire[15]), .cout(cout_wire), .a(in1[15]), .b(in2[15]), .cin(cout_wire));
+    full_adder fa16(.sum(sum_wire[16]), .cout(cout_wire), .a(in1[16]), .b(in2[16]), .cin(cout_wire));
+    full_adder fa17(.sum(sum_wire[17]), .cout(cout_wire), .a(in1[17]), .b(in2[17]), .cin(cout_wire));
+    full_adder fa18(.sum(sum_wire[18]), .cout(cout_wire), .a(in1[18]), .b(in2[18]), .cin(cout_wire));
+    full_adder fa19(.sum(sum_wire[19]), .cout(cout_wire), .a(in1[19]), .b(in2[19]), .cin(cout_wire));
+    full_adder fa20(.sum(sum_wire[20]), .cout(cout_wire), .a(in1[20]), .b(in2[20]), .cin(cout_wire));
+    full_adder fa21(.sum(sum_wire[21]), .cout(cout_wire), .a(in1[21]), .b(in2[21]), .cin(cout_wire));
+    full_adder fa22(.sum(sum_wire[22]), .cout(cout_wire), .a(in1[22]), .b(in2[22]), .cin(cout_wire));
+    full_adder fa23(.sum(sum_wire[23]), .cout(cout_wire), .a(in1[23]), .b(in2[23]), .cin(cout_wire));
+    full_adder fa24(.sum(sum_wire[24]), .cout(cout_wire), .a(in1[24]), .b(in2[24]), .cin(cout_wire));
+    full_adder fa25(.sum(sum_wire[25]), .cout(cout_wire), .a(in1[25]), .b(in2[25]), .cin(cout_wire));
+    full_adder fa26(.sum(sum_wire[26]), .cout(cout_wire), .a(in1[26]), .b(in2[26]), .cin(cout_wire));
+    full_adder fa27(.sum(sum_wire[27]), .cout(cout_wire), .a(in1[27]), .b(in2[27]), .cin(cout_wire));
+    full_adder fa28(.sum(sum_wire[28]), .cout(cout_wire), .a(in1[28]), .b(in2[28]), .cin(cout_wire));
+    full_adder fa29(.sum(sum_wire[29]), .cout(cout_wire), .a(in1[29]), .b(in2[29]), .cin(cout_wire));
+    full_adder fa30(.sum(sum_wire[30]), .cout(cout_wire), .a(in1[30]), .b(in2[30]), .cin(cout_wire));
+    full_adder fa31(.sum(sum_wire[31]), .cout(cout_wire), .a(in1[31]), .b(in2[31]), .cin(cout_wire));
+    full_adder fa32(.sum(sum_wire[32]), .cout(cout_wire), .a(in1[32]), .b(in2[32]), .cin(cout_wire));
+    full_adder fa33(.sum(sum_wire[33]), .cout(cout_wire), .a(in1[33]), .b(in2[33]), .cin(cout_wire));
+    full_adder fa34(.sum(sum_wire[34]), .cout(cout_wire), .a(in1[34]), .b(in2[34]), .cin(cout_wire));
+    full_adder fa35(.sum(sum_wire[35]), .cout(cout_wire), .a(in1[35]), .b(in2[35]), .cin(cout_wire));
+    full_adder fa36(.sum(sum_wire[36]), .cout(cout_wire), .a(in1[36]), .b(in2[36]), .cin(cout_wire));
+    full_adder fa37(.sum(sum_wire[37]), .cout(cout_wire), .a(in1[37]), .b(in2[37]), .cin(cout_wire));
+    full_adder fa38(.sum(sum_wire[38]), .cout(cout_wire), .a(in1[38]), .b(in2[38]), .cin(cout_wire));
+    full_adder fa39(.sum(sum_wire[39]), .cout(cout_wire), .a(in1[39]), .b(in2[39]), .cin(cout_wire));
+    full_adder fa40(.",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:56: syntax error\nI give up.\n'
+N/A,N/A,-0.1,43,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_temp;
+  wire cout_temp;
+
+  assign sum_temp = in1 + in2 + cin;
+  assign cout_temp = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_temp;
+  assign cout = cout_temp;
+
+endmodule",Success
+N/A,N/A,-0.1,44,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,45,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,46,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,47,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,48,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,49,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  reg [63:0] sum_reg;
+  reg cout_reg;
+
+  always @(*) begin
+    sum_reg = in1 + in2 + cin;
+    cout_reg = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+  end
+
+  assign sum = sum_reg;
+  assign cout = cout_reg;
+
+endmodule",Success
+N/A,N/A,-1,50,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    full_adder fa1(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+    full_adder fa2(sum_wire[2], cout_wire, in1[2], in2[2], cout_wire);
+    full_adder fa3(sum_wire[3], cout_wire, in1[3], in2[3], cout_wire);
+    full_adder fa4(sum_wire[4], cout_wire, in1[4], in2[4], cout_wire);
+    full_adder fa5(sum_wire[5], cout_wire, in1[5], in2[5], cout_wire);
+    full_adder fa6(sum_wire[6], cout_wire, in1[6], in2[6], cout_wire);
+    full_adder fa7(sum_wire[7], cout_wire, in1[7], in2[7], cout_wire);
+    full_adder fa8(sum_wire[8], cout_wire, in1[8], in2[8], cout_wire);
+    full_adder fa9(sum_wire[9], cout_wire, in1[9], in2[9], cout_wire);
+    full_adder fa10(sum_wire[10], cout_wire, in1[10], in2[10], cout_wire);
+    full_adder fa11(sum_wire[11], cout_wire, in1[11], in2[11], cout_wire);
+    full_adder fa12(sum_wire[12], cout_wire, in1[12], in2[12], cout_wire);
+    full_adder fa13(sum_wire[13], cout_wire, in1[13], in2[13], cout_wire);
+    full_adder fa14(sum_wire[14], cout_wire, in1[14], in2[14], cout_wire);
+    full_adder fa15(sum_wire[15], cout_wire, in1[15], in2[15], cout_wire);
+    full_adder fa16(sum_wire[16], cout_wire, in1[16], in2[16], cout_wire);
+    full_adder fa17(sum_wire[17], cout_wire, in1[17], in2[17], cout_wire);
+    full_adder fa18(sum_wire[18], cout_wire, in1[18], in2[18], cout_wire);
+    full_adder fa19(sum_wire[19], cout_wire, in1[19], in2[19], cout_wire);
+    full_adder fa20(sum_wire[20], cout_wire, in1[20], in2[20], cout_wire);
+    full_adder fa21(sum_wire[21], cout_wire, in1[21], in2[21], cout_wire);
+    full_adder fa22(sum_wire[22], cout_wire, in1[22], in2[22], cout_wire);
+    full_adder fa23(sum_wire[23], cout_wire, in1[23], in2[23], cout_wire);
+    full_adder fa24(sum_wire[24], cout_wire, in1[24], in2[24], cout_wire);
+    full_adder fa25(sum_wire[25], cout_wire, in1[25], in2[25], cout_wire);
+    full_adder fa26(sum_wire[26], cout_wire, in1[26], in2[26], cout_wire);
+    full_adder fa27(sum_wire[27], cout_wire, in1[27], in2[27], cout_wire);
+    full_adder fa28(sum_wire[28], cout_wire, in1[28], in2[28], cout_wire);
+    full_adder fa29(sum_wire[29], cout_wire, in1[29], in2[29], cout_wire);
+    full_adder fa30(sum_wire[30], cout_wire, in1[30], in2[30], cout_wire);
+    full_adder fa31(sum_wire[31], cout_wire, in1[31], in2[31], cout_wire);
+    full_adder fa32(sum_wire[32], cout_wire, in1[32], in2[32], cout_wire);
+    full_adder fa33(sum_wire[33], cout_wire, in1[33], in2[33], cout_wire);
+    full_adder fa34(sum_wire[34], cout_wire, in1[34], in2[34], cout_wire);
+    full_adder fa35(sum_wire[35], cout_wire, in1[35], in2[35], cout_wire);
+    full_adder fa36(sum_wire[36], cout_wire, in1[36], in2[36], cout_wire);
+    full_adder fa37(sum_wire[37], cout_wire, in1[37], in2[37], cout_wire);
+    full_adder fa38(sum_wire[38], cout_wire, in1[38], in2[38], cout_wire);
+    full_adder fa39(sum_wire[39], cout_wire, in1[39], in2[39], cout_wire);
+    full_adder fa40(sum_wire[40], cout_wire, in1[40], in2[40], cout_wire);
+    full_adder fa41(sum_wire[41], cout_wire, in1[41], in2[41], cout_wire);
+    full_adder fa42(sum_wire[42], cout_wire, in1[42], in2[42], cout_wire);
+    full_adder fa43(sum_wire[43], cout_wire, in1[43], in2[43], cout_wire);
+    full_adder fa44(sum_wire[44], cout_wire, in1[44], in2[44], cout_wire);
+    full_adder fa45(sum_wire[45], cout_wire, in1[45], in2[45], cout_wire);
+    full_adder fa46(sum_wire[46], cout_wire, in1[46], in2[46], cout_wire);
+    full_adder fa47(sum_wire[47], cout_wire, in1[47], in2[47], cout_wire);
+    full_adder fa48(sum_wire[48], cout_wire, in1[48], in2[48], cout_wire);
+    full_adder fa49(sum_wire[49], cout_wire, in1[49], in2[49], cout_wire);
+    full_adder fa50(sum_wire[50], cout_wire, in1[50], in2[50], cout_wire);
+    full_adder fa51(sum_wire[51], cout_wire, in1[51], in2[51], cout_wire);
+    full_adder fa52(sum_wire[52], cout_wire, in1[52], in2[52], cout_wire);
+    full_adder fa53(sum_wire[53], cout_wire, in1[53], in2[53], cout_wire);
+    full_adder fa54(sum_wire[54], cout_wire, in1[54], in2[54], cout_wire);
+    full_adder fa55(sum_wire[5",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:71: syntax error\nI give up.\n'
+N/A,N/A,-0.1,51,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] temp_sum;
+  wire temp_cout;
+
+  assign temp_sum = in1 + in2 + cin;
+  assign temp_cout = temp_sum[64];
+  assign sum = temp_sum[63:0];
+  assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,52,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,53,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    // Implement the 64-bit adder here
+
+endmodule",Success
+N/A,N/A,-0.1,54,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,55,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,56,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1) ? 1'b1 : 1'b0;
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,57,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,58,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,59,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,60,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,61,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,62,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_wire;
+  wire cout_wire;
+
+  assign sum_wire = in1 + in2 + cin;
+  assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_wire;
+  assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,63,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] temp_sum;
+  wire cout_temp;
+
+  assign temp_sum = in1 + in2 + cin;
+  assign cout_temp = (temp_sum[63] == 1'b1);
+
+  assign sum = temp_sum;
+  assign cout = cout_temp;
+
+endmodule",Success
+N/A,N/A,-0.1,64,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,65,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,66,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,67,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,68,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-1,69,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+    full_adder fa0(sum_wire[0], cout_wire, in1[0], in2[0], cin);
+    full_adder fa1(sum_wire[1], cout_wire, in1[1], in2[1], cout_wire);
+    full_adder fa2(sum_wire[2], cout_wire, in1[2], in2[2], cout_wire);
+    full_adder fa3(sum_wire[3], cout_wire, in1[3], in2[3], cout_wire);
+    full_adder fa4(sum_wire[4], cout_wire, in1[4], in2[4], cout_wire);
+    full_adder fa5(sum_wire[5], cout_wire, in1[5], in2[5], cout_wire);
+    full_adder fa6(sum_wire[6], cout_wire, in1[6], in2[6], cout_wire);
+    full_adder fa7(sum_wire[7], cout_wire, in1[7], in2[7], cout_wire);
+    full_adder fa8(sum_wire[8], cout_wire, in1[8], in2[8], cout_wire);
+    full_adder fa9(sum_wire[9], cout_wire, in1[9], in2[9], cout_wire);
+    full_adder fa10(sum_wire[10], cout_wire, in1[10], in2[10], cout_wire);
+    full_adder fa11(sum_wire[11], cout_wire, in1[11], in2[11], cout_wire);
+    full_adder fa12(sum_wire[12], cout_wire, in1[12], in2[12], cout_wire);
+    full_adder fa13(sum_wire[13], cout_wire, in1[13], in2[13], cout_wire);
+    full_adder fa14(sum_wire[14], cout_wire, in1[14], in2[14], cout_wire);
+    full_adder fa15(sum_wire[15], cout_wire, in1[15], in2[15], cout_wire);
+    full_adder fa16(sum_wire[16], cout_wire, in1[16], in2[16], cout_wire);
+    full_adder fa17(sum_wire[17], cout_wire, in1[17], in2[17], cout_wire);
+    full_adder fa18(sum_wire[18], cout_wire, in1[18], in2[18], cout_wire);
+    full_adder fa19(sum_wire[19], cout_wire, in1[19], in2[19], cout_wire);
+    full_adder fa20(sum_wire[20], cout_wire, in1[20], in2[20], cout_wire);
+    full_adder fa21(sum_wire[21], cout_wire, in1[21], in2[21], cout_wire);
+    full_adder fa22(sum_wire[22], cout_wire, in1[22], in2[22], cout_wire);
+    full_adder fa23(sum_wire[23], cout_wire, in1[23], in2[23], cout_wire);
+    full_adder fa24(sum_wire[24], cout_wire, in1[24], in2[24], cout_wire);
+    full_adder fa25(sum_wire[25], cout_wire, in1[25], in2[25], cout_wire);
+    full_adder fa26(sum_wire[26], cout_wire, in1[26], in2[26], cout_wire);
+    full_adder fa27(sum_wire[27], cout_wire, in1[27], in2[27], cout_wire);
+    full_adder fa28(sum_wire[28], cout_wire, in1[28], in2[28], cout_wire);
+    full_adder fa29(sum_wire[29], cout_wire, in1[29], in2[29], cout_wire);
+    full_adder fa30(sum_wire[30], cout_wire, in1[30], in2[30], cout_wire);
+    full_adder fa31(sum_wire[31], cout_wire, in1[31], in2[31], cout_wire);
+    full_adder fa32(sum_wire[32], cout_wire, in1[32], in2[32], cout_wire);
+    full_adder fa33(sum_wire[33], cout_wire, in1[33], in2[33], cout_wire);
+    full_adder fa34(sum_wire[34], cout_wire, in1[34], in2[34], cout_wire);
+    full_adder fa35(sum_wire[35], cout_wire, in1[35], in2[35], cout_wire);
+    full_adder fa36(sum_wire[36], cout_wire, in1[36], in2[36], cout_wire);
+    full_adder fa37(sum_wire[37], cout_wire, in1[37], in2[37], cout_wire);
+    full_adder fa38(sum_wire[38], cout_wire, in1[38], in2[38], cout_wire);
+    full_adder fa39(sum_wire[39], cout_wire, in1[39], in2[39], cout_wire);
+    full_adder fa40(sum_wire[40], cout_wire, in1[40], in2[40], cout_wire);
+    full_adder fa41(sum_wire[41], cout_wire, in1[41], in2[41], cout_wire);
+    full_adder fa42(sum_wire[42], cout_wire, in1[42], in2[42], cout_wire);
+    full_adder fa43(sum_wire[43], cout_wire, in1[43], in2[43], cout_wire);
+    full_adder fa44(sum_wire[44], cout_wire, in1[44], in2[44], cout_wire);
+    full_adder fa45(sum_wire[45], cout_wire, in1[45], in2[45], cout_wire);
+    full_adder fa46(sum_wire[46], cout_wire, in1[46], in2[46], cout_wire);
+    full_adder fa47(sum_wire[47], cout_wire, in1[47], in2[47], cout_wire);
+    full_adder fa48(sum_wire[48], cout_wire, in1[48], in2[48], cout_wire);
+    full_adder fa49(sum_wire[49], cout_wire, in1[49], in2[49], cout_wire);
+    full_adder fa50(sum_wire[50], cout_wire, in1[50], in2[50], cout_wire);
+    full_adder fa51(sum_wire[51], cout_wire, in1[51], in2[51], cout_wire);
+    full_adder fa52(sum_wire[52], cout_wire, in1[52], in2[52], cout_wire);
+    full_adder fa53(sum_wire[53], cout_wire, in1[53], in2[53], cout_wire);
+    full_adder fa54(sum_wire[54], cout_wire, in1[54], in2[54], cout_wire);
+    full_adder fa55(sum_wire[5",b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/llama13b_intun_2048_dump_rand/3931754_adder_64/3931754_adder_64.v:71: syntax error\nI give up.\n'
+N/A,N/A,-0.1,70,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,71,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,72,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] sum_wire;
+  wire cout_wire;
+
+  assign sum_wire = in1 + in2 + cin;
+  assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+  assign sum = sum_wire;
+  assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,73,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,74,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+  wire [63:0] temp;
+  wire [63:0] carry;
+
+  assign temp = in1 + in2;
+  assign carry = temp[63] ? 64'b1 : 64'b0;
+
+  assign sum = temp + cin;
+  assign cout = carry[63] | (cin & (temp[63] ^ sum[63]));
+
+endmodule",Success
+N/A,N/A,-0.1,75,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,76,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] temp_sum;
+    wire temp_cout;
+
+    assign temp_sum = in1 + in2 + cin;
+    assign temp_cout = (temp_sum[63] == 1'b1);
+
+    assign sum = temp_sum;
+    assign cout = temp_cout;
+
+endmodule",Success
+N/A,N/A,-0.1,77,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,78,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,79,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,80,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,81,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,82,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,83,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,84,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,85,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,86,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,87,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,88,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,89,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,90,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,91,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,92,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,93,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,94,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,95,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,96,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,97,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,98,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success
+N/A,N/A,-0.1,99,0,"//Design a 64-bit adder.
+//There are two 64 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 64 bit value, [63:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module adder_64(output [63:0] sum,
+                      output cout,
+                      input [63:0] in1, in2,
+                      input cin);
+
+    wire [63:0] sum_wire;
+    wire cout_wire;
+
+    assign sum_wire = in1 + in2 + cin;
+    assign cout_wire = (in1[63] & in2[63]) | (in1[63] & cin) | (in2[63] & cin);
+
+    assign sum = sum_wire;
+    assign cout = cout_wire;
+
+endmodule",Success

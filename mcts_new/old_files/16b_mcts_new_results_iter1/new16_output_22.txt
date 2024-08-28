@@ -1,0 +1,243 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Tb_clock.v
+Prompt str:  // You are provided a module with the following declaration:
+
+module dut ( input clk ) ;
+// Write a testbench top_modules that creates one instance of module dut (with any instance name), and create a clock signal to drive the module's clk input. The clock has a period of 10 ps. The clock should be initialized to zero with its first transition being 0 to 1.
+
+module top_module ( );
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+ORIG MODULE:  top_module
+--------MCTS-------
+Env seed:  42
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+LLMEstimate:  
+reg clk ;
+
+initial
+	 1
+LLMEstimate:  
+reg clk;
+reg [3: 1
+LLMEstimate:  
+reg clk;
+reg [7: 1
+LLMEstimate:  
+reg clk;
+
+initial begin
+ 1
+LLMEstimate:  
+reg clk;
+
+initial
+	 1
+LLMEstimate:  
+reg clk;
+reg [3: 1
+LLMEstimate:  
+reg clk;
+reg [7: 1
+LLMEstimate:  
+reg clk;
+reg [7: 1
+LLMEstimate:  
+reg clk;
+reg [7: 1
+LLMEstimate:  
+reg clk;
+reg [7: 1
+STATE:  [[ 1003   921   389  2810   257  8265   351   262  1708 14305    25   198
+    198 21412   288   315   357  5128   537    74  1267  2162   198  1003
+  19430   257  1332 26968  1353    62 18170   326  8075   530  4554   286
+   8265   288   315   357  4480   597  4554  1438   828   290  2251   257
+   8801  6737   284  3708   262  8265   338   537    74  5128    13   383
+   8801   468   257  2278   286   838 26692    13   383  8801   815   307
+  23224   284  6632   351   663   717  6801   852   657   284   352    13
+    198   198 21412  1353    62 21412   357  5619   198]]
+SEQUENCE:  [[ 198 2301  537   74   26  198 2301  685   18   25]]
+MCTS Stage 2 - Expansion: next action:  1  corresponding to state:  [[ 198 2301  537   74   26  198 2301  685   18   25]]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Checking if done:
+tokens generated:  10
+Calling isPromptComplete: 
+original text:  // You are provided a module with the following declaration:
+
+module dut ( input clk ) ;
+// Write a testbench top_modules that creates one instance of module dut (with any instance name), and create a clock signal to drive the module's clk input. The clock has a period of 10 ps. The clock should be initialized to zero with its first transition being 0 to 1.
+
+module top_module ( );
+
+reg clk;
+reg [3:0] in;
+wire [3:0] out;
+
+always
+	begin
+		#
+[[ 1003   921   389  2810   257  8265   351   262  1708 14305    25   198
+    198 21412   288   315   357  5128   537    74  1267  2162   198  1003
+  19430   257  1332 26968  1353    62 18170   326  8075   530  4554   286
+   8265   288   315   357  4480   597  4554  1438   828   290  2251   257
+   8801  6737   284  3708   262  8265   338   537    74  5128    13   383
+   8801   468   257  2278   286   838 26692    13   383  8801   815   307
+  23224   284  6632   351   663   717  6801   852   657   284   352    13
+    198   198 21412  1353    62 21412   357  5619   198   198  2301   537
+     74    26   198  2301   685    18    25    15    60   287    26   198
+  21809   685    18    25    15    60   503    26   198   198 33770   198
+    197 27471   198 50294     2]]
+tensor([[ 1003,   921,   389,  2810,   257,  8265,   351,   262,  1708, 14305,
+            25,   198,   198, 21412,   288,   315,   357,  5128,   537,    74,
+          1267,  2162,   198,  1003, 19430,   257,  1332, 26968,  1353,    62,
+         18170,   326,  8075,   530,  4554,   286,  8265,   288,   315,   357,
+          4480,   597,  4554,  1438,   828,   290,  2251,   257,  8801,  6737,
+           284,  3708,   262,  8265,   338,   537,    74,  5128,    13,   383,
+          8801,   468,   257,  2278,   286,   838, 26692,    13,   383,  8801,
+           815,   307, 23224,   284,  6632,   351,   663,   717,  6801,   852,
+           657,   284,   352,    13,   198,   198, 21412,  1353,    62, 21412,
+           357,  5619,   198,   198,  2301,   537,    74,    26,   198,  2301,
+           685,    18,    25,    15,    60,   287,    26,   198, 21809,   685,
+            18,    25,    15,    60,   503,    26,   198,   198, 33770,   198,
+           197, 27471,   198, 50294,     2]], device='cuda:0')
+Checking if done:
+tokens generated:  32
+Calling isPromptComplete: 
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  1.0
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [1.9516147 1.9516147 1.9516147 1.9516147 1.9516147 1.9516147 1.9516147
+ 1.9516147 1.9516147 1.9516147]  taking action:  0
+Adding child.
+STATE:  [[ 1003   921   389  2810   257  8265   351   262  1708 14305    25   198
+    198 21412   288   315   357  5128   537    74  1267  2162   198  1003
+  19430   257  1332 26968  1353    62 18170   326  8075   530  4554   286
+   8265   288   315   357  4480   597  4554  1438   828   290  2251   257
+   8801  6737   284  3708   262  8265   338   537    74  5128    13   383
+   8801   468   257  2278   286   838 26692    13   383  8801   815   307
+  23224   284  6632   351   663   717  6801   852   657   284   352    13
+    198   198 21412  1353    62 21412   357  5619   198]]
+SEQUENCE:  [[  198  2301   537    74  2162   198   198 36733   198   197]]
+Leaf selection - depth:  1
+Checking if done:
+tokens generated:  10
+Calling isPromptComplete: 
+Getting LLM token estimates (probs/ids).
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+LLMEstimate:  clk = 0 ;
+
+always
+	 1
+STATE:  [[ 1003   921   389  2810   257  8265   351   262  1708 14305    25   198
+    198 21412   288   315   357  5128   537    74  1267  2162   198  1003
+  19430   257  1332 26968  1353    62 18170   326  8075   530  4554   286
+   8265   288   315   357  4480   597  4554  1438   828   290  2251   257
+   8801  6737   284  3708   262  8265   338   537    74  5128    13   383
+   8801   468   257  2278   286   838 26692    13   383  8801   815   307
+  23224   284  6632   351   663   717  6801   852   657   284   352    13
+    198   198 21412  1353    62 21412   357  5619   198   198  2301   537
+     74  2162   198   198 36733   198   197]]
+SEQUENCE:  [[  565    74   796   657  2162   198   198 33770   198   197]]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [[  565    74   796   657  2162   198   198 33770   198   197]]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Checking if done:
+tokens generated:  20
+Calling isPromptComplete: 
+original text:  // You are provided a module with the following declaration:
+
+module dut ( input clk ) ;
+// Write a testbench top_modules that creates one instance of module dut (with any instance name), and create a clock signal to drive the module's clk input. The clock has a period of 10 ps. The clock should be initialized to zero with its first transition being 0 to 1.
+
+module top_module ( );
+
+reg clk ;
+
+initial
+	clk = 0 ;
+
+always
+	#
+[[ 1003   921   389  2810   257  8265   351   262  1708 14305    25   198
+    198 21412   288   315   357  5128   537    74  1267  2162   198  1003
+  19430   257  1332 26968  1353    62 18170   326  8075   530  4554   286
+   8265   288   315   357  4480   597  4554  1438   828   290  2251   257
+   8801  6737   284  3708   262  8265   338   537    74  5128    13   383
+   8801   468   257  2278   286   838 26692    13   383  8801   815   307
+  23224   284  6632   351   663   717  6801   852   657   284   352    13
+    198   198 21412  1353    62 21412   357  5619   198   198  2301   537
+     74  2162   198   198 36733   198   197   565    74   796   657  2162
+    198   198 33770   198   197     2]]
+tensor([[ 1003,   921,   389,  2810,   257,  8265,   351,   262,  1708, 14305,
+            25,   198,   198, 21412,   288,   315,   357,  5128,   537,    74,
+          1267,  2162,   198,  1003, 19430,   257,  1332, 26968,  1353,    62,
+         18170,   326,  8075,   530,  4554,   286,  8265,   288,   315,   357,
+          4480,   597,  4554,  1438,   828,   290,  2251,   257,  8801,  6737,
+           284,  3708,   262,  8265,   338,   537,    74,  5128,    13,   383,
+          8801,   468,   257,  2278,   286,   838, 26692,    13,   383,  8801,
+           815,   307, 23224,   284,  6632,   351,   663,   717,  6801,   852,
+           657,   284,   352,    13,   198,   198, 21412,  1353,    62, 21412,
+           357,  5619,   198,   198,  2301,   537,    74,  2162,   198,   198,
+         36733,   198,   197,   565,    74,   796,   657,  2162,   198,   198,
+         33770,   198,   197,     2]], device='cuda:0')
+Checking if done:
+tokens generated:  21
+Calling isPromptComplete: 
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+Iteration TIME (sec):  7.481453786000003

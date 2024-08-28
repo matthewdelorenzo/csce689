@@ -1,0 +1,4906 @@
+Area,Delay,Score,Current Run,Episode,Verilog
+N/A,N/A,-1,0,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.clk(clk),.reset(reset),.enable(ena),.BCD(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.clk(clk),.reset(reset),.enable(ena),.BCD(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.clk(clk),.reset(reset),.enable(ena),.BCD(s_out),.seg(ss));
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59) && (s_out == 4'd59);
+    
+endmodule"
+N/A,N/A,-1,1,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out),
+      .bcd2(mm_out),
+      .bcd1(hh_out),
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh),
+      .an(an),
+      .an_old(an_old)
+    );
+    
+    assign pm = an[3];
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            an <= 4'b0;
+        end
+        else begin
+            if(ena) begin
+                an <= an_old + 1;
+            end
+        end
+    end
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            an_old <= 4'b0;
+        end
+        else begin
+            if(ena) begin
+                an_old <= an;
+            end
+        end
+    end
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss_out <= 0;
+            mm_out <= 0;
+            hh_out <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss_out <= ss_out + 1;
+                if(ss_out == 60) begin
+                    ss_out <= 0;
+                    mm_out <= mm_out + 1;
+                    if(mm_out == 60) begin
+                        mm_out <= 0;
+                        hh_out <= hh_out + 1;
+                        if(hh_out == 13) begin
+                            hh_out <= 1;
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,2,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out),
+      .bcd2(mm_out),
+      .bcd1(hh_out),
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh),
+      .an(pm)
+    );
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                if(ss_out == 8'h59) begin
+                    ss <= 0;
+                    if(mm_out == 8'h59) begin
+                        mm <= 0;
+                        if(hh_out == 8'h23) begin
+                            hh <= 0;
+                        end
+                        else begin
+                            hh <= hh_out + 1;
+                        end
+                    end
+                    else begin
+                        mm <= mm_out + 1;
+                        if(mm_out == 8'h59) begin
+                            hh <= hh_out + 1;
+                        end
+                    end
+                end
+                else begin
+                    ss <= ss_out + 1;
+                end
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,3,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = hh;
+    assign m_in = mm;
+    assign s_in = ss;
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg pm_out;
+    assign pm = pm_out;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            pm_out <= 0;
+        end
+        else begin
+            if (ena) begin
+                pm_out <= h_out[3];
+            end
+        end
+    end
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+        end
+        else begin
+            if (ena) begin
+                hh <= h_out;
+                mm <= m_out;
+                ss <= s_out;
+            end
+        end
+    end
+endmodule"
+N/A,N/A,-1,4,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] q;
+    
+    // This module generates a 4-bit binary-coded decimal (BCD) code for the minute and second counters.
+    // Since the counters are incremented every second, their output is a 4-bit BCD code of the form xxxx.
+    // The BCD code is converted into a decimal value by adding the BCD codes for the hour and minute,
+    // and then dividing by 60.
+    // The decimal value is rounded to the nearest minute.
+    // The output is the value of the counters as a decimal, and the output is rounded to the nearest minute.
+    // The output is also checked to see if it is the beginning of a new hour. If so, the output is
+    // converted to BCD and sent to the hour_out module.
+    
+    bcd_to_7seg hour_out(
+      .bcd(q[3:0]),
+      .sseg(ss)
+    );
+    
+    bcd_to_7seg minute_out(
+      .bcd(q[7:4]),
+      .sseg(mm)
+    );
+    
+    bcd_to_7seg second_out(
+      .bcd(q[11:8]),
+      .sseg(hh)
+    );
+    
+    // The following line converts the BCD codes to decimal values.
+    // The decimal values are then divided by 60 to give the minute and second values.
+    // The output is rounded to the nearest minute.
+    // The output is also checked to see if it is the beginning of a new hour.
+    // If so, the output is converted to BCD and sent to the hour_out module.
+    
+    assign q = (q[11:8] + q[7:4] + q[3:0]) / 60;
+    
+    // The following line determines whether the output is the beginning of a new hour.
+    // The hour is given by the hour_out module.
+    
+    assign pm = (q[11:8] == 0) & (q[7:4] == 0) & (q[3:0] == 0);
+    
+endmodule"
+N/A,N/A,-1,5,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = h_out;
+    assign m_out_pm = m_out;
+    
+    pm_gen pm_gen(.clk(clk),.reset(reset),.ena(ena),.h_out(h_out_pm),.m_out(m_out_pm),.pm(pm));
+    
+endmodule"
+N/A,N/A,-1,6,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = h_out;
+    assign m_out_pm = m_out;
+    
+    pm_gen pm_gen(.clk(clk),.reset(reset),.ena(ena),.h_out(h_out_pm),.m_out(m_out_pm),.pm(pm));
+    
+endmodule"
+N/A,N/A,-1,7,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_1ms, clk_1us, clk_1ms_ena;
+    
+    assign clk_1s = clk;
+    assign clk_1ms = clk_1s;
+    assign clk_1us = clk_1ms;
+    assign clk_1ms_ena = ena;
+    
+    wire [3:0] sec_r, min_r, hr_r;
+    
+    bcd_time_converter sec(clk_1s, clk_1ms_ena, reset, sec_r);
+    bcd_time_converter min(clk_1s, clk_1ms_ena, reset, min_r);
+    bcd_time_converter hr(clk_1s, clk_1ms_ena, reset, hr_r);
+    
+    assign pm = hr_r[3];
+    assign hh = hr_r;
+    assign mm = min_r;
+    assign ss = sec_r;
+    
+endmodule"
+N/A,N/A,-0.1,8,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Declare three counters.
+    //
+    // The first counter counts seconds. It has a maximum value of 59.
+    // The second counter counts minutes. It has a maximum value of 59.
+    // The third counter counts hours. It has a maximum value of 23.
+    //
+    // You may add your own counters.
+    
+    reg [7:0] ss_reg, ss_next;
+    reg [7:0] mm_reg, mm_next;
+    reg [7:0] hh_reg, hh_next;
+    
+    // You may add your own registers.
+    
+    
+    // Implement the next-state logic for all the counters. You may use the
+    // state values to compute intermediate results.
+    //
+    // You may add your own next-state logic.
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            ss_reg <= 0;
+            mm_reg <= 0;
+            hh_reg <= 0;
+        end
+        else if (ena) begin
+            ss_reg <= ss_next;
+            mm_reg <= mm_next;
+            hh_reg <= hh_next;
+        end
+    end
+    
+    // You may add your own code.
+    
+    // The output logic.
+    
+    assign ss = ss_reg;
+    assign mm = mm_reg;
+    assign hh = hh_reg;
+    assign pm = (hh_reg == 12) & (mm_reg == 59) & (ss_reg == 59);
+    
+endmodule"
+N/A,N/A,-0.1,9,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Declare three counters.
+    //
+    // The first counter counts seconds. It has a maximum value of 59.
+    // The second counter counts minutes. It has a maximum value of 59.
+    // The third counter counts hours. It has a maximum value of 23.
+    //
+    // You may add your own counters.
+    
+    reg [7:0] ss_reg, ss_next;
+    reg [7:0] mm_reg, mm_next;
+    reg [7:0] hh_reg, hh_next;
+    
+    // You may add your own registers.
+    
+    
+    // Implement the next-state logic for all the counters. You may use the
+    // state values to compute intermediate results.
+    //
+    // You may add your own next-state logic.
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            ss_reg <= 0;
+            mm_reg <= 0;
+            hh_reg <= 0;
+        end
+        else if (ena) begin
+            ss_reg <= ss_next;
+            mm_reg <= mm_next;
+            hh_reg <= hh_next;
+        end
+    end
+    
+    // You may add your own code.
+    
+    // The output logic.
+    
+    assign ss = ss_reg;
+    assign mm = mm_reg;
+    assign hh = hh_reg;
+    assign pm = (hh_reg == 12) & (mm_reg == 59) & (ss_reg == 59);
+    
+endmodule"
+N/A,N/A,-0.1,10,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use a clocked always block (see always_ff.v)
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            h_reg <= 4'd0;
+            m_reg <= 4'd0;
+            s_reg <= 4'd0;
+        end
+        else begin
+            if (ena) begin
+                h_reg <= (h_reg == 4'd9)? 4'd0 : (h_reg + 4'd1);
+                m_reg <= (m_reg == 4'd9)? 4'd0 : (m_reg + 4'd1);
+                s_reg <= (s_reg == 4'd9)? 4'd0 : (s_reg + 4'd1);
+            end
+        end
+    end
+    
+    // Now connect the outputs
+    assign pm = (h_reg == 4'd11) && (m_reg == 4'd59) && (s_reg == 4'd59);
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    
+endmodule"
+N/A,N/A,-1,11,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = (h_out == 4'd11)? 4'd12 : h_out + 4'd1;
+    assign m_out_pm = (m_out == 4'd59)? 4'd0 : m_out + 4'd1;
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_out <= h_out_pm;
+                m_out <= m_out_pm;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,12,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = (h_out == 4'd11)? 4'd12 : h_out + 4'd1;
+    assign m_out_pm = (m_out == 4'd59)? 4'd0 : m_out + 4'd1;
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_out <= h_out_pm;
+                m_out <= m_out_pm;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,13,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = h_out;
+    assign m_out_pm = m_out;
+    
+    pm_gen pm_gen(.clk(clk),.reset(reset),.ena(ena),.h_out(h_out_pm),.m_out(m_out_pm),.pm(pm));
+    
+endmodule"
+N/A,N/A,-1,14,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = (h_out == 4'd11)? 4'd12 : h_out + 4'd1;
+    assign m_out_pm = (m_out == 4'd59)? 4'd0 : m_out + 4'd1;
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_out <= h_out_pm;
+                m_out <= m_out_pm;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,15,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = (h_out == 4'd11)? 4'd12 : h_out + 4'd1;
+    assign m_out_pm = (m_out == 4'd59)? 4'd0 : m_out + 4'd1;
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_out <= h_out_pm;
+                m_out <= m_out_pm;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,16,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    // Instantiate the three counters
+    bcd_cnt h_cnt(clk, reset, ena, h_out);
+    bcd_cnt m_cnt(clk, reset, ena, m_out);
+    bcd_cnt s_cnt(clk, reset, ena, s_out);
+    
+    // Convert BCD to ASCII
+    assign hh = {h_out[3:0], h_out[7:4]};
+    assign mm = {m_out[3:0], m_out[7:4]};
+    assign ss = {s_out[3:0], s_out[7:4]};
+    
+    // Generate the 12-hour and 24-hour cases
+    assign pm = h_out[3:0] == 4'h0? 1'b0 : 1'b1;
+    
+    // Generate the 12-hour and 24-hour cases
+    assign h_out = h_out[3:0] == 4'h9? 4'h0 : h_out + 1;
+    assign m_out = m_out[3:0] == 4'h9? 4'h0 : m_out + 1;
+    assign s_out = s_out[3:0] == 4'h9? 4'h0 : s_out + 1;
+    
+endmodule"
+N/A,N/A,-1,17,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    // Instantiate the three counters
+    bcd_cnt h_cnt(clk, reset, ena, h_out);
+    bcd_cnt m_cnt(clk, reset, ena, m_out);
+    bcd_cnt s_cnt(clk, reset, ena, s_out);
+    
+    // Convert BCD to ASCII
+    assign hh = {h_out[3:0], h_out[7:4]};
+    assign mm = {m_out[3:0], m_out[7:4]};
+    assign ss = {s_out[3:0], s_out[7:4]};
+    
+    // Generate the 12-hour and 24-hour cases
+    assign pm = h_out[3:0] == 4'h0? 1'b0 : 1'b1;
+    
+    // Generate the 12-hour and 24-hour cases
+    assign h_out = h_out[3:0] == 4'h9? 4'h0 : h_out + 1;
+    assign m_out = m_out[3:0] == 4'h9? 4'h0 : m_out + 1;
+    assign s_out = s_out[3:0] == 4'h9? 4'h0 : s_out + 1;
+    
+endmodule"
+N/A,N/A,-1,18,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bcd_to_7seg bcd_to_7seg_h(.bin(h_bin),.bcd(h_bcd));
+    bcd_to_7seg bcd_to_7seg_m(.bin(m_bin),.bcd(m_bcd));
+    bcd_to_7seg bcd_to_7seg_s(.bin(s_bin),.bcd(s_bcd));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bin;
+                m_reg <= m_bin;
+                s_reg <= s_bin;
+            end
+        end
+    end
+    
+    assign hh = h_bcd;
+    assign mm = m_bcd;
+    assign ss = s_bcd;
+    assign pm = s_reg > 4'b1110;
+    
+endmodule"
+N/A,N/A,-0.1,19,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use a clocked always block
+    //   copy ena to pm
+    //   copy clk to clk_1
+    //   subtract clk_1 from clk
+    //   divide clk_1 by 2
+    //   divide clk by 2
+    //   and finally, add the result of both divisions to the result of the addition
+    
+    reg pm_r;
+    reg [7:0] hh_r, mm_r, ss_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            pm_r <= 0;
+            hh_r <= 0;
+            mm_r <= 0;
+            ss_r <= 0;
+        end
+        else begin
+            if(ena) begin
+                pm_r <= ~pm_r;
+            end
+            if(~ena) begin
+                hh_r <= hh_r;
+                mm_r <= mm_r;
+                ss_r <= ss_r;
+            end
+        end
+    end
+    
+    assign pm = pm_r;
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    
+endmodule"
+N/A,N/A,-0.1,20,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use a clocked always block
+    //   copy ena to pm
+    //   copy clk to clk_1
+    //   subtract clk_1 from clk
+    //   divide clk_1 by 2
+    //   divide clk by 2
+    //   and finally, add the result of both divisions to the result of the addition
+    
+    reg pm_r;
+    reg [7:0] hh_r, mm_r, ss_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            pm_r <= 0;
+            hh_r <= 0;
+            mm_r <= 0;
+            ss_r <= 0;
+        end
+        else begin
+            if(ena) begin
+                pm_r <= ~pm_r;
+            end
+            if(~ena) begin
+                hh_r <= hh_r;
+                mm_r <= mm_r;
+                ss_r <= ss_r;
+            end
+        end
+    end
+    
+    assign pm = pm_r;
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    
+endmodule"
+N/A,N/A,-1,21,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use a clocked always block
+    //   copy ena to clk_en
+    //   copy clk_en to pm
+    //   copy clk_en to hh, mm, and ss
+    
+    reg clk_en;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            clk_en <= 0;
+        end
+        else begin
+            if (ena) begin
+                clk_en <= 1;
+            end
+            else if (clk_en) begin
+                clk_en <= 0;
+            end
+        end
+    end
+    
+    assign pm = clk_en;
+    
+    always @(posedge clk) begin
+        if (clk_en) begin
+            if (ss == 8'h59) begin
+                ss <= 0;
+                if (mm == 8'h59) begin
+                    mm <= 0;
+                    if (hh == 8'h23) begin
+                        hh <= 0;
+                    end
+                    else begin
+                        hh <= hh + 1;
+                    end
+                end
+                else begin
+                    mm <= mm + 1;
+                end
+            end
+            else begin
+                ss <= ss + 1;
+            end
+        end
+    end
+    
+    assign hh = (clk_en)? hh : 8'h00;
+    assign mm = (clk_en)? mm : 8'h00;
+    assign ss = (clk_en)? ss : 8'h00;
+    
+endmodule"
+N/A,N/A,-1,22,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    assign h_in = (reset)? 4'b0 : (ena? h_out : 4'b0);
+    assign m_in = (reset)? 4'b0 : (ena? m_out : 4'b0);
+    assign s_in = (reset)? 4'b0 : (ena? s_out : 4'b0);
+    
+    assign pm = (reset)? 1'b0 : (ena? ~s_out[3] : 1'b0);
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'b0;
+            m_out <= 4'b0;
+            s_out <= 4'b0;
+        end
+        else begin
+            if(ena) begin
+                h_out <= (h_out == 4'b1001)? 4'b0 : h_out + 1;
+                m_out <= (m_out == 4'b5999)? 4'b0 : m_out + 1;
+                s_out <= (s_out == 4'b9999)? 4'b0 : s_out + 1;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,23,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s;
+    wire [7:0] hh_r, mm_r, ss_r;
+    
+    clk_divider_circuit cdc(clk, reset, clk_1s);
+    bcd_to_7seg_decoder h_to_7(clk_1s, reset, ena, hh_r);
+    bcd_to_7seg_decoder m_to_7(clk_1s, reset, ena, mm_r);
+    bcd_to_7seg_decoder s_to_7(clk_1s, reset, ena, ss_r);
+    
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    assign pm = ~ss_r[3] & ss_r[2] & ~ss_r[1] & ss_r[0];
+    
+endmodule"
+N/A,N/A,-1,24,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg bcd_to_7seg_h(h_out, h_in);
+    bcd_to_7seg bcd_to_7seg_m(m_out, m_in);
+    bcd_to_7seg bcd_to_7seg_s(s_out, s_in);
+    
+    assign pm = (h_in == 12 && m_in == 0 && s_in == 0)? 1'b1 : 1'b0;
+    
+    assign hh = h_out;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+endmodule"
+N/A,N/A,-1,25,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    assign h_in = (ena)? h_out : 4'b0;
+    assign m_in = (ena)? m_out : 4'b0;
+    assign s_in = (ena)? s_out : 4'b0;
+    
+    wire [3:0] h_next, m_next, s_next;
+    
+    assign h_next = (reset)? 4'b0 : h_in;
+    assign m_next = (reset)? 4'b0 : m_in;
+    assign s_next = (reset)? 4'b0 : s_in;
+    
+    wire [3:0] h_out_next, m_out_next, s_out_next;
+    
+    assign h_out_next = (reset)? 4'b0 : h_next;
+    assign m_out_next = (reset)? 4'b0 : m_next;
+    assign s_out_next = (reset)? 4'b0 : s_next;
+    
+    assign pm = (h_out == 4'b0)? 1'b0 : 1'b1;
+    
+    assign h_out = (reset)? 4'b0 : h_out_next;
+    assign m_out = (reset)? 4'b0 : m_out_next;
+    assign s_out = (reset)? 4'b0 : s_out_next;
+    
+endmodule"
+N/A,N/A,-1,26,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bin_to_decimal u1(.bin(h_bin),.dec(h_bcd));
+    bin_to_decimal u2(.bin(m_bin),.dec(m_bcd));
+    bin_to_decimal u3(.bin(s_bin),.dec(s_bcd));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'd0;
+            m_reg <= 4'd0;
+            s_reg <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bcd;
+                m_reg <= m_bcd;
+                s_reg <= s_bcd;
+            end
+        end
+    end
+    
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    assign pm = (h_reg == 4'd0) && (m_reg == 4'd0) && (s_reg == 4'd0);
+    
+endmodule"
+N/A,N/A,-1,27,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg seg0(.sin(h_out),.seg(hh));
+    bcd_to_7seg seg1(.sin(m_out),.seg(mm));
+    bcd_to_7seg seg2(.sin(s_out),.seg(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_in;
+                m_reg <= m_in;
+                s_reg <= s_in;
+            end
+        end
+    end
+    
+    assign h_out = h_reg;
+    assign m_out = m_reg;
+    assign s_out = s_reg;
+    
+    assign pm = s_reg > 4'b1110;
+    
+    always @(*) begin
+        if(s_reg > 4'b1110) begin
+            h_in = h_reg + 1;
+            if(h_in > 4'b1011) begin
+                h_in = 4'b0000;
+                m_in = m_reg + 1;
+                if(m_in > 4'b1101) begin
+                    m_in = 4'b0000;
+                    s_in = s_reg + 1;
+                end
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,28,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg seg0(.sin(h_out),.seg(hh));
+    bcd_to_7seg seg1(.sin(m_out),.seg(mm));
+    bcd_to_7seg seg2(.sin(s_out),.seg(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_in;
+                m_reg <= m_in;
+                s_reg <= s_in;
+            end
+        end
+    end
+    
+    assign h_out = h_reg;
+    assign m_out = m_reg;
+    assign s_out = s_reg;
+    
+    assign pm = s_reg > 4'b1110;
+    
+    always @(*) begin
+        if(s_reg > 4'b1110) begin
+            h_in = h_reg + 1;
+            if(h_in > 4'b1011) begin
+                h_in = 4'b0000;
+                m_in = m_reg + 1;
+                if(m_in > 4'b1101) begin
+                    m_in = 4'b0000;
+                    s_in = s_reg + 1;
+                end
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,29,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_out = (h_reg == 4'd11)? 4'd1 : h_reg + 4'd1;
+    assign m_out = (m_reg == 4'd59)? (h_reg == 4'd11? 4'd1 : 4'd0) : m_reg + 4'd1;
+    assign s_out = (s_reg == 4'd59)? (m_reg == 4'd59? 4'd1 : 4'd0) : s_reg + 4'd1;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'd0;
+            m_reg <= 4'd0;
+            s_reg <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_out;
+                m_reg <= m_out;
+                s_reg <= s_out;
+            end
+        end
+    end
+    
+    assign pm = (h_reg == 4'd11) & (m_reg == 4'd59)? 1'b1 : 1'b0;
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    
+endmodule"
+N/A,N/A,-1,30,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [3:0] clk_out_hh, clk_out_mm, clk_out_ss;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out),
+      .reset(reset),
+      .ena(ena),
+      .clk_out_hh(clk_out_hh),
+      .clk_out_mm(clk_out_mm),
+      .clk_out_ss(clk_out_ss));
+    
+    assign pm = clk_out_mm[3];
+    
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1) begin : clk_out_reg_loop
+            always @(posedge clk_out) begin
+                if (i == 3) begin
+                    ss <= clk_out_ss;
+                    mm <= clk_out_mm;
+                    hh <= clk_out_hh;
+                end
+            end
+        end
+    endgenerate
+    
+endmodule"
+N/A,N/A,-1,31,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    wire [3:0] h_bcd2, m_bcd2, s_bcd2;
+    wire [3:0] h_bcd3, m_bcd3, s_bcd3;
+    
+    bin2bcd b2b(.bin(h_bin),.bcd(h_bcd));
+    bin2bcd b2b2(.bin(m_bin),.bcd(m_bcd));
+    bin2bcd b2b3(.bin(s_bin),.bcd(s_bcd));
+    
+    bcd2bin b2b_h(.bcd(h_bcd),.bin(h_bcd2));
+    bcd2bin b2b_m(.bcd(m_bcd),.bin(m_bcd2));
+    bcd2bin b2b_s(.bcd(s_bcd),.bin(s_bcd2));
+    
+    bcd2bin b2b2_h(.bcd(h_bcd),.bin(h_bcd3));
+    bcd2bin b2b2_m(.bcd(m_bcd),.bin(m_bcd3));
+    bcd2bin b2b2_s(.bcd(s_bcd),.bin(s_bcd3));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bcd2;
+                m_reg <= m_bcd2;
+                s_reg <= s_bcd2;
+            end
+        end
+    end
+    
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    
+    assign pm = (h_reg == 4'd12)? 1'b1 : 1'b0;
+    
+endmodule"
+N/A,N/A,-1,32,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    wire [3:0] h_bcd2, m_bcd2, s_bcd2;
+    wire [3:0] h_bcd3, m_bcd3, s_bcd3;
+    
+    bin2bcd b2b(.bin(h_bin),.bcd(h_bcd));
+    bin2bcd b2b2(.bin(m_bin),.bcd(m_bcd));
+    bin2bcd b2b3(.bin(s_bin),.bcd(s_bcd));
+    
+    bcd2bin b2b_h(.bcd(h_bcd),.bin(h_bcd2));
+    bcd2bin b2b_m(.bcd(m_bcd),.bin(m_bcd2));
+    bcd2bin b2b_s(.bcd(s_bcd),.bin(s_bcd2));
+    
+    bcd2bin b2b2_h(.bcd(h_bcd),.bin(h_bcd3));
+    bcd2bin b2b2_m(.bcd(m_bcd),.bin(m_bcd3));
+    bcd2bin b2b2_s(.bcd(s_bcd),.bin(s_bcd3));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bcd2;
+                m_reg <= m_bcd2;
+                s_reg <= s_bcd2;
+            end
+        end
+    end
+    
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    
+    assign pm = (h_reg == 4'd12)? 1'b1 : 1'b0;
+    
+endmodule"
+N/A,N/A,-1,33,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    wire [3:0] h_bcd2, m_bcd2, s_bcd2;
+    wire [3:0] h_bcd3, m_bcd3, s_bcd3;
+    
+    bin2bcd b2b(.bin(h_bin),.bcd(h_bcd));
+    bin2bcd b2b2(.bin(m_bin),.bcd(m_bcd));
+    bin2bcd b2b3(.bin(s_bin),.bcd(s_bcd));
+    
+    bcd2bin b2b_h(.bcd(h_bcd),.bin(h_bcd2));
+    bcd2bin b2b_m(.bcd(m_bcd),.bin(m_bcd2));
+    bcd2bin b2b_s(.bcd(s_bcd),.bin(s_bcd2));
+    
+    bcd2bin b2b2_h(.bcd(h_bcd),.bin(h_bcd3));
+    bcd2bin b2b2_m(.bcd(m_bcd),.bin(m_bcd3));
+    bcd2bin b2b2_s(.bcd(s_bcd),.bin(s_bcd3));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bcd2;
+                m_reg <= m_bcd2;
+                s_reg <= s_bcd2;
+            end
+        end
+    end
+    
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = s_reg;
+    
+    assign pm = (h_reg == 4'd12)? 1'b1 : 1'b0;
+    
+endmodule"
+N/A,N/A,-1,34,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg seg0(
+      .sin(h_out),
+      .seg(hh)
+    );
+    
+    bcd_to_7seg seg1(
+      .sin(m_out),
+      .seg(mm)
+    );
+    
+    bcd_to_7seg seg2(
+      .sin(ss),
+      .seg(m_out)
+    );
+    
+    assign pm = (h_out == 4'd12)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else if(ena) begin
+            if(h_out == 4'd11) begin
+                h_out <= 4'd0;
+                if(m_out == 4'd59) begin
+                    m_out <= 4'd0;
+                end
+                else begin
+                    m_out <= m_out + 4'd1;
+                end
+            end
+            else begin
+                h_out <= h_out + 4'd1;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,35,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.bin(s_out),.seg(ss));
+    
+    reg [3:0] h_in, m_in, s_in;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_in <= 4'd0;
+            m_in <= 4'd0;
+            s_in <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_in <= h_out;
+                m_in <= m_out;
+                s_in <= s_out;
+            end
+        end
+    end
+    
+    assign pm = (h_out == 4'd12) && (m_out == 4'd59) && (s_out == 4'd59);
+    
+endmodule"
+N/A,N/A,-1,36,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.bin(s_out),.seg(ss));
+    
+    reg [3:0] h_in, m_in, s_in;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_in <= 4'd0;
+            m_in <= 4'd0;
+            s_in <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_in <= h_out;
+                m_in <= m_out;
+                s_in <= s_out;
+            end
+        end
+    end
+    
+    assign pm = (h_out == 4'd12) && (m_out == 4'd59) && (s_out == 4'd59);
+    
+endmodule"
+N/A,N/A,-0.1,37,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // assign pm = (hh > 11)? 1 : 0;
+    // assign hh = hh - (hh > 11? 12 : 0);
+    // assign mm = mm - (mm > 59? 60 : 0);
+    // assign ss = ss - (ss > 59? 60 : 0);
+    
+    // use a clocked always block
+    // to increment the values
+    // whenever the signal is true
+    
+    reg [7:0] hh_r, mm_r, ss_r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            hh_r <= 0;
+            mm_r <= 0;
+            ss_r <= 0;
+        end
+        else begin
+            if (ena) begin
+                hh_r <= (hh_r > 11)? 0 : hh_r + 1;
+                mm_r <= (mm_r > 59)? 0 : mm_r + 1;
+                ss_r <= (ss_r > 59)? 0 : ss_r + 1;
+            end
+        end
+    end
+    
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    assign pm = (hh_r > 11);
+    
+endmodule"
+N/A,N/A,-1,38,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.sin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.sin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.sin(s_out),.seg(ss));
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 0;
+            m_reg <= 0;
+            s_reg <= 0;
+        end
+        else if(ena) begin
+            h_reg <= h_out;
+            m_reg <= m_out;
+            s_reg <= s_out;
+        end
+    end
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59) && (s_out == 4'd59);
+    
+endmodule"
+N/A,N/A,-1,39,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out), 
+      .bcd2(mm_out), 
+      .bcd1(hh_out), 
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh),
+      .an(pm)
+    );
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss <= ss_out;
+                mm <= mm_out;
+                hh <= hh_out;
+            end
+        end
+    end
+endmodule"
+N/A,N/A,-1,40,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out), 
+      .bcd2(mm_out), 
+      .bcd1(hh_out), 
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh),
+      .an(pm)
+    );
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss <= ss_out;
+                mm <= mm_out;
+                hh <= hh_out;
+            end
+        end
+    end
+endmodule"
+N/A,N/A,-1,41,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(hh),.seg(h_out));
+    bcd_to_7seg m_reg(.bin(mm),.seg(m_out));
+    bcd_to_7seg s_reg(.bin(ss),.seg(s_out));
+    
+    reg pm_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+            pm <= 0;
+        end
+        else if(ena) begin
+            if(hh == 11) begin
+                hh <= 0;
+                if(mm == 11) begin
+                    mm <= 0;
+                    if(ss == 59) begin
+                        ss <= 0;
+                        if(pm)
+                            pm <= 0;
+                        else
+                            pm <= 1;
+                    end
+                    else begin
+                        ss <= ss + 1;
+                        if(ss == 59) begin
+                            ss <= 0;
+                            mm <= mm + 1;
+                            if(mm == 11) begin
+                                mm <= 0;
+                                hh <= hh + 1;
+                            end
+                        end
+                    end
+                end
+                else begin
+                    mm <= mm + 1;
+                    if(mm == 11) begin
+                        mm <= 0;
+                        hh <= hh + 1;
+                    end
+                end
+            end
+            else begin
+                hh <= hh + 1;
+            end
+        end
+    end
+    
+    assign pm = pm_reg;
+    assign hh = h_out;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+    always @(posedge clk) begin
+        if(reset)
+            pm_reg <= 0;
+        else if(ena)
+            pm_reg <= pm;
+    end
+    
+endmodule"
+N/A,N/A,-1,42,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(hh),.seg(h_out));
+    bcd_to_7seg m_reg(.bin(mm),.seg(m_out));
+    bcd_to_7seg s_reg(.bin(ss),.seg(s_out));
+    
+    reg pm_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+            pm <= 0;
+        end
+        else if(ena) begin
+            if(hh == 11) begin
+                hh <= 0;
+                if(mm == 11) begin
+                    mm <= 0;
+                    if(ss == 59) begin
+                        ss <= 0;
+                        if(pm)
+                            pm <= 0;
+                        else
+                            pm <= 1;
+                    end
+                    else begin
+                        ss <= ss + 1;
+                        if(ss == 59) begin
+                            ss <= 0;
+                            mm <= mm + 1;
+                            if(mm == 11) begin
+                                mm <= 0;
+                                hh <= hh + 1;
+                            end
+                        end
+                    end
+                end
+                else begin
+                    mm <= mm + 1;
+                    if(mm == 11) begin
+                        mm <= 0;
+                        hh <= hh + 1;
+                    end
+                end
+            end
+            else begin
+                hh <= hh + 1;
+            end
+        end
+    end
+    
+    assign pm = pm_reg;
+    assign hh = h_out;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+    always @(posedge clk) begin
+        if(reset)
+            pm_reg <= 0;
+        else if(ena)
+            pm_reg <= pm;
+    end
+    
+endmodule"
+N/A,N/A,-1,43,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(hh),.seg(h_out));
+    bcd_to_7seg m_reg(.bin(mm),.seg(m_out));
+    bcd_to_7seg s_reg(.bin(ss),.seg(s_out));
+    
+    reg pm_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+            pm <= 0;
+        end
+        else if(ena) begin
+            if(hh == 11) begin
+                hh <= 0;
+                if(mm == 11) begin
+                    mm <= 0;
+                    if(ss == 59) begin
+                        ss <= 0;
+                        if(pm)
+                            pm <= 0;
+                        else
+                            pm <= 1;
+                    end
+                    else begin
+                        ss <= ss + 1;
+                        if(ss == 59) begin
+                            ss <= 0;
+                            mm <= mm + 1;
+                            if(mm == 11) begin
+                                mm <= 0;
+                                hh <= hh + 1;
+                            end
+                        end
+                    end
+                end
+                else begin
+                    mm <= mm + 1;
+                    if(mm == 11) begin
+                        mm <= 0;
+                        hh <= hh + 1;
+                    end
+                end
+            end
+            else begin
+                hh <= hh + 1;
+            end
+        end
+    end
+    
+    assign pm = pm_reg;
+    assign hh = h_out;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+    always @(posedge clk) begin
+        if(reset)
+            pm_reg <= 0;
+        else if(ena)
+            pm_reg <= pm;
+    end
+    
+endmodule"
+N/A,N/A,-1,44,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bin2bcd b2b(
+      .bin(hh),
+      .bcd(h_bcd)
+    );
+    
+    bin2bcd b2b_1(
+      .bin(mm),
+      .bcd(m_bcd)
+    );
+    
+    bin2bcd b2b_2(
+      .bin(ss),
+      .bcd(s_bcd)
+    );
+    
+    bcd2bin bcd2bin_0(
+      .bcd(h_bcd),
+      .bin(h_bin)
+    );
+    
+    bcd2bin bcd2bin_1(
+      .bcd(m_bcd),
+      .bin(m_bin)
+    );
+    
+    bcd2bin bcd2bin_2(
+      .bcd(s_bcd),
+      .bin(s_bin)
+    );
+    
+    assign h_bin = (h_bin == 4'd0 || h_bin == 4'd1 || h_bin == 4'd2 || h_bin == 4'd3)? h_bin + 4'd1 : 4'd0;
+    assign m_bin = (m_bin == 4'd0 || m_bin == 4'd1 || m_bin == 4'd2 || m_bin == 4'd3)? m_bin + 4'd1 : 4'd0;
+    assign s_bin = (s_bin == 4'd0 || s_bin == 4'd1 || s_bin == 4'd2 || s_bin == 4'd3)? s_bin + 4'd1 : 4'd0;
+    
+    assign pm = (h_bin == 4'd11 || m_bin == 4'd11 || s_bin == 4'd11)? 1'b1 : 1'b0;
+    
+    assign hh = (h_bin == 4'd0 || h_bin == 4'd1 || h_bin == 4'd2 || h_bin == 4'd3)? h_bin : 4'd0;
+    assign mm = (m_bin == 4'd0 || m_bin == 4'd1 || m_bin == 4'd2 || m_bin == 4'd3)? m_bin : 4'd0;
+    assign ss = (s_bin == 4'd0 || s_bin == 4'd1 || s_bin == 4'd2 || s_bin == 4'd3)? s_bin : 4'd0;
+    
+endmodule"
+N/A,N/A,-1,45,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out),
+      .reset(reset),
+      .ena(ena)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .sin(ss_out),
+      .seg(ss_out),
+      .dout(ss)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_1(
+      .sin(mm_out),
+      .seg(mm_out),
+      .dout(mm)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_2(
+      .sin(hh_out),
+      .seg(hh_out),
+      .dout(hh)
+    );
+    
+    assign pm = (hh == 12)? 1'b1 : 1'b0;
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss <= ss_out;
+                mm <= mm_out;
+                hh <= hh_out;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,46,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out),
+      .reset(reset),
+      .ena(ena)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .sin(ss_out),
+      .seg(ss_out),
+      .dout(ss)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_1(
+      .sin(mm_out),
+      .seg(mm_out),
+      .dout(mm)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_2(
+      .sin(hh_out),
+      .seg(hh_out),
+      .dout(hh)
+    );
+    
+    assign pm = (hh == 12)? 1'b1 : 1'b0;
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss <= ss_out;
+                mm <= mm_out;
+                hh <= hh_out;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-0.1,47,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use a clocked always block (see always_clocked.v)
+    
+    // You can use the following code to simulate the clock
+    
+    reg [7:0] hh_r, mm_r, ss_r;
+    always @(posedge clk) begin
+        if (reset) begin
+            hh_r <= 8'h0;
+            mm_r <= 8'h0;
+            ss_r <= 8'h0;
+        end
+        else if (ena) begin
+            hh_r <= hh_r + 1;
+            if (hh_r == 8'h11) begin
+                hh_r <= 8'h0;
+                mm_r <= mm_r + 1;
+                if (mm_r == 8'h59) begin
+                    mm_r <= 8'h0;
+                    ss_r <= ss_r + 1;
+                end
+            end
+        end
+    end
+    
+    assign pm = (hh_r == 8'h11) & (mm_r == 8'h59) & (ss_r == 8'h59);
+    
+    // You can use the following code to verify that your assignment is correct
+    
+    /*
+    reg [7:0] hh_r, mm_r, ss_r;
+    always @(posedge clk) begin
+        if (reset) begin
+            hh_r <= 8'h0;
+            mm_r <= 8'h0;
+            ss_r <= 8'h0;
+        end
+        else if (ena) begin
+            hh_r <= hh_r + 1;
+            if (hh_r == 8'h11) begin
+                hh_r <= 8'h0;
+                mm_r <= mm_r + 1;
+                if (mm_r == 8'h59) begin
+                    mm_r <= 8'h0;
+                    ss_r <= ss_r + 1;
+                end
+            end
+        end
+    end
+    
+    assign pm = (hh_r == 8'h11) & (mm_r == 8'h59) & (ss_r == 8'h59);
+    */
+    
+    // You may use the following code to display the time on the 7-segment display
+    
+    /*
+    reg [7:0] hh_r, mm_r, ss_r;
+    always @(posedge clk) begin
+        if (reset) begin
+            hh_r <= 8'h0;
+            mm_r <= 8'h0;
+            ss_r <= 8'h0;
+        end
+        else if (ena) begin
+            hh_r <= hh_r + 1;
+            if (hh_r == 8'h11) begin
+                hh_r <= 8'h0;
+                mm_r <= mm_r + 1;
+                if (mm_r == 8'h59) begin
+                    mm_r <= 8'h0;
+                    ss_r <= ss_r + 1;
+                end
+            end
+        end
+    end
+    
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    */
+    
+endmodule"
+N/A,N/A,-1,48,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(m_out),.out(ss));
+    
+    wire [3:0] h_in, m_in;
+    wire [3:0] h_next, m_next;
+    
+    assign h_in = h_out;
+    assign m_in = m_out;
+    
+    assign pm = (h_out == 4'd12)? 1'b1 : 1'b0;
+    
+    assign h_next = (ena)? (h_in + 4'd1) : h_in;
+    assign m_next = (ena)? (m_in + 4'd1) : m_in;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+        end
+        else begin
+            h_out <= h_next;
+            m_out <= m_next;
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,49,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Create a clocked-up counter with a 24-bit counter.
+    
+    reg [23:0] clk_count = 0;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            clk_count <= 0;
+        end
+        else begin
+            clk_count <= clk_count + 1;
+        end
+    end
+    
+    // Create a 12-hour clock with two counters.
+    
+    reg [3:0] h_count = 0;
+    reg [3:0] m_count = 0;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            h_count <= 0;
+            m_count <= 0;
+        end
+        else begin
+            if (ena) begin
+                if (h_count == 11) begin
+                    h_count <= 0;
+                end
+                else begin
+                    h_count <= h_count + 1;
+                end
+                
+                if (m_count == 59) begin
+                    m_count <= 0;
+                end
+                else begin
+                    m_count <= m_count + 1;
+                end
+            end
+        end
+    end
+    
+    // Create a 7-segment display with the top-level module.
+    
+    assign pm = (h_count < 6)?1'b0:1'b1;
+    
+    display_7_seg display(
+      .clk(clk),
+      .reset(reset),
+      .h_count(h_count),
+      .m_count(m_count),
+      .ss(ss),
+      .mm(mm),
+      .hh(hh));
+    
+endmodule"
+N/A,N/A,-1,50,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(hh),.seg(h_out));
+    bcd_to_7seg m_reg(.bin(mm),.seg(m_out));
+    bcd_to_7seg s_reg(.bin(ss),.seg(s_out));
+    
+    wire [3:0] h_next, m_next, s_next;
+    
+    assign h_next = (reset)? 4'b0 : (clk)? (h_out + 4'b0001) : h_out;
+    assign m_next = (reset)? 4'b0 : (clk)? (m_out + 4'b0001) : m_out;
+    assign s_next = (reset)? 4'b0 : (clk)? (s_out + 4'b0001) : s_out;
+    
+    assign pm = (h_out == 4'b1101)? 1'b1 : 1'b0;
+    assign hh = (reset)? 4'b0 : (clk)? h_next[3:0] : h_out[3:0];
+    assign mm = (reset)? 4'b0 : (clk)? m_next[3:0] : m_out[3:0];
+    assign ss = (reset)? 4'b0 : (clk)? s_next[3:0] : s_out[3:0];
+    
+endmodule"
+N/A,N/A,-1,51,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.bin(s_out),.seg(ss));
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 0;
+            m_out <= 0;
+            s_out <= 0;
+        end
+        else if(ena) begin
+            if(s_out == 4'd9) begin
+                s_out <= 0;
+                if(m_out == 4'd9) begin
+                    m_out <= 0;
+                    if(h_out == 4'd9) begin
+                        h_out <= 0;
+                    end
+                    else begin
+                        h_out <= h_out + 1;
+                    end
+                end
+                else begin
+                    m_out <= m_out + 1;
+                end
+            end
+            else begin
+                s_out <= s_out + 1;
+            end
+        end
+    end
+    
+    assign pm = (h_out == 4'd11)? 1'b1 : 1'b0;
+    
+endmodule"
+N/A,N/A,-1,52,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    assign h_in = (ena)? {1'b0, h_out} : 4'b0;
+    assign m_in = (ena)? {1'b0, m_out} : 4'b0;
+    assign s_in = (ena)? {1'b0, s_out} : 4'b0;
+    
+    wire [3:0] h_out_next, m_out_next, s_out_next;
+    
+    assign h_out_next = (reset)? 4'b0 : h_in + 1;
+    assign m_out_next = (reset)? 4'b0 : m_in + 1;
+    assign s_out_next = (reset)? 4'b0 : s_in + 1;
+    
+    assign pm = (h_out == 4'b0 && m_out == 4'b0 && s_out == 4'b0)? 1'b1 : 1'b0;
+    
+    assign h_out = (reset)? 4'b0 : h_out_next;
+    assign m_out = (reset)? 4'b0 : m_out_next;
+    assign s_out = (reset)? 4'b0 : s_out_next;
+    
+endmodule"
+N/A,N/A,-1,53,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] q1, q2, q3;
+    
+    // This module is a 4-bit down counter.
+    // The ena signal is the enable for the counter. When the counter is disabled, it holds the present value.
+    // When the counter is enabled, it counts down from the current value to 0.
+    // The q1 register is the output register. It holds the value of the counter when it is disabled.
+    // The q2 register holds the value of the counter when it is enabled.
+    // The q3 register holds the value of the counter when it is enabled and counting down to 0.
+    
+    down_counter_4bit d0(clk, reset, ena, q1);
+    down_counter_4bit d1(clk, reset, ena, q2);
+    down_counter_4bit d2(clk, reset, ena, q3);
+    
+    // The pm output is the value of the counter when it is counting down to 0.
+    // The ss, mm, and hh output are the value of the counter when the counter is enabled.
+    
+    assign pm = q1 == 4'b0000? 1'b1 : 1'b0;
+    assign ss = q1;
+    assign mm = q2;
+    assign hh = q3;
+    
+endmodule"
+N/A,N/A,-1,54,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_in;
+                m_reg <= m_in;
+                s_reg <= s_in;
+            end
+        end
+    end
+    
+    assign h_out = (h_reg == 4'b1001)? 4'b0000 : h_reg;
+    assign m_out = (m_reg == 4'b5152)? 4'b0000 : m_reg;
+    assign s_out = (s_reg == 4'b11101)? 4'b0000 : s_reg;
+    
+    assign h_in = h_out;
+    assign m_in = m_out;
+    assign s_in = s_out;
+    
+    assign pm = (h_reg == 4'b0000)? 0 : 1;
+    
+endmodule"
+N/A,N/A,-1,55,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0000;
+            m_reg <= 4'b0000;
+            s_reg <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_in;
+                m_reg <= m_in;
+                s_reg <= s_in;
+            end
+        end
+    end
+    
+    assign h_out = (h_reg == 4'b1001)? 4'b0000 : h_reg;
+    assign m_out = (m_reg == 4'b5152)? 4'b0000 : m_reg;
+    assign s_out = (s_reg == 4'b11101)? 4'b0000 : s_reg;
+    
+    assign h_in = h_out;
+    assign m_in = m_out;
+    assign s_in = s_out;
+    
+    assign pm = (h_reg == 4'b0000)? 0 : 1;
+    
+endmodule"
+N/A,N/A,-1,56,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out;
+    wire [7:0] mm_out;
+    wire [7:0] ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_fsm_0 bcd_fsm_0(
+      .clk_out(clk_out),
+      .reset(reset),
+      .ena(ena),
+      .pm(pm),
+      .hh(hh_out),
+      .mm(mm_out),
+      .ss(ss_out)
+    );
+    
+    assign hh = hh_out;
+    assign mm = mm_out;
+    assign ss = ss_out;
+    
+endmodule"
+N/A,N/A,-1,57,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bin2bcd b2b(
+      .bin(clk),
+      .bcd(h_bcd)
+    );
+    
+    bcd2bin b2b_1(
+      .bcd(h_bcd),
+      .bin(h_bin)
+    );
+    
+    bcd2bin b2b_2(
+      .bcd(m_bcd),
+      .bin(m_bin)
+    );
+    
+    bcd2bin b2b_3(
+      .bcd(s_bcd),
+      .bin(s_bin)
+    );
+    
+    assign hh = h_bin;
+    assign mm = m_bin;
+    assign ss = s_bin;
+    
+    assign pm = (h_bin == 4'h0)? 0 : 1;
+    
+endmodule"
+N/A,N/A,-1,58,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bin2bcd b2b(
+      .bin(clk),
+      .bcd(h_bcd)
+    );
+    
+    bcd2bin b2b_1(
+      .bcd(h_bcd),
+      .bin(h_bin)
+    );
+    
+    bcd2bin b2b_2(
+      .bcd(m_bcd),
+      .bin(m_bin)
+    );
+    
+    bcd2bin b2b_3(
+      .bcd(s_bcd),
+      .bin(s_bin)
+    );
+    
+    assign hh = h_bin;
+    assign mm = m_bin;
+    assign ss = s_bin;
+    
+    assign pm = (h_bin == 4'h0)? 0 : 1;
+    
+endmodule"
+N/A,N/A,-1,59,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bin2bcd b2b(
+      .bin(clk),
+      .bcd(h_bcd)
+    );
+    
+    bcd2bin b2b_1(
+      .bcd(h_bcd),
+      .bin(h_bin)
+    );
+    
+    bcd2bin b2b_2(
+      .bcd(m_bcd),
+      .bin(m_bin)
+    );
+    
+    bcd2bin b2b_3(
+      .bcd(s_bcd),
+      .bin(s_bin)
+    );
+    
+    assign hh = h_bin;
+    assign mm = m_bin;
+    assign ss = s_bin;
+    
+    assign pm = (h_bin == 4'h0)? 0 : 1;
+    
+endmodule"
+N/A,N/A,-1,60,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_bin, m_bin, s_bin;
+    wire [3:0] h_bcd, m_bcd, s_bcd;
+    
+    bcd_to_7seg bcd_to_7seg_h(.bin(h_bin),.bcd(h_bcd));
+    bcd_to_7seg bcd_to_7seg_m(.bin(m_bin),.bcd(m_bcd));
+    bcd_to_7seg bcd_to_7seg_s(.bin(s_bin),.bcd(s_bcd));
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'b0;
+            m_reg <= 4'b0;
+            s_reg <= 4'b0;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_bin;
+                m_reg <= m_bin;
+                s_reg <= s_bin;
+            end
+        end
+    end
+    
+    assign hh = h_bcd;
+    assign mm = m_bcd;
+    assign ss = s_bcd;
+    assign pm = s_reg > 4'b1101;
+    
+endmodule"
+N/A,N/A,-1,61,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = hh;
+    assign m_in = mm;
+    assign s_in = ss;
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg pm_out;
+    assign pm = pm_out;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            pm_out <= 0;
+        end
+        else begin
+            if(ena) begin
+                pm_out <= h_out[3] & m_out[3];
+            end
+        end
+    end
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+        end
+        else begin
+            if(ena) begin
+                hh <= h_out;
+                mm <= m_out;
+                ss <= s_out;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,62,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use the module counter_mod to implement a module that counts up on the positive edge of the clock cycle, and resets to a given value on the negative edge.
+    // Note that the counter_mod module has its own clock, clk_mod, which is a wire.
+    // The module has three outputs:
+    //    clk_mod: A clock that counts up once per clock cycle.
+    //    q_mod: A counter that is initialized to a given value, and increments on each clock cycle when enabled.
+    //    reset_mod: A reset that is active for one clock cycle when reset is asserted.
+    //    reset_mod is a wire.
+    //    q_mod is a wire.
+    
+    wire clk_mod;
+    wire [7:0] q_mod;
+    wire reset_mod;
+    
+    counter_mod count_mod(clk_mod, reset_mod, ena, q_mod);
+    
+    // Use the module divider to divide the clock by 60 to create the time units (minutes and seconds).
+    // The module has two outputs:
+    //    clk_div: A clock that divides the input clock by 60.
+    //    reset_div: A reset that is active for one clock cycle when reset is asserted.
+    //    reset_div is a wire.
+    //    clk_div is a wire.
+    
+    wire clk_div;
+    wire reset_div;
+    
+    divider divider_mod(clk, reset, clk_div, reset_div);
+    
+    // Use the module mod_ten to divide the minutes and seconds by 10 to create the tens and ones digits.
+    // The module has two outputs:
+    //    clk_div: A clock that divides the input clock by 60.
+    //    reset_div: A reset that is active for one clock cycle when reset is asserted.
+    //    reset_div is a wire.
+    //    clk_div is a wire.
+    
+    wire clk_div_ten;
+    wire reset_div_ten;
+    
+    mod_ten mod_ten_mod(clk_div, reset_div, clk_div_ten, reset_div_ten);
+    
+    // Use the module seven_seg to display the tens and ones digits on the seven-segment display.
+    // The module has two outputs:
+    //    clk_ssg: A clock that divides the input clock by 60.
+    //    reset_ssg: A reset that is active for one clock cycle when reset is asserted.
+    //    reset_ssg is a wire.
+    //    clk_ssg is a wire.
+    
+    wire clk_ssg;
+    wire reset_ssg;
+    
+    seven_seg_ctrl seven_seg_ctrl_mod(clk_div_ten, reset_div_ten, clk_ssg, reset_ssg, q_mod, pm, hh, mm, ss);
+    
+endmodule"
+N/A,N/A,-1,63,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_to_s(.in(h_out),.out(s_out));
+    bcd_to_7seg m_to_s(.in(m_out),.out(s_out));
+    
+    bcd_clock h_to_m(.in(h_out),.out(m_out),.clk(clk),.reset(reset),.enable(ena));
+    bcd_clock m_to_s(.in(m_out),.out(s_out),.clk(clk),.reset(reset),.enable(ena));
+    
+    assign pm = ~s_out[3];
+    assign hh = {s_out[2:0], h_out};
+    assign mm = {s_out[2:0], m_out};
+    assign ss = {s_out[2:0], s_out};
+    
+endmodule"
+N/A,N/A,-1,64,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 my_clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out),
+      .reset(reset),
+      .ena(ena));
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out),
+      .bcd2(mm_out),
+      .bcd1(hh_out),
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh));
+    
+    assign pm = (hh_out == 12 && mm_out == 0 && ss_out == 0)? 1'b1 : 1'b0;
+    
+    
+endmodule"
+N/A,N/A,-1,65,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 my_clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out),
+      .reset(reset),
+      .ena(ena));
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out),
+      .bcd2(mm_out),
+      .bcd1(hh_out),
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh));
+    
+    assign pm = (hh_out == 12 && mm_out == 0 && ss_out == 0)? 1'b1 : 1'b0;
+    
+    
+endmodule"
+N/A,N/A,-0.1,66,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Declare a 12-hour clock
+    reg [5:0] h_count;
+    reg [3:0] m_count;
+    reg [3:0] s_count;
+    
+    // Declare an array of 4-bit numbers representing the numbers 0-9
+    reg [3:0] numbers [0:9];
+    
+    // Initialize the numbers array to 0s
+    initial
+        begin
+            numbers[0] = 4'b0000;
+            numbers[1] = 4'b0000;
+            numbers[2] = 4'b0000;
+            numbers[3] = 4'b0000;
+            numbers[4] = 4'b0000;
+            numbers[5] = 4'b0000;
+            numbers[6] = 4'b0000;
+            numbers[7] = 4'b0000;
+            numbers[8] = 4'b0000;
+            numbers[9] = 4'b0000;
+        end
+    
+    // The clock ticks whenever the time is equal to 00:00:00
+    always @(posedge clk)
+        begin
+            if(reset)
+                begin
+                    h_count <= 6'b000000;
+                    m_count <= 4'b0000;
+                    s_count <= 4'b0000;
+                end
+            else
+                begin
+                    if(h_count == 6'b000000 && m_count == 4'b0000 && s_count == 4'b0000)
+                        begin
+                            if(ena)
+                                begin
+                                    h_count <= h_count + 1;
+                                    if(h_count == 6'b100000)
+                                        begin
+                                            h_count <= 6'b000000;
+                                            m_count <= m_count + 1;
+                                        end
+                                end
+                        end
+                end
+        end
+    
+    // The clock displays the 12-hour time
+    assign hh = numbers[h_count[5:0]];
+    assign mm = numbers[m_count[3:0]];
+    assign ss = numbers[s_count[3:0]];
+    
+    // The clock displays the current time
+    assign pm = (h_count[5:0] == 6'b110000)? 1'b1 : 1'b0;
+endmodule"
+N/A,N/A,-1,67,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Declare three 8-bit counters.
+    // The first counter counts the number of seconds.
+    // The second counter counts the number of minutes.
+    // The third counter counts the number of hours.
+    // You may add your own counters.
+    
+    reg [7:0] sec_reg, min_reg, hr_reg;
+    
+    // The second counter is enabled only when the first counter is not zero.
+    // The second counter counts the number of minutes.
+    // You may add your own conditions.
+    
+    assign enb = (sec_reg!= 8'h0)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            // When reset is high, all three counters are reset to zero.
+            sec_reg <= 8'h0;
+            min_reg <= 8'h0;
+            hr_reg <= 8'h0;
+        end
+        else if (ena) begin
+            // When ena is high, the second counter is incremented.
+            // You may add your own conditions.
+            sec_reg <= sec_next;
+            min_reg <= min_next;
+            hr_reg <= hr_next;
+        end
+    end
+    
+    // The third counter is enabled only when the second counter is not zero.
+    // You may add your own conditions.
+    
+    assign enc = (min_reg!= 8'h0)? 1'b1 : 1'b0;
+    
+    // The output pm is asserted when the hour is 11:59.
+    // You may add your own conditions.
+    
+    assign pm = (hr_reg == 8'h11)? 1'b1 : 1'b0;
+    
+    // The output hh, mm, and ss are the output of the second, third, and fourth counters, respectively.
+    // You may add your own conditions.
+    
+    assign hh = hr_reg;
+    assign mm = min_reg;
+    assign ss = sec_reg;
+    
+endmodule"
+N/A,N/A,-1,68,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Declare three 8-bit counters.
+    // The first counter counts the number of seconds.
+    // The second counter counts the number of minutes.
+    // The third counter counts the number of hours.
+    // You may add your own counters.
+    
+    reg [7:0] sec_reg, min_reg, hr_reg;
+    
+    // The second counter is enabled only when the first counter is not zero.
+    // The second counter counts the number of minutes.
+    // You may add your own conditions.
+    
+    assign enb = (sec_reg!= 8'h0)? 1'b1 : 1'b0;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            // When reset is high, all three counters are reset to zero.
+            sec_reg <= 8'h0;
+            min_reg <= 8'h0;
+            hr_reg <= 8'h0;
+        end
+        else if (ena) begin
+            // When ena is high, the second counter is incremented.
+            // You may add your own conditions.
+            sec_reg <= sec_next;
+            min_reg <= min_next;
+            hr_reg <= hr_next;
+        end
+    end
+    
+    // The third counter is enabled only when the second counter is not zero.
+    // You may add your own conditions.
+    
+    assign enc = (min_reg!= 8'h0)? 1'b1 : 1'b0;
+    
+    // The output pm is asserted when the hour is 11:59.
+    // You may add your own conditions.
+    
+    assign pm = (hr_reg == 8'h11)? 1'b1 : 1'b0;
+    
+    // The output hh, mm, and ss are the output of the second, third, and fourth counters, respectively.
+    // You may add your own conditions.
+    
+    assign hh = hr_reg;
+    assign mm = min_reg;
+    assign ss = sec_reg;
+    
+endmodule"
+N/A,N/A,-1,69,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] q;
+    
+    assign q = 4'd0;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            q <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                q <= q + 1;
+            end
+        end
+    end
+    
+    assign pm = q[3];
+    assign hh = q[2:0];
+    assign mm = q[7:4];
+    assign ss = q[11:8];
+    
+endmodule"
+N/A,N/A,-1,70,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    
+    clk_divider #(12500000) clk_divider_1 (clk, reset, clk_out);
+    
+    reg pm_out;
+    reg [7:0] hh_out;
+    reg [7:0] mm_out;
+    reg [7:0] ss_out;
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            pm_out <= 0;
+            hh_out <= 0;
+            mm_out <= 0;
+            ss_out <= 0;
+        end
+        else begin
+            if(ena) begin
+                if(ss_out == 59) begin
+                    if(mm_out == 59) begin
+                        if(hh_out == 11) begin
+                            pm_out <= ~pm_out;
+                            hh_out <= 0;
+                            mm_out <= 0;
+                            ss_out <= 0;
+                        end
+                        else begin
+                            hh_out <= hh_out + 1;
+                            mm_out <= 0;
+                            ss_out <= 0;
+                        end
+                    end
+                    else begin
+                        if(mm_out == 59) begin
+                            if(hh_out == 23) begin
+                                hh_out <= 0;
+                                mm_out <= 0;
+                                ss_out <= 0;
+                            end
+                            else begin
+                                hh_out <= hh_out + 1;
+                                mm_out <= 0;
+                                ss_out <= 0;
+                            end
+                        end
+                        else begin
+                            mm_out <= mm_out + 1;
+                            ss_out <= 0;
+                        end
+                    end
+                end
+                else begin
+                    ss_out <= ss_out + 1;
+                end
+            end
+        end
+    end
+    
+    assign pm = pm_out;
+    assign hh = hh_out;
+    assign mm = mm_out;
+    assign ss = ss_out;
+    
+endmodule"
+N/A,N/A,-1,71,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    assign h_out = (h_reg == 12)? h_reg : h_reg + 1;
+    assign m_out = (m_reg == 59)? m_reg : m_reg + 1;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 0;
+            m_reg <= 0;
+        end
+        else if(ena) begin
+            h_reg <= h_out;
+            m_reg <= m_out;
+        end
+    end
+    
+    assign hh = h_reg;
+    assign mm = m_reg;
+    assign ss = (m_reg < 10)? ""0"" + m_reg : m_reg;
+    assign pm = (h_reg == 12)? ~h_reg[0] : 0;
+    
+endmodule"
+N/A,N/A,-1,72,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,73,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,74,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,75,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,76,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,77,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = {1'b0, hh};
+    assign m_in = {1'b0, mm};
+    assign s_in = {1'b0, ss};
+    
+    bcd_to_7seg seg0(.sin(s_in),.seg(s_out));
+    bcd_to_7seg seg1(.sin(m_in),.seg(m_out));
+    bcd_to_7seg seg2(.sin(h_in),.seg(h_out));
+    
+    reg [3:0] h_out_r, m_out_r, s_out_r;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out_r <= 4'b0000;
+            m_out_r <= 4'b0000;
+            s_out_r <= 4'b0000;
+        end
+        else begin
+            if(ena) begin
+                h_out_r <= h_out;
+                m_out_r <= m_out;
+                s_out_r <= s_out;
+            end
+        end
+    end
+    
+    assign pm = s_out_r[3];
+    assign hh = h_out_r;
+    assign mm = m_out_r;
+    assign ss = s_out_r;
+    
+endmodule"
+N/A,N/A,-1,78,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(h_out),.out(ss));
+    
+    wire [3:0] h_out_pm, m_out_pm;
+    
+    assign h_out_pm = h_out + 4'b0100;
+    assign m_out_pm = m_out + 4'b0100;
+    
+    pm_gen pm_gen(.clk(clk),.reset(reset),.ena(ena),.h_out(h_out_pm),.m_out(m_out_pm),.pm(pm));
+    
+endmodule"
+N/A,N/A,-1,79,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s;
+    wire [7:0] hh_r, mm_r, ss_r;
+    
+    clk_gen_1s clk_gen(.clk(clk),.reset(reset),.ena(ena),.clk_1s(clk_1s));
+    bcd_to_7seg bcd_to_7seg_hour(.clk(clk_1s),.reset(reset),.bcd(hh_r),.seg(hh));
+    bcd_to_7seg bcd_to_7seg_min(.clk(clk_1s),.reset(reset),.bcd(mm_r),.seg(mm));
+    bcd_to_7seg bcd_to_7seg_sec(.clk(clk_1s),.reset(reset),.bcd(ss_r),.seg(ss));
+    
+    assign pm = ~(hh_r[3] & hh_r[2]);
+    
+endmodule"
+N/A,N/A,-1,80,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out, mm_out, ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg bcd_to_7seg_0(
+      .bcd3(ss_out), 
+      .bcd2(mm_out), 
+      .bcd1(hh_out), 
+      .bcd0(hh_out),
+      .seg(ss),
+      .seg1(mm),
+      .seg0(hh),
+      .an(an),
+      .an_old(an_old)
+    );
+    
+    assign pm = ~an_old[0];
+    
+    reg [7:0] hh_r, mm_r, ss_r;
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            hh_r <= 8'h12;
+            mm_r <= 8'h00;
+            ss_r <= 8'h00;
+        end
+        else begin
+            if(ena) begin
+                if(hh_r == 8'h11) begin
+                    hh_r <= 8'h12;
+                end
+                else begin
+                    hh_r <= hh_r + 1;
+                end
+                
+                if(mm_r == 8'h59) begin
+                    mm_r <= 8'h00;
+                end
+                else begin
+                    mm_r <= mm_r + 1;
+                end
+                
+                if(ss_r == 8'h59) begin
+                    ss_r <= 8'h00;
+                end
+                else begin
+                    ss_r <= ss_r + 1;
+                end
+            end
+        end
+    end
+    
+    assign hh = hh_r;
+    assign mm = mm_r;
+    assign ss = ss_r;
+    
+endmodule"
+N/A,N/A,-1,81,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_1ms, clk_5ms, clk_1us, clk_1ms_pm, clk_1s_pm;
+    wire [7:0] hh_pm, mm_pm, ss_pm;
+    
+    assign clk_1s = clk;
+    assign clk_1ms = clk_1s;
+    assign clk_5ms = clk_1s;
+    assign clk_1us = clk_1ms;
+    assign clk_1ms_pm = clk_1s_pm;
+    assign clk_1s_pm = clk_1ms_pm;
+    
+    pm_module pm_mod(clk_1s_pm, reset, ena, pm);
+    
+    bcd_to_7seg bcd_to_7seg_1s(clk_1s, reset, hh, mm, ss);
+    bcd_to_7seg bcd_to_7seg_1ms(clk_1ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_5ms(clk_5ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_1us(clk_1us, reset, hh_pm, mm_pm, ss_pm);
+    
+    assign hh_pm = (pm)? hh_pm : hh;
+    assign mm_pm = (pm)? mm_pm : mm;
+    assign ss_pm = (pm)? ss_pm : ss;
+    
+endmodule"
+N/A,N/A,-1,82,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_1ms, clk_5ms, clk_1us, clk_1ms_pm, clk_1s_pm;
+    wire [7:0] hh_pm, mm_pm, ss_pm;
+    
+    assign clk_1s = clk;
+    assign clk_1ms = clk_1s;
+    assign clk_5ms = clk_1s;
+    assign clk_1us = clk_1ms;
+    assign clk_1ms_pm = clk_1s_pm;
+    assign clk_1s_pm = clk_1ms_pm;
+    
+    pm_module pm_mod(clk_1s_pm, reset, ena, pm);
+    
+    bcd_to_7seg bcd_to_7seg_1s(clk_1s, reset, hh, mm, ss);
+    bcd_to_7seg bcd_to_7seg_1ms(clk_1ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_5ms(clk_5ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_1us(clk_1us, reset, hh_pm, mm_pm, ss_pm);
+    
+    assign hh_pm = (pm)? hh_pm : hh;
+    assign mm_pm = (pm)? mm_pm : mm;
+    assign ss_pm = (pm)? ss_pm : ss;
+    
+endmodule"
+N/A,N/A,-1,83,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_1ms, clk_5ms, clk_1us, clk_1ms_pm, clk_1s_pm;
+    wire [7:0] hh_pm, mm_pm, ss_pm;
+    
+    assign clk_1s = clk;
+    assign clk_1ms = clk_1s;
+    assign clk_5ms = clk_1s;
+    assign clk_1us = clk_1ms;
+    assign clk_1ms_pm = clk_1s_pm;
+    assign clk_1s_pm = clk_1ms_pm;
+    
+    pm_module pm_mod(clk_1s_pm, reset, ena, pm);
+    
+    bcd_to_7seg bcd_to_7seg_1s(clk_1s, reset, hh, mm, ss);
+    bcd_to_7seg bcd_to_7seg_1ms(clk_1ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_5ms(clk_5ms, reset, hh_pm, mm_pm, ss_pm);
+    bcd_to_7seg bcd_to_7seg_1us(clk_1us, reset, hh_pm, mm_pm, ss_pm);
+    
+    assign hh_pm = (pm)? hh_pm : hh;
+    assign mm_pm = (pm)? mm_pm : mm;
+    assign ss_pm = (pm)? ss_pm : ss;
+    
+endmodule"
+N/A,N/A,-1,84,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.bin(s_out),.seg(ss));
+    
+    reg pm_out;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            h_out <= 0;
+            m_out <= 0;
+            s_out <= 0;
+            pm_out <= 0;
+        end
+        else if (ena) begin
+            if (s_out == 4'd9) begin
+                s_out <= 0;
+                if (m_out == 4'd9) begin
+                    m_out <= 0;
+                    if (h_out == 4'd9) begin
+                        h_out <= 0;
+                        if (pm_out)
+                            pm_out <= 0;
+                        else
+                            pm_out <= 1;
+                    end
+                    else begin
+                        h_out <= h_out + 1;
+                        pm_out <= 0;
+                    end
+                end
+                else begin
+                    m_out <= m_out + 1;
+                    pm_out <= 0;
+                end
+            end
+            else begin
+                s_out <= s_out + 1;
+                pm_out <= 0;
+            end
+        end
+    end
+    
+    assign pm = pm_out;
+    
+endmodule"
+N/A,N/A,-1,85,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_to_s(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_to_s(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_to_s(.bin(s_out),.seg(ss));
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            hh <= 0;
+            mm <= 0;
+            ss <= 0;
+        end
+        else begin
+            if(ena) begin
+                if(s_out == 4'd9) begin
+                    s_out <= 0;
+                    if(m_out == 4'd9) begin
+                        m_out <= 0;
+                        if(h_out == 4'd9) begin
+                            h_out <= 0;
+                            if(h_out == 4'd9) begin
+                                h_out <= 0;
+                            end
+                        end
+                    end
+                end
+                else begin
+                    s_out <= s_out + 1;
+                end
+                
+                m_out <= m_out + 1;
+                if(m_out == 4'd5) begin
+                    m_out <= 0;
+                    if(h_out == 4'd9) begin
+                        h_out <= h_out + 1;
+                    end
+                end
+            end
+        end
+    end
+    
+    assign pm = (h_out == 4'd11)? 1'b1 : 1'b0;
+    
+endmodule"
+N/A,N/A,-1,86,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    reg pm_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_in),.out(h_out));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_in),.out(m_out));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_in),.out(s_out));
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            pm_out <= 0;
+        end
+        else begin
+            if(ena) begin
+                pm_out <= pm;
+            end
+        end
+    end
+    
+    assign pm = pm_out;
+    assign hh = h_out;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+endmodule"
+N/A,N/A,-0.1,87,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = hh;
+    assign m_in = mm;
+    assign s_in = ss;
+    
+    assign h_out = h_in + (h_in < 4? 4 : h_in);
+    assign m_out = m_in + (m_in < 4? 4 : m_in);
+    assign s_out = s_in + (s_in < 4? 4 : s_in);
+    
+    assign pm = (h_out == 12 && m_out == 0 && s_out == 0)? 1 : 0;
+    
+    assign hh = (h_out == 12 && m_out == 0 && s_out == 0)? h_out : h_out - 4;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+endmodule"
+N/A,N/A,-0.1,88,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    assign h_in = hh;
+    assign m_in = mm;
+    assign s_in = ss;
+    
+    assign h_out = h_in + (h_in < 4? 4 : h_in);
+    assign m_out = m_in + (m_in < 4? 4 : m_in);
+    assign s_out = s_in + (s_in < 4? 4 : s_in);
+    
+    assign pm = (h_out == 12 && m_out == 0 && s_out == 0)? 1 : 0;
+    
+    assign hh = (h_out == 12 && m_out == 0 && s_out == 0)? h_out : h_out - 4;
+    assign mm = m_out;
+    assign ss = s_out;
+    
+endmodule"
+N/A,N/A,-1,89,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_out;
+    wire [7:0] hh_out;
+    wire [7:0] mm_out;
+    wire [7:0] ss_out;
+    
+    clk_wiz_0 clk_wiz_0(
+      .clk_in1(clk),
+      .clk_out1(clk_out)
+    );
+    
+    bcd_to_7seg_decoder_0 bcd_to_7seg_decoder_0(
+      .bcd_in(ss_out),
+      .seg_out(ss)
+    );
+    
+    bcd_to_7seg_decoder_0 bcd_to_7seg_decoder_0_1(
+      .bcd_in(mm_out),
+      .seg_out(mm)
+    );
+    
+    bcd_to_7seg_decoder_0 bcd_to_7seg_decoder_0_2(
+      .bcd_in(hh_out),
+      .seg_out(hh)
+    );
+    
+    assign pm = clk_out;
+    
+    always @(posedge clk_out) begin
+        if(reset) begin
+            ss <= 0;
+            mm <= 0;
+            hh <= 0;
+        end
+        else begin
+            if(ena) begin
+                ss <= ss_out;
+                mm <= mm_out;
+                hh <= hh_out;
+            end
+        end
+    end
+    
+endmodule"
+N/A,N/A,-1,90,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(.bin(h_out),.seg(hh));
+    bcd_to_7seg m_reg(.bin(m_out),.seg(mm));
+    bcd_to_7seg s_reg(.bin(s_out),.seg(ss));
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_out <= 4'd0;
+            m_out <= 4'd0;
+            s_out <= 4'd0;
+        end
+        else if(ena) begin
+            h_out <= h_out + 4'd1;
+            if(h_out == 4'd12) begin
+                h_out <= 4'd0;
+                m_out <= m_out + 4'd1;
+                if(m_out == 4'd60) begin
+                    m_out <= 4'd0;
+                    s_out <= s_out + 4'd1;
+                end
+            end
+        end
+    end
+    
+    assign pm = (h_out == 4'd11)?1'b1:1'b0;
+    
+    
+endmodule"
+N/A,N/A,-1,91,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use the module below
+    //module_name inst_name(...);
+    
+    // Instantiate the module
+    module_name inst_name(
+      .clk(clk),
+      .reset(reset),
+      .ena(ena),
+      .pm(pm),
+      .hh(hh),
+      .mm(mm),
+      .ss(ss)
+    );
+    
+endmodule"
+N/A,N/A,-1,92,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use the module below
+    //module_name inst_name(...);
+    
+    // Instantiate the module
+    module_name inst_name(
+      .clk(clk),
+      .reset(reset),
+      .ena(ena),
+      .pm(pm),
+      .hh(hh),
+      .mm(mm),
+      .ss(ss)
+    );
+    
+endmodule"
+N/A,N/A,-1,93,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    // Use the module below
+    //module_name inst_name(...);
+    
+    // Instantiate the module
+    module_name inst_name(
+      .clk(clk),
+      .reset(reset),
+      .ena(ena),
+      .pm(pm),
+      .hh(hh),
+      .mm(mm),
+      .ss(ss)
+    );
+    
+endmodule"
+N/A,N/A,-1,94,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    
+    reg pm_out;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_in <= 4'b0000;
+            m_in <= 4'b0000;
+            s_in <= 4'b0000;
+            pm_out <= 0;
+        end
+        else begin
+            if(ena) begin
+                h_in <= h_out;
+                m_in <= m_out;
+                s_in <= s_out;
+                pm_out <= pm;
+            end
+        end
+    end
+    
+    assign pm = pm_out;
+    
+endmodule"
+N/A,N/A,-1,95,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_out, m_out, s_out;
+    
+    // Instantiate the three 12-bit binary-coded-decimal (BCD) converters
+    // (hundreds, tens, and ones converters)
+    BCD_hundreds_module hundreds_converter(clk, reset, ena, h_in, h_out);
+    BCD_tens_module tens_converter(clk, reset, ena, m_in, m_out);
+    BCD_ones_module ones_converter(clk, reset, ena, s_in, s_out);
+    
+    // Convert the BCD values to the ones-complement binary values
+    // (i.e., the decimal point is implicit in the decimal value)
+    wire [3:0] h_out_c, m_out_c, s_out_c;
+    ones_complement ones_complement_hundreds(h_out, h_out_c);
+    ones_complement ones_complement_tens(m_out, m_out_c);
+    ones_complement ones_complement_ones(s_out, s_out_c);
+    
+    // Output the BCD values to the seven-segment display
+    // (hundreds, tens, and ones converters)
+    display_hundreds display_hundreds_hundreds(h_out_c, h_out, hh);
+    display_tens display_tens_tens(m_out_c, m_out, mm);
+    display_ones display_ones_ones(s_out_c, s_out, ss);
+    
+    // Output the binary values to the PM (hundreds, tens, and ones converters)
+    pm_hundreds pm_hundreds_hundreds(h_in, h_out_c, pm);
+    pm_tens pm_tens_tens(m_in, m_out_c, pm);
+    pm_ones pm_ones_ones(s_in, s_out_c, pm);
+    
+endmodule"
+N/A,N/A,-1,96,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg h_reg(clk, reset, ena, h_out, hh);
+    bcd_to_7seg m_reg(clk, reset, ena, m_out, mm);
+    bcd_to_7seg s_reg(clk, reset, ena, s_out, ss);
+    
+    assign pm = (h_out == 4'd11) && (m_out == 4'd59) && (s_out == 4'd59);
+    
+endmodule"
+N/A,N/A,-1,97,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_2s, clk_5s, clk_1ms, clk_2ms, clk_5ms;
+    
+    clk_gen_0 top_clk_gen(
+      .clk_1s(clk_1s),
+      .clk_2s(clk_2s),
+      .clk_5s(clk_5s),
+      .clk_1ms(clk_1ms),
+      .clk_2ms(clk_2ms),
+      .clk_5ms(clk_5ms),
+      .reset(reset),
+      .ena(ena)
+    );
+    
+    clk_div_0 top_clk_div(
+      .clk_in(clk_1s),
+      .reset(reset),
+      .clk_out(clk_2s)
+    );
+    
+    clk_div_1 top_clk_div_2(
+      .clk_in(clk_2s),
+      .reset(reset),
+      .clk_out(clk_5s)
+    );
+    
+    clk_div_2 top_clk_div_3(
+      .clk_in(clk_5s),
+      .reset(reset),
+      .clk_out(clk_1ms)
+    );
+    
+    clk_div_3 top_clk_div_4(
+      .clk_in(clk_1ms),
+      .reset(reset),
+      .clk_out(clk_2ms)
+    );
+    
+    clk_div_4 top_clk_div_5(
+      .clk_in(clk_2ms),
+      .reset(reset),
+      .clk_out(clk_5ms)
+    );
+    
+    clk_div_5 top_clk_div_6(
+      .clk_in(clk_5ms),
+      .reset(reset),
+      .clk_out(clk_1s)
+    );
+    
+    assign pm = clk_1s;
+    
+    bcd_to_7seg top_bcd_to_7seg_0(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(hh),
+      .seg(hh)
+    );
+    
+    bcd_to_7seg top_bcd_to_7seg_1(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(mm),
+      .seg(mm)
+    );
+    
+    bcd_to_7seg top_bcd_to_7seg_2(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(ss),
+      .seg(ss)
+    );
+    
+endmodule"
+N/A,N/A,-1,98,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire clk_1s, clk_2s, clk_5s, clk_1ms, clk_2ms, clk_5ms;
+    
+    clk_gen_0 top_clk_gen(
+      .clk_1s(clk_1s),
+      .clk_2s(clk_2s),
+      .clk_5s(clk_5s),
+      .clk_1ms(clk_1ms),
+      .clk_2ms(clk_2ms),
+      .clk_5ms(clk_5ms),
+      .reset(reset),
+      .ena(ena)
+    );
+    
+    clk_div_0 top_clk_div(
+      .clk_in(clk_1s),
+      .reset(reset),
+      .clk_out(clk_2s)
+    );
+    
+    clk_div_1 top_clk_div_2(
+      .clk_in(clk_2s),
+      .reset(reset),
+      .clk_out(clk_5s)
+    );
+    
+    clk_div_2 top_clk_div_3(
+      .clk_in(clk_5s),
+      .reset(reset),
+      .clk_out(clk_1ms)
+    );
+    
+    clk_div_3 top_clk_div_4(
+      .clk_in(clk_1ms),
+      .reset(reset),
+      .clk_out(clk_2ms)
+    );
+    
+    clk_div_4 top_clk_div_5(
+      .clk_in(clk_2ms),
+      .reset(reset),
+      .clk_out(clk_5ms)
+    );
+    
+    clk_div_5 top_clk_div_6(
+      .clk_in(clk_5ms),
+      .reset(reset),
+      .clk_out(clk_1s)
+    );
+    
+    assign pm = clk_1s;
+    
+    bcd_to_7seg top_bcd_to_7seg_0(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(hh),
+      .seg(hh)
+    );
+    
+    bcd_to_7seg top_bcd_to_7seg_1(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(mm),
+      .seg(mm)
+    );
+    
+    bcd_to_7seg top_bcd_to_7seg_2(
+      .clk(clk_1s),
+      .reset(reset),
+      .bcd(ss),
+      .seg(ss)
+    );
+    
+endmodule"
+N/A,N/A,-1,99,0,"// Create a set of counters suitable for use as a 12-hour clock (with am/pm indicator). Your counters are clocked by a fast-running clk, with a pulse on ena whenever your clock should increment (i.e., once per second).
+
+// reset resets the clock to 12:00 AM. pm is 0 for AM and 1 for PM. hh, mm, and ss are two BCD (Binary-Coded Decimal) digits each for hours (01-12), minutes (00-59), and seconds (00-59). Reset has higher priority than enable, and can occur even when not enabled.
+
+// Hint: Note that 11:59:59 PM advances to 12:00:00 AM, and 12:59:59 PM advances to 01:00:00 PM. There is no 00:00:00.
+
+module top_module(
+    input clk,
+    input reset,
+    input ena,
+    output pm,
+    output [7:0] hh,
+    output [7:0] mm,
+    output [7:0] ss);
+    
+    wire [3:0] h_out, m_out, s_out;
+    
+    bcd_to_7seg bcd_to_7seg_h(.in(h_out),.out(hh));
+    bcd_to_7seg bcd_to_7seg_m(.in(m_out),.out(mm));
+    bcd_to_7seg bcd_to_7seg_s(.in(s_out),.out(ss));
+    
+    wire [3:0] h_in, m_in, s_in;
+    wire [3:0] h_next, m_next, s_next;
+    
+    assign h_in = h_out;
+    assign m_in = m_out;
+    assign s_in = s_out;
+    
+    assign h_next = (h_out == 4'd9)? 4'd0 : h_out + 4'd1;
+    assign m_next = (m_out == 4'd9)? ((h_out == 4'd9)? 4'd0 : 4'd5) : m_out + 4'd1;
+    assign s_next = (s_out == 4'd9)? 4'd0 : s_out + 4'd1;
+    
+    reg [3:0] h_reg, m_reg, s_reg;
+    
+    always @(posedge clk) begin
+        if(reset) begin
+            h_reg <= 4'd0;
+            m_reg <= 4'd0;
+            s_reg <= 4'd0;
+        end
+        else begin
+            if(ena) begin
+                h_reg <= h_next;
+                m_reg <= m_next;
+                s_reg <= s_next;
+            end
+        end
+    end
+    
+    assign h_out = h_reg;
+    assign m_out = m_reg;
+    assign s_out = s_reg;
+    
+    assign pm = (h_reg == 4'd0) & (m_reg == 4'd0) & (s_reg == 4'd0);
+    
+endmodule"

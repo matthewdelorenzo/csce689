@@ -1,0 +1,161 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Fsm_serialdp.v
+Prompt str:  // We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+Env seed:  433765
+----GREEDY LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Setting terminal state to random.
+Checking if done:
+tokens generated:  0
+Calling isPromptComplete: 
+original text:  // We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+    
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+    
+    parameter idle = 3'b000, start = 3'b001, trans0 = 3'b010, trans1 = 3'b011, trans2 = 3'b100, trans3 = 3'b101;
+    parameter trans4 = 3'b110, trans5 = 3'b111, trans6 = 3'b110, trans7 = 3'b110, stop = 3'b111;
+    reg [2:0] state, next_state;
+    reg odd;
+    reg [8:0] counter;
+    reg [7:0] data;
+    reg out;
+    
+    always @(posedge clk)
+        if (reset)
+            state <= idle;
+        else
+            state <= next_state;
+    
+    always @(*)
+        case (state)
+            idle:
+                if (in)
+                    next_state = start;
+                else
+                    next_state = idle;
+            start:
+                if (counter == 9'd249)
+                    next_state = trans0;
+                else
+                    next_state = start;
+            trans0:
+                if (counter == 9'd499)
+                    next_state = trans1;
+                else
+                    next_state = trans0;
+            trans1:
+                if (counter == 9'd999)
+                    next_state = trans2;
+                else
+                    next_state = trans1;
+            trans2:
+                if (counter == 9'd1999)
+                    next_state = trans3;
+                else
+                    next_state = trans2;
+            trans3:
+                if (counter == 9'd2999)
+                    next_state = trans4;
+                else
+                    next_state = trans3;
+            trans4:
+                if (counter == 9'd3999)
+                    next_state = trans5;
+                else
+                    next_state = trans4;
+            trans5:
+                if (counter == 9'd4999)
+                    next_state = trans6;
+                else
+                    next_state = trans5;
+            trans6:
+                if (counter == 9'd5999)
+                    next_state = trans7;
+                else
+                    next_state = trans6;
+            trans7:
+                if (counter == 9'd6999)
+                    next_state = stop;
+                else
+                    next_state = trans7;
+            stop:
+                if (counter == 9'd7999)
+                    next_state = idle;
+                else
+                    next_state = stop;
+            default:
+                next_state = idle;
+        endcase
+    
+    always @(posedge
+[[ 1003   775   765 ...     7 29813   469]]
+tensor([[ 1003,   775,   765,  ...,     7, 29813,   469]], device='cuda:0')
+Checking if done:
+tokens generated:  630
+Calling isPromptComplete: 
+Running getPromptScore: 

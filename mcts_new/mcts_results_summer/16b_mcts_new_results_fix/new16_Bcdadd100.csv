@@ -1,0 +1,3331 @@
+Area,Delay,Score,Current Run,Episode,Verilog
+N/A,N/A,-1,2.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            assign carry[i/4] = (i/4 == 1)? carry[i/4-1] :
+                                (i/4 == 2)? carry[i/4-2] :
+                                (i/4 == 3)? carry[i/4-3] : 0;
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,3.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,4.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i=4; i<400; i=i+4) begin: add
+            bcd_fadd f (a[i+3:i], b[i+3:i], c[i-4], c[i-3], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = c[399];
+
+endmodule"
+N/A,N/A,-1,5.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i=4; i<400; i=i+4)
+            begin : adder
+                bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+            end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,6.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (
+      .a(a[3:0]),
+      .b(b[3:0]),
+      .cin(cin),
+      .cout(carry[0]),
+      .sum(sum[3:0])
+    );
+    generate
+        genvar i;
+        for (i=1; i<100; i=i+1) begin: adder
+            bcd_fadd fadd_i (
+              .a(a[(4*i)+3:4*i]),
+              .b(b[(4*i)+3:4*i]),
+              .cin(carry[i-1]),
+              .cout(carry[i]),
+              .sum(sum[(4*i)+3:4*i])
+            );
+        end
+    endgenerate
+    assign cout = carry[99];
+    
+endmodule"
+N/A,N/A,-1,7.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (
+      .a(a[3:0]),
+      .b(b[3:0]),
+      .cin(cin),
+      .cout(carry[0]),
+      .sum(sum[3:0])
+    );
+    generate
+        genvar i;
+        for (i=1; i<100; i=i+1) begin: adder
+            bcd_fadd fadd_i (
+              .a(a[(4*i)+3:4*i]),
+              .b(b[(4*i)+3:4*i]),
+              .cin(carry[i-1]),
+              .cout(carry[i]),
+              .sum(sum[(4*i)+3:4*i])
+            );
+        end
+    endgenerate
+    assign cout = carry[99];
+    
+endmodule"
+N/A,N/A,-1,8.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (
+      .a(a[3:0]),
+      .b(b[3:0]),
+      .cin(cin),
+      .cout(carry[0]),
+      .sum(sum[3:0])
+    );
+    generate
+        genvar i;
+        for (i=1; i<100; i=i+1) begin: adder
+            bcd_fadd fadd_i (
+              .a(a[(4*i)+3:4*i]),
+              .b(b[(4*i)+3:4*i]),
+              .cin(carry[i-1]),
+              .cout(carry[i]),
+              .sum(sum[(4*i)+3:4*i])
+            );
+        end
+    endgenerate
+    assign cout = carry[99];
+    
+endmodule"
+N/A,N/A,-1,9.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,10.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,11.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd0 (
+     .a(a[3:0]),
+     .b(b[3:0]),
+     .cin(cin),
+     .cout(cout[0]),
+     .sum(sum[3:0])
+    );
+
+    generate
+       genvar i;
+       for (i=1; i<100; i=i+1) begin: inst_fadd
+           bcd_fadd inst_fadd0 (
+             .a(a[(4*(i-1)+3):(4*(i-1))]),
+             .b(b[(4*(i-1)+3):(4*(i-1))]),
+             .cin(cout[i-1]),
+             .cout(cout[i]),
+             .sum(sum[(4*(i-1)+3):(4*(i-1))])
+           );
+       end
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,12.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            assign carry[i/4] = (i/4 == 1)? carry[i/4-1] :
+                                (i/4 == 2)? carry[i/4-2] :
+                                (i/4 == 3)? carry[i/4-3] : 0;
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,13.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,14.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, cout, sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin: adder
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], cout, c[i/4], sum[i+3:i]);
+        end
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,15.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (
+     .a(a[3:0]),
+     .b(b[3:0]),
+     .cin(cin),
+     .cout(carry[0]),
+     .sum(sum[3:0])
+    );
+    
+    generate
+        genvar i;
+        for (i=1; i<100; i=i+1) begin: adder
+            bcd_fadd fadd_i (
+              .a(a[(4*i)+3:4*i]),
+              .b(b[(4*i)+3:4*i]),
+              .cin(carry[i-1]),
+              .cout(carry[i]),
+              .sum(sum[(4*i)+3:4*i])
+            );
+        end
+    endgenerate
+    
+    assign cout = carry[99];
+    
+endmodule"
+N/A,N/A,-1,16.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,17.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,18.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,19.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,20.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,21.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd[99:0];
+    
+    assign {cout, sum} = inst_fadd[99].fadd(a, b, cin);
+
+endmodule"
+N/A,N/A,-1,22.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i=4; i<400; i=i+4)
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,23.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0(a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin: adder
+            bcd_fadd fadd(a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,24.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,25.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0; i<100; i=i+1) begin: adder
+            bcd_fadd add(
+              .a(a[3*i+:3]),
+              .b(b[3*i+:3]),
+              .cin(carry[i]),
+              .cout(carry[i+1]),
+              .sum(sum[3*i+:3])
+            );
+        end
+    endgenerate
+    assign carry[100] = cin;
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,26.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,27.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,28.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd1 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd2 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd3 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd4 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,29.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,30.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,31.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd0 (
+     .a(a[3:0]),
+    .b(b[3:0]),
+     .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[3:0])
+    );
+    
+    generate
+        genvar i;
+        for (i=1; i<400; i=i+1) begin: adder
+        bcd_fadd inst_fadd(
+         .a(a[(4*(i-1))+3:4*(i-1)]),
+         .b(b[(4*(i-1))+3:4*(i-1)]),
+         .cin(cout[i-1]),
+         .cout(cout[i]),
+         .sum(sum[(4*(i-1))+3:4*(i-1)])
+        );
+        end
+    endgenerate
+    
+endmodule"
+N/A,N/A,-1,32.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,33.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0;i<100;i=i+1) begin
+            bcd_fadd f(a[3*i+:3],b[3*i+:3],carry[i],carry[i+1],sum[3*i+:3]);
+        end
+    endgenerate
+
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,34.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a1(a[3:0], b[3:0], cin, cout, sum[3:0]);
+    bcd_fadd a2(a[7:4], b[7:4], cout, c[0], sum[7:4]);
+    bcd_fadd a3(a[11:8], b[11:8], c[0], c[1], sum[11:8]);
+    bcd_fadd a4(a[15:12], b[15:12], c[1], c[2], sum[15:12]);
+    bcd_fadd a5(a[19:16], b[19:16], c[2], c[3], sum[19:16]);
+    bcd_fadd a6(a[23:20], b[23:20], c[3], cout, sum[23:20]);
+    
+endmodule"
+N/A,N/A,-1,35.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            begin : adder
+                bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+            end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,36.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            assign carry[i/4] = (a[i] & b[i]) | (a[i] & carry[i-4]) | (b[i] & carry[i-4]);
+        assign cout = carry[99];
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,37.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            assign carry[i/4] = (a[i] & b[i]) | (a[i] & carry[i-4]) | (b[i] & carry[i-4]);
+        assign cout = carry[99];
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,38.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,39.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,40.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.cout, top_module.sum[3:0]);
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + top_module.cout;
+
+endmodule"
+N/A,N/A,-1,41.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd[99:0];
+    
+    assign {cout, sum} = inst_fadd[99].add(a, b, cin);
+    
+endmodule"
+N/A,N/A,-1,42.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd fadd(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,43.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0;i<100;i=i+1) begin
+            bcd_fadd f(a[3*i+:3],b[3*i+:3],cin,carry[i],sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,44.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,45.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,46.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,47.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,48.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,49.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,50.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,51.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd[99:0];
+    
+    assign cout = inst_fadd[99].cout;
+    assign sum = inst_fadd[99].sum;
+    
+    generate
+        genvar i;
+        for (i=0; i<100; i=i+1) begin: inst_fadd_loop
+            bcd_fadd inst_fadd(
+              .a(a[3*i+:3]),
+              .b(b[3*i+:3]),
+              .cin(cin),
+              .cout(inst_fadd[i].cout),
+              .sum(inst_fadd[i].sum)
+            );
+        end
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,52.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,53.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin: adder
+            bcd_fadd fadd(
+              .a(a[3*i+:3]),
+              .b(b[3*i+:3]),
+              .cin(carry[i]),
+              .cout(carry[i+1]),
+              .sum(sum[3*i+:3])
+            );
+        end
+    endgenerate
+
+    assign carry[100] = cin;
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,54.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,55.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0(a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd(a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,56.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,57.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,58.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], c[i-4], c[i-3], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = c[399];
+
+endmodule"
+N/A,N/A,-1,59.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,60.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,61.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,62.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0(a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for(i=1; i<100; i=i+1) begin: adder
+            bcd_fadd fadd(a[(4*i)+3:4*i], b[(4*i)+3:4*i], carry[i-1], carry[i], sum[(4*i)+3:4*i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,63.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd_0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd_temp (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,64.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd1 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd2 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd3 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd4 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,65.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i=4; i<400; i=i+4)
+            assign carry[i/4] = a[i] + b[i] + carry[i/4-1];
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,66.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0;i<100;i=i+1) begin
+            bcd_fadd fadd(a[3*i+:3],b[3*i+:3],carry[i],carry[i+1],sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,67.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0;i<100;i=i+1) begin
+            bcd_fadd fadd(a[3*i+:3],b[3*i+:3],carry[i],carry[i+1],sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,68.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,69.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,70.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,71.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd0 (
+     .a(a[3:0]),
+    .b(b[3:0]),
+     .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[3:0])
+    );
+
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin: adder
+        bcd_fadd inst_fadd0 (
+     .a(a[i+3:i]),
+    .b(b[i+3:i]),
+     .cin(cout[i-4]),
+    .cout(cout[i]),
+    .sum(sum[i+3:i])
+    );
+        end
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,72.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,73.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1)
+            full_adder FA (a[i+1], b[i+1], cin, carry[i], sum[i+1]);
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,74.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,75.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,76.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd fadd(a[3*i+:3], b[3*i+:3], carry[i], carry[i+1], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,77.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin
+            bcd_fadd fadd(a[3*i+:3], b[3*i+:3], carry[i], carry[i+1], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,78.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd fadd1 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd fadd2 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd fadd3 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd fadd4 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,79.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + {4{cin}};
+    
+endmodule"
+N/A,N/A,-1,80.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    
+    assign top_module.sum[399:4] = a[399:4] + b[399:4] + {4{cin}};
+    
+endmodule"
+N/A,N/A,-1,81.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd0 (
+     .a(a[3:0]),
+    .b(b[3:0]),
+     .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[3:0])
+    );
+    
+    generate
+        genvar i;
+        for(i=1;i<400;i=i+1) begin: adder
+        bcd_fadd inst_fadd(
+      .a(a[(i*4)-1:(i-1)*4]),
+      .b(b[(i*4)-1:(i-1)*4]),
+      .cin(cout[i-1]),
+      .cout(cout[i]),
+      .sum(sum[(i*4)-1:(i-1)*4])
+        );
+        end
+    endgenerate
+
+endmodule"
+N/A,N/A,-1,82.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin: adder
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], carry[i], carry[i+1], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,83.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,84.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd f1 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd f2 (a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd f3 (a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd f4 (a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd f5 (a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,85.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,86.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1)
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,87.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1)
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+    endgenerate
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,88.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd inst_fadd0 (a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd inst_fadd (a[i+3:i], b[i+3:i], c[i-4], c[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = c[399];
+
+endmodule"
+N/A,N/A,-1,89.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,90.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    assign top_module.cout = bcd_fadd(a[3:0], b[3:0], cin, top_module.sum[3:0]);
+    assign top_module.sum = a + b + cin;
+
+endmodule"
+N/A,N/A,-1,91.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    bcd_fadd inst_fadd0 (
+     .a(a[3:0]),
+    .b(b[3:0]),
+     .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[3:0])
+    );
+    
+    assign cout[1] = cout[0] | (a[3] & b[3]);
+    
+    generate
+        genvar i;
+        for(i=4; i<400; i=i+4) begin: adder
+            bcd_fadd inst_fadd0 (
+              .a(a[i+3:i]),
+              .b(b[i+3:i]),
+              .cin(cout[i-4]),
+              .cout(cout[i]),
+              .sum(sum[i+3:i])
+            );
+        end
+    endgenerate
+    
+endmodule"
+N/A,N/A,-1,92.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0;i<100;i=i+1)
+            full_adder fa(a[i+1:i],b[i+1:i],carry[i],sum[i+1:i],carry[i+1]);
+    endgenerate
+
+    assign cout = carry[100];
+
+endmodule"
+N/A,N/A,-1,93.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    genvar i;
+    generate
+        for(i=0; i<100; i=i+1) begin
+            bcd_fadd f(a[3*i+:3], b[3*i+:3], cin, carry[i], sum[3*i+:3]);
+        end
+    endgenerate
+    assign cout = carry[100];
+    
+endmodule"
+N/A,N/A,-1,94.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a1(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd a2(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd a3(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd a4(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd a5(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,95.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd inst1 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4)
+            begin : adder
+                bcd_fadd inst (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+            end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,96.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,97.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [99:0] carry;
+    bcd_fadd fadd0 (a[3:0], b[3:0], cin, carry[0], sum[3:0]);
+    generate
+        genvar i;
+        for (i = 4; i < 400; i = i + 4) begin : adder
+            bcd_fadd fadd (a[i+3:i], b[i+3:i], carry[i-4], carry[i], sum[i+3:i]);
+        end
+    endgenerate
+    assign cout = carry[99];
+
+endmodule"
+N/A,N/A,-1,98.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a0(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd a1(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd a2(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd a3(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd a4(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,99.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a0(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd a1(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd a2(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd a3(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd a4(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,100.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a0(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd a1(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd a2(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd a3(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd a4(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"
+N/A,N/A,-1,101.0,1,"// You are provided with a BCD one-digit adder named bcd_fadd that adds 
+// two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 100 copies of bcd_fadd to create a 100-digit BCD ripple-carry adder. 
+//Your adder should add two 100-digit BCD numbers (packed into 400-bit vectors) 
+//and a carry-in to produce a 100-digit sum and carry out.
+
+
+// Hint: An instance array or generate statement would be useful here.
+
+module top_module( 
+    input [399:0] a, b,
+    input cin,
+    output cout,
+    output [399:0] sum );
+
+    wire [3:0] c;
+    bcd_fadd a0(a[3:0], b[3:0], cin, c[0], sum[3:0]);
+    bcd_fadd a1(a[7:4], b[7:4], c[0], c[1], sum[7:4]);
+    bcd_fadd a2(a[11:8], b[11:8], c[1], c[2], sum[11:8]);
+    bcd_fadd a3(a[15:12], b[15:12], c[2], c[3], sum[15:12]);
+    bcd_fadd a4(a[19:16], b[19:16], c[3], cout, sum[19:16]);
+    
+endmodule"

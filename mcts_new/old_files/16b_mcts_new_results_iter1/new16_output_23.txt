@@ -1,0 +1,261 @@
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Tb_tff.v
+Prompt str:  // You are given a T flip-flop module with the following declaration:
+
+module tff (
+    input clk,
+    input reset,   // active-high synchronous reset
+    input t,       // toggle
+    output q
+);
+
+// Write a testbench that instantiates one tff and will reset the T flip-flop then toggle it to the "1" state.
+
+module top_module ();
+
+
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+ORIG MODULE:  top_module
+--------MCTS-------
+Env seed:  42
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+LLMEstimate:      reg clk, reset, t;
+ 1
+LLMEstimate:      reg clk, reset, t;
+ 1
+LLMEstimate:      reg clk, reset, t;
+ 1
+LLMEstimate:  reg clk, reset, t;
+wire 1
+LLMEstimate:      reg clk, reset, t;
+ 1
+LLMEstimate:  reg clk, reset, t;
+wire 1
+LLMEstimate:      reg clk, reset, t;
+ 1
+LLMEstimate:  reg clk, reset, t;
+wire 1
+LLMEstimate:  reg clk, reset, t;
+wire 1
+LLMEstimate:      reg clk, reset, t;
+ 1
+STATE:  [[ 1003   921   389  1813   257   309 14283    12  2704   404  8265   351
+    262  1708 14305    25   198   198 21412   256   487   357   198 50284
+  15414   537    74    11   198 50284 15414 13259    11 50285  1003  4075
+     12  8929 18305   516 13259   198 50284 15414   256    11 50281  1003
+  19846   198 50284 22915 10662   198  1776   198   198  1003 19430   257
+   1332 26968   326  9113 32820   530   256   487   290   481 13259   262
+    309 14283    12  2704   404   788 19846   340   284   262   366    16
+      1  1181    13   198   198 21412  1353    62 21412 13979   628   198]]
+SEQUENCE:  [[50284  2301   537    74    11 13259    11   256    26   198]]
+MCTS Stage 2 - Expansion: next action:  1  corresponding to state:  [[50284  2301   537    74    11 13259    11   256    26   198]]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Checking if done:
+tokens generated:  10
+Calling isPromptComplete: 
+original text:  // You are given a T flip-flop module with the following declaration:
+
+module tff (
+    input clk,
+    input reset,   // active-high synchronous reset
+    input t,       // toggle
+    output q
+);
+
+// Write a testbench that instantiates one tff and will reset the T flip-flop then toggle it to the "1" state.
+
+module top_module ();
+
+
+    reg clk, reset, t;
+    wire q;
+    
+    tff dut(clk, reset, t, q);
+    
+    always #5 clk = ~clk;
+    
+    initial begin
+        clk = 0; reset = 1; t = 0;
+        #
+[[ 1003   921   389  1813   257   309 14283    12  2704   404  8265   351
+    262  1708 14305    25   198   198 21412   256   487   357   198 50284
+  15414   537    74    11   198 50284 15414 13259    11 50285  1003  4075
+     12  8929 18305   516 13259   198 50284 15414   256    11 50281  1003
+  19846   198 50284 22915 10662   198  1776   198   198  1003 19430   257
+   1332 26968   326  9113 32820   530   256   487   290   481 13259   262
+    309 14283    12  2704   404   788 19846   340   284   262   366    16
+      1  1181    13   198   198 21412  1353    62 21412 13979   628   198
+  50284  2301   537    74    11 13259    11   256    26   198 50284 21809
+  10662    26   198 50284   198 50284    83   487   288   315     7   565
+     74    11 13259    11   256    11 10662  1776   198 50284   198 50284
+  33770  1303    20   537    74   796  5299   565    74    26   198 50284
+    198 50284 36733  2221   198 50280   565    74   796   657    26 13259
+    796   352    26   256   796   657    26   198 50280     2]]
+tensor([[ 1003,   921,   389,  1813,   257,   309, 14283,    12,  2704,   404,
+          8265,   351,   262,  1708, 14305,    25,   198,   198, 21412,   256,
+           487,   357,   198, 50284, 15414,   537,    74,    11,   198, 50284,
+         15414, 13259,    11, 50285,  1003,  4075,    12,  8929, 18305,   516,
+         13259,   198, 50284, 15414,   256,    11, 50281,  1003, 19846,   198,
+         50284, 22915, 10662,   198,  1776,   198,   198,  1003, 19430,   257,
+          1332, 26968,   326,  9113, 32820,   530,   256,   487,   290,   481,
+         13259,   262,   309, 14283,    12,  2704,   404,   788, 19846,   340,
+           284,   262,   366,    16,     1,  1181,    13,   198,   198, 21412,
+          1353,    62, 21412, 13979,   628,   198, 50284,  2301,   537,    74,
+            11, 13259,    11,   256,    26,   198, 50284, 21809, 10662,    26,
+           198, 50284,   198, 50284,    83,   487,   288,   315,     7,   565,
+            74,    11, 13259,    11,   256,    11, 10662,  1776,   198, 50284,
+           198, 50284, 33770,  1303,    20,   537,    74,   796,  5299,   565,
+            74,    26,   198, 50284,   198, 50284, 36733,  2221,   198, 50280,
+           565,    74,   796,   657,    26, 13259,   796,   352,    26,   256,
+           796,   657,    26,   198, 50280,     2]], device='cuda:0')
+Checking if done:
+tokens generated:  70
+Calling isPromptComplete: 
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  1.0
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [1.9516147 1.9516147 1.9516147 1.9516147 1.9516147 1.9516147 1.9516147
+ 1.9516147 1.9516147 1.9516147]  taking action:  0
+Adding child.
+STATE:  [[ 1003   921   389  1813   257   309 14283    12  2704   404  8265   351
+    262  1708 14305    25   198   198 21412   256   487   357   198 50284
+  15414   537    74    11   198 50284 15414 13259    11 50285  1003  4075
+     12  8929 18305   516 13259   198 50284 15414   256    11 50281  1003
+  19846   198 50284 22915 10662   198  1776   198   198  1003 19430   257
+   1332 26968   326  9113 32820   530   256   487   290   481 13259   262
+    309 14283    12  2704   404   788 19846   340   284   262   366    16
+      1  1181    13   198   198 21412  1353    62 21412 13979   628   198]]
+SEQUENCE:  [[50284  2301   537    74    11 13259    11   256    26   198]]
+Leaf selection - depth:  1
+Checking if done:
+tokens generated:  10
+Calling isPromptComplete: 
+Getting LLM token estimates (probs/ids).
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+
+    tff dut 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+LLMEstimate:      wire q;
+    
+    tff 1
+STATE:  [[ 1003   921   389  1813   257   309 14283    12  2704   404  8265   351
+    262  1708 14305    25   198   198 21412   256   487   357   198 50284
+  15414   537    74    11   198 50284 15414 13259    11 50285  1003  4075
+     12  8929 18305   516 13259   198 50284 15414   256    11 50281  1003
+  19846   198 50284 22915 10662   198  1776   198   198  1003 19430   257
+   1332 26968   326  9113 32820   530   256   487   290   481 13259   262
+    309 14283    12  2704   404   788 19846   340   284   262   366    16
+      1  1181    13   198   198 21412  1353    62 21412 13979   628   198
+  50284  2301   537    74    11 13259    11   256    26   198]]
+SEQUENCE:  [[50284 21809 10662    26   198 50284   198 50284    83   487]]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [[50284 21809 10662    26   198 50284   198 50284    83   487]]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Checking if done:
+tokens generated:  20
+Calling isPromptComplete: 
+original text:  // You are given a T flip-flop module with the following declaration:
+
+module tff (
+    input clk,
+    input reset,   // active-high synchronous reset
+    input t,       // toggle
+    output q
+);
+
+// Write a testbench that instantiates one tff and will reset the T flip-flop then toggle it to the "1" state.
+
+module top_module ();
+
+
+    reg clk, reset, t;
+    wire q;
+    
+    tff dut(clk, reset, t, q);
+    
+    always #5 clk = ~clk;
+    
+    initial begin
+        clk = 0; reset = 1; t = 0;
+        #
+[[ 1003   921   389  1813   257   309 14283    12  2704   404  8265   351
+    262  1708 14305    25   198   198 21412   256   487   357   198 50284
+  15414   537    74    11   198 50284 15414 13259    11 50285  1003  4075
+     12  8929 18305   516 13259   198 50284 15414   256    11 50281  1003
+  19846   198 50284 22915 10662   198  1776   198   198  1003 19430   257
+   1332 26968   326  9113 32820   530   256   487   290   481 13259   262
+    309 14283    12  2704   404   788 19846   340   284   262   366    16
+      1  1181    13   198   198 21412  1353    62 21412 13979   628   198
+  50284  2301   537    74    11 13259    11   256    26   198 50284 21809
+  10662    26   198 50284   198 50284    83   487   288   315     7   565
+     74    11 13259    11   256    11 10662  1776   198 50284   198 50284
+  33770  1303    20   537    74   796  5299   565    74    26   198 50284
+    198 50284 36733  2221   198 50280   565    74   796   657    26 13259
+    796   352    26   256   796   657    26   198 50280     2]]
+tensor([[ 1003,   921,   389,  1813,   257,   309, 14283,    12,  2704,   404,
+          8265,   351,   262,  1708, 14305,    25,   198,   198, 21412,   256,
+           487,   357,   198, 50284, 15414,   537,    74,    11,   198, 50284,
+         15414, 13259,    11, 50285,  1003,  4075,    12,  8929, 18305,   516,
+         13259,   198, 50284, 15414,   256,    11, 50281,  1003, 19846,   198,
+         50284, 22915, 10662,   198,  1776,   198,   198,  1003, 19430,   257,
+          1332, 26968,   326,  9113, 32820,   530,   256,   487,   290,   481,
+         13259,   262,   309, 14283,    12,  2704,   404,   788, 19846,   340,
+           284,   262,   366,    16,     1,  1181,    13,   198,   198, 21412,
+          1353,    62, 21412, 13979,   628,   198, 50284,  2301,   537,    74,
+            11, 13259,    11,   256,    26,   198, 50284, 21809, 10662,    26,
+           198, 50284,   198, 50284,    83,   487,   288,   315,     7,   565,
+            74,    11, 13259,    11,   256,    11, 10662,  1776,   198, 50284,
+           198, 50284, 33770,  1303,    20,   537,    74,   796,  5299,   565,
+            74,    26,   198, 50284,   198, 50284, 36733,  2221,   198, 50280,
+           565,    74,   796,   657,    26, 13259,   796,   352,    26,   256,
+           796,   657,    26,   198, 50280,     2]], device='cuda:0')
+Checking if done:
+tokens generated:  70
+Calling isPromptComplete: 
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+Iteration TIME (sec):  9.914120502000003

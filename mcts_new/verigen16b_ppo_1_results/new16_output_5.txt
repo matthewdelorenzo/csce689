@@ -1,0 +1,56 @@
+[2024-07-23 10:47:15,046] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using GPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/prompt_tb_files/mac/mac_32.v
+Prompt str:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module mac_32(
+    input wire clk,
+    input wire reset,
+    input wire [31:0] A,
+    input wire [31:0] B,
+    output reg [63:0] accumulator
+);
+
+Loading LLM model...
+Loaded LLM:  shailja/fine-tuned-codegen-16B-Verilog
+Initializing MCTS tree/LLM env...
+Episode not stated yet!
+Simulations per episode:  100
+********-- EPISODE-1--************
+ORIG MODULE:  mac_32
+--------MCTS-------
+Env seed:  42
+Initializing MCTS tree.
+Init state length:  166
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+Calling getLLMEstimates.
+ID before:  tensor([[ 1003, 23067,   257,  ...,   198, 50284,     2]], device='cuda:0')
+ID after
+LLMEstimate:  
+reg [31:0] A_reg;
+reg [31:0] B_reg;
+
+always @(posedge clk) begin
+    if (reset) begin
+        accumulator <= 0;
+        A_reg <= 0;
+        B_reg <= 0;
+    end
+    else begin
+        accumulator <= (A_reg * B_reg) + accumulator;
+        A_reg <= A;
+        B_reg <= B;
+    end
+end
+
+endmodule
+Len tokens LLMEstimate:  1
