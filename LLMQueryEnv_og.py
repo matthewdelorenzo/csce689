@@ -46,13 +46,14 @@ else:
 #test
 class LLMQueryEnv(gym.Env, StaticEnv):
     
-    def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = "",
+    def __init__(self, csv_logger=None, task_name = None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = "",
                  model_name=None, tokenizer=None, model=None):
         self.op = op
         seed_everything(self.op)
 
         self.csv_logger = csv_logger
         self.row_data = row_data
+        self.task_name = task_name
         model_name = model_name
         self.tokenizer = tokenizer
         self.model = model
@@ -122,14 +123,14 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         verilog_code = self.get_prompt_from_state(currentState)
         # Write the Verilog code to a temporary file - filenamed after module name.
         print(verilog_code)
-        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
+        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name
         if not os.path.exists(module_dump_folder):
             try:
                 os.makedirs(module_dump_folder, mode=0o777)
             except OSError as e:
                 print("Error creating dump file: ", e)
 
-        output_verilog_file = str(os.getpid()) + "_" + self.orig_module + ".v"       
+        output_verilog_file = str(os.getpid()) + "_" + self.task_name + ".v"       
 
         output_file_path = os.path.join(module_dump_folder, output_verilog_file)
 
@@ -170,7 +171,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         #Specify your bash script to be utilized here.
         bash_script = "scripts/synth_gcd.sh"
 
-        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
+        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name
         #print("Dump folder: ", module_dump_folder)
 
         #Creating dump file for results to be placed if not already created.
@@ -184,7 +185,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         print(self.orig_module)
         print(new_script_path)
         shutil.copy(bash_script, new_script_path)
-        x= self.edit_script_variables(new_script_path, self.orig_module, str(os.getpid()) + '_' + self.orig_module + ".v")
+        x= self.edit_script_variables(new_script_path, self.orig_module, str(os.getpid()) + '_' + self.task_name + ".v")
         #Running the script file (with executable permission).
         try:
             start_time = datetime.now()
@@ -211,7 +212,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 reward = .1 + (1 - (current_area_delay_product / self.first_successful_product))
 
                 print()
-                print("Currently displaying area/delay scores for ", self.orig_module, " module.")
+                print("Currently displaying area/delay scores for ", self.task_name, " module.")
                 print("Area of the chip design is: ", area_value)
                 print("Delay value for the chip design is: ", delay_value)
                 print("Product: ", current_area_delay_product)
@@ -235,8 +236,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def compilation_check(self, module_path, testbench_path=None):
          # Compile the Verilog code using the iVerilog
         try:
-            #print("Path: ", os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation'))
-            compile_output = subprocess.check_output(['iverilog', '-o', os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation'), testbench_path, module_path], stderr=subprocess.STDOUT)
+            compile_output = subprocess.check_output(['iverilog', '-o', os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name, str(os.getpid()) + '_simulation'), testbench_path, module_path], stderr=subprocess.STDOUT)
             compile_exit_code = 0  # Compilation successful
             self.compilation_output = None
             print("Output Verilog module compiles successfully.")
@@ -253,7 +253,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     #Helper function to check the functionality of output Verilog code against its respective testbench.
     def functionality_check(self):
         try:
-            sim_path = os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation')
+            sim_path = os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name, str(os.getpid()) + '_simulation')
             simulation_output = subprocess.check_output(['vvp', sim_path], stderr=subprocess.STDOUT)
             simulation_exit_code = 0
         except subprocess.CalledProcessError as e:
@@ -283,7 +283,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             if line.startswith("export ROOT_DIR="):
                 lines[i] = f'export ROOT_DIR={os.getcwd()}\n'
             if line.startswith("export MODULE_DIR="):
-                lines[i] = f'export MODULE_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module}\n'
+                lines[i] = f'export MODULE_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name}\n'
             if line.startswith("export DESIGN_NAME="):
                 #lines[i] = f'export DESIGN_NAME={design_name}\n'
                 lines[i] = f'export DESIGN_NAME={design_name}\n'
@@ -292,7 +292,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             elif line.startswith("export OUTPUT_NAME="):
                 lines[i] = f'export OUTPUT_NAME={"${MODULE_DIR}" + "/" + file_name}\n'
             elif line.startswith("export DUMP_DIR="):
-                lines[i] = f'export DUMP_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module}\n'
+                lines[i] = f'export DUMP_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name}\n'
         with open(filename, "w") as file:
             file.writelines(lines)
         

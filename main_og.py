@@ -18,6 +18,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from torch.nn.parallel import DataParallel
 from peft import PeftModel
 from datetime import datetime
+import json
+
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 
 class CsvLogger:
@@ -41,28 +43,43 @@ class CsvLogger:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='MCTS+LLM')
-    parser.add_argument('--dumpdir', type=str, required=True,default="",
+    parser.add_argument('--dumpdir', type=str, required=True,default="dump",
                         help='DUMP directory for storing output files.')
-    parser.add_argument('--op', type=str, required=True,default="",
-                        help = "Please state which operation to perform: 'mcts', 'beam', or 'greedy'.")
-    parser.add_argument('--runID', type=int, required=False, default=0,
-                        help='Run ID')
-    parser.add_argument('--sims', type=int, required=True, default=1000,
-                        help='Simulations per MCTS episode')
-    parser.add_argument('--ep', type=int, required=True, default=50,
-                        help='#MCTS episode')
+    parser.add_argument('--model_name', type=str, required=True, default = "shailja/fine-tuned-codegen-16B-Verilog",
+                    help = "Name of model (Huggingface filepath or local filepath) user for inferencing. (EX: shailja/fine-tuned-codegen-16B-Verilog)")
+    parser.add_argument('--csv', type=str, required=True, default = "log.csv",
+                    help = "Name of csv file to be created. (ex: log.csv)")
+
+    parser.add_argument('--ep', type=int, required=False, default=1,
+                    help='#Episodes of MCTS (how many times to run all <x> simulations.) Recommended: 1')
+    parser.add_argument('--sims', type=int, required=False, default=100,
+                    help='Iterations of MCTS to occur.')
+    parser.add_argument('--op', type=str, required=False,default="mcts",
+                    help = "Please state which operation to perform: 'mcts', 'beam', or 'greedy'.")
     parser.add_argument('--pr', type=int, required=False, default=1,
-                        help='#processes executing MCTS')
-    parser.add_argument('--csv', type=str, required=False, default = "log.csv",
-                        help = "Name of csv file. (ex: log.csv)")
-    parser.add_argument('--prompt_path', type=str, required=True, default = "",
-                        help = "Filepath of prompt file from current directory (ex: filepath/prompt1_counter.v)")
-    parser.add_argument('--tb_path', type=str, required=True, default = "",
-                        help = "Filepath of testbench file from current directory (ex: filepath/prompt1_counter.v)")
+                        help='#processes executing MCTS. Default: 1')
     parser.add_argument('--module_name', type=str, required=False, default = "top_module",
-                        help = "Name of module in prompt for which the LLM will finish creating. Ex: counter")
+                        help = "Name of the top module in your verilog prompt. Ex: counter")
+    parser.add_argument('--task_name', type=str, required=False, default = "top_module",
+                        help = "Name of file (or Verilog problem) in prompt for which the LLM will finish creating. Ex: counter")
+    parser.add_argument('--runID', type=int, required=False, default=0,
+                    help='Run ID')
+    parser.add_argument('--prompt_path', type=str, required=False, default = "",
+                        help = "Filepath of prompt file from current directory (ex: filepath/prompt1_counter.v)")
+    parser.add_argument('--tb_path', type=str, required=False, default = "",
+                        help = "Filepath of testbench file from current directory (ex: filepath/prompt1_counter.v)")
 
     args = parser.parse_args()
+
+    def read_all_lines(file_path):
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        return lines
+    
+    description_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl")
+    prompt_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl")
+    description_strings = {json.loads(line)['task_id']: json.loads(line) for line in description_strings}
+    prompt_strings = {json.loads(line)['task_id']: json.loads(line) for line in prompt_strings}
 
     rootDumpDir = args.dumpdir
     runID = args.runID
@@ -70,19 +87,16 @@ if __name__ == '__main__':
     num_episodes = args.ep
     num_processes = args.pr
     operation = args.op
+    model_name = args.model_name
     csv_name = args.csv
+    module_name = args.module_name
+    task_name = args.task_name
     csv_logger = CsvLogger(csv_name)
     row_data = {}
 
-    prompt_filepath = args.prompt_path
-    tb_filepath = args.tb_path
-    module_name = args.module_name
-    
-    prompt_str = ""
-
     
     if not osp.exists(rootDumpDir):
-        os.mkdir(rootDumpDir, mode=0o777 )
+        os.mkdir(rootDumpDir, mode=0o777)
         
     
     if torch.cuda.is_available():
@@ -92,44 +106,19 @@ if __name__ == '__main__':
         print("Using CPU")
         device = torch.device("cpu")
 
-    #gpu_devices = [0, 1, 2]
-    #torch.cuda.set_device(gpu_devices[0])
-    print(prompt_filepath)
-    try:
-        with open(prompt_filepath, "r") as prompt_file:
-            prompt_str = prompt_file.read()
-            print("Prompt str: ", prompt_str)
-    except:
-        print("Main: Error reading prompt file.")
-        exit(1)
         
     print("Loading LLM model...")
-    # model_name = "codellama/CodeLlama-13b-hf"
-    # tokenizer = AutoTokenizer.from_pretrained(model_name)
-    # model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
     model_name = "shailja/fine-tuned-codegen-16B-Verilog"
     base_model = model_name
     model = AutoModelForCausalLM.from_pretrained(
         base_model,
-        load_in_8bit=True,
-        torch_dtype=torch.float16,
+        #load_in_8bit=True,
+        #torch_dtype=torch.float16,
         device_map="auto",
     )
-    #tokenizer = AutoTokenizer.from_pretrained("codellama/CodeLlama-13b-hf")
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    #model = PeftModel.from_pretrained(model, "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/rltf/new-code-llama13b-100/checkpoint-100/")
 
-    #CHANGE FILEPATH BELOW!
-    #model = PeftModel.from_pretrained(model, "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/rltf/aiman_llama/checkpoint-100/")
-    model = PeftModel.from_pretrained(model, "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/rltf/ppo_new/save_pretrained/")
-
-
-    #print("Loading LLM model...")
-    #model_name = "shailja/CodeGen_16B_Verilog"
-    #tokenizer = AutoTokenizer.from_pretrained("shailja/fine-tuned-codegen-16B-Verilog")
-    #model = AutoModelForCausalLM.from_pretrained("shailja/fine-tuned-codegen-16B-Verilog").to(device)
-    #if len(gpu_devices) > 1:
-    #    model = DataParallel(model, device_ids=gpu_devices)
     print("Loaded LLM: ", model_name)
     print("Initializing MCTS tree/LLM env...")
     idx_ep = 0
@@ -142,11 +131,33 @@ if __name__ == '__main__':
         print("********-- EPISODE-{}--************".format(idx_ep+1))
         start_time = datetime.now()
         if(operation == "mcts"):
-            print("ORIG MODILE: ", module_name)
-            print("--------MCTS-------")
-            merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-                                                        model_name=model_name, tokenizer=tokenizer, model=model))
-            merged_tree = execute_episode(merged_tree,simulation_per_episode)
+            for index, (task_id, description) in enumerate(description_strings.items()):
+                print("ORIG MODILE: ", task_id)
+                print("--------MCTS-------")
+                task_name = task_id
+                if task_id in prompt_strings:
+                    description_comp = str(description['detail_description']).strip()
+                    module_comp = str(prompt_strings[task_id]['prompt']).strip()
+                    testbench = str(prompt_strings[task_id]['test']).strip()
+                    print("Verilog prompt #: ", index, ": ", task_id)
+                else:
+                    print(f"Task ID {task_id} not found in prompts file")
+                    continue
+
+                full_prompt = description_comp + "\n" + module_comp
+                prompt_filepath = f"prompts_vereval/{task_id}.v"
+                testbench_filepath = f"testbench_vereval/{task_id}_tb.v"
+                with open(prompt_filepath, 'w') as verilog_file:
+                    verilog_file.write(full_prompt)
+
+                # Write the testbench string to a Verilog file named <task_id>_tb.v
+                with open(testbench_filepath, 'w') as testbench_file:
+                    testbench_file.write(testbench)
+            
+                merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=full_prompt, op = operation, orig_module=module_name, task_name = task_name, file_path=prompt_filepath, tb_path = testbench_filepath, dump_path = rootDumpDir,
+                                                            model_name=model_name, tokenizer=tokenizer, model=model))
+                merged_tree = execute_episode(merged_tree,simulation_per_episode)
+
             print("END ROBUST/MAX VALUES:")
             evalMctsRobustValue, evalMctsMaxValue = test_episode(merged_tree)
             end_time = datetime.now()
@@ -154,41 +165,41 @@ if __name__ == '__main__':
             seconds = time_difference.total_seconds()
             print("MCTS Total Time: ", seconds)
 
-        elif (operation == "beam"):
-            env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-                        model_name=model_name, tokenizer=tokenizer, model=model)
-            start_time = datetime.now()
-            for i in range(simulation_per_episode):
-                print("----BEAM LLM OUTPUT - ITERATION: ", i, " ----")
-                env.row_data['episode'] = idx_ep
-                env.row_data['currentRun'] = i
-                init_state = env.get_initial_state()
-                output = env.beam_search(init_state)
-                print("Output---")
-                print(output)
-                score = env.getPromptScore()
-                #score = env.getPromptScore(filteredGen)
-                env.csv_logger.log(env.row_data)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("Beam Total Time: ", seconds)
-        elif (operation == "greedy"):
-            env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-                                                            model_name=model_name, tokenizer=tokenizer, model=model)
-            for i in range(simulation_per_episode):
-                print("----GREEDY LLM OUTPUT - ITERATION: ", i, " ----")
-                print("---------------")
-                print("Done setting up env.")
-                env.row_data['episode'] = idx_ep
-                env.row_data['currentRun'] = i
-                init_state = env.get_initial_state()
-                finalState = env.get_best_terminal_state(init_state,0)
-                promptGen = env.get_prompt_from_state(finalState)
-                filteredGen=env.trim_with_stopwords(promptGen)
-                score = env.getPromptScore(filteredGen)
-                env.csv_logger.log(env.row_data)
-            break
+        # elif (operation == "beam"):
+        #     env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
+        #                 model_name=model_name, tokenizer=tokenizer, model=model)
+        #     start_time = datetime.now()
+        #     for i in range(simulation_per_episode):
+        #         print("----BEAM LLM OUTPUT - ITERATION: ", i, " ----")
+        #         env.row_data['episode'] = idx_ep
+        #         env.row_data['currentRun'] = i
+        #         init_state = env.get_initial_state()
+        #         output = env.beam_search(init_state)
+        #         print("Output---")
+        #         print(output)
+        #         score = env.getPromptScore()
+        #         env.csv_logger.log(env.row_data)
+        #     end_time = datetime.now()
+        #     time_difference = end_time - start_time
+        #     seconds = time_difference.total_seconds()
+        #     print("Beam Total Time: ", seconds)
+
+        # elif (operation == "greedy"):
+        #     env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
+        #                                                     model_name=model_name, tokenizer=tokenizer, model=model)
+        #     for i in range(simulation_per_episode):
+        #         print("----GREEDY LLM OUTPUT - ITERATION: ", i, " ----")
+        #         print("---------------")
+        #         print("Done setting up env.")
+        #         env.row_data['episode'] = idx_ep
+        #         env.row_data['currentRun'] = i
+        #         init_state = env.get_initial_state()
+        #         finalState = env.get_best_terminal_state(init_state,0)
+        #         promptGen = env.get_prompt_from_state(finalState)
+        #         filteredGen=env.trim_with_stopwords(promptGen)
+        #         score = env.getPromptScore(filteredGen)
+        #         env.csv_logger.log(env.row_data)
+        #     break
         else:
             print("Error reading --op parameter. Please only state 'beam', 'greedy', or 'mcts' as your input.")
             exit(1)

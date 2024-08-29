@@ -448,7 +448,8 @@ def execute_episode(mctsTree,simulation_budget):
             print("Iteration TIME (sec): ", elapsed_time)
             mctsTree.TreeEnv.row_data['episode'] = mctsTree.num_simulations
             mctsTree.TreeEnv.row_data['currentRun'] = mctsTree.root.N
-            output_data = {"task_id": task_id, "completion": output}
+            
+            output_data = {"task_id": mctsTree.TreeEnv.task_name, "completion": mctsTree.TreeEnv.row_data["verilog"]}
             output_file.write(json.dumps(output_data) + '\n')
             mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
 
