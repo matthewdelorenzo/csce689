@@ -429,7 +429,7 @@ def execute_episode(mctsTree,simulation_budget):
     rewards in each step, total return for this episode and the final state of
     this episode.
     """
-    file_name = "mcts_vgen16b/output" + str(i) + ".jsonl"
+    file_name = "mcts_vgen16b/output" + mctsTree.TreeEnv.task_name + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N

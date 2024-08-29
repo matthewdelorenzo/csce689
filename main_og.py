@@ -90,7 +90,6 @@ if __name__ == '__main__':
     model_name = args.model_name
     csv_name = args.csv
     module_name = args.module_name
-    task_name = args.task_name
     csv_logger = CsvLogger(csv_name)
     row_data = {}
 
@@ -133,7 +132,7 @@ if __name__ == '__main__':
             for index, (task_id, description) in enumerate(description_strings.items()):
                 print("ORIG MODILE: ", task_id)
                 print("--------MCTS-------")
-                task_name = str(prompt_strings[task_id]['task_id']).strip()
+                task_string = str(prompt_strings[task_id]['task_id']).strip()
                 if task_id in prompt_strings:
                     description_comp = str(description['detail_description']).strip()
                     module_comp = str(prompt_strings[task_id]['prompt']).strip()
@@ -152,9 +151,8 @@ if __name__ == '__main__':
                 # Write the testbench string to a Verilog file named <task_id>_tb.v
                 with open(testbench_filepath, 'w') as testbench_file:
                     testbench_file.write(testbench)
-            
-                merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=full_prompt, op = operation, orig_module=module_name, task_name = task_name, file_path=prompt_filepath, tb_path = testbench_filepath, dump_path = rootDumpDir,
-                                                            model_name=model_name, tokenizer=tokenizer, model=model))
+                print("Task name: ", task_string)
+                merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=module_name, file_path=prompt_filepath, tb_path = testbench_filepath, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
                 merged_tree = execute_episode(merged_tree,simulation_per_episode)
 
             print("END ROBUST/MAX VALUES:")
