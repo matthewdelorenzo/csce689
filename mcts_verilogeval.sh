@@ -1,18 +1,10 @@
 DUMPDIR="/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/"
-RUNID=0
-SIM=300
-EP=1
 MODULE_NAME="top_module"
-OP="mcts"
-
+MODEL_NAME="shailja/fine-tuned-codegen-16B-Verilog"
+CSV_FILES="/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/ver16b_vereval_mcts_test1"
 python main_og.py \
         --dumpdir "$DUMPDIR" \
-        --runID "$RUNID" \
-        --sim "$SIM" \
-        --ep "$EP" \
-        --prompt_path "${PROMPT_PATHS[i]}" \
-        --tb_path "${TB_PATHS[i]}" \
         --module_name "$MODULE_NAME" \
-        --op "$OP" \
+        --model_name "$MODEL_NAME" \
         --csv "${CSV_FILES[i]}" \
-        > "16b_mcts_old_results/fix_baseline_output_${i}.txt"  # Redirect output to individual text files
+        > "ver16b_vereval_mcts_test1.txt"  # Redirect output to individual text files

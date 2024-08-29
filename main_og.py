@@ -108,10 +108,9 @@ if __name__ == '__main__':
 
         
     print("Loading LLM model...")
-    model_name = "shailja/fine-tuned-codegen-16B-Verilog"
-    base_model = model_name
+
     model = AutoModelForCausalLM.from_pretrained(
-        base_model,
+        model_name,
         #load_in_8bit=True,
         #torch_dtype=torch.float16,
         device_map="auto",
