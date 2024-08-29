@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor,as_completed
 import multiprocessing
 from multiprocessing import set_start_method
-from LLMQueryEnv import LLMQueryEnv
-from mcts import execute_episode,test_episode,initialize_MCTS_tree
+from LLMQueryEnv_og import LLMQueryEnv
+from mcts_og import execute_episode,test_episode,initialize_MCTS_tree
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead, create_reference_model
 import argparse,os,re
 import os.path as osp
 import torch,shutil
 import statistics,pickle
 import csv
-from mcts import MCTS
+from mcts_og import MCTS
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from torch.nn.parallel import DataParallel
 from peft import PeftModel
@@ -76,7 +76,7 @@ if __name__ == '__main__':
             lines = file.readlines()
         return lines
     
-    description_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl")
+    description_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogDescription_Human.jsonl")
     prompt_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl")
     description_strings = {json.loads(line)['task_id']: json.loads(line) for line in description_strings}
     prompt_strings = {json.loads(line)['task_id']: json.loads(line) for line in prompt_strings}
