@@ -133,7 +133,7 @@ if __name__ == '__main__':
             for index, (task_id, description) in enumerate(description_strings.items()):
                 print("ORIG MODILE: ", task_id)
                 print("--------MCTS-------")
-                task_name = task_id
+                task_name = str(prompt_strings[task_id]['task_id']).strip()
                 if task_id in prompt_strings:
                     description_comp = str(description['detail_description']).strip()
                     module_comp = str(prompt_strings[task_id]['prompt']).strip()
