@@ -162,41 +162,6 @@ if __name__ == '__main__':
             seconds = time_difference.total_seconds()
             print("MCTS Total Time: ", seconds)
 
-        # elif (operation == "beam"):
-        #     env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-        #                 model_name=model_name, tokenizer=tokenizer, model=model)
-        #     start_time = datetime.now()
-        #     for i in range(simulation_per_episode):
-        #         print("----BEAM LLM OUTPUT - ITERATION: ", i, " ----")
-        #         env.row_data['episode'] = idx_ep
-        #         env.row_data['currentRun'] = i
-        #         init_state = env.get_initial_state()
-        #         output = env.beam_search(init_state)
-        #         print("Output---")
-        #         print(output)
-        #         score = env.getPromptScore()
-        #         env.csv_logger.log(env.row_data)
-        #     end_time = datetime.now()
-        #     time_difference = end_time - start_time
-        #     seconds = time_difference.total_seconds()
-        #     print("Beam Total Time: ", seconds)
-
-        # elif (operation == "greedy"):
-        #     env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-        #                                                     model_name=model_name, tokenizer=tokenizer, model=model)
-        #     for i in range(simulation_per_episode):
-        #         print("----GREEDY LLM OUTPUT - ITERATION: ", i, " ----")
-        #         print("---------------")
-        #         print("Done setting up env.")
-        #         env.row_data['episode'] = idx_ep
-        #         env.row_data['currentRun'] = i
-        #         init_state = env.get_initial_state()
-        #         finalState = env.get_best_terminal_state(init_state,0)
-        #         promptGen = env.get_prompt_from_state(finalState)
-        #         filteredGen=env.trim_with_stopwords(promptGen)
-        #         score = env.getPromptScore(filteredGen)
-        #         env.csv_logger.log(env.row_data)
-        #     break
         else:
             print("Error reading --op parameter. Please only state 'beam', 'greedy', or 'mcts' as your input.")
             exit(1)
