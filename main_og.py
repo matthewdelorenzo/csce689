@@ -143,8 +143,8 @@ if __name__ == '__main__':
                     continue
 
                 full_prompt = description_comp + "\n" + module_comp
-                prompt_filepath = f"prompts_vereval/{task_id}.v"
-                testbench_filepath = f"testbench_vereval/{task_id}_tb.v"
+                prompt_filepath = f"prompts_vereval/{task_id}.sv"
+                testbench_filepath = f"testbench_vereval/{task_id}_tb.sv"
                 with open(prompt_filepath, 'w') as verilog_file:
                     verilog_file.write(full_prompt)
 

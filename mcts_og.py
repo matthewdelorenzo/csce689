@@ -210,35 +210,15 @@ class MCTSNode:
         return self.children[action]
         
     def incorporate_estimates(self,action_probs,predValue,actualValue,up_to):
-        """
-        Call if the node has just been expanded via `select_leaf` to
-        incorporate the prior action probabilities and state value estimated
-        by the neural network.
-        :param action_probs: Action probabilities for the current node's state
-        predicted by the neural network.
-        :param value: Value of the current node's state predicted by the neural
-        network.
-        :param up_to: The node to propagate until.
-        """
-        # A done node (i.e. episode end) should not go through this code path.
-        # Rather it should directly call `backup_value` on the final node.
-        # TODO: Add assert here
-        # Another thread already expanded this node in the meantime.
-        # Ignore wasted computation but correct visit counts.
         self.is_expanded = True
         self.original_prior = self.child_prior = action_probs
-        # This is a deviation from the paper that led to better results in
-        # practice (following the MiniGo implementation).
+
         self.child_W = np.zeros([self.n_actions], dtype=np.float32)
         self.child_M = np.zeros([self.n_actions], dtype=np.float32)
         self.backup_value(predValue,actualValue,up_to=up_to)
 
     def backup_value(self, predValue,actualValue, up_to):
-        """
-        Propagates a value estimation up to the root node.
-        :param value: Value estimate to be propagated.
-        :param up_to: The node to propagate until.
-        """
+
         self.W += predValue
         self.M += actualValue
         self.N += 1
@@ -251,19 +231,9 @@ class MCTSNode:
 
     def inject_noise(self):
         dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.n_actions)
-        #dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.child_prior)
-        #self.child_prior = self.child_prior * 0.75 + dirch * 0.25
-
-        #print("Shape ", self.parent, len(self.child_prior), " ", len(dirch))
         self.child_prior = self.child_prior * 0.85 + dirch * 0.15
 
     def visits_as_probs(self, squash=False):
-        """
-        Returns the child visit counts as a probability distribution.
-        :param squash: If True, exponentiate the probabilities by a temperature
-        slightly large than 1 to encourage diversity in early steps.
-        :return: Numpy array of shape (n_actions).
-        """
         if self.childType == 'max':
             #probs = self.child_Q # MCTS max child
             probs = self.child_averagedMonteCarlo # MCTS max child
@@ -309,24 +279,9 @@ class MCTSNode:
 
 
 class MCTS:
-    """
-    Represents a Monte-Carlo search tree and provides methods for performing
-    the tree search.
-    """
 
     def __init__(self, TreeEnv, childType='robust',
                  simulations_per_move=800, num_parallel=4):
-        """
-        :param agent_netw: Network for predicting action probabilities and
-        state value estimate.
-        :param TreeEnv: Static class that defines the environment dynamics,
-        e.g. which state follows from another state when performing an action.
-        :param seconds_per_move: Currently unused.
-        :param simulations_per_move: Number of traversals through the tree
-        before performing a step.
-        :param num_parallel: Number of leaf nodes to collect before evaluating
-        them in conjunction.
-        """
         self.TreeEnv = TreeEnv
         self.childType = childType
         self.simulations_per_move = simulations_per_move
@@ -341,8 +296,6 @@ class MCTS:
         n_actions = self.TreeEnv.n_actions
         print("Initialize search (creating root node)", end='\n\n')
         self.root = MCTSNode(init_state,n_actions, self.TreeEnv,childType=self.childType)
-        # Number of steps into the episode after which we always select the
-        # action with highest action probability rather than selecting randomly
         self.temp_threshold = TEMP_THRESHOLD
 
     def tree_search(self):    
@@ -368,8 +321,6 @@ class MCTS:
     def test_tree_search(self,cType):
         ## This should not backup value since we are only traversing to the leaf node based
         ## on robust-child or max-child and return the value
-        
-        #print("Post-MCTS ideal tree search: ")
         leaf = self.root.select_leaf_during_evaluation(cType)
         if leaf.is_done():
             #print("MCTS tree nodes reached end of module.")
@@ -415,26 +366,10 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    """
-    Executes a single episode of the task using Monte-Carlo tree search with
-    the given agent network. It returns the experience tuples collected during
-    the search.
-    :param agent_netw: Network for predicting action probabilities and state
-    value estimate.
-    :param num_simulations: Number of simulations (traverses from root to leaf)
-    per action.
-    :param TreeEnv: Static environment that describes the environment dynamics.
-    :return: The observations for each step of the episode, the policy outputs
-    as output by the MCTS (not the pure neural network outputs), the individual
-    rewards in each step, total return for this episode and the final state of
-    this episode.
-    """
     file_name = "mcts_vgen16b/output" + mctsTree.TreeEnv.task_name + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
-        #print("Current runs: ", current_runs)
-        #print("Simulation budget", simulation_budget)
         while mctsTree.root.N < current_runs+simulation_budget:
             if mctsTree.root.N > 0 and mctsTree.root.N % 100 == 0:
                 print("ROBUST FINAL VALUE, ITERATION: ", current_runs)
