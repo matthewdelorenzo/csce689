@@ -151,6 +151,7 @@ if __name__ == '__main__':
                 # Write the testbench string to a Verilog file named <task_id>_tb.v
                 with open(testbench_filepath, 'w') as testbench_file:
                     testbench_file.write(testbench)
+                    
                 print("Task name: ", task_string)
                 merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=module_name, file_path=prompt_filepath, tb_path = testbench_filepath, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
                 merged_tree = execute_episode(merged_tree,simulation_per_episode)
