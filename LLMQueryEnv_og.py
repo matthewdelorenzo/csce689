@@ -137,7 +137,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = self.get_prompt_from_state(currentState)
-        name = "v16/" + self.orig_module + "_output.jsonl"
+        name = "mcts_vgen2b/"+self.orig_module + "_output.jsonl"
         with open(name, 'w') as output_file:
         # Iterate through the tasks and retrieve the associated prompt          
             # Write the output to the JSONL file
@@ -161,30 +161,30 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 text=True  # Ensures the output is returned as a string
             )
 
-            # Check if the command was successful
-            if result.returncode == 0:
-                # Process the output (stdout) if needed
-                output = result.stdout
-                print("Command succeeded with output:")
-                print(output)
-                self.compilable = True
-                self.functional = True
-                output_dict = json.loads(output)
-                return output_dict['pass@1']
-            else:
-                # If the command failed, print stderr
-                self.compilable = False
-                self.functional = False
-                error_message = result.stderr
-                print("Command failed with error:")
-                print(error_message)
-                return -1
+            # Combine stdout and stderr
 
         except Exception as e:
-            print(f"An error occurred: {e}")
-            self.compilable = False
-            self.functional = False
-            return -1
+            print("Exception in process.")
+        
+        results_path = name+"_results.jsonl"
+
+        # Open the file and read line by line
+        with open(results_path, 'r') as file:
+            for line in file:
+                # Parse the JSON line
+                data = json.loads(line)
+                
+                # Check if the 'passed' variable is true
+                if data.get('passed'):
+                    self.compilable = True
+                    self.functional = True
+                    print(f"Task {data['task_id']} passed.")
+                    return 1
+                else:
+                    self.compilable = False
+                    self.functional = False
+                    print(f"Task {data['task_id']} did not pass.")
+                    return -1
 
     def getPromptScore(self, currentState=""):
         print("Running getPromptScore: ")
@@ -269,6 +269,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         with torch.no_grad():
             torchState = torch.from_numpy(state).to(device)
             start_time = datetime.now()
+            decoded = ""
             while not self.is_done_state(state,depth):
                 output = self.model(input_ids=torchState)
 
