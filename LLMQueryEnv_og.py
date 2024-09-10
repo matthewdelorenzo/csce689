@@ -9,6 +9,7 @@ from static_env import StaticEnv
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
+import json
 
 def seed_everything(operation):  
     if(operation == "beam" or operation == "greedy"):
@@ -91,6 +92,17 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         state = self.init_state
         return state
 
+    def remove_prompt(self, output, prompt):
+        # Check if the output starts with the prompt
+        if output.startswith(prompt):
+            # Remove the prompt from the beginning of the output
+            print("Prompt in the output. Removing now:")
+            return output[len(prompt):].strip()
+        else:
+            # If the prompt is not at the beginning, return the output as is
+            print("Prompt not in output.")
+            return output
+
     def trim_with_stopwords(self, currentState):
         for w in sorted(self.stopwords, key=len, reverse=True):
             if currentState.endswith(w):
@@ -100,6 +112,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
 
     def isPromptComplete(self,currentState,depth):
+        #print("Checking isPrompComplete...")
         #start_time = datetime.now()
         with torch.no_grad():
             torchState = torch.from_numpy(currentState).to(device)
@@ -109,47 +122,69 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             if decoded.endswith(w):
                 self.verilogFunctionalityCheck(currentState)
                 if self.compilable:     #if compilable, finish prompt generation.
+                    #print("Complete, compilable.")
                     return True
                 #elif b'Unknown module type' in self.compilation_output:    #if unknown module, continue generation.
                 #    return False
                 else:   #if compilation error is of origin other than "undefined module", finish generation.
+                    #print("Complete, not compilable.")
                     return True
 
                 #return True
             else:
+                #print("Not complete, compilable.")
                 return False
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = self.get_prompt_from_state(currentState)
-        # Write the Verilog code to a temporary file - filenamed after module name.
-        print(verilog_code)
-        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name
-        if not os.path.exists(module_dump_folder):
-            try:
-                os.makedirs(module_dump_folder, mode=0o777)
-            except OSError as e:
-                print("Error creating dump file: ", e)
-
-        output_verilog_file = str(os.getpid()) + "_" + self.task_name + ".v"       
-
-        output_file_path = os.path.join(module_dump_folder, output_verilog_file)
-
-        with open(output_file_path, 'w') as temp_file:
-            temp_file.write(verilog_code)
-
-        self.row_data['verilog'] = verilog_code
-
-        os.chmod(output_file_path, 0o777)
-        #Setting the testbench file path (assuming in same location as prompt file).
-
-        self.compilable = self.compilation_check(output_file_path, self.tb_path)
-        #Call functionality check if compilable.
+        name = "v16/" + self.orig_module + "_output.jsonl"
+        with open(name, 'w') as output_file:
+        # Iterate through the tasks and retrieve the associated prompt          
+            # Write the output to the JSONL file
+            verilog_code = self.remove_prompt(verilog_code, self.orig_prompt)
+            output_data = {"task_id": self.orig_module, "completion": verilog_code}
+            self.row_data['verilog'] = verilog_code
+            output_file.write(json.dumps(output_data) + '\n')
         
-        
-        if self.compilable:
-            self.functional = self.functionality_check()
-        
-        return 0
+
+            # Define the command as a list of arguments
+        command = [
+            'python', '/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/verilog_eval/evaluate_functional_correctness.py', 
+            name, '--problem_file', self.tb_path
+        ]
+
+        try:
+            # Run the command and capture the output
+            result = subprocess.run(
+                command,
+                capture_output=True,  # Captures both stdout and stderr
+                text=True  # Ensures the output is returned as a string
+            )
+
+            # Check if the command was successful
+            if result.returncode == 0:
+                # Process the output (stdout) if needed
+                output = result.stdout
+                print("Command succeeded with output:")
+                print(output)
+                self.compilable = True
+                self.functional = True
+                output_dict = json.loads(output)
+                return output_dict['pass@1']
+            else:
+                # If the command failed, print stderr
+                self.compilable = False
+                self.functional = False
+                error_message = result.stderr
+                print("Command failed with error:")
+                print(error_message)
+                return -1
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            self.compilable = False
+            self.functional = False
+            return -1
 
     def getPromptScore(self, currentState=""):
         print("Running getPromptScore: ")
@@ -167,159 +202,12 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             self.row_data['score'] = -.1
             return  -.1
         
-        #TMP EDIT
-        #Specify your bash script to be utilized here.
-        bash_script = "scripts/synth_gcd.sh"
-
-        module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name
-        #print("Dump folder: ", module_dump_folder)
-
-        #Creating dump file for results to be placed if not already created.
-        if not os.path.exists(module_dump_folder):
-            try:
-                os.makedirs(module_dump_folder, mode=0o777)
-            except OSError as e:
-                print("Error creating dump file: ", e)
-        #Editing the bash script to run the output verilog module.
-        new_script_path = os.path.join(module_dump_folder, "synth_script.sh")
-        print(self.orig_module)
-        print(new_script_path)
-        shutil.copy(bash_script, new_script_path)
-        x= self.edit_script_variables(new_script_path, self.orig_module, str(os.getpid()) + '_' + self.task_name + ".v")
-        #Running the script file (with executable permission).
-        try:
-            start_time = datetime.now()
-            subprocess.run(['bash', '-c', f'chmod +x {new_script_path} && {new_script_path}'], check=True)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("Running bash in x seconds: ", seconds)
-        except subprocess.CalledProcessError as e:
-            print(f"Error running bash script: {e}")
-
-        #Retrieving the results from generated log file - specify your filepath.
-        logfile_path = module_dump_folder + "/yosys_synth.log"
-        if os.path.isfile(logfile_path):
-            area_value = self.extract_area_from_log(logfile_path)
-            delay_value = self.extract_delay_from_log(logfile_path)
-            if(self.functional and area_value is not None and delay_value is not None):
-                area_value = float(area_value)
-                delay_value = float(delay_value)
-                current_area_delay_product = area_value * delay_value
-                if(self.first_successful_product == None):
-                    self.first_successful_product = current_area_delay_product
-                
-                reward = .1 + (1 - (current_area_delay_product / self.first_successful_product))
-
-                print()
-                print("Currently displaying area/delay scores for ", self.task_name, " module.")
-                print("Area of the chip design is: ", area_value)
-                print("Delay value for the chip design is: ", delay_value)
-                print("Product: ", current_area_delay_product)
-                print("Score (1/chip area): ", reward)
-                self.row_data['area'] = area_value
-                self.row_data['delay'] = delay_value
-                self.row_data['score'] = reward
-
-                return reward
-            else:
-                #This should not occur - error in retrieving results.
-                print("Error retrieving area/delay from results.")
-                self.row_data['area'] ='N/A'
-                self.row_data['delay'] = 'N/A'
-                self.row_data['score'] = 1
-                return 1
-        else:
-            print("Filepath of Yosys results not recognized.")
-            return None
-    
-    def compilation_check(self, module_path, testbench_path=None):
-         # Compile the Verilog code using the iVerilog
-        try:
-            compile_output = subprocess.check_output(['iverilog', '-o', os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name, str(os.getpid()) + '_simulation'), testbench_path, module_path], stderr=subprocess.STDOUT)
-            compile_exit_code = 0  # Compilation successful
-            self.compilation_output = None
-            print("Output Verilog module compiles successfully.")
-            return True
-        except subprocess.CalledProcessError as e:
-            # Compilation failed, get error message
-            compile_output = e.output
-            compile_exit_code = e.returncode
-            print("Verilog compilation failed, error: ", compile_exit_code)
-            print("Compilation output: ", compile_output)
-            self.compilation_output = compile_output
-            return False
-
-    #Helper function to check the functionality of output Verilog code against its respective testbench.
-    def functionality_check(self):
-        try:
-            sim_path = os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name, str(os.getpid()) + '_simulation')
-            simulation_output = subprocess.check_output(['vvp', sim_path], stderr=subprocess.STDOUT)
-            simulation_exit_code = 0
-        except subprocess.CalledProcessError as e:
-            simulation_output = e.output
-            simulation_exit_code = e.returncode
-
-        if simulation_exit_code == 0:
-            print("Verilog testbench simulation ran successfully.")
-            if b"all tests passed" in simulation_output or b"All tests passed" in simulation_output:
-                print("Simulation output: ", simulation_output, end='\n\n')
-                print("All testbench tests passed!")
-                return True
-            else:
-                print("Some testbench tests failed.")
-                print("Simulation output: ", simulation_output,end='\n\n')
-                return False
-        else: 
-            print("Verilog testbench simulation failed.")
-            print("Simulation output: ", simulation_output,end='\n\n')
-            return False
+        self.row_data['area'] = 'N/A'
+        self.row_data['delay'] = 'N/A'
+        self.row_data['score'] = 1
+        return  1
         
-    #Helper - writes to the bash script to run the specific design/verilog file being synthesized.
-    def edit_script_variables(self, filename, design_name, file_name):
-        with open(filename, "r") as file:
-            lines = file.readlines()
-        for i, line in enumerate(lines):
-            if line.startswith("export ROOT_DIR="):
-                lines[i] = f'export ROOT_DIR={os.getcwd()}\n'
-            if line.startswith("export MODULE_DIR="):
-                lines[i] = f'export MODULE_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name}\n'
-            if line.startswith("export DESIGN_NAME="):
-                #lines[i] = f'export DESIGN_NAME={design_name}\n'
-                lines[i] = f'export DESIGN_NAME={design_name}\n'
-            elif line.startswith("export VERILOG_FILE="):
-                lines[i] = f'export VERILOG_FILE={"${MODULE_DIR}" + "/" + file_name}\n'
-            elif line.startswith("export OUTPUT_NAME="):
-                lines[i] = f'export OUTPUT_NAME={"${MODULE_DIR}" + "/" + file_name}\n'
-            elif line.startswith("export DUMP_DIR="):
-                lines[i] = f'export DUMP_DIR={self.dumppath + "/" + str(os.getpid()) + "_" + self.task_name}\n'
-        with open(filename, "w") as file:
-            file.writelines(lines)
-        
-    #Helper - retrieving the delay value from the Yosys log file.
-    def extract_delay_from_log(self, filepath):
-        with open(filepath, "r") as file:
-            for line in file:
-                if "Delay = " in line:
-                    parts = line.split()
-                    for i, part in enumerate(parts):
-                        if part == "Delay":
-                            return parts[i + 2]
-        print("Delay could not be found in synthesis results.")
-        return None
-    
-    #Helper - retrieving the area value from the Yosys log file.
-    def extract_area_from_log(self, filepath):
-        #Reading data.
-        with open(filepath, "r") as file:
-            for line in file:
-                if "Chip area for module" in line:
-                    parts = line.split(':')
-                    if len(parts) >= 2:
-                        chip_area = parts[-1].strip()
-                        return chip_area
-        print("Error: Chip area not found in syntheis results.")
-        return None
+
 
     def next_state(self,state,action):
         #token_id = self.top_token_ids[action]
@@ -327,12 +215,16 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return nextState
 
     def is_done_state(self,state,depth):
+        #print("Checking if done generating...")
         if self.isPromptComplete(state,depth):
+            #print("Complete (ends with endmodule)")
             return True
         if depth>=self.depth:
+            #print("depth exceeded")
             self.verilogFunctionalityCheck(state)
             return True
         else:
+            #print("Not complete.")
             return False
 
     def get_prompt_from_state(self,state):
@@ -361,58 +253,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             #sorted_probs_trim = sorted_probs_arr[:self.n_actions]
             
             return non_comment_probs, non_comment_ids
-    
 
-    def check_sequence_in_ids(self, ids, target_sequence):
-        instances = 0
-        id_list = ids[0].tolist()
-        if len(id_list) < len(target_sequence):
-            return False
-        for i in range(len(id_list) - len(target_sequence) + 1):
-            if id_list[i:i+len(target_sequence)] == target_sequence:
-                instances += 1
-                if(instances > self.beam_count):
-                    self.beam_count += 1
-                
-                    print("BEAM SEARCH: ID TYPE: ", type(ids))
-                    self.verilogFunctionalityCheck(ids.detach().cpu().numpy())
-                    if self.compilable:     #if compilable, finish prompt generation.
-                        return True
-                    elif b'Unknown module type' in self.compilation_output:    #if unknown module, continue generation.
-                        print("Continuing generation.")
-                        return False
-                    else:   #if compilation error is of origin other than "undefined module", finish generation.
-                        return True
-                #return True
-        return False
-    
-    def beam_search(self, state):
-        #State is self.init_state
-        self.beam_count = 0
-        target_sequence = [
-        self.tokenizer.convert_tokens_to_ids("end"),
-        self.tokenizer.convert_tokens_to_ids("module")
-        ]
-        intermediate_states = []
-        def custom_stopping_criterion(input_ids, state):
-            return self.check_sequence_in_ids(input_ids, target_sequence)
-
-        torchState = torch.from_numpy(state).to(device)
-        beam_output = self.model.generate(
-            input_ids = torchState,
-            max_length=torchState.size(1) + self.depth,
-            num_beams=3,
-            temperature=0.2,
-            do_sample=True,
-            stopping_criteria=[custom_stopping_criterion]
-
-        )
-
-        best_beam_output = beam_output[0]
-        best_beam_output_np = best_beam_output.cpu().numpy()
-        decoded_tokens = self.tokenizer.decode(best_beam_output_np, skip_special_tokens=True)
-        decoded_tokens = decoded_tokens.rstrip("#")
-        return decoded_tokens
 
 
     def is_comment(self, token_id):
@@ -454,6 +295,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 depth+=1
                 i += 1
             #print("Tokens: ", i)
+            print("Terminal state: ", decoded)
             end_time = datetime.now()
             time_difference = end_time - start_time
             seconds = time_difference.total_seconds()

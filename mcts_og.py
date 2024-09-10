@@ -366,11 +366,12 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    file_name = "mcts_vgen16b/output" + mctsTree.TreeEnv.task_name + ".jsonl"
+    file_name = "mcts_vgen16b_real/output" + mctsTree.TreeEnv.task_name + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
         while mctsTree.root.N < current_runs+simulation_budget:
+            print("----------MCTS ITERATION----------", mctsTree.root.N)
             if mctsTree.root.N > 0 and mctsTree.root.N % 100 == 0:
                 print("ROBUST FINAL VALUE, ITERATION: ", current_runs)
                 evalMctsRobustValue, evalMctsMaxValue = test_episode(mctsTree)
@@ -386,8 +387,9 @@ def execute_episode(mctsTree,simulation_budget):
             
             output_data = {"task_id": mctsTree.TreeEnv.task_name, "completion": mctsTree.TreeEnv.row_data["verilog"]}
             output_file.write(json.dumps(output_data) + '\n')
-            mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
-
+            #mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
+            print("Current: ", mctsTree.root.N, "Final: ", current_runs+simulation_budget)
+        
         mctsTree.root.print_bfs_tree()
         #print("execute episode finished")
     return mctsTree

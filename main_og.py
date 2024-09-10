@@ -77,7 +77,9 @@ if __name__ == '__main__':
         return lines
     
     description_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogDescription_Human.jsonl")
-    prompt_strings = read_all_lines("/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl")
+    #contains prompts and testbenches
+    prompt_testbench_jsonl_path = "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/verilog-eval/VerilogEval_Human.jsonl"
+    prompt_strings = read_all_lines(prompt_testbench_jsonl_path)
     description_strings = {json.loads(line)['task_id']: json.loads(line) for line in description_strings}
     prompt_strings = {json.loads(line)['task_id']: json.loads(line) for line in prompt_strings}
 
@@ -143,26 +145,17 @@ if __name__ == '__main__':
                     continue
 
                 full_prompt = description_comp + "\n" + module_comp
-                prompt_filepath = f"prompts_vereval/{task_id}.sv"
-                testbench_filepath = f"testbench_vereval/{task_id}_tb.sv"
-                with open(prompt_filepath, 'w') as verilog_file:
-                    verilog_file.write(full_prompt)
+                prompt_filepath = f"prompts_vereval/{task_id}.v"
 
-                # Write the testbench string to a Verilog file named <task_id>_tb.v
-                with open(testbench_filepath, 'w') as testbench_file:
-                    testbench_file.write(testbench)
-                    
                 print("Task name: ", task_string)
-                merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=module_name, file_path=prompt_filepath, tb_path = testbench_filepath, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
+                merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=task_id, file_path=prompt_filepath, tb_path = prompt_testbench_jsonl_path, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
                 merged_tree = execute_episode(merged_tree,simulation_per_episode)
-
-            print("END ROBUST/MAX VALUES:")
-            evalMctsRobustValue, evalMctsMaxValue = test_episode(merged_tree)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("MCTS Total Time: ", seconds)
-
+                evalMctsRobustValue, evalMctsMaxValue = test_episode(merged_tree)
+                print("END ROBUST/MAX VALUES:")
+                end_time = datetime.now()
+                time_difference = end_time - start_time
+                seconds = time_difference.total_seconds()
+                print("MCTS Total Time: ", seconds)
         else:
             print("Error reading --op parameter. Please only state 'beam', 'greedy', or 'mcts' as your input.")
             exit(1)
