@@ -303,6 +303,8 @@ class MCTS:
         leaf = self.root.select_leaf()
         if leaf.is_done():
             print("Leaf is terminal - getting return value.")
+            decoded = self.TreeEnv.tokenizer.decode(leaf.state[0], skip_special_tokens=True)
+            print("Terminal state: ", decoded)
             value = self.TreeEnv.get_return(leaf.state,leaf.depth)
             print("MCTS Stage 4 - Backpropogation: incorporating estimates.", end='\n\n')
             leaf.backup_value(value,value,up_to=self.root)
@@ -324,6 +326,8 @@ class MCTS:
         leaf = self.root.select_leaf_during_evaluation(cType)
         if leaf.is_done():
             #print("MCTS tree nodes reached end of module.")
+            decoded = self.TreeEnv.tokenizer.decode(leaf.state[0], skip_special_tokens=True)
+            print("Terminal state: ", decoded)
             value = self.TreeEnv.get_return(leaf.state,leaf.depth)
         else:
             #print("MCTS tree didnt reach end nodes - geting MC return for rest of prediction:")
@@ -366,7 +370,7 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    file_name = "mcts_vgen2b/output" + mctsTree.TreeEnv.task_name + ".jsonl"
+    file_name = "mcts_vgen16b/output_all_" + mctsTree.TreeEnv.task_name + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N

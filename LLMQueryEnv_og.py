@@ -137,7 +137,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = self.get_prompt_from_state(currentState)
-        name = "mcts_vgen2b/"+self.orig_module + "_output.jsonl"
+        name = "mcts_vgen16b/"+self.orig_module + "_output.jsonl"
         with open(name, 'w') as output_file:
         # Iterate through the tasks and retrieve the associated prompt          
             # Write the output to the JSONL file
@@ -166,7 +166,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         except Exception as e:
             print("Exception in process.")
         
-        results_path = name+"_results.jsonl"
+        results_path = name + "_results.jsonl"
 
         # Open the file and read line by line
         with open(results_path, 'r') as file:
@@ -215,16 +215,16 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return nextState
 
     def is_done_state(self,state,depth):
-        #print("Checking if done generating...")
+        #Check if generation is done.
+        #If prompt is complete, return true (ends with endmodule).
+        #Else, check if depth has exceeded. Check functionality and return true if so.
+        #If depth has not been exceeded, return false.
         if self.isPromptComplete(state,depth):
-            #print("Complete (ends with endmodule)")
             return True
         if depth>=self.depth:
-            #print("depth exceeded")
             self.verilogFunctionalityCheck(state)
             return True
         else:
-            #print("Not complete.")
             return False
 
     def get_prompt_from_state(self,state):
@@ -234,6 +234,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             return prompt_from_state
 
     def getLLMestimates(self,state):
+        #Retrieve the top 5 next token probabilities and IDs.
+        
         with torch.no_grad():
             torchState = torch.from_numpy(state).to(device)
             output = self.model(input_ids=torchState)
@@ -264,7 +266,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def get_best_terminal_state(self,state,depth):
         start_time = datetime.now()
         #cumul_token_time = 0
-        i = 0
+        tokens = 0
         self.non_compilable_attempts = 0
         with torch.no_grad():
             torchState = torch.from_numpy(state).to(device)
@@ -294,13 +296,13 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 state = torchState.detach().cpu().numpy()
                 decoded = self.tokenizer.decode(state[0], skip_special_tokens=True)    
                 depth+=1
-                i += 1
+                tokens += 1
             #print("Tokens: ", i)
             print("Terminal state: ", decoded)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("LLM generates return in: ", seconds, " seconds")
+            #end_time = datetime.now()
+            #time_difference = end_time - start_time
+            #seconds = time_difference.total_seconds()
+            #print("LLM generates return in: ", seconds, " seconds")
             return state
 
     def get_montecarlo_return(self,state,depth):

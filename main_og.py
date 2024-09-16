@@ -146,7 +146,11 @@ if __name__ == '__main__':
 
                 full_prompt = description_comp + "\n" + module_comp
                 prompt_filepath = f"prompts_vereval/{task_id}.v"
-
+                prompt_tokens = len(tokenizer.encode(full_prompt))
+                print("Prompt tokens: ", prompt_tokens)
+                if prompt_tokens >= 2048:
+                    print("Skipping prompt (too long).")
+                    continue
                 print("Task name: ", task_string)
                 merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=task_id, file_path=prompt_filepath, tb_path = prompt_testbench_jsonl_path, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
                 merged_tree = execute_episode(merged_tree,simulation_per_episode)
