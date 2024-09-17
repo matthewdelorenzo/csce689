@@ -137,7 +137,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = self.get_prompt_from_state(currentState)
-        name = "mcts_vgen16b/"+self.orig_module + "_output.jsonl"
+        name = "mcts_vgen16b_ppo2/"+self.orig_module + "_output.jsonl"
         with open(name, 'w') as output_file:
         # Iterate through the tasks and retrieve the associated prompt          
             # Write the output to the JSONL file
@@ -223,6 +223,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             return True
         if depth>=self.depth:
             self.verilogFunctionalityCheck(state)
+            print("Depth Exceeded: ", depth)
             return True
         else:
             return False
@@ -251,8 +252,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             non_comment_ids = non_comment_all_ids[:self.n_actions]
             non_comment_probs = sorted_probs_arr[non_comment_mask][:self.n_actions]
             decoded_tokens = [self.tokenizer.decode([prob], skip_special_tokens=True) for prob in non_comment_all_ids]
-            #sorted_ids_trim = sorted_ids_arr[:self.n_actions]
-            #sorted_probs_trim = sorted_probs_arr[:self.n_actions]
             
             return non_comment_probs, non_comment_ids
 
@@ -266,7 +265,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def get_best_terminal_state(self,state,depth):
         start_time = datetime.now()
         #cumul_token_time = 0
-        tokens = 0
         self.non_compilable_attempts = 0
         with torch.no_grad():
             torchState = torch.from_numpy(state).to(device)
@@ -296,11 +294,12 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 state = torchState.detach().cpu().numpy()
                 decoded = self.tokenizer.decode(state[0], skip_special_tokens=True)    
                 depth+=1
-                tokens += 1
+                num_tokens = torchState.size(1)
             #print("Tokens: ", i)
             print("Terminal state: ", decoded)
             #end_time = datetime.now()
             #time_difference = end_time - start_time
+            print("Tokens in final state (with rollout): ", num_tokens)
             #seconds = time_difference.total_seconds()
             #print("LLM generates return in: ", seconds, " seconds")
             return state

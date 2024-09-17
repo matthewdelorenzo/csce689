@@ -19,6 +19,7 @@ from torch.nn.parallel import DataParallel
 from peft import PeftModel
 from datetime import datetime
 import json
+import itertools
 
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 
@@ -117,7 +118,7 @@ if __name__ == '__main__':
         device_map="auto",
     )
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained("shailja/fine-tuned-codegen-16B-Verilog")
 
     print("Loaded LLM: ", model_name)
     print("Initializing MCTS tree/LLM env...")
@@ -131,7 +132,7 @@ if __name__ == '__main__':
         print("********-- EPISODE-{}--************".format(idx_ep+1))
         start_time = datetime.now()
         if(operation == "mcts"):
-            for index, (task_id, description) in enumerate(description_strings.items()):
+            for index, (task_id, description) in enumerate(itertools.islice(description_strings.items(), 7, None), start=7):
                 print("ORIG MODILE: ", task_id)
                 print("--------MCTS-------")
                 task_string = str(prompt_strings[task_id]['task_id']).strip()
@@ -148,7 +149,7 @@ if __name__ == '__main__':
                 prompt_filepath = f"prompts_vereval/{task_id}.v"
                 prompt_tokens = len(tokenizer.encode(full_prompt))
                 print("Prompt tokens: ", prompt_tokens)
-                if prompt_tokens >= 2048:
+                if prompt_tokens >= 1024:
                     print("Skipping prompt (too long).")
                     continue
                 print("Task name: ", task_string)

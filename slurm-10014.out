@@ -1,4 +1,4 @@
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:19<00:00,  8.46s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:19<00:00,  9.94s/it]
+Loading checkpoint shards:   0%|          | 0/14 [00:00<?, ?it/s]Loading checkpoint shards:   7%|▋         | 1/14 [00:00<00:12,  1.06it/s]Loading checkpoint shards:  14%|█▍        | 2/14 [00:01<00:10,  1.13it/s]Loading checkpoint shards:  21%|██▏       | 3/14 [00:02<00:09,  1.16it/s]Loading checkpoint shards:  29%|██▊       | 4/14 [00:03<00:08,  1.19it/s]Loading checkpoint shards:  36%|███▌      | 5/14 [00:04<00:07,  1.21it/s]Loading checkpoint shards:  43%|████▎     | 6/14 [00:05<00:06,  1.23it/s]Loading checkpoint shards:  50%|█████     | 7/14 [00:05<00:05,  1.20it/s]Loading checkpoint shards:  57%|█████▋    | 8/14 [00:06<00:05,  1.18it/s]Loading checkpoint shards:  64%|██████▍   | 9/14 [00:07<00:04,  1.14it/s]Loading checkpoint shards:  71%|███████▏  | 10/14 [00:08<00:03,  1.14it/s]Loading checkpoint shards:  79%|███████▊  | 11/14 [00:09<00:02,  1.16it/s]Loading checkpoint shards:  86%|████████▌ | 12/14 [00:10<00:01,  1.17it/s]Loading checkpoint shards:  93%|█████████▎| 13/14 [00:11<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 14/14 [00:11<00:00,  1.46it/s]Loading checkpoint shards: 100%|██████████| 14/14 [00:11<00:00,  1.23it/s]
 ../aten/src/ATen/native/cuda/IndexKernel.cu:92: operator(): block: [256,0,0], thread: [0,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
 ../aten/src/ATen/native/cuda/IndexKernel.cu:92: operator(): block: [256,0,0], thread: [1,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
 ../aten/src/ATen/native/cuda/IndexKernel.cu:92: operator(): block: [256,0,0], thread: [2,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
@@ -64,15 +64,15 @@
 ../aten/src/ATen/native/cuda/IndexKernel.cu:92: operator(): block: [256,0,0], thread: [62,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
 ../aten/src/ATen/native/cuda/IndexKernel.cu:92: operator(): block: [256,0,0], thread: [63,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
 Traceback (most recent call last):
-  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/main_og.py", line 152, in <module>
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/main_og.py", line 156, in <module>
     merged_tree = execute_episode(merged_tree,simulation_per_episode)
-  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_og.py", line 379, in execute_episode
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_og.py", line 383, in execute_episode
     mctsTree.tree_search()
-  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_og.py", line 317, in tree_search
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_og.py", line 319, in tree_search
     rolloutReturn = self.TreeEnv.get_montecarlo_return(next_state,leaf.depth+1)
-  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 307, in get_montecarlo_return
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 309, in get_montecarlo_return
     best_terminal_state = self.get_best_terminal_state(state,depth)
-  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 274, in get_best_terminal_state
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 276, in get_best_terminal_state
     output = self.model(input_ids=torchState)
   File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
