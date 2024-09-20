@@ -137,7 +137,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = self.get_prompt_from_state(currentState)
-        name = "mcts_vgen16b_ppo2/"+self.orig_module + "_output.jsonl"
+        name = "mcts_vgen16b_2/"+self.orig_module + "_output.jsonl"
         with open(name, 'w') as output_file:
         # Iterate through the tasks and retrieve the associated prompt          
             # Write the output to the JSONL file
@@ -270,6 +270,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             torchState = torch.from_numpy(state).to(device)
             start_time = datetime.now()
             decoded = ""
+            num_tokens = 0
             while not self.is_done_state(state,depth):
                 output = self.model(input_ids=torchState)
 
