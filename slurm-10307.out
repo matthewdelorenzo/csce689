@@ -1,0 +1,17 @@
+Loading checkpoint shards:   0%|          | 0/14 [00:00<?, ?it/s]Loading checkpoint shards:   7%|▋         | 1/14 [00:23<05:08, 23.71s/it]Loading checkpoint shards:  14%|█▍        | 2/14 [00:44<04:24, 22.06s/it]Loading checkpoint shards:  21%|██▏       | 3/14 [01:06<04:01, 21.96s/it]Loading checkpoint shards:  29%|██▊       | 4/14 [01:26<03:33, 21.34s/it]Loading checkpoint shards:  36%|███▌      | 5/14 [01:45<03:04, 20.53s/it]Loading checkpoint shards:  43%|████▎     | 6/14 [02:03<02:36, 19.58s/it]Loading checkpoint shards:  50%|█████     | 7/14 [02:24<02:20, 20.01s/it]Loading checkpoint shards:  57%|█████▋    | 8/14 [02:43<01:57, 19.55s/it]Loading checkpoint shards:  64%|██████▍   | 9/14 [03:06<01:43, 20.72s/it]Loading checkpoint shards:  71%|███████▏  | 10/14 [03:26<01:22, 20.61s/it]Loading checkpoint shards:  79%|███████▊  | 11/14 [03:44<00:59, 19.82s/it]Loading checkpoint shards:  86%|████████▌ | 12/14 [04:06<00:40, 20.49s/it]Loading checkpoint shards:  93%|█████████▎| 13/14 [04:25<00:20, 20.07s/it]Loading checkpoint shards: 100%|██████████| 14/14 [04:31<00:00, 15.69s/it]Loading checkpoint shards: 100%|██████████| 14/14 [04:31<00:00, 19.39s/it]
+Traceback (most recent call last):
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/main_og.py", line 156, in <module>
+    merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger=csv_logger, task_name=task_string, row_data=row_data, op = operation, orig_prompt=full_prompt, orig_module=task_id, file_path=prompt_filepath, tb_path = prompt_testbench_jsonl_path, dump_path = rootDumpDir, model_name=model_name, tokenizer=tokenizer, model=model))
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_og.py", line 359, in initialize_MCTS_tree
+    first_node_rolloutReturn = TreeEnv.get_montecarlo_return(next_state,first_node.depth+1) #resyn2 output will lead to DRAW or 0.
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 308, in get_montecarlo_return
+    best_terminal_state = self.get_best_terminal_state(state,depth)
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 273, in get_best_terminal_state
+    while not self.is_done_state(state,depth):
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 222, in is_done_state
+    if self.isPromptComplete(state,depth):
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 123, in isPromptComplete
+    self.verilogFunctionalityCheck(currentState)
+  File "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/LLMQueryEnv_og.py", line 141, in verilogFunctionalityCheck
+    with open(name, 'w') as output_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'mcts_vgen16b_ppo2/fsm3_output.jsonl'
