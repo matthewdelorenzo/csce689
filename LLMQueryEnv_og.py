@@ -381,8 +381,9 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         per_total_token_time = response_time / total_tokens if total_tokens > 0 else float('inf')
         print(f"Per generated token time: {per_token_time:.6f} seconds")
         print(f"Per total token time: {per_total_token_time:.6f} seconds")
-        return response_text
-
+        total_response = state + response_text
+        return total_response
+    
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)
         filteredGen = self.trim_with_stopwords(best_terminal_state)

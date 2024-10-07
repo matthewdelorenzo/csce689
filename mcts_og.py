@@ -325,7 +325,7 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    file_name = "mcts_vgen16b/output" + ".jsonl"
+    file_name = "output" + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
