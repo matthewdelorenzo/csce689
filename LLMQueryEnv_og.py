@@ -13,41 +13,6 @@ import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-GOoOKLyunGa2vKV2eRy8YjdKuJ8d_5HNdIahN0qLwMT3BlbkFJtryKaavon-rI0XFIU-IWr5S9zCF6AXKgFv-NfP0P4A"))
 
-def seed_everything(operation):  
-    if(operation == "beam" or operation == "greedy"):
-        seed = random.randint(1, 1000000)     
-        random.seed(seed)                                                     
-        torch.manual_seed(seed)
-        np.random.seed(seed)
-        print("Env seed: ", seed)
-        os.environ['PYTHONHASHSEED'] = str(seed)
-        if torch.cuda.is_available():
-            torch.cuda.manual_seed(seed)                                                   
-            torch.cuda.manual_seed_all(seed)                                             
-            torch.backends.cudnn.deterministic = False
-            torch.backends.cudnn.benchmark = False
-    elif(operation == "mcts"):
-        seed = 42                                          
-        random.seed(seed)                                                     
-        torch.manual_seed(seed)
-        np.random.seed(seed)
-        print("Env seed: ", seed)
-        os.environ['PYTHONHASHSEED'] = str(seed)
-        if torch.cuda.is_available():
-            torch.cuda.manual_seed(seed)                                                   
-            torch.cuda.manual_seed_all(seed)                                             
-            torch.backends.cudnn.deterministic = True
-            torch.backends.cudnn.benchmark = False
-    else:
-        print("Error in --op parameter. Please state 'mcts', 'greedy', or 'beam' as your decision.")
-
-if torch.cuda.is_available():
-    device = torch.device("cuda")
-        #print("Using GPU")
-else:
-    device = torch.device("cpu")
-#test
-
 
 def get_completion(
     messages: list[dict[str, str]],
@@ -85,22 +50,15 @@ def get_completion(
 
 class LLMQueryEnv(gym.Env, StaticEnv):
     
-    def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = "",
-                 model_name=None, tokenizer=None, model=None):
+    def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = ""):
         self.op = op
-        seed_everything(self.op)
-
         self.csv_logger = csv_logger
         self.row_data = row_data
-        model_name = model_name
-        self.tokenizer = tokenizer
-        self.model = model
         self.orig_prompt = orig_prompt
-        self.init_state = self.get_tokenized_state(self.orig_prompt)
+        self.init_state = orig_prompt
         self.num_tokens=0
-        self.n_actions = 10 #self.tokenizer.vocab_size
+        self.n_actions = 10
         self.stopwords = ['endmodule']
-        #Limit to token generation before cutoff.
         self.depth=2048
         self.orig_module = orig_module
         self.prompt_path = file_path
@@ -113,8 +71,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         self.first_successful_product = None
         self.beam_count = 0
         self.cumul_token_time = 0
-        #self.top_token_ids = None
-            #self.ep_length = NUM_LENGTH_EPISODES # not required
 
     def get_tokenized_state(self,prompt):
         input_ids = self.tokenizer(prompt, return_tensors="pt").input_ids
@@ -130,6 +86,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return state
 
     def trim_with_stopwords(self, currentState):
+        print("Trimming the result to last instance of endmodule...")
         for w in sorted(self.stopwords, key=len, reverse=True):
             if currentState.endswith(w):
                 currentState = currentState[:-len(w)], w
@@ -139,12 +96,9 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
     def isPromptComplete(self,currentState,depth):
         #start_time = datetime.now()
-        with torch.no_grad():
-            torchState = torch.from_numpy(currentState).to(device)
-            decoded = self.tokenizer.decode(currentState[0], skip_special_tokens=True)    
         #print('Decoded state: ',repr(decoded))
         for w in sorted(self.stopwords, key=len, reverse=True):
-            if decoded.endswith(w):
+            if currentState.endswith(w):
                 self.verilogFunctionalityCheck(currentState)
                 if self.compilable:     #if compilable, finish prompt generation.
                     return True
@@ -155,14 +109,14 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = currentState
-        #print(verilog_code)
+
+        #Creating folder, writing current verilog file.
         module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
         if not os.path.exists(module_dump_folder):
             try:
                 os.makedirs(module_dump_folder, mode=0o777)
             except OSError as e:
                 print("Error creating dump file: ", e)
-
         output_verilog_file = str(os.getpid()) + "_" + self.orig_module + ".v"       
         output_file_path = os.path.join(module_dump_folder, output_verilog_file)
         with open(output_file_path, 'w') as temp_file:
@@ -181,7 +135,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         
         return 0
 
-    def getPromptScore(self, currentState=""):
+    def getPromptScore(self):
         print("Running getPromptScore: ")
 
         if not self.compilable:
@@ -197,13 +151,9 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             self.row_data['score'] = -.1
             return  -.1
         
-        #TMP EDIT
-        #Specify your bash script to be utilized here.
         bash_script = "scripts/synth_gcd.sh"
 
         module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
-        #print("Dump folder: ", module_dump_folder)
-
         #Creating dump file for results to be placed if not already created.
         if not os.path.exists(module_dump_folder):
             try:
@@ -216,18 +166,15 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         print(new_script_path)
         shutil.copy(bash_script, new_script_path)
         x= self.edit_script_variables(new_script_path, self.orig_module, str(os.getpid()) + '_' + self.orig_module + ".v")
+
         #Running the script file (with executable permission).
         try:
-            start_time = datetime.now()
+            print("Running bash")
             subprocess.run(['bash', '-c', f'chmod +x {new_script_path} && {new_script_path}'], check=True)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("Running bash in x seconds: ", seconds)
         except subprocess.CalledProcessError as e:
             print(f"Error running bash script: {e}")
 
-        #Retrieving the results from generated log file - specify your filepath.
+        print("Retrieving snythesis results.")
         logfile_path = module_dump_folder + "/yosys_synth.log"
         if os.path.isfile(logfile_path):
             area_value = self.extract_area_from_log(logfile_path)
@@ -266,7 +213,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def compilation_check(self, module_path, testbench_path=None):
          # Compile the Verilog code using the iVerilog
         try:
-            #print("Path: ", os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation'))
             compile_output = subprocess.check_output(['iverilog', '-o', os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation'), testbench_path, module_path], stderr=subprocess.STDOUT)
             compile_exit_code = 0  # Compilation successful
             self.compilation_output = None
@@ -353,8 +299,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return None
 
     def next_state(self,state,action):
-        #token_id = self.top_token_ids[action]
-        nextState = np.append(state,np.array([[action]]),axis=-1)
+        #adding strings
+        nextState = state + action
         return nextState
 
     def is_done_state(self,state,depth):
@@ -366,16 +312,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         else:
             return False
 
-    def get_prompt_from_state(self,state):
-        with torch.no_grad():
-            torchState = torch.from_numpy(state).to(device)
-            prompt_from_state = self.tokenizer.decode(torchState[0], skip_special_tokens=True)
-            return prompt_from_state
-
     def getLLMestimates(self,state):
-            #sorted_ids_trim = sorted_ids_arr[:self.n_actions]
-            #sorted_probs_trim = sorted_probs_arr[:self.n_actions]
-            
+
         API_RESPONSE, response_time = get_completion(
             [
                 {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
@@ -385,7 +323,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             model="gpt-4",
             max_tokens=1,
             logprobs=True,
-            top_logprobs=5,
+            top_logprobs=self.n_actions,
             )
 
         # Extract the token usage details from the main response object
@@ -396,22 +334,12 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         response_text = API_RESPONSE.choices[0].message.content
 
         print("Generated token: ", response_text)
-        generated_token_count = completion_tokens
-
-        # print(f"Prompt token count: {prompt_tokens}")
-        # print(f"Generated token count: {generated_token_count}")
-        # print(f"Total token count: {total_tokens}")
-        # per_token_time = response_time / generated_token_count if generated_token_count > 0 else float('inf')
-        # per_total_token_time = response_time / total_tokens if total_tokens > 0 else float('inf')
-        # print(f"Per generated token time: {per_token_time:.6f} seconds")
-        # print(f"Per total token time: {per_total_token_time:.6f} seconds")
-        
         linear_probs = []
         tokens = []
 
         logprobs = API_RESPONSE.choices[0].logprobs
         for token_index, token_logprobs in enumerate(logprobs.content):
-            print("Token index: ", token_index)
+            print("Token index (should only be 1): ", token_index)
             for i, logprob in enumerate(token_logprobs.top_logprobs, start=1):
                 linear_probs.append(np.round(np.exp(logprob.logprob) * 100, 2))
                 tokens.append(logprob.token)
@@ -420,36 +348,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
 
         return linear_probs, tokens
-    
-
-    def check_sequence_in_ids(self, ids, target_sequence):
-        instances = 0
-        id_list = ids[0].tolist()
-        if len(id_list) < len(target_sequence):
-            return False
-        for i in range(len(id_list) - len(target_sequence) + 1):
-            if id_list[i:i+len(target_sequence)] == target_sequence:
-                instances += 1
-                if(instances > self.beam_count):
-                    self.beam_count += 1
-                
-                    print("BEAM SEARCH: ID TYPE: ", type(ids))
-                    self.verilogFunctionalityCheck(ids.detach().cpu().numpy())
-                    if self.compilable:     #if compilable, finish prompt generation.
-                        return True
-                    elif b'Unknown module type' in self.compilation_output:    #if unknown module, continue generation.
-                        print("Continuing generation.")
-                        return False
-                    else:   #if compilation error is of origin other than "undefined module", finish generation.
-                        return True
-                #return True
-        return False
-
-
-    def is_comment(self, token_id):
-        # Implement a function to check if the token is a comment
-        decoded_token = self.tokenizer.decode([token_id], skip_special_tokens=True)
-        return '//' in decoded_token or '/*' in decoded_token or '*/' in decoded_token
     
     def get_best_terminal_state(self,state,depth):
         API_RESPONSE, response_time = get_completion(
@@ -487,8 +385,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)
-        complete_prompt = self.get_prompt_from_state(best_terminal_state)
-        filteredGen = self.trim_with_stopwords(complete_prompt)
+        filteredGen = self.trim_with_stopwords(best_terminal_state)
         score = self.getPromptScore(filteredGen)
         return score
 
@@ -497,8 +394,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         if not self.is_done_state(state,depth):
             print("Serious error")
             exit(1)
-        complete_prompt = self.get_prompt_from_state(state)
-        score = self.getPromptScore(state)
+        score = self.getPromptScore()
         return score
 
     

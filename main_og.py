@@ -96,34 +96,16 @@ if __name__ == '__main__':
         print("Main: Error reading prompt file.")
         exit(1)
         
-    print("Loading LLM model...")
-    model_name = "shailja/fine-tuned-codegen-16B-Verilog"
-    base_model = model_name
-    model = AutoModelForCausalLM.from_pretrained(
-        base_model,
-        load_in_8bit=True,
-        torch_dtype=torch.float16,
-        device_map="auto",
-    )
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = PeftModel.from_pretrained(model, "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/rltf/ppo_new/save_pretrained/")
-    print("Loaded LLM: ", model_name)
-    print("Initializing MCTS tree/LLM env...")
     idx_ep = 0
-    
-    print("Episode not stated yet!")
-    print("Simulations per episode: ", simulation_per_episode)
-    model = model.to(device)
-    
     while idx_ep<num_episodes:
         print("********-- EPISODE-{}--************".format(idx_ep+1))
         start_time = datetime.now()
         if(operation == "mcts"):
             print("ORIG MODILE: ", module_name)
             print("--------MCTS-------")
-            merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir,
-                                                        model_name=model_name, tokenizer=tokenizer, model=model))
+            merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, \
+                                                           file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir))
             merged_tree = execute_episode(merged_tree,simulation_per_episode)
             print("END ROBUST/MAX VALUES:")
             evalMctsRobustValue, evalMctsMaxValue = test_episode(merged_tree)
@@ -131,7 +113,7 @@ if __name__ == '__main__':
             time_difference = end_time - start_time
             seconds = time_difference.total_seconds()
             print("MCTS Total Time: ", seconds)
-            
+
         else:
             print("Error reading --op parameter. Please only state 'beam', 'greedy', or 'mcts' as your input.")
             exit(1)
