@@ -5,15 +5,14 @@ import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor,as_completed
 import multiprocessing
 from multiprocessing import set_start_method
-from LLMQueryEnv import LLMQueryEnv
-from mcts import execute_episode,test_episode,initialize_MCTS_tree
+from LLMQueryEnv_og import LLMQueryEnv
+from mcts_og import execute_episode,test_episode,initialize_MCTS_tree, MCTS
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead, create_reference_model
 import argparse,os,re
 import os.path as osp
 import torch,shutil
 import statistics,pickle
 import csv
-from mcts import MCTS
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from torch.nn.parallel import DataParallel
 from peft import PeftModel

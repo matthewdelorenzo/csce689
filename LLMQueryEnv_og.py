@@ -9,7 +9,7 @@ from static_env import StaticEnv
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
-import OpenAI
+from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-GOoOKLyunGa2vKV2eRy8YjdKuJ8d_5HNdIahN0qLwMT3BlbkFJtryKaavon-rI0XFIU-IWr5S9zCF6AXKgFv-NfP0P4A"))
 
@@ -386,7 +386,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)
         filteredGen = self.trim_with_stopwords(best_terminal_state)
-        score = self.getPromptScore(filteredGen)
+        score = self.getPromptScore()
         return score
 
     def get_return(self,state,depth):

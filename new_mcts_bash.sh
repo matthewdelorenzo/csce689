@@ -6,11 +6,10 @@
 #SBATCH --mail-user=matthewdelorenzo@tamu.edu  # Where to send mail
 #SBATCH --nodes=1                        # Use one node
 #SBATCH --ntasks=1                       # Run a single task
-#SBATCH --cpus-per-task=8                # Number of CPU cores per task
-#SBATCH --gres=gpu:a100:1               # Type and number of GPUs 
-#SBATCH --partition=gpu                  # Partition/Queue to run in
-#SBATCH --qos=olympus-research-gpu       # Set QOS to use
-#SBATCH --time=24:00:00                  # Time limit hrs:min:sec - set to 1 hour
+#SBATCH --cpus-per-task=1                # Number of CPU cores per task
+#SBATCH --partition=cpu-research                  # Partition/Queue to run in
+#SBATCH --qos=olympus-cpu-research       # Set QOS to use
+#SBATCH --time=1:00:00               # Time limit hrs:min:sec - set to 1 hour
 
 # Define the common parameters
 
@@ -126,7 +125,7 @@ for i in "${!PROMPT_PATHS[@]}"; do
         --module_name "$MODULE_NAME" \
         --op "$OP" \
         --csv "${CSV_FILES[i]}" \
-        > "16b_mcts_old_results_fix/new16_output_${i}.txt"  # Redirect output to individual text files
+        > "new16_output_${i}.txt"  # Redirect output to individual text files
 done
 
 #alter .txt filepath if needed

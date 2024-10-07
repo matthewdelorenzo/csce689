@@ -1,0 +1,72 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-07 15:13:08,911] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/7420.v
+Prompt str:  //The 7400-series integrated circuits are a series of digital chips with a few gates each. 
+//The 7420 is a chip with two 4-input NAND gates.
+
+// Create a module with the same functionality as the 7420 chip. It has 8 inputs and 2 outputs.
+
+//Hint: You need to drive two signals (p1y and p2y) with a value.
+
+module top_module ( 
+    input p1a, p1b, p1c, p1d,
+    output p1y,
+    input p2a, p2b, p2c, p2d,
+    output p2y );
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+API response time: 0.394266 seconds
+Generated token:  //
+Token index (should only be 1):  0
+Output token:  1  Token:  //
+linear prob:  53.35
+Output token:  2  Token:  assign
+linear prob:  22.03
+Output token:  3  Token:     
+linear prob:  21.74
+Output token:  4  Token:  wire
+linear prob:  0.84
+Output token:  5  Token:      
+
+linear prob:  0.65
+Output token:  6  Token:  always
+linear prob:  0.63
+Output token:  7  Token:   
+linear prob:  0.41
+Output token:  8  Token:    
+linear prob:  0.08
+Output token:  9  Token:     
+
+linear prob:  0.07
+Output token:  10  Token:    
+
+linear prob:  0.06
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  //
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+API response time: 2.306435 seconds
+Rollout raw response:  assign p1y = ~(p1a & p1b & p1c & p1d);
+assign p2y = ~(p2a & p2b & p2c & p2d);
+
+endmodule
+Prompt token count: 196
+Generated token count: 46
+Total token count: 242
+Per generated token time: 0.050140 seconds
+Per total token time: 0.009531 seconds
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>

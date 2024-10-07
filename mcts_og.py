@@ -188,8 +188,12 @@ class MCTSNode:
         return self.TreeEnv.is_done_state(self.state,self.depth)
 
     def inject_noise(self):
+        self.child_prior = np.array(self.child_prior)
         dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.n_actions)
+        print(type(self.child_prior))
+        print(type(dirch))
         self.child_prior = self.child_prior * 0.85 + dirch * 0.15
+        
 
     def visits_as_probs(self, squash=False):
         if self.childType == 'max':
@@ -321,7 +325,7 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    file_name = "mcts_vgen16b/output" + str(i) + ".jsonl"
+    file_name = "mcts_vgen16b/output" + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
@@ -338,8 +342,8 @@ def execute_episode(mctsTree,simulation_budget):
             print("Iteration TIME (sec): ", elapsed_time)
             mctsTree.TreeEnv.row_data['episode'] = mctsTree.num_simulations
             mctsTree.TreeEnv.row_data['currentRun'] = mctsTree.root.N
-            output_data = {"task_id": task_id, "completion": output}
-            output_file.write(json.dumps(output_data) + '\n')
+            #output_data = {"task_id": task_id, "completion": output}
+            #output_file.write(json.dumps(output_data) + '\n')
             mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
 
         mctsTree.root.print_bfs_tree()
