@@ -9,6 +9,9 @@ from static_env import StaticEnv
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
+import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-GOoOKLyunGa2vKV2eRy8YjdKuJ8d_5HNdIahN0qLwMT3BlbkFJtryKaavon-rI0XFIU-IWr5S9zCF6AXKgFv-NfP0P4A"))
 
 def seed_everything(operation):  
     if(operation == "beam" or operation == "greedy"):
@@ -44,6 +47,42 @@ if torch.cuda.is_available():
 else:
     device = torch.device("cpu")
 #test
+
+
+def get_completion(
+    messages: list[dict[str, str]],
+    model: str = "gpt-4",
+    max_tokens=2048,
+    temperature=0,
+    stop=None,
+    seed=123,
+    tools=None,
+    logprobs=None,
+    top_logprobs=None,
+) -> tuple:
+    params = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        "stop": stop,
+        "seed": seed,
+        "logprobs": logprobs,
+        "top_logprobs": top_logprobs,
+    }
+    if tools:
+        params["tools"] = tools
+
+    start_time = time.time()
+    completion = client.chat.completions.create(**params)
+    end_time = time.time()
+    
+    response_time = end_time - start_time
+    print(f"API response time: {response_time:.6f} seconds")
+    
+    return completion, response_time
+
+
 class LLMQueryEnv(gym.Env, StaticEnv):
     
     def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = "",
@@ -385,34 +424,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                         return True
                 #return True
         return False
-    
-    def beam_search(self, state):
-        #State is self.init_state
-        self.beam_count = 0
-        target_sequence = [
-        self.tokenizer.convert_tokens_to_ids("end"),
-        self.tokenizer.convert_tokens_to_ids("module")
-        ]
-        intermediate_states = []
-        def custom_stopping_criterion(input_ids, state):
-            return self.check_sequence_in_ids(input_ids, target_sequence)
-
-        torchState = torch.from_numpy(state).to(device)
-        beam_output = self.model.generate(
-            input_ids = torchState,
-            max_length=torchState.size(1) + self.depth,
-            num_beams=3,
-            temperature=0.2,
-            do_sample=True,
-            stopping_criteria=[custom_stopping_criterion]
-
-        )
-
-        best_beam_output = beam_output[0]
-        best_beam_output_np = best_beam_output.cpu().numpy()
-        decoded_tokens = self.tokenizer.decode(best_beam_output_np, skip_special_tokens=True)
-        decoded_tokens = decoded_tokens.rstrip("#")
-        return decoded_tokens
 
 
     def is_comment(self, token_id):

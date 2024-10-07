@@ -38,22 +38,7 @@ class DummyNode:
 
 
 class MCTSNode:
-    """
-    Represents a node in the Monte-Carlo search tree. Each node holds a single
-    environment state.
-    """
-
     def __init__(self,state,n_actions, TreeEnv, action=None, parent=None,childType='robust'):
-        """
-        :param state: State that the node should hold.
-        :param n_actions: Number of actions that can be performed in each
-        state. Equal to the number of outgoing edges of the node.
-        :param TreeEnv: Static class that defines the environment dynamics,
-        e.g. which state follows from another state when performing an action.
-        :param action: Index of the action that led from the parent node to
-        this node.
-        :param parent: Parent node.
-        """
         self.TreeEnv = TreeEnv
         if parent is None:
             self.depth = 0
@@ -67,13 +52,10 @@ class MCTSNode:
         self.is_expanded = False
         self.childType = childType
 
-        self.n_vlosses = 0  # Number of virtual losses on this node
+        self.n_vlosses = 0  
         self.child_N = np.zeros([n_actions], dtype=np.float32)
         self.child_W = np.zeros([n_actions], dtype=np.float32)
-        #self.child_W = np.ones([n_actions], dtype=np.float32)*(-1.0)
         self.child_M = np.zeros([n_actions], dtype=np.float32)
-        #self.child_M = np.ones([n_actions], dtype=np.float32)*(-1.0)
-        # Save copy of original prior before it gets mutated by dirichlet noise
         self.original_prior = np.zeros([n_actions], dtype=np.float32)
         self.child_prior = np.zeros([n_actions], dtype=np.float32)
         self.child_visited = np.zeros([n_actions], dtype=np.int32)
@@ -137,39 +119,18 @@ class MCTSNode:
 
     @property
     def child_U(self):
-        #print("Child N = ", len(self.child_N))
-        #print("Self N = ", len(self.child_prior))
         return (c_PUCT * math.sqrt(1 + self.N) *
                 self.child_prior / (1 + self.child_N))
-        #Child_prior - purely LLM predictions
-        #averge
 
     @property
     def child_action_score(self):
-        """
-        Action_Score(s, a) = Q(s, a) + U(s, a) as in paper. A high value
-        means the node should be traversed.
-        """
-        #return self.child_Q + self.child_U
         return self.child_averagedMonteCarlo + self.child_U
     
     
     def select_leaf(self):
-        """
-        Traverses the MCT rooted in the current node until it finds a leaf
-        (i.e. a node that only exists in its parent node in terms of its
-        child_N and child_W values but not as a dedicated node in the parent's
-        children-mapping). Nodes are selected according to child_action_score.
-        It expands the leaf by adding a dedicated MCTSNode. Note that the
-        estimated value and prior probabilities still have to be set with
-        `incorporate_estimates` afterwards.
-        :return: Expanded leaf MCTSNode.
-        """
         current = self
         while True:
             print("Leaf selection - depth: ", current.depth)
-            #current.N += 1
-            # Encountered leaf node (i.e. node that is not yet expanded).
             if not current.is_expanded:
                 break
             print("Leaf selection - action scores: ", current.child_action_score, " taking action: ", np.argmax(current.child_action_score))
@@ -191,18 +152,10 @@ class MCTSNode:
 
 
     def maybe_add_child(self, action):
-        """
-        Adds a child node for the given action if it does not yet exists, and
-        returns it.
-        :param action: Action to take in current state which leads to desired
-        child node.
-        :return: Child MCTSNode.
-        """
         if action not in self.children:
             # Obtain state following given action.
             print("Adding child.")
             new_state = self.TreeEnv.next_state(self.state,self.child_ids[action])
-            #print("new state: ", new_state)
             self.children[action] = MCTSNode(new_state,self.n_actions,
                                              self.TreeEnv,
                                              action=action, parent=self,childType=self.childType)
@@ -210,25 +163,10 @@ class MCTSNode:
         return self.children[action]
         
     def incorporate_estimates(self,action_probs,predValue,actualValue,up_to):
-        """
-        Call if the node has just been expanded via `select_leaf` to
-        incorporate the prior action probabilities and state value estimated
-        by the neural network.
-        :param action_probs: Action probabilities for the current node's state
-        predicted by the neural network.
-        :param value: Value of the current node's state predicted by the neural
-        network.
-        :param up_to: The node to propagate until.
-        """
-        # A done node (i.e. episode end) should not go through this code path.
-        # Rather it should directly call `backup_value` on the final node.
-        # TODO: Add assert here
-        # Another thread already expanded this node in the meantime.
-        # Ignore wasted computation but correct visit counts.
+
         self.is_expanded = True
         self.original_prior = self.child_prior = action_probs
-        # This is a deviation from the paper that led to better results in
-        # practice (following the MiniGo implementation).
+ 
         self.child_W = np.zeros([self.n_actions], dtype=np.float32)
         self.child_M = np.zeros([self.n_actions], dtype=np.float32)
         self.backup_value(predValue,actualValue,up_to=up_to)
@@ -251,21 +189,10 @@ class MCTSNode:
 
     def inject_noise(self):
         dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.n_actions)
-        #dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.child_prior)
-        #self.child_prior = self.child_prior * 0.75 + dirch * 0.25
-
-        #print("Shape ", self.parent, len(self.child_prior), " ", len(dirch))
         self.child_prior = self.child_prior * 0.85 + dirch * 0.15
 
     def visits_as_probs(self, squash=False):
-        """
-        Returns the child visit counts as a probability distribution.
-        :param squash: If True, exponentiate the probabilities by a temperature
-        slightly large than 1 to encourage diversity in early steps.
-        :return: Numpy array of shape (n_actions).
-        """
         if self.childType == 'max':
-            #probs = self.child_Q # MCTS max child
             probs = self.child_averagedMonteCarlo # MCTS max child
         else:
             probs = self.child_N # MCTS robust child
@@ -309,24 +236,8 @@ class MCTSNode:
 
 
 class MCTS:
-    """
-    Represents a Monte-Carlo search tree and provides methods for performing
-    the tree search.
-    """
-
     def __init__(self, TreeEnv, childType='robust',
                  simulations_per_move=800, num_parallel=4):
-        """
-        :param agent_netw: Network for predicting action probabilities and
-        state value estimate.
-        :param TreeEnv: Static class that defines the environment dynamics,
-        e.g. which state follows from another state when performing an action.
-        :param seconds_per_move: Currently unused.
-        :param simulations_per_move: Number of traversals through the tree
-        before performing a step.
-        :param num_parallel: Number of leaf nodes to collect before evaluating
-        them in conjunction.
-        """
         self.TreeEnv = TreeEnv
         self.childType = childType
         self.simulations_per_move = simulations_per_move
@@ -368,15 +279,10 @@ class MCTS:
     def test_tree_search(self,cType):
         ## This should not backup value since we are only traversing to the leaf node based
         ## on robust-child or max-child and return the value
-        
-        #print("Post-MCTS ideal tree search: ")
         leaf = self.root.select_leaf_during_evaluation(cType)
         if leaf.is_done():
-            #print("MCTS tree nodes reached end of module.")
             value = self.TreeEnv.get_return(leaf.state,leaf.depth)
         else:
-            #print("MCTS tree didnt reach end nodes - geting MC return for rest of prediction:")
-            
             probs, ids = self.TreeEnv.getLLMestimates(leaf.state)
             leaf.child_ids = ids
             startingAction = leaf.child_ids[np.argmax(probs)]
@@ -415,26 +321,10 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
     )
 
 def execute_episode(mctsTree,simulation_budget):
-    """
-    Executes a single episode of the task using Monte-Carlo tree search with
-    the given agent network. It returns the experience tuples collected during
-    the search.
-    :param agent_netw: Network for predicting action probabilities and state
-    value estimate.
-    :param num_simulations: Number of simulations (traverses from root to leaf)
-    per action.
-    :param TreeEnv: Static environment that describes the environment dynamics.
-    :return: The observations for each step of the episode, the policy outputs
-    as output by the MCTS (not the pure neural network outputs), the individual
-    rewards in each step, total return for this episode and the final state of
-    this episode.
-    """
     file_name = "mcts_vgen16b/output" + str(i) + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
-        #print("Current runs: ", current_runs)
-        #print("Simulation budget", simulation_budget)
         while mctsTree.root.N < current_runs+simulation_budget:
             if mctsTree.root.N > 0 and mctsTree.root.N % 100 == 0:
                 print("ROBUST FINAL VALUE, ITERATION: ", current_runs)
@@ -453,7 +343,6 @@ def execute_episode(mctsTree,simulation_budget):
             mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
 
         mctsTree.root.print_bfs_tree()
-        #print("execute episode finished")
     return mctsTree
 
 def test_episode(mctsTree):
@@ -461,51 +350,5 @@ def test_episode(mctsTree):
     mctsEvalRobustValue = mctsTree.test_tree_search(cType='robust')
     return mctsEvalRobustValue, mctsEvalMaxValue
 
-def merge_nodes(merged_tree_node, thread_tree_node):
-    #for actions in current merged tree node
-    for action in merged_tree_node.children:
-        #if action (child) also exists in the thread tree
-        if action in thread_tree_node.children:
-            merge_nodes(merged_tree_node.children[action], thread_tree_node.children[action])
-        else:
-            #If the child does not exist
-            merged_tree_node.children[action] = thread_tree_node.children[action]
-
-    for action in thread_tree_node.children:
-        if action not in merged_tree_node.children:
-            merged_tree_node.children[action] = thread_tree_node.children[action]
-
-
-def update_root_node(merged_root, thread_root):
-    merged_root.parent.child_N += thread_root.parent.child_N
-    merged_root.parent.child_W += thread_root.parent.child_W
-    merged_root.parent.child_M += thread_root.parent.child_M
-
-def update_node_children(merged_node, thread_node):
-    #add child_n, child_m, child_w, child_visited
-    #If child dictionary doesnt contain node, add it here.
-    merged_node.child_N += thread_node.child_N
-    merged_node.child_W += thread_node.child_W
-    merged_node.child_M += thread_node.child_M
-    for action in thread_node.children:
-        if action not in merged_node.children:
-            merged_node.children[action] = thread_node.children[action]
-
-def merge_nodes(merged_tree_node, thread_tree_node):
-    if (merged_tree_node.parent == DummyNode() and thread_tree_node.parent == DummyNode()):
-        #If root node
-        update_root_node(merged_tree_node, thread_tree_node)
-
-    if thread_tree_node.children:
-        update_node_children(merged_tree_node, thread_tree_node)
-
-        for action in thread_tree_node.children:
-            thread_node_child = thread_tree_node.children[action]
-            merged_node_child = merged_tree_node.children[action]            
-            merge_nodes(merged_node_child, thread_node_child)
-    
-def merge_trees(merge_tree, thread_trees):
-    for thread_tree in thread_trees:
-        merge_nodes(merge_tree.root, thread_tree.root)
 
         
