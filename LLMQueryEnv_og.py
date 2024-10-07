@@ -148,19 +148,14 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 self.verilogFunctionalityCheck(currentState)
                 if self.compilable:     #if compilable, finish prompt generation.
                     return True
-                #elif b'Unknown module type' in self.compilation_output:    #if unknown module, continue generation.
-                #    return False
-                else:   #if compilation error is of origin other than "undefined module", finish generation.
+                else:  
                     return True
-
-                #return True
             else:
                 return False
             
     def verilogFunctionalityCheck(self, currentState):
-        verilog_code = self.get_prompt_from_state(currentState)
-        # Write the Verilog code to a temporary file - filenamed after module name.
-        print(verilog_code)
+        verilog_code = currentState
+        #print(verilog_code)
         module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
         if not os.path.exists(module_dump_folder):
             try:
@@ -169,9 +164,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 print("Error creating dump file: ", e)
 
         output_verilog_file = str(os.getpid()) + "_" + self.orig_module + ".v"       
-
         output_file_path = os.path.join(module_dump_folder, output_verilog_file)
-
         with open(output_file_path, 'w') as temp_file:
             temp_file.write(verilog_code)
 
@@ -179,7 +172,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
         os.chmod(output_file_path, 0o777)
         #Setting the testbench file path (assuming in same location as prompt file).
-
         self.compilable = self.compilation_check(output_file_path, self.tb_path)
         #Call functionality check if compilable.
         
@@ -381,25 +373,53 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             return prompt_from_state
 
     def getLLMestimates(self,state):
-        with torch.no_grad():
-            torchState = torch.from_numpy(state).to(device)
-            output = self.model(input_ids=torchState)
-            next_token_logits = output.logits[0, -1, :]
-            next_token_probs = torch.softmax(next_token_logits, dim=-1)
-            sorted_probs, sorted_ids = torch.sort(next_token_probs, dim=-1, descending=True)
-
-            sorted_ids_arr = sorted_ids[:].detach().cpu().numpy()
-            sorted_probs_arr = sorted_probs[:].detach().cpu().numpy()
-            #CHANGED THIS TO BE NO COMMENTS! CAN CHANGE BACK BY UNCOMMENTING!
-            non_comment_mask = np.array([not self.is_comment(token_id) for token_id in sorted_ids_arr])
-            non_comment_all_ids = sorted_ids_arr[non_comment_mask]
-            non_comment_ids = non_comment_all_ids[:self.n_actions]
-            non_comment_probs = sorted_probs_arr[non_comment_mask][:self.n_actions]
-            decoded_tokens = [self.tokenizer.decode([prob], skip_special_tokens=True) for prob in non_comment_all_ids]
             #sorted_ids_trim = sorted_ids_arr[:self.n_actions]
             #sorted_probs_trim = sorted_probs_arr[:self.n_actions]
             
-            return non_comment_probs, non_comment_ids
+        API_RESPONSE, response_time = get_completion(
+            [
+                {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
+                Then in your response, directly generate the rest of the Verilog code provided in the prompt (do not generate any other text)."},
+                {"role": "user", "content": state}
+            ],
+            model="gpt-4",
+            max_tokens=1,
+            logprobs=True,
+            top_logprobs=5,
+            )
+
+        # Extract the token usage details from the main response object
+        usage = API_RESPONSE.usage
+        prompt_tokens = usage.prompt_tokens
+        completion_tokens = usage.completion_tokens
+        total_tokens = usage.total_tokens
+        response_text = API_RESPONSE.choices[0].message.content
+
+        print("Generated token: ", response_text)
+        generated_token_count = completion_tokens
+
+        # print(f"Prompt token count: {prompt_tokens}")
+        # print(f"Generated token count: {generated_token_count}")
+        # print(f"Total token count: {total_tokens}")
+        # per_token_time = response_time / generated_token_count if generated_token_count > 0 else float('inf')
+        # per_total_token_time = response_time / total_tokens if total_tokens > 0 else float('inf')
+        # print(f"Per generated token time: {per_token_time:.6f} seconds")
+        # print(f"Per total token time: {per_total_token_time:.6f} seconds")
+        
+        linear_probs = []
+        tokens = []
+
+        logprobs = API_RESPONSE.choices[0].logprobs
+        for token_index, token_logprobs in enumerate(logprobs.content):
+            print("Token index: ", token_index)
+            for i, logprob in enumerate(token_logprobs.top_logprobs, start=1):
+                linear_probs.append(np.round(np.exp(logprob.logprob) * 100, 2))
+                tokens.append(logprob.token)
+                print("Output token: ", i, " Token: ", logprob.token)
+                print("linear prob: ", np.round(np.exp(logprob.logprob) * 100, 2))
+
+
+        return linear_probs, tokens
     
 
     def check_sequence_in_ids(self, ids, target_sequence):
@@ -432,44 +452,38 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return '//' in decoded_token or '/*' in decoded_token or '*/' in decoded_token
     
     def get_best_terminal_state(self,state,depth):
-        start_time = datetime.now()
-        #cumul_token_time = 0
-        i = 0
-        self.non_compilable_attempts = 0
-        with torch.no_grad():
-            torchState = torch.from_numpy(state).to(device)
-            start_time = datetime.now()
-            while not self.is_done_state(state,depth):
-                output = self.model(input_ids=torchState)
+        API_RESPONSE, response_time = get_completion(
+            [
+                {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
+                Then in your response, directly generate the rest of the Verilog code provided in the prompt (do not generate any other text)."},
+                {"role": "user", "content": state}
+            ],
+            model="gpt-4",
+            max_tokens=2048,
+        )
 
-                next_token_logits = output.logits[0, -1, :]
-                next_token_prob = torch.softmax(next_token_logits, dim=-1)
+        # Extract the token usage details from the main response object
+        usage = API_RESPONSE.usage
+        prompt_tokens = usage.prompt_tokens
+        completion_tokens = usage.completion_tokens
+        total_tokens = usage.total_tokens
+        response_text = API_RESPONSE.choices[0].message.content
 
-                sorted_probs, sorted_ids = torch.sort(next_token_prob, dim=-1, descending=True)
-                selected_token = sorted_ids[0].unsqueeze(0).unsqueeze(0)
-                chosen_id = selected_token
-                chosen_index = 0
-                print_ids = sorted_ids[:5].cpu().numpy().tolist()
-                decode_ids = [self.tokenizer.decode([token_id], skip_special_tokens=True) for token_id in print_ids]
-                if(self.op == "mcts"):
-                    while (self.is_comment(chosen_id.item()) and chosen_index < sorted_ids.size(-1)):
-                        chosen_index += 1
-                        chosen_id = sorted_ids[chosen_index].unsqueeze(0).unsqueeze(0)
-                
-                selected_token = chosen_id
-                print_probs = sorted_probs[:5].cpu().numpy().tolist()
-                print_probs =  [round(value, 2) for value in print_probs]
-                torchState = torch.cat([torchState, selected_token], dim=-1)
-                state = torchState.detach().cpu().numpy()
-                decoded = self.tokenizer.decode(state[0], skip_special_tokens=True)    
-                depth+=1
-                i += 1
-            #print("Tokens: ", i)
-            end_time = datetime.now()
-            time_difference = end_time - start_time
-            seconds = time_difference.total_seconds()
-            print("LLM generates return in: ", seconds, " seconds")
-            return state
+        print("Rollout raw response: ", response_text)
+        # Calculate the generated token count
+        generated_token_count = completion_tokens
+
+        # Print the results
+        print(f"Prompt token count: {prompt_tokens}")
+        print(f"Generated token count: {generated_token_count}")
+        print(f"Total token count: {total_tokens}")
+
+        # Calculate per token time for generated tokens
+        per_token_time = response_time / generated_token_count if generated_token_count > 0 else float('inf')
+        per_total_token_time = response_time / total_tokens if total_tokens > 0 else float('inf')
+        print(f"Per generated token time: {per_token_time:.6f} seconds")
+        print(f"Per total token time: {per_total_token_time:.6f} seconds")
+        return response_text
 
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)
