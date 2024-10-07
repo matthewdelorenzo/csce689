@@ -12,6 +12,8 @@ from LLMQueryEnv_og import LLMQueryEnv
 import json
 # Exploration constant
 c_PUCT = 1.38
+c_PUCT = np.float32(c_PUCT)
+
 # Dirichlet noise alpha parameter.
 D_NOISE_ALPHA = 0.03
 # Number of steps into the episode after which we always select the
@@ -119,6 +121,12 @@ class MCTSNode:
 
     @property
     def child_U(self):
+        print("Types of variables")
+        print(type(self.N))
+        print(type(c_PUCT))
+        print(type(self.child_prior))
+        print(type(self.child_N))
+        self.child_prior = np.array(self.child_prior)
         return (c_PUCT * math.sqrt(1 + self.N) *
                 self.child_prior / (1 + self.child_N))
 
@@ -324,29 +332,44 @@ def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name
                     model_name=model_name, tokenizer=tokenizer, model=model)
     )
 
-def execute_episode(mctsTree,simulation_budget):
+def execute_episode(mctsTree, simulation_budget):
     file_name = "output" + ".jsonl"
     with open(file_name, 'w') as output_file:
         mctsTree.num_simulations += 1
         current_runs = mctsTree.root.N
-        while mctsTree.root.N < current_runs+simulation_budget:
+        
+        # Record the start time of the episode
+        episode_start_time = time.process_time()
+        
+        while mctsTree.root.N < current_runs + simulation_budget:
             if mctsTree.root.N > 0 and mctsTree.root.N % 100 == 0:
                 print("ROBUST FINAL VALUE, ITERATION: ", current_runs)
                 evalMctsRobustValue, evalMctsMaxValue = test_episode(mctsTree)
+            
             start_time = time.process_time()
             mctsTree.tree_search()
             end_time = time.process_time()
+            
             print("-------------------------------------------------------")
             print("MCTS Iteration: ", mctsTree.root.N)
             elapsed_time = end_time - start_time
             print("Iteration TIME (sec): ", elapsed_time)
+            
             mctsTree.TreeEnv.row_data['episode'] = mctsTree.num_simulations
             mctsTree.TreeEnv.row_data['currentRun'] = mctsTree.root.N
             #output_data = {"task_id": task_id, "completion": output}
             #output_file.write(json.dumps(output_data) + '\n')
             mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
-
+        
+        # Record the end time of the episode
+        episode_end_time = time.process_time()
+        
+        # Calculate the total time for the episode
+        total_episode_time = episode_end_time - episode_start_time
+        print("Total Episode TIME (sec): ", total_episode_time)
+        
         mctsTree.root.print_bfs_tree()
+    
     return mctsTree
 
 def test_episode(mctsTree):

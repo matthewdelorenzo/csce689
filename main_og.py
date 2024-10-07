@@ -29,7 +29,7 @@ class CsvLogger:
     def log(self, data):
         with open(self.filename, 'a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog']])
+            #writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog']])
 
 
 

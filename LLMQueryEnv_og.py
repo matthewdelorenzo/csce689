@@ -109,7 +109,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = currentState
-
+        print("Initiating comile/functionality check.")
         #Creating folder, writing current verilog file.
         module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
         if not os.path.exists(module_dump_folder):
@@ -139,6 +139,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         print("Running getPromptScore: ")
 
         if not self.compilable:
+
             self.row_data['area'] = 'N/A'
             self.row_data['delay'] = 'N/A'
             self.row_data['score'] = -1
@@ -212,6 +213,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     
     def compilation_check(self, module_path, testbench_path=None):
          # Compile the Verilog code using the iVerilog
+        print("Compilation check...")
         try:
             compile_output = subprocess.check_output(['iverilog', '-o', os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation'), testbench_path, module_path], stderr=subprocess.STDOUT)
             compile_exit_code = 0  # Compilation successful
@@ -229,6 +231,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
     #Helper function to check the functionality of output Verilog code against its respective testbench.
     def functionality_check(self):
+        print("Functionality check...")
         try:
             sim_path = os.path.join(self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module, str(os.getpid()) + '_simulation')
             simulation_output = subprocess.check_output(['vvp', sim_path], stderr=subprocess.STDOUT)
@@ -325,7 +328,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             logprobs=True,
             top_logprobs=self.n_actions,
             )
-
+        
         # Extract the token usage details from the main response object
         usage = API_RESPONSE.usage
         prompt_tokens = usage.prompt_tokens
@@ -350,6 +353,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return linear_probs, tokens
     
     def get_best_terminal_state(self,state,depth):
+        print("Getting terminal state (rollout).")
         API_RESPONSE, response_time = get_completion(
             [
                 {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
@@ -359,30 +363,21 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             model="gpt-4",
             max_tokens=2048,
         )
-
+        
         # Extract the token usage details from the main response object
         usage = API_RESPONSE.usage
         prompt_tokens = usage.prompt_tokens
         completion_tokens = usage.completion_tokens
         total_tokens = usage.total_tokens
         response_text = API_RESPONSE.choices[0].message.content
-
+        
+        depth = depth + completion_tokens
+        state = state + response_text
+        self.is_done_state(state, depth)
         print("Rollout raw response: ", response_text)
-        # Calculate the generated token count
-        generated_token_count = completion_tokens
+        print("Depth of rollout: ", depth)
 
-        # Print the results
-        print(f"Prompt token count: {prompt_tokens}")
-        print(f"Generated token count: {generated_token_count}")
-        print(f"Total token count: {total_tokens}")
-
-        # Calculate per token time for generated tokens
-        per_token_time = response_time / generated_token_count if generated_token_count > 0 else float('inf')
-        per_total_token_time = response_time / total_tokens if total_tokens > 0 else float('inf')
-        print(f"Per generated token time: {per_token_time:.6f} seconds")
-        print(f"Per total token time: {per_total_token_time:.6f} seconds")
-        total_response = state + response_text
-        return total_response
+        return state
     
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)

@@ -16,7 +16,7 @@
 #Change
 DUMPDIR="/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump/"
 RUNID=0
-SIM=5
+SIM=100
 EP=1
 MODULE_NAME="top_module"
 OP="mcts"
