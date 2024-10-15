@@ -29,7 +29,7 @@ class CsvLogger:
     def log(self, data):
         with open(self.filename, 'a', newline='') as file:
             writer = csv.writer(file)
-            #writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog']])
+            writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog']])
 
 
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     print(prompt_filepath)
     try:
         with open(prompt_filepath, "r") as prompt_file:
-            prompt_str = prompt_file.read()
+            prompt_str = prompt_file.read() + "\n"
             print("Prompt str: ", prompt_str)
     except:
         print("Main: Error reading prompt file.")

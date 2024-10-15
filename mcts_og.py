@@ -121,11 +121,6 @@ class MCTSNode:
 
     @property
     def child_U(self):
-        print("Types of variables")
-        print(type(self.N))
-        print(type(c_PUCT))
-        print(type(self.child_prior))
-        print(type(self.child_N))
         self.child_prior = np.array(self.child_prior)
         return (c_PUCT * math.sqrt(1 + self.N) *
                 self.child_prior / (1 + self.child_N))
@@ -198,8 +193,6 @@ class MCTSNode:
     def inject_noise(self):
         self.child_prior = np.array(self.child_prior)
         dirch = np.random.dirichlet([D_NOISE_ALPHA] * self.n_actions)
-        print(type(self.child_prior))
-        print(type(dirch))
         self.child_prior = self.child_prior * 0.85 + dirch * 0.15
         
 
@@ -366,7 +359,7 @@ def execute_episode(mctsTree, simulation_budget):
         
         # Calculate the total time for the episode
         total_episode_time = episode_end_time - episode_start_time
-        print("Total Episode TIME (sec): ", total_episode_time)
+        print("MCTS EXECUTION TIME (sec): ", total_episode_time)
         
         mctsTree.root.print_bfs_tree()
     

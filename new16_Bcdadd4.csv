@@ -1,0 +1,4347 @@
+Area,Delay,Score,Current Run,Episode,Verilog
+N/A,N/A,-1,2.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarations for internal carry and sum signals
+wire [3:0] carry, s[3:0];
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(carry[0]), .sum(s[0]));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(carry[0]), .cout(carry[1]), .sum(s[1]));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(carry[1]), .cout(carry[2]), .sum(s[2]));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(carry[2]), .cout(cout), .sum(s[3]));
+
+// Concatenate the sum outputs
+assign sum = {s[3], s[2], s[1], s[0]};
+
+endmodule"
+N/A,N/A,-1,3.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,4.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarations
+wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Concatenate the sum outputs
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,5.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,6.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,7.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+   wire c0, c1, c2;
+
+   assign a0 = a[3:0];
+   assign a1 = a[7:4];
+   assign a2 = a[11:8];
+   assign a3 = a[15:12];
+
+   assign b0 = b[3:0];
+   assign b1 = b[7:4];
+   assign b2 = b[11:8];
+   assign b3 = b[15:12];
+
+   bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+   bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+   bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+   bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,8.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(),
+    .sum(sum[3:0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(adder0.cout),
+    .cout(),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(adder1.cout),
+    .cout(),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(adder2.cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,9.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,10.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,11.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,12.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0] w1, w2, w3;
+wire c1, c2, c3;
+
+bcd_fadd adder1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(c1),
+    .sum(w1)
+);
+
+bcd_fadd adder2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(c1),
+    .cout(c2),
+    .sum(w2)
+);
+
+bcd_fadd adder3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(c2),
+    .cout(c3),
+    .sum(w3)
+);
+
+bcd_fadd adder4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(c3),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+assign sum[3:0] = w1;
+assign sum[7:4] = w2;
+assign sum[11:8] = w3;
+
+endmodule"
+N/A,N/A,-1,13.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////wiredeclarations for internal carry and sum signals
+wire c1, c2, c3;
+wire [3:0] s1, s2, s3, s4;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(c1),
+    .sum(s1)
+);
+
+bcd_fadd adder2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(c1),
+    .cout(c2),
+    .sum(s2)
+);
+
+bcd_fadd adder3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(c2),
+    .cout(c3),
+    .sum(s3)
+);
+
+bcd_fadd adder4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(c3),
+    .cout(cout),
+    .sum(s4)
+);
+
+// Concatenate the sum outputs to form a 16-bit sum
+assign sum = {s4, s3, s2, s1};
+
+endmodule"
+N/A,N/A,-1,14.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode//wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,15.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0] c;
+   
+   bcd_fadd adder0 (
+       .a(a[3:0]),
+       .b(b[3:0]),
+       .cin(cin),
+       .cout(c[0]),
+       .sum(sum[3:0])
+   );
+   
+   bcd_fadd adder1 (
+       .a(a[7:4]),
+       .b(b[7:4]),
+       .cin(c[0]),
+       .cout(c[1]),
+       .sum(sum[7:4])
+   );
+   
+   bcd_fadd adder2 (
+       .a(a[11:8]),
+       .b(b[11:8]),
+       .cin(c[1]),
+       .cout(c[2]),
+       .sum(sum[11:8])
+   );
+   
+   bcd_fadd adder3 (
+       .a(a[15:12]),
+       .b(b[15:12]),
+       .cin(c[2]),
+       .cout(cout),
+       .sum(sum[15:12])
+   );
+   
+endmodule"
+N/A,N/A,-1,16.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,17.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//bcdfadd bcd_fadd1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd bcd_fadd2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd bcd_fadd3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,18.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddadd0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd add1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd add2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd add3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,19.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3], sum[2], sum[1], sum[0];
+wire cout1, cout2, cout3;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout1), .sum(sum[0]));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout1), .cout(cout2), .sum(sum[1]));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout2), .cout(cout3), .sum(sum[2]));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout3), .cout(cout), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,20.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,21.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+////wiredeclarations
+wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,22.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0], carry[3:0];
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(carry[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(carry[0]), .cout(carry[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(carry[1]), .cout(carry[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(carry[2]), .cout(cout), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,23.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0] sum0, sum1, sum2, sum3;
+   wire cout0, cout1, cout2;
+
+   bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+   bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+   bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+   bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+   assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,24.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode////wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,25.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0], carry[3:0];
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(carry[0]), .sum(sum[3:0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(carry[0]), .cout(carry[1]), .sum(sum[7:4]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(carry[1]), .cout(carry[2]), .sum(sum[11:8]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(carry[2]), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,26.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2, cout3;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout3), .sum(sum3));
+
+// Assign outputs
+assign sum = {sum3, sum2, sum1, sum0};
+assign cout = cout3;
+
+endmodule"
+N/A,N/A,-1,27.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddaddU1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd U2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd U3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd U4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,28.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0], cout[3:0];
+wire[3:0]a_in[3:0], b_in[3:0];
+
+assign a_in[0] = a[3:0];
+assign a_in[1] = a[7:4];
+assign a_in[2] = a[11:8];
+assign a_in[3] = a[15:12];
+
+assign b_in[0] = b[3:0];
+assign b_in[1] = b[7:4];
+assign b_in[2] = b[11:8];
+assign b_in[3] = b[15:12];
+
+bcd_fadd adder0 (.a(a_in[0]), .b(b_in[0]), .cin(cin), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a_in[1]), .b(b_in[1]), .cin(cout[0]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a_in[2]), .b(b_in[2]), .cin(cout[1]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a_in[3]), .b(b_in[3]), .cin(cout[2]), .cout(cout[3]), .sum(sum[3]));
+
+assign cout = cout[3];
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,29.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////wiredeclarations
+wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,30.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcodebcdwire[3:0] sum1, sum2, sum3, sum4;
+wire cout1, cout2, cout3;
+
+bcd_fadd add1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout1),
+    .sum(sum1)
+);
+
+bcd_fadd add2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout1),
+    .cout(cout2),
+    .sum(sum2)
+);
+
+bcd_fadd add3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout2),
+    .cout(cout3),
+    .sum(sum3)
+);
+
+bcd_fadd add4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout3),
+    .cout(cout),
+    .sum(sum4)
+);
+
+assign sum = {sum4, sum3, sum2, sum1};
+
+endmodule"
+N/A,N/A,-1,31.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0] sum0, sum1, sum2, sum3;
+   wire cout0, cout1, cout2;
+
+   bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+   bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+   bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+   bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+   assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,32.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wire cout[3:0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout[3]),
+    .sum(sum[3])
+);
+
+assign cout = cout[3];
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,33.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2, cout3;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Concatenate the sum outputs
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,34.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]a[3:0], b[3:0], sum[3:0];
+wire cout[3:0], cin[3:0];
+
+assign a[0] = a[3:0];
+assign a[1] = a[7:4];
+assign a[2] = a[11:8];
+assign a[3] = a[15:12];
+
+assign b[0] = b[3:0];
+assign b[1] = b[7:4];
+assign b[2] = b[11:8];
+assign b[3] = b[15:12];
+
+assign cin[0] = cin;
+assign cin[1] = cout[0];
+assign cin[2] = cout[1];
+assign cin[3] = cout[2];
+
+bcd_fadd adder0 (.a(a[0]), .b(b[0]), .cin(cin[0]), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[1]), .b(b[1]), .cin(cin[1]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[2]), .b(b[2]), .cin(cin[2]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[3]), .b(b[3]), .cin(cin[3]), .cout(cout[3]), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+assign cout = cout[3];
+
+endmodule"
+N/A,N/A,-1,35.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//bcdfaddbcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+wire c1, c2, c3;
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(c1),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(c1),
+    .cout(c2),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(c2),
+    .cout(c3),
+    .sum(sum[15:12])
+);
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,36.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddaddU1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd addU2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd addU3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd addU4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,37.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2, cout3;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout3), .sum(sum3));
+
+// Assign outputs
+assign sum = {sum3, sum2, sum1, sum0};
+assign cout = cout3;
+
+endmodule"
+N/A,N/A,-1,38.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wire cout1, cout2, cout3;
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout1),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout1),
+    .cout(cout2),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout2),
+    .cout(cout3),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout3),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,39.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+   wire c1, c2, c3;
+
+   assign a0 = a[3:0];
+   assign a1 = a[7:4];
+   assign a2 = a[11:8];
+   assign a3 = a[15:12];
+
+   assign b0 = b[3:0];
+   assign b1 = b[7:4];
+   assign b2 = b[11:8];
+   assign b3 = b[15:12];
+
+   bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c1), .sum(sum[3:0]));
+   bcd_fadd add1 (.a(a1), .b(b1), .cin(c1), .cout(c2), .sum(sum[7:4]));
+   bcd_fadd add2 (.a(a2), .b(b2), .cin(c2), .cout(c3), .sum(sum[11:8]));
+   bcd_fadd add3 (.a(a3), .b(b3), .cin(c3), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,40.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+////wiredeclarationswire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,41.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]s[3:0], c[3:0];
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(c[0]), .sum(s[0]));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(c[0]), .cout(c[1]), .sum(s[1]));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(c[1]), .cout(c[2]), .sum(s[2]));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(c[2]), .cout(cout), .sum(s[3]));
+
+assign sum = {s[3], s[2], s[1], s[0]};
+
+endmodule"
+N/A,N/A,-1,42.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourimplementationbcdwire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,43.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Pleasecompletethe rest of the top_module code here:
+
+    wire [3:0] sum0, sum1, sum2, sum3;
+    wire cout0, cout1, cout2;
+
+    bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+    bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+    bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+    bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+    assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,44.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]w[3:0];
+wire c[3:0];
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(c[0]), .sum(w[0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(c[0]), .cout(c[1]), .sum(w[1]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(c[1]), .cout(c[2]), .sum(w[2]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(c[2]), .cout(cout), .sum(w[3]));
+
+assign sum = {w[3], w[2], w[1], w[0]};
+
+endmodule"
+N/A,N/A,-1,45.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddadder#(.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout1), .sum(sum[3:0]));
+bcd_fadd adder2(.a(a[7:4]), .b(b[7:4]), .cin(cout1), .cout(cout2), .sum(sum[7:4]));
+bcd_fadd adder3(.a(a[11:8]), .b(b[11:8]), .cin(cout2), .cout(cout3), .sum(sum[11:8]));
+bcd_fadd adder4(.a(a[15:12]), .b(b[15:12]), .cin(cout3), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,46.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2, c3;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(c3), .sum(sum[15:12]));
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,47.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum0, sum1, sum2, sum3;
+   wire cout0, cout1, cout2;
+
+   bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+   bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+   bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+   bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+   assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,48.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[2:0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,49.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////////// Instantiate 4 copies of bcd_fadd
+bcd_fadd bcd_fadd1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd bcd_fadd2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd bcd_fadd3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,50.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcodewire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,51.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3:0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout[3]),
+    .sum(sum[3])
+);
+
+assign cout = cout[3];
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,52.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//bcdfaddinstancesbcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+wire c1, c2, c3;
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(c1),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(c1),
+    .cout(c2),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(c2),
+    .cout(c3),
+    .sum(sum[15:12])
+);
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,53.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddu#(.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout1), .sum(sum[3:0]));
+bcd_fadd u2 (.a(a[7:4]), .b(b[7:4]), .cin(cout1), .cout(cout2), .sum(sum[7:4]));
+bcd_fadd u3 (.a(a[11:8]), .b(b[11:8]), .cin(cout2), .cout(cout3), .sum(sum[11:8]));
+bcd_fadd u4 (.a(a[15:12]), .b(b[15:12]), .cin(cout3), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,54.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3:0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout[3]),
+    .sum(sum[3])
+);
+
+assign cout = cout[3];
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,55.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum[3:0], carry[3:0];
+
+   bcd_fadd adder0 (
+       .a(a[3:0]),
+       .b(b[3:0]),
+       .cin(cin),
+       .cout(carry[0]),
+       .sum(sum[3:0])
+   );
+
+   bcd_fadd adder1 (
+       .a(a[7:4]),
+       .b(b[7:4]),
+       .cin(carry[0]),
+       .cout(carry[1]),
+       .sum(sum[7:4])
+   );
+
+   bcd_fadd adder2 (
+       .a(a[11:8]),
+       .b(b[11:8]),
+       .cin(carry[1]),
+       .cout(carry[2]),
+       .sum(sum[11:8])
+   );
+
+   bcd_fadd adder3 (
+       .a(a[15:12]),
+       .b(b[15:12]),
+       .cin(carry[2]),
+       .cout(cout),
+       .sum(sum[15:12])
+   );
+
+endmodule"
+N/A,N/A,-1,56.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,57.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3:0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,58.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////wiredeclarationswire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2, cout3;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout3), .sum(sum3));
+
+// Assign outputs
+assign sum = {sum3, sum2, sum1, sum0};
+assign cout = cout3;
+
+endmodule"
+N/A,N/A,-1,59.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode////bcdfadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+wire carry1;
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(carry1),
+    .sum(sum[7:4])
+);
+
+wire carry2;
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(carry1),
+    .cout(carry2),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(carry2),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,60.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]a[3:0], b[3:0], sum[3:0];
+wire cout[3:0], cin[3:0];
+
+assign a[3:0] = a[3:0];
+assign a[7:4] = a[7:4];
+assign a[11:8] = a[11:8];
+assign a[15:12] = a[15:12];
+
+assign b[3:0] = b[3:0];
+assign b[7:4] = b[7:4];
+assign b[11:8] = b[11:8];
+assign b[15:12] = b[15:12];
+
+assign cin[0] = cin;
+assign cin[1] = cout[0];
+assign cin[2] = cout[1];
+assign cin[3] = cout[2];
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin[0]), .cout(cout[0]), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cin[1]), .cout(cout[1]), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cin[2]), .cout(cout[2]), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cin[3]), .cout(cout[3]), .sum(sum[15:12]));
+
+assign cout = cout[3];
+assign sum[3:0] = sum[3:0];
+assign sum[7:4] = sum[7:4];
+assign sum[11:8] = sum[11:8];
+assign sum[15:12] = sum[15:12];
+
+endmodule"
+N/A,N/A,-1,61.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wirewire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,62.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddbadd#1 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout1), .sum(sum[3:0]));
+bcd_fadd badd#2 (.a(a[7:4]), .b(b[7:4]), .cin(cout1), .cout(cout2), .sum(sum[7:4]));
+bcd_fadd badd#3 (.a(a[11:8]), .b(b[11:8]), .cin(cout2), .cout(cout3), .sum(sum[11:8]));
+bcd_fadd badd#4 (.a(a[15:12]), .b(b[15:12]), .cin(cout3), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,63.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum[3:0];
+   wire cout[3:0];
+
+   bcd_fadd add0 (
+       .a(a[3:0]),
+       .b(b[3:0]),
+       .cin(cin),
+       .cout(cout[0]),
+       .sum(sum[0])
+   );
+
+   bcd_fadd add1 (
+       .a(a[7:4]),
+       .b(b[7:4]),
+       .cin(cout[0]),
+       .cout(cout[1]),
+       .sum(sum[1])
+   );
+
+   bcd_fadd add2 (
+       .a(a[11:8]),
+       .b(b[11:8]),
+       .cin(cout[1]),
+       .cout(cout[2]),
+       .sum(sum[2])
+   );
+
+   bcd_fadd add3 (
+       .a(a[15:12]),
+       .b(b[15:12]),
+       .cin(cout[2]),
+       .cout(cout[3]),
+       .sum(sum[3])
+   );
+
+   assign cout = cout[3];
+   assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,64.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout[0]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout[1]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout[2]), .cout(cout), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,65.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+////wiredeclarationswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+// Assigning the input vectors to the 4-digit BCD numbers
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,66.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode   wire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+    wire c0, c1, c2;
+    assign a0 = a[3:0];
+    assign a1 = a[7:4];
+    assign a2 = a[11:8];
+    assign a3 = a[15:12];
+    assign b0 = b[3:0];
+    assign b1 = b[7:4];
+    assign b2 = b[11:8];
+    assign b3 = b[15:12];
+
+    bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+    bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+    bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+    bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,67.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]cout;
+wire[3:0] sum1, sum2, sum3;
+wire cout1, cout2, cout3;
+
+bcd_fadd adder1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout1),
+    .sum(sum[3:0])
+);
+
+bcd_fadd adder2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout1),
+    .cout(cout2),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout2),
+    .cout(cout3),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout3),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,68.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wirewirewire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,69.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wirewirewire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,70.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//bcd_faddinstances
+
+bcd_fadd bcd_fadd1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd bcd_fadd2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd bcd_fadd3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,71.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum[3:0], carry[3:0];
+
+   bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(carry[0]), .sum(sum[0]));
+   bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(carry[0]), .cout(carry[1]), .sum(sum[1]));
+   bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(carry[1]), .cout(carry[2]), .sum(sum[2]));
+   bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(carry[2]), .cout(cout), .sum(sum[3]));
+
+endmodule"
+N/A,N/A,-1,72.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddbcd_f_add1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd bcd_fadd2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd bcd_fadd3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,73.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////bcdfadd bcd_fadd1 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+wire inter_carry1;
+
+bcd_fadd bcd_fadd2 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(inter_carry1),
+    .sum(sum[7:4])
+);
+
+wire inter_carry2;
+
+bcd_fadd bcd_fadd3 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(inter_carry1),
+    .cout(inter_carry2),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd4 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(inter_carry2),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,74.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,75.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wirewirewirewire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Combine the sums
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,76.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]w[3:0];
+
+bcd_fadd add0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(w[0]),
+    .sum(sum[3:0])
+);
+
+bcd_fadd add1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(w[0]),
+    .cout(w[1]),
+    .sum(sum[7:4])
+);
+
+bcd_fadd add2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(w[1]),
+    .cout(w[2]),
+    .sum(sum[11:8])
+);
+
+bcd_fadd add3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(w[2]),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,77.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcodebcdwire[[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd add0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout0),
+    .sum(sum0)
+);
+
+bcd_fadd add1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout0),
+    .cout(cout1),
+    .sum(sum1)
+);
+
+bcd_fadd add2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout1),
+    .cout(cout2),
+    .sum(sum2)
+);
+
+bcd_fadd add3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout2),
+    .cout(cout),
+    .sum(sum3)
+);
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,78.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum[3:0], sum[2:0], sum[1:0], sum[0:0];
+   wire cout[3:0], cout[2:0], cout[1:0];
+
+   bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout[0:0]), .sum(sum[0:0]));
+   bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout[0:0]), .cout(cout[1:0]), .sum(sum[1:0]));
+   bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout[1:0]), .cout(cout[2:0]), .sum(sum[2:0]));
+   bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout[2:0]), .cout(cout), .sum(sum[3:0]));
+
+   assign sum = {sum[3:0], sum[2:0], sum[1:0], sum[0:0]};
+
+endmodule"
+N/A,N/A,-1,79.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarations   wire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2, c3;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(c3), .sum(sum[15:12]));
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,80.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout[0]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout[1]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout[2]), .cout(cout), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,81.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddaddU1(
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd addU2
+(
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd addU3
+(
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd addU4
+(
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,82.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+////wiredeclarationswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,83.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout[0]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout[1]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout[2]), .cout(cout), .sum(sum[3]));
+
+endmodule"
+N/A,N/A,-1,84.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourimplementationbcdwire[3:0] c;
+    
+    bcd_fadd adder0 (
+        .a(a[3:0]),
+        .b(b[3:0]),
+        .cin(cin),
+        .cout(c[0]),
+        .sum(sum[3:0])
+    );
+    
+    bcd_fadd adder1 (
+        .a(a[7:4]),
+        .b(b[7:4]),
+        .cin(c[0]),
+        .cout(c[1]),
+        .sum(sum[7:4])
+    );
+    
+    bcd_fadd adder2 (
+        .a(a[11:8]),
+        .b(b[11:8]),
+        .cin(c[1]),
+        .cout(c[2]),
+        .sum(sum[11:8])
+    );
+    
+    bcd_fadd adder3 (
+        .a(a[15:12]),
+        .b(b[15:12]),
+        .cin(c[2]),
+        .cout(cout),
+        .sum(sum[15:12])
+    );
+    
+endmodule"
+N/A,N/A,-1,85.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout[3]),
+    .sum(sum[3])
+);
+
+assign cout = cout[3];
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,86.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredefinitionswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,87.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]s[3:0], c[3:0];
+
+   bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(c[0]), .sum(s[0]));
+   bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(c[0]), .cout(c[1]), .sum(s[1]));
+   bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(c[1]), .cout(c[2]), .sum(s[2]));
+   bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(c[2]), .cout(cout), .sum(s[3]));
+
+   assign sum = {s[3], s[2], s[1], s[0]};
+
+endmodule"
+N/A,N/A,-1,88.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//bcdfaddinstancesbcdfadd bcd_fadd0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+wire c1, c2, c3;
+
+bcd_fadd bcd_fadd1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(c1),
+    .sum(sum[7:4])
+);
+
+bcd_fadd bcd_fadd2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(c1),
+    .cout(c2),
+    .sum(sum[11:8])
+);
+
+bcd_fadd bcd_fadd3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(c2),
+    .cout(c3),
+    .sum(sum[15:12])
+);
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,89.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]a[3:0], b[3:0], sum[3:0];
+wire cout[3:0], cin[3:0];
+
+assign a[0] = a[3:0];
+assign a[1] = a[7:4];
+assign a[2] = a[11:8];
+assign a[3] = a[15:12];
+
+assign b[0] = b[3:0];
+assign b[1] = b[7:4];
+assign b[2] = b[11:8];
+assign b[3] = b[15:12];
+
+assign cin[0] = cin;
+assign cin[1] = cout[0];
+assign cin[2] = cout[1];
+assign cin[3] = cout[2];
+
+bcd_fadd adder0 (.a(a[0]), .b(b[0]), .cin(cin[0]), .cout(cout[0]), .sum(sum[0]));
+bcd_fadd adder1 (.a(a[1]), .b(b[1]), .cin(cin[1]), .cout(cout[1]), .sum(sum[1]));
+bcd_fadd adder2 (.a(a[2]), .b(b[2]), .cin(cin[2]), .cout(cout[2]), .sum(sum[2]));
+bcd_fadd adder3 (.a(a[3]), .b(b[3]), .cin(cin[3]), .cout(cout[3]), .sum(sum[3]));
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+assign cout = cout[3];
+
+endmodule"
+N/A,N/A,-1,90.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddadder#(4) adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout),
+    .sum(sum[3:0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[7:4])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[11:8])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout),
+    .cout(cout),
+    .sum(sum[15:12])
+);
+
+endmodule"
+N/A,N/A,-1,91.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//////wiredeclarationswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,92.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,93.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Pleasecompletetherest of the code here:
+
+    wire [3:0] sum0, sum1, sum2, sum3;
+    wire cout0, cout1, cout2;
+
+    bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+    bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+    bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+    bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+    assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,94.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+   wire[3:0]sum[3:0];
+   wire cout[3:0];
+
+   bcd_fadd add0 (
+       .a(a[3:0]),
+       .b(b[3:0]),
+       .cin(cin),
+       .cout(cout[0]),
+       .sum(sum[0])
+   );
+
+   bcd_fadd add1 (
+       .a(a[7:4]),
+       .b(b[7:4]),
+       .cin(cout[0]),
+       .cout(cout[1]),
+       .sum(sum[1])
+   );
+
+   bcd_fadd add2 (
+       .a(a[11:8]),
+       .b(b[11:8]),
+       .cin(cout[1]),
+       .cout(cout[2]),
+       .sum(sum[2])
+   );
+
+   bcd_fadd add3 (
+       .a(a[15:12]),
+       .b(b[15:12]),
+       .cin(cout[2]),
+       .cout(cout[3]),
+       .sum(sum[3])
+   );
+
+   assign cout = cout[3];
+
+endmodule"
+N/A,N/A,-1,95.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcodewire[3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout0),
+    .sum(sum0)
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout0),
+    .cout(cout1),
+    .sum(sum1)
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout1),
+    .cout(cout2),
+    .sum(sum2)
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout2),
+    .cout(cout),
+    .sum(sum3)
+);
+
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,96.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]sum[3:0];
+wirecout[3::0];
+bcd_fadd adder0 (
+    .a(a[3:0]),
+    .b(b[3:0]),
+    .cin(cin),
+    .cout(cout[0]),
+    .sum(sum[0])
+);
+
+bcd_fadd adder1 (
+    .a(a[7:4]),
+    .b(b[7:4]),
+    .cin(cout[0]),
+    .cout(cout[1]),
+    .sum(sum[1])
+);
+
+bcd_fadd adder2 (
+    .a(a[11:8]),
+    .b(b[11:8]),
+    .cin(cout[1]),
+    .cout(cout[2]),
+    .sum(sum[2])
+);
+
+bcd_fadd adder3 (
+    .a(a[15:12]),
+    .b(b[15:12]),
+    .cin(cout[2]),
+    .cout(cout),
+    .sum(sum[3])
+);
+
+assign sum = {sum[3], sum[2], sum[1], sum[0]};
+
+endmodule"
+N/A,N/A,-1,97.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//wiredeclarationswire[3::0wirewirewirewirewire [3:0] sum0, sum1, sum2, sum3;
+wire cout0, cout1, cout2;
+
+// Instantiate 4 copies of bcd_fadd
+bcd_fadd adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout0), .sum(sum0));
+bcd_fadd adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout0), .cout(cout1), .sum(sum1));
+bcd_fadd adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout1), .cout(cout2), .sum(sum2));
+bcd_fadd adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout2), .cout(cout), .sum(sum3));
+
+// Concatenate the sum outputs
+assign sum = {sum3, sum2, sum1, sum0};
+
+endmodule"
+N/A,N/A,-1,98.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+wire[3:0]s[3:0], c[3:0];
+
+bcd_fadd add0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(c[0]), .sum(s[0]));
+bcd_fadd add1 (.a(a[7:4]), .b(b[7:4]), .cin(c[0]), .cout(c[1]), .sum(s[1]));
+bcd_fadd add2 (.a(a[11:8]), .b(b[11:8]), .cin(c[1]), .cout(c[2]), .sum(s[2]));
+bcd_fadd add3 (.a(a[15:12]), .b(b[15:12]), .cin(c[2]), .cout(cout), .sum(s[3]));
+
+assign sum = {s[3], s[2], s[1], s[0]};
+
+endmodule"
+N/A,N/A,-1,99.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+bcd_faddu#(.WIDTH(4)) adder0 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .cout(cout), .sum(sum[3:0]));
+bcd_faddu#(.WIDTH(4)) adder1 (.a(a[7:4]), .b(b[7:4]), .cin(cout), .cout(cout), .sum(sum[7:4]));
+bcd_faddu#(.WIDTH(4)) adder2 (.a(a[11:8]), .b(b[11:8]), .cin(cout), .cout(cout), .sum(sum[11:8]));
+bcd_faddu#(.WIDTH(4)) adder3 (.a(a[15:12]), .b(b[15:12]), .cin(cout), .cout(cout), .sum(sum[15:12]));
+
+endmodule"
+N/A,N/A,-1,100.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+////wiredeclarationswire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2, c3;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(c3), .sum(sum[15:12]));
+
+assign cout = c3;
+
+endmodule"
+N/A,N/A,-1,101.0,1,"// You are provided with a BCD (binary-coded decimal) one-digit adder named bcd_fadd that adds two BCD digits and carry-in, and produces a sum and carry-out.
+
+module bcd_fadd (
+    input [3:0] a,
+    input [3:0] b,
+    input     cin,
+    output   cout,
+    output [3:0] sum );
+    
+// Instantiate 4 copies of bcd_fadd to create a 4-digit BCD ripple-carry adder. Your adder should add two 4-digit BCD numbers (packed into 16-bit vectors) and a carry-in to produce a 4-digit sum and carry out.
+
+// Hint: The BCD representation for the 5-digit decimal number 12345 is 20'h12345. This is not the same as 14'd12345 (which is 14'h3039).
+// The circuit is structured just like a binary ripple-carry adder, except the adders are base-10 rather than base-2.
+
+
+module top_module ( 
+    input [15:0] a, b,
+    input cin,
+    output cout,
+    output [15:0] sum );
+
+//Yourcode//wire[3:0] a0, a1, a2, a3, b0, b1, b2, b3;
+wire c0, c1, c2;
+
+assign a0 = a[3:0];
+assign a1 = a[7:4];
+assign a2 = a[11:8];
+assign a3 = a[15:12];
+
+assign b0 = b[3:0];
+assign b1 = b[7:4];
+assign b2 = b[11:8];
+assign b3 = b[15:12];
+
+bcd_fadd add0 (.a(a0), .b(b0), .cin(cin), .cout(c0), .sum(sum[3:0]));
+bcd_fadd add1 (.a(a1), .b(b1), .cin(c0), .cout(c1), .sum(sum[7:4]));
+bcd_fadd add2 (.a(a2), .b(b2), .cin(c1), .cout(c2), .sum(sum[11:8]));
+bcd_fadd add3 (.a(a3), .b(b3), .cin(c2), .cout(cout), .sum(sum[15:12]));
+
+endmodule"

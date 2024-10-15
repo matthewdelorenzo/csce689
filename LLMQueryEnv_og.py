@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
 from openai import OpenAI
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-GOoOKLyunGa2vKV2eRy8YjdKuJ8d_5HNdIahN0qLwMT3BlbkFJtryKaavon-rI0XFIU-IWr5S9zCF6AXKgFv-NfP0P4A"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-Nk4FoBjiJLwSjR0mgsE3dhzBFcZAI1a3jZv3K8csIMT3BlbkFJbIJxQWwCHDJPhyP4wwUhdbcCqvk-geEM-1U0nez0QA"))
 
 
 def get_completion(
@@ -57,7 +57,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         self.orig_prompt = orig_prompt
         self.init_state = orig_prompt
         self.num_tokens=0
-        self.n_actions = 10
+        self.n_actions = 5
         self.stopwords = ['endmodule']
         self.depth=2048
         self.orig_module = orig_module
@@ -110,6 +110,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = currentState
         print("Initiating comile/functionality check.")
+        print("VERILOG CODE:")
+        print(verilog_code)
         #Creating folder, writing current verilog file.
         module_dump_folder = self.dumppath + "/" + str(os.getpid()) + "_" + self.orig_module
         if not os.path.exists(module_dump_folder):
@@ -301,8 +303,11 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         print("Error: Chip area not found in syntheis results.")
         return None
 
-    def next_state(self,state,action):
-        #adding strings
+    def next_state(self, state, action):
+        # if not (state.endswith(" ")  or state.endswith("\n") ) and not (action.startswith(" ") or action.startswith("\n")):
+        #     nextState = state + " " + action
+        # else:
+        #     nextState = state + action
         nextState = state + action
         return nextState
 
@@ -317,15 +322,17 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
     def getLLMestimates(self,state):
 
+        print("LLMEstimates: prior state: \n", state)
         API_RESPONSE, response_time = get_completion(
             [
-                {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
-                Then in your response, directly generate the rest of the Verilog code provided in the prompt (do not generate any other text)."},
+                  {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt, and determine a correct implementation. \
+                In your response, directly complete the rest of the top_module code (including any spaces, tabs, and newlines) such that the response can be directly appended to the provided code. \
+                   Make sure the code formatting would be correct (spaces, newlines, etc) if your response was directly added to the provided Verilog."},
                 {"role": "user", "content": state}
             ],
             model="gpt-4",
-            max_tokens=1,
             logprobs=True,
+            max_tokens=1,
             top_logprobs=self.n_actions,
             )
         
@@ -336,7 +343,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         total_tokens = usage.total_tokens
         response_text = API_RESPONSE.choices[0].message.content
 
-        print("Generated token: ", response_text)
         linear_probs = []
         tokens = []
 
@@ -345,19 +351,23 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             print("Token index (should only be 1): ", token_index)
             for i, logprob in enumerate(token_logprobs.top_logprobs, start=1):
                 linear_probs.append(np.round(np.exp(logprob.logprob) * 100, 2))
+                print("Token:", logprob.token)
                 tokens.append(logprob.token)
                 print("Output token: ", i, " Token: ", logprob.token)
                 print("linear prob: ", np.round(np.exp(logprob.logprob) * 100, 2))
 
-
+        print("Token list: ", tokens)
         return linear_probs, tokens
     
     def get_best_terminal_state(self,state,depth):
         print("Getting terminal state (rollout).")
+        print("Current prompt:")
+        print(state)
         API_RESPONSE, response_time = get_completion(
             [
-                {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt. \
-                Then in your response, directly generate the rest of the Verilog code provided in the prompt (do not generate any other text)."},
+                  {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt, and determine a correct implementation. \
+                In your response, directly complete the rest of the top_module code (including any spaces, tabs, and newlines) such that the response can be directly appended to the provided code. \
+                   Make sure the code formatting would be correct (spaces, newlines, etc) if your response was directly added to the provided Verilog."},
                 {"role": "user", "content": state}
             ],
             model="gpt-4",
@@ -370,10 +380,15 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         completion_tokens = usage.completion_tokens
         total_tokens = usage.total_tokens
         response_text = API_RESPONSE.choices[0].message.content
-        
         depth = depth + completion_tokens
+        # if not (state.endswith(" ")  or state.endswith("\n") ) and not (response_text.startswith(" ") or response_text.startswith("\n")):
+        #     state = state + " " + response_text
+        # else:
+        #     state = state + response_text
         state = state + response_text
-        self.is_done_state(state, depth)
+        response_complete = self.is_done_state(state, depth)
+        if not response_complete:
+            print("Error - LLM did not provide effective response.")
         print("Rollout raw response: ", response_text)
         print("Depth of rollout: ", depth)
 
