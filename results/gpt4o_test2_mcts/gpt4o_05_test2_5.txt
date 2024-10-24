@@ -1,0 +1,2650 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:45:09,074] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Edgedetect2.v
+Prompt str:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Tokens: ['\\n', '   ', 'reg', '\n', '    \n']
+Probs: [36.18, 28.17, 21.94, 2.31, 1.8]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  \n
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n
+API response time: 0.769211 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [60.01800716 47.02015127 36.39869206  3.83199548  2.98597051]  taking action:  0  corresponding to token:  \n
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n
+Tokens: ['   ', '\\t', '\tassign', '\t', '``']
+Probs: [60.25, 17.26, 10.47, 6.35, 1.1]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   
+API response time: 0.963894 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  45
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.010205502999999894
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [36.25337323 57.58768912 44.57911142  4.69321681  3.65705206]  taking action:  1  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   
+Tokens: ['reg', 'always', 'r', '\\n', '`']
+Probs: [84.4, 6.93, 4.2, 1.2, 1.2]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg
+API response time: 0.749399 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.010126795999999771
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [41.93913985 32.74826782 51.47552396  5.41925998  4.22279999]  taking action:  2  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg
+Tokens: [' [', '[', 'ister', '<|end|>', ' q']
+Probs: [98.17, 1.8, 0.02, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [
+API response time: 0.917922 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  7:0] prev_in;
+
+always @(posedge clk) begin
+    prev_in <= in;
+    anyedge <= (in ^ prev_in) & in;
+end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.009904057999999605
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [46.94840081 36.67269349 28.27569269  6.05891685  4.72123391]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [117.58478624  33.68486988  20.43340601  12.3927534    2.14677618]  taking action:  0  corresponding to token:     
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   
+Tokens: ['reg', 'always', '   ', '\\t', '``']
+Probs: [53.84, 19.81, 9.36, 5.68, 2.09]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg
+API response time: 0.954909 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.0107552270000002
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.9847459  40.22064549 31.02219199  6.63721087  5.17185263]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [164.71628147  13.52468994   8.19678178   2.34193765   2.34193765]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg
+Tokens: [' [', '[', 'ister', 'istor', 'istration']
+Probs: [72.84, 26.8, 0.23, 0.02, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [
+API response time: 0.805523 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.009917970000000054
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [36.76113662 28.65554937 33.54785875  7.1690071   5.5862393 ]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [71.50568195 41.25537163 25.02570921 15.17796117  2.62925312]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [105.07493595  38.66148739  18.26711368  11.08517155   4.07887474]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg
+Tokens: [' [', '[', 'ister', 'istration', 'ression']
+Probs: [96.93, 2.93, 0.03, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [
+API response time: 0.836596 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.009621145999999747
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.25900358 30.68010083 35.89869206  7.66399096  5.97194101]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.91590016e+02 3.51290648e+00 3.90322942e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [
+Tokens: ['7', '8', '0', '<|end|>', '７']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  7
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7
+API response time: 0.878772 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  :0] prev_in;
+
+always @(posedge clk) begin
+    prev_in <= in;
+    anyedge <= (in ^ prev_in) & in;
+end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.009719634000000088
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [31.07935489 32.58160113 25.07109529  8.12888997  6.33419998]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [100.36771048  16.56429464  10.03896645   2.86827613   2.86827613]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.42155615e+02 5.23032742e+01 4.48871383e-01 3.90322942e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [
+Tokens: ['7', '0', ':', '8', ']']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  7
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7
+API response time: 0.679029 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  :0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.009927370000000213
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.80108597 25.53506364 26.46331656  8.56860239  6.67683303]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [54.76333312 47.63759984 28.8971999  17.52599994  3.03599999]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [63.84499446 47.3504584  22.37255379 13.576507    4.99558092]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.89170014e+02 5.71823110e+00 5.85484413e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [
+Tokens: ['7', '0', '8', ':', ']']
+Probs: [99.99, 0.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  7
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7
+API response time: 1.016444 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  :0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.009769855999999688
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [27.35094065 26.81800732 27.78749979  8.986826    7.00272156]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.16824445e+02 4.30241419e+00 4.78046021e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [195.16147093   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  7
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7
+Tokens: [':', ':user', ':end', '```', '];']
+Probs: [96.41, 2.27, 0.31, 0.14, 0.09]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:
+API response time: 0.711455 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  0] prev_in;
+
+always @(posedge clk) begin
+    prev_in <= in;
+    anyedge <= (in ^ prev_in) & in;
+end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.010007638999999902
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.60269857 28.04384456 21.53955571  9.38643363  7.31410413]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [45.72946784 53.26045576 32.30805167 19.59466362  3.39435118]  taking action:  1  corresponding to token:  \t
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\t
+Tokens: ['reg', 'always', 'wire', 'assign', 'logic']
+Probs: [61.91, 37.55, 0.25, 0.12, 0.09]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\treg
+API response time: 1.019444 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\treg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.010276589999999697
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [24.66941582 29.21958361 22.44970513  9.76970987  7.61276094]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [76.98133305 19.12679993 11.59199996  3.31199999  3.31199999]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [8.65521805e+01 6.40581668e+01 5.49752924e-01 4.78046021e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [195.16147093   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  7
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7
+Tokens: [':', ']', '];', ']:', ':end']
+Probs: [99.88, 0.03, 0.02, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:
+API response time: 0.950393 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.01068477500000009
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.63212021 24.08072536 23.32547181 10.13850707  7.90013538]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [50.16570599 28.67195304 35.39169738 21.46487854  3.71832542]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [48.86613314 54.67559981 25.83359991 15.67679995  5.76839998]  taking action:  1  corresponding to token:  always
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always
+Tokens: [' @(', '@(', '@', ' @', '_ff']
+Probs: [47.27, 47.27, 3.88, 0.87, 0.67]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   @(
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always @(
+API response time: 0.713203 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always @(
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  posedge clk) begin
+        anyedge <= in ^ (in >> 1);
+    end
+endmodule
+Depth of rollout:  25
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.010220575000000398
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.62372597 24.9539975  24.17048088 10.49435183  8.17741701]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [64.35982714 21.38441242 12.96024995  3.70292856  3.70292856]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.63461331e+01 7.39679997e+01 6.34799998e-01 5.51999998e-02
+ 5.51999998e-02]  taking action:  1  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[
+Tokens: ['7', ']', ':', '0', ' ']
+Probs: [99.9, 0.06, 0.01, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  7
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[7
+API response time: 1.122368 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.010182860000000016
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.39379419 21.33217856 24.98776198 10.83851996  8.44559997]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [8.96497330e+01 4.96799998e+00 5.51999998e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [119.01150531   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.88155174e+02 4.43016539e+00 6.05000560e-01 2.73226059e-01
+ 1.75645324e-01]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:
+Tokens: ['0', '1', ':', ']', '];']
+Probs: [98.26, 1.4, 0.07, 0.07, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0
+API response time: 0.908234 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   prev_in;
+
+always @(posedge clk) begin
+    anyedge <= (prev_in ^ in) & ~prev_in;
+    prev_in <= in;
+end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.010102556000000096
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [24.14015089 22.01435337 20.42390223 11.17209066  8.70552519]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [43.19619839 31.00931056 38.22740226 23.18471866  4.01625048]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [54.71268708 30.06458947 28.88284275 17.52719517  6.44926724]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.15342502e+02 7.00337421e+00 7.17069032e-02 4.78046021e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.95141955e+02 1.95161471e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  7
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7
+Tokens: [':', '];', '];\n', ']', '\\n']
+Probs: [89.22, 9.4, 0.28, 0.22, 0.17]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:
+API response time: 0.764174 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010119634000000044
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.63175268 22.67674232 21.03921522 11.49598645  8.95791152]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [56.25939366 23.42545013 14.1972425   4.056355    4.056355  ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.42559211e+01 4.08493689e+01 7.09727974e-01 6.17154760e-02
+ 6.17154760e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [119.01150531   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.94927277e+02 5.85484413e-02 3.90322942e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:
+Tokens: ['0', '];\n', '1', 'endmodule', '];']
+Probs: [57.87, 16.58, 12.91, 2.24, 2.24]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0
+API response time: 1.042029 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   previous_in;
+
+    always @(posedge clk) begin
+        anyedge <= (previous_in ^ in) & ~previous_in;
+        previous_in <= in;
+    end
+
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.010396679999999936
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.24849023 19.84654849 21.63766069 11.8110033   9.2033792 ]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [38.36159543 33.18486988 40.86681201 24.78550681  4.29355236]  taking action:  2  corresponding to token:  	assign
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	assign
+Tokens: ['any', ' any', '<|end|>', '_any', '<|end|>']
+Probs: [50.36, 30.55, 18.53, 0.06, 0.06]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  any
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	assignany
+API response time: 0.736865 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	assignany
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  edge = in ^ (in >> 1);
+
+    always @(posedge clk) begin
+        anyedge <= edge;
+    end
+
+endmodule
+Depth of rollout:  31
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.009823550999999764
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.19928924 20.38439627 22.22055414 12.11783371  9.44246782]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [7.49826034e+01 5.55439284e+00 6.17154760e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [91.333333  0.        0.        0.        0.      ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [114.72104227   5.42582234   0.74097133   0.33463221   0.21512071]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.91765661e+02 2.73226059e+00 1.36613030e-01 1.36613030e-01
+ 9.75807355e-02]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0
+Tokens: [' prev', ']', ' in', 'prev', ' q']
+Probs: [46.08, 27.95, 10.28, 8.01, 4.86]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   prev
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev
+API response time: 0.775366 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  _state;
+
+always @(posedge clk) begin
+    anyedge <= (prev_state ^ in) & in;
+    prev_state <= in;
+end
+
+endmodule
+Depth of rollout:  37
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  20.0
+Iteration TIME (sec):  0.010449619999999715
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.72006342 20.90895771 18.8242071  12.41708454  9.67565029]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [50.52599096 25.302378   15.33477455  4.38136416  4.38136416]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [60.80518713 44.79596417  0.77746804  0.06760592  0.06760592]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [91.333333  0.        0.        0.        0.      ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.18868092e+02 7.17069032e-02 4.78046021e-02 4.78046021e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [112.93994323  32.35777188  25.1953459    4.37161695   4.37161695]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0
+Tokens: [' prev', 'prev', ']', ' q', 'previous']
+Probs: [41.15, 24.96, 15.14, 7.15, 2.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   prev
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev
+API response time: 0.665033 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  _state;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_state ^ in) & ~prev_state;
+        prev_state <= in;
+    end
+
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  21.0
+Iteration TIME (sec):  0.010465088000000122
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.22857893 18.61852492 19.28680075 12.70929121  9.9033438 ]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.73916654 35.22819988 21.17289993 26.28899991  4.55399998]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [44.74878192 32.98183023 31.639569   19.20008033  7.06481829]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  3
+Leaf selection - action scores:  [8.85089330e+01 8.08679997e+00 8.27999997e-02 5.51999998e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.18999554e+02 2.39023011e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  5
+Leaf selection - action scores:  [174.12306437  18.34517827   0.54645212   0.42935524   0.3317745 ]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:
+Tokens: ['0', '1', ':', ']', '];']
+Probs: [99.47, 0.25, 0.15, 0.04, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0
+API response time: 0.912637 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  22.0
+Iteration TIME (sec):  0.010069215000000131
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.4530965  19.05663636 19.73899506 12.99492893 10.12591864]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [65.56872838  6.0845325   0.06760592  0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [76.39434496  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [88.03053301  6.26519998  0.8556      0.3864      0.2484    ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [116.93200512   3.34632215   0.16731611   0.16731611   0.11951151]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [89.93040581 54.54763113 20.06259921 15.63243382  9.48484749]  taking action:  0  corresponding to token:   prev
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev
+Tokens: [';', ');', '_in', 'in', '_value']
+Probs: [95.11, 1.74, 0.64, 0.5, 0.5]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;
+API response time: 0.964657 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (prev ^ in) & ~prev;
+    prev <= in;
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (prev ^ in) & ~prev;
+    prev <= in;
+end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  23.0
+Iteration TIME (sec):  0.01084014100000008
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.89084758 19.48532275 17.15553827 13.27442174 10.34370525]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [36.7039393  37.16082944 22.34524242 27.71103904  4.80033747]  taking action:  1  corresponding to token:  \t
+Leaf selection - depth:  2
+Leaf selection - action scores:  [120.82446665  73.28313234   0.48790368   0.23419377   0.17564532]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\treg
+Tokens: [' [', '[', '<|end|>', 'ister', '\\']
+Probs: [97.66, 2.3, 0.03, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\treg [
+API response time: 0.829421 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n\treg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  24.0
+Iteration TIME (sec):  0.010861012999999975
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.38142718 19.90516739 17.52697283 13.54814995 10.55699996]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [46.20465184 27.04937987 16.39356356  4.6838753   4.6838753 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [52.38976084 48.42523308  0.83976146  0.07302274  0.07302274]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [76.39434496  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [9.12229330e+01 8.27999997e-02 5.51999998e-02 5.51999998e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [68.66130812 39.63001516 30.85787067  5.35411544  5.35411544]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [80.30894529 48.71230314 29.5474467  13.95404517  4.00081015]  taking action:  0  corresponding to token:   prev
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev
+Tokens: [');', ';', '```', '`', '`;']
+Probs: [53.81, 19.8, 4.42, 3.44, 3.44]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  );
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev);
+API response time: 1.248314 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev);reg [7:0] prev;
+
+   always @(posedge clk) begin
+       anyedge <= (in & ~prev);
+       prev <= in;
+   end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n'
+Rollout raw response:  ```
+   reg [7:0] prev;
+
+   always @(posedge clk) begin
+       anyedge <= (in & ~prev);
+       prev <= in;
+   end
+
+endmodule
+```
+Depth of rollout:  48
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  25.0
+Iteration TIME (sec):  0.010324145000000229
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.76345472 17.94817404 17.89105007 13.8164562  10.76606976]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [38.53725245 25.66600741 23.46029239 29.06358294  5.03463641]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [38.51544101 35.66450997 34.17464042 20.738457    7.63087591]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  3
+Leaf selection - action scores:  [7.40260136e+01 9.04131723e+00 9.25732139e-02 6.17154760e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  4
+Leaf selection - action scores:  [9.13241330e+01 2.75999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  5
+Leaf selection - action scores:  [106.12816504  22.468163     0.66926443   0.52585062   0.40633912]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.94127115e+02 4.87903677e-01 2.92742206e-01 7.80645884e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0
+Tokens: [' prev', 'prev', ' q', ']', ' in']
+Probs: [29.73, 29.73, 18.03, 6.63, 4.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   prev
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0 prev
+API response time: 0.685401 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0 prev
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  \n   reg [7:0] prev;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev);
+        prev <= in;
+    end
+
+endmodule
+Depth of rollout:  45
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  26.0
+Iteration TIME (sec):  0.010281348999999995
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.46001993 18.30700748 18.2481906  14.07965044 10.97115619]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [42.80199985 28.6901999  17.38799994  4.96799998  4.96799998]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [46.55187183 51.80327421  0.89774277  0.07806459  0.07806459]  taking action:  1  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.94966309e+02 1.17096883e-01 1.95161471e-02 1.95161471e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  7
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[7
+Tokens: [':', '];', ']:', ']', '];\n']
+Probs: [99.87, 0.06, 0.03, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[7:
+API response time: 0.998149 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg[7:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  27.0
+Iteration TIME (sec):  0.010084487999999947
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.79723496 16.69332966 18.59877642 14.3380142  11.1724786 ]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [58.90534991  6.57204623  0.07302274  0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [66.80591666  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [73.62486297  7.00470652  0.95658988  0.43200833  0.27771964]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [89.732533    3.86399999  0.1932      0.1932      0.138     ]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [54.57090165 66.80693147 24.57156549 19.14574315 11.61651832]  taking action:  1  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0]
+Tokens: ['prev', 'q', 'in', 'previous', ' q']
+Probs: [80.52, 8.49, 5.15, 1.47, 0.89]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  prev
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0]prev
+API response time: 0.869586 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0]prev
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:  ;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev ^ in) & ~prev & in;
+        prev <= in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  28.0
+Iteration TIME (sec):  0.010735270000000074
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.12848018 17.0047402  16.45026125 14.59180407 11.37023693]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [35.12784097 26.8369144  24.52570921 30.35592235  5.25850623]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [34.19164534 38.16148739 36.53422736 22.1703431   8.15774949]  taking action:  1  corresponding to token:  always
+Leaf selection - depth:  3
+Leaf selection - action scores:  [92.25282731 92.25282731  7.57226507  1.6979048   1.30758186]  taking action:  0  corresponding to token:   @(
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always @(
+Tokens: ['posedge', 'posed', 'p', '*', '*)']
+Probs: [99.17, 0.52, 0.25, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  posedge
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always @(posedge
+API response time: 1.273602 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   always @(posedge
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   clk) begin
+        integer i;
+        reg [7:0] prev_in;
+        
+        for (i = 0; i < 8; i = i + 1) begin
+            anyedge[i] <= (prev_in[i] == 0 && in[i] == 1);
+        end
+        
+        prev_in <= in;
+    end
+endmodule
+Depth of rollout:  81
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  29.0
+Iteration TIME (sec):  0.010013512000000002
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.95759555 17.31082631 16.74644102 14.84125468 11.56461404]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.03520026 30.24212607 18.32856126  5.23673179  5.23673179]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [49.42626651 36.31733319  0.9522      0.0828      0.0828    ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [66.80591666  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [7.63017717e+01 9.25732139e-02 6.17154760e-02 6.17154760e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [52.57373313 45.76079984 35.63159988  6.18239998  6.18239998]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [48.67898443 59.66014345 36.18808381 17.09014526  4.89997172]  taking action:  1  corresponding to token:  prev
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0prev
+Tokens: [']', '_]', ']_', '```', '`]']
+Probs: [30.38, 23.66, 23.66, 5.28, 4.11]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0prev]
+API response time: 0.674519 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0prev];
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev;
+        prev <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n'
+Rollout raw response:  ```
+;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev;
+        prev <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  30.0
+Iteration TIME (sec):  0.010075395999999959
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.25316388 15.91986549 17.03772424 15.0865813  11.75577764]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [32.42039552 27.95996812 25.54758399 31.59544572  5.47322682]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [36.31626656 26.67113322 38.75039987 23.51519992  8.65259997]  taking action:  2  corresponding to token:     
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n      
+Tokens: ['reg', '   ', 'always', '\\t', ' ']
+Probs: [52.46, 40.85, 3.35, 0.96, 0.58]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n      reg
+API response time: 0.992289 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n      reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  45
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  31.0
+Iteration TIME (sec):  0.009923972999999808
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.21943064 16.18914589 17.32434603 15.32798193 11.94388202]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [53.88286171  7.02581295  0.07806459  0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [60.01894663  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [64.37886425  7.67327154  1.04789171  0.47324142  0.30422663]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [75.05203335  4.32008332  0.21600417  0.21600417  0.15428869]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [63.09039978 38.07099987 28.3727999  22.10759992 13.41359995]  taking action:  0  corresponding to token:   prev
+Leaf selection - depth:  6
+Leaf selection - action scores:  [185.618075     3.39580959   1.24903341   0.97580735   0.97580735]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;
+Tokens: [']', '];', ' ]', '<|end|>', '`']
+Probs: [94.55, 2.22, 0.82, 0.64, 0.39]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;]
+API response time: 0.981007 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;]reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (in ^ prev) & in;
+    prev <= in;
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (in ^ prev) & in;
+    prev <= in;
+end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  32.0
+Iteration TIME (sec):  0.01022117999999983
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.48530699 16.45425064 15.53913178 15.56563923 12.12906953]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [30.21001026 29.0405962  26.53085537 32.78814357  5.67983589]  taking action:  3  corresponding to token:  	
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	
+Tokens: ['always', 'reg', 'wire', 'assign', '\treg']
+Probs: [71.23, 26.2, 1.3, 0.62, 0.23]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  always
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	always
+API response time: 0.651514 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n	always
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:   @(posedge clk) begin
+        anyedge <= in ^ (in >> 1);
+    end
+endmodule
+Depth of rollout:  25
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  33.0
+Iteration TIME (sec):  0.009550171999999968
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.56403886 16.71536818 15.78618355 15.79972213 12.31147179]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [37.72939215 31.71820941 19.22315722  5.49233063  5.49233063]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [44.55280277 38.31789217  1.00370693  0.08727886  0.08727886]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [60.01894663  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [6.67247896e+01 1.01408875e-01 6.76059167e-02 6.76059167e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [43.89343243 51.16212958 39.83733974  6.91213331  6.91213331]  taking action:  1  corresponding to token:  ];
+
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:];
+
+Tokens: ['0', '1', '8', '7', '`']
+Probs: [99.28, 0.67, 0.03, 0.02, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:];
+0
+API response time: 0.816149 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:];
+0reg [7:0] prev_in;
+
+   always @(posedge clk) begin
+       prev_in <= in;
+       anyedge <= (prev_in ^ in) & ~prev_in;
+   end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:9: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:9: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+   reg [7:0] prev_in;
+
+   always @(posedge clk) begin
+       prev_in <= in;
+       anyedge <= (prev_in ^ in) & ~prev_in;
+   end
+
+endmodule
+```
+Depth of rollout:  56
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  34.0
+Iteration TIME (sec):  0.010090417999999879
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.80488915 15.4749504  16.02962814 16.03038721 12.49121081]  taking action:  3  corresponding to token:  
+
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+
+Tokens: ['reg', '\\n', '\n', '   ', '``']
+Probs: [29.81, 29.81, 10.97, 10.97, 8.54]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+reg
+API response time: 1.268886 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:9: syntax error\nI give up.\n'
+Rollout raw response:   [7:0] prev_in;
+
+always @(posedge clk) begin
+    prev_in <= in;
+    anyedge <= (in ^ prev_in) & in;
+end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  35.0
+Iteration TIME (sec):  0.009304401000000073
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.0423226  15.70746722 16.26961909  7.62888997 12.66839996]  taking action:  2  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [49.92797482  7.45199997  0.0828      0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [54.9032774  0.         0.         0.         0.       ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  3
+Leaf selection - action scores:  [57.83434978  8.28808053  1.13185241  0.51115915  0.32860231]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [65.62957371  4.73241417  0.23662071  0.23662071  0.16901479]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [46.73081886 42.62368883 31.72175465 24.71704812 14.99686066]  taking action:  0  corresponding to token:   prev
+Leaf selection - depth:  6
+Leaf selection - action scores:  [113.1673927    4.15900038   1.52974727   1.19511505   1.19511505]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  7
+Leaf selection - action scores:  [184.52517077   4.33258465   1.60032406   1.24903341   0.76112974]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;]
+Tokens: ['\n', '  \n', '<|end|>', ' \n', '`']
+Probs: [20.84, 20.84, 20.84, 7.67, 3.62]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;]
+
+API response time: 0.705648 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0 prev;]
+reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (prev ^ in) & ~prev;
+    prev <= in;
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:9: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [7:0] prev;
+
+always @(posedge clk) begin
+    anyedge <= (prev ^ in) & ~prev;
+    prev <= in;
+end
+
+endmodule
+```
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  36.0
+Iteration TIME (sec):  0.010442223000000084
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.27648064 15.93677645 14.75566944  7.74101789 12.84314476]  taking action:  0  corresponding to token:  \n
+Leaf selection - depth:  1
+Leaf selection - action scores:  [31.30191994 30.08327178 27.47959349 16.46947647  5.8791887 ]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  2
+Leaf selection - action scores:  [38.32578327 28.14990462 19.92325397 24.78719713  9.1206412 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.47304150e+01 9.90426679e+00 1.01408875e-01 6.76059167e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  4
+Leaf selection - action scores:  [7.63866305e+01 3.08577380e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  5
+Leaf selection - action scores:  [81.41573303 25.94399991  0.7728      0.6072      0.4692    ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.18378094e+02 5.97557527e-01 3.58534516e-01 9.56092042e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  7
+Leaf selection - action scores:  [58.02150531 58.02150531 35.18761321 12.93920552  7.84549113]  taking action:  0  corresponding to token:   prev
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0 prev
+Tokens: [';', ';\\', '_in', '\\', '_value']
+Probs: [55.63, 26.28, 5.86, 5.86, 2.16]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0 prev;
+API response time: 0.887856 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+\n   reg [7:0 prev;
+Compilation check...
+Verilog compilation failed, error:  3
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//630415_top_module/630415_top_module.v:8: error: Invalid module instantiation\nI give up.\n'
+Rollout raw response:  
+    reg [7:0] prev;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev);
+        prev <= in;
+    end
+
+endmodule
+Depth of rollout:  46
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  37.0
+Iteration TIME (sec):  0.010170795000000066
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.41327675 16.16300729 14.96582206  7.85164053 13.01554368]  taking action:  1  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [35.77007651 33.12858927 20.07793289  5.73655225  5.73655225]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [40.79805868 40.22068359  1.0526967   0.09153884  0.09153884]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [54.9032774  0.         0.         0.         0.       ]  taking action:  0  corresponding to token:  7
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.99459239e+01 1.09534104e-01 7.30227359e-02 7.30227359e-02
+ 3.65113680e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [48.15442997 27.52265246 43.63961921  7.57186267  7.57186267]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [56.2869998  33.94479988 41.78639986 19.73399993  5.65799998]  taking action:  0  corresponding to token:   prev
+Leaf selection - depth:  7
+Leaf selection - action scores:  [105.01638751  38.64197124   8.62613702   6.7135546    6.7135546 ]  taking action:  0  corresponding to token:  );
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+   reg [7:0 prev);

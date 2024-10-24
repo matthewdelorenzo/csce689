@@ -1,0 +1,1348 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 04:09:10,282] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/prompt_tb_files/mac/mac_16.v
+Prompt str:  //Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+
+Tokens: ['reg', 'always', '   ', ' ', ' reg']
+Probs: [93.55, 5.98, 0.23, 0.14, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg
+API response time: 2.298382 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:   [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [1.55480264e+02 9.92005757e+00 3.81540676e-01 2.32242186e-01
+ 8.29445575e-02]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg
+Tokens: [' [', '[', 'signed', ' signed', ' ']
+Probs: [97.7, 2.3, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [
+API response time: 2.376896 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+        C <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.01133743900000006
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [94.7118279  12.14953963  0.46728999  0.28443743  0.10158592]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [190.6727571    4.48871383   0.           0.           0.        ]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [
+Tokens: ['31', '15', '32', '16', '33']
+Probs: [99.91, 0.09, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31
+API response time: 1.907302 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Time:                 5000, A: 0000, B: 0000, Accumulator: 00000000\nTime:                15000, A: 0000, B: 0000, Accumulator: 00000000\nTime:                25000, A: 0000, B: 0000, Accumulator: xxxxxxxx\nTest 1 failed\nTime:                35000, A: 0000, B: 0000, Accumulator: xxxxxxxx\n'
+
+Rollout raw response:  ```verilog
+:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.011203899999999933
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [72.92743262 14.02907995  0.53958     0.32844005  0.11730132]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [116.71274069   5.49752924   0.           0.           0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.94985826e+02 1.75645324e-01 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31
+Tokens: [':', ']_', ']', '];\n', "'b"]
+Probs: [96.02, 2.26, 0.5, 0.31, 0.19]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:
+API response time: 1.920684 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.010934472999999834
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [60.93397066 15.68498822  0.60326878  0.36720714  0.13114686]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [89.51733301  6.34799998  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [118.90394495   0.21512071   0.           0.           0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [187.39404439   4.41064924   0.97580735   0.60500056   0.37080679]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:
+Tokens: [':', 'bit', '];', ']', '1']
+Probs: [34.18, 20.73, 12.57, 9.79, 5.94]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::
+API response time: 1.925958 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.011796615999999815
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [53.23994332 17.18204372  0.66084784  0.40225527  0.14366419]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [74.84502505  7.09727974  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [91.250533  0.2484    0.        0.        0.      ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [114.2549474    5.40192004   1.19511505   0.74097133   0.45414372]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [66.70619076 40.45697292 24.5317969  19.106308   11.59259137]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::
+Tokens: ['0', '1', '];', 'endmodule', 'reg']
+Probs: [89.58, 7.35, 0.77, 0.37, 0.29]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0
+API response time: 1.817380 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  66
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.011116213000000208
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [47.79615649 18.55872834  0.71379724  0.43448535  0.15517506]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [65.43098058  7.77468042  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [76.32491505  0.27771964  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [87.67173301  6.23759998  1.38        0.8556      0.5244    ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [40.34903251 49.5494701  30.04519243 23.40035274 14.19796683]  taking action:  1  corresponding to token:  bit
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit
+Tokens: ['0', '1', '31', ']', ':']
+Probs: [36.23, 13.33, 8.08, 6.3, 4.9]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0
+API response time: 2.394142 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  :0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  62
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.010771474999999864
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [43.69436112 19.84011514  0.76308135  0.46448437  0.16588911]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [58.76934417  8.39761463  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [66.74507133  0.30422663  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [73.32400003  6.97384878  1.5428869   0.95658988  0.58629702]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [46.66839984 28.1073999  34.69319988 27.02039991 16.39439994]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [174.82564566  14.34436811   1.50274333   0.72209744   0.56596827]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0
+Tokens: [']', 'multip', 'mul', 'acc', 'product']
+Probs: [96.76, 0.84, 0.51, 0.4, 0.4]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]
+API response time: 2.587235 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  product;
+reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+        C <= 32'b0;
+    end else begin
+        product <= A * B;
+        C <= C + product;
+        accumulator <= C;
+    end
+end
+
+endmodule
+Depth of rollout:  81
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.011250372999999758
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [40.46543086 21.04361993  0.80937     0.49266007  0.17595198]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [53.74935919  8.97742766  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [59.96417958  0.32860231  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [64.11520117  7.63946858  1.69014792  1.04789171  0.64225621]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [34.49058279 31.48404542 38.78817664 30.20972549 18.32949636]  taking action:  2  corresponding to token:  ];
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:];
+Tokens: ['0', 'endmodule', '32', ':', '1']
+Probs: [99.38, 0.12, 0.09, 0.09, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:];0
+API response time: 2.113534 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:];0reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.011622136000000172
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [37.84049326 22.18192306  0.85315089  0.51930932  0.18546967]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [49.79724984  9.52199997  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [54.85309302  0.35129065  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [57.59702589  8.25156916  1.8255684   1.13185241  0.69371599]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [37.84617051 34.53676631 20.74515931 33.09309621 20.07895725]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [106.55840646  17.56819128   1.84047718   0.88438514   0.69316673]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [188.83823927   1.63935636   0.9953235    0.78064588   0.78064588]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]
+Tokens: ['C', 'product', 'mult', 'mul', 'multip']
+Probs: [43.47, 26.37, 20.54, 4.58, 1.69]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  C
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]C
+API response time: 1.623669 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]C
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  ;
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.01272395599999987
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [35.65335394 23.26459718  0.8947922   0.5446562   0.19452223]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [46.5841385  10.03706926  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [50.82842482  0.3726      0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [52.68401267  8.82129849  1.95161471  1.21000112  0.74161359]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [30.44896393 37.3440329  22.44739477 35.74462924 21.68775257]  taking action:  1  corresponding to token:  bit
+Leaf selection - depth:  5
+Leaf selection - action scores:  [70.70700092 26.01502408 15.76904685 12.29517267  9.56291208]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0
+Tokens: ['];', ']', ';', '1', 'reg']
+Probs: [38.59, 30.05, 8.61, 5.22, 2.47]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ];
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0];
+API response time: 2.201985 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0];reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  72
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.011278547999999944
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.7952101  24.29907926  0.93457997  0.56887485  0.20317184]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [43.90672518 10.52696705  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [47.55572896  0.39275488  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [48.81534983  9.35639997  2.06999999  1.2834      0.7866    ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [32.60309538 26.3046486  24.0317969  38.21261601 23.18518275]  taking action:  3  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:]
+Tokens: ['0', 'reg', '8', '1', '31']
+Probs: [99.31, 0.32, 0.07, 0.07, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:]0
+API response time: 2.137402 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:]0reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+ reg [31:0] C;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.01115214199999981
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.19153745 25.29128356  0.97274168  0.59210372  0.21146796]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [41.63190566 10.99505849  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [44.82822949  0.4119248   0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [45.66953575  9.86251153  2.18197158  1.35282238  0.8291492 ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [34.62629988 27.94073321 25.51989991 19.76529993 24.59159992]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [81.74693303 20.28599993  2.12519999  1.0212      0.8004    ]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [115.13933254   2.00779329   1.21901735   0.95609204   0.95609204]  taking action:  0  corresponding to token:  ]
+Leaf selection - depth:  7
+Leaf selection - action scores:  [84.83669141 51.46407989 40.08616613  8.93839537  3.29822886]  taking action:  0  corresponding to token:  C
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]C
+Tokens: [';', '(', ';\n', ');', '<|end|>']
+Probs: [98.97, 0.4, 0.32, 0.07, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]C;
+API response time: 1.633293 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31::0]C;
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//645949_top_module/645949_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        accumulator <= 32'b0;
+    end else begin
+        C <= A * B;
+        accumulator <= accumulator + C;
+    end
+end
+
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.01213127699999994
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [30.78939319 26.24600532  1.00946174  0.61445507  0.21945067]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [39.66850452 11.44401971  0.          0.          0.        ]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [42.51052541  0.43024142  0.          0.          0.        ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [43.04779898 10.34388936  2.2884711   1.41885208  0.86961902]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [29.0319154  29.48818052 26.92738274 20.86150175 25.92182235]  taking action:  1  corresponding to token:  bit
+Leaf selection - depth:  5
+Leaf selection - action scores:  [42.79901837 31.86176732 19.31305926 15.05844967 11.71212752]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [75.31281163 58.64602202 16.80340265 10.18742878  4.82048833]  taking action:  0  corresponding to token:  ];
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Design a Verilog module for a MAC (Multiplier and Accumulator) unit.
+//The MAC unit takes two inputs, A and B, and multiplies them.
+//The result of the multiplication is accumulated with a third register, C.
+//The accumulated result is stored in an output register, accumulator.
+//The module should have a control input, clk (clock), to synchronize the operations.
+//The module should have a control input, reset (reset), to reset the accumulated result.
+module top_module(
+    input wire clk,
+    input wire reset,
+    input wire [15:0] A,
+    input wire [15:0] B,
+    output reg [31:0] accumulator
+);
+
+reg [31:bit0];

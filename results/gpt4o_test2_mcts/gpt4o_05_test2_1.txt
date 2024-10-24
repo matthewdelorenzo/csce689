@@ -1,0 +1,1503 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:38:56,283] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Count10.v
+Prompt str:  // Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+
+Tokens: [';', 'reg', '   ', 'always', '`']
+Probs: [32.59, 32.59, 19.77, 1.84, 1.43]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;
+API response time: 1.209168 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+```
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [54.21670541 54.06265487 32.79709079  3.18983566  2.37218768]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;
+Tokens: ['b', '/', '<|end|>', '\n', 'i']
+Probs: [21.73, 13.18, 13.18, 10.26, 7.99]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  b
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;b
+API response time: 1.357940 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;balways @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  9
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:12: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+```
+Depth of rollout:  76
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.010148241000000002
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.70081595 66.21295929 40.16806875  3.90673487  2.90532469]  taking action:  1  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg
+Tokens: [' [', '[', ' ', ' q', 'ister']
+Probs: [99.67, 0.32, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [
+API response time: 1.402445 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:  3:0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'b0000;
+    end else if (count == 4'b1001) begin
+        count <= 4'b0000;
+    end else begin
+        count <= count + 1;
+    end
+end
+
+assign q = count;
+
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.009950420999999654
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [37.83700005 37.72806987 46.38209061  4.51110885  3.35477999]  taking action:  2  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   
+Tokens: ['//', '/', 'r', '//\n', 'reg']
+Probs: [68.14, 25.07, 3.39, 0.97, 0.76]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  //
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   //
+API response time: 1.980036 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   //always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  7
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:9: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:9: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: error: Invalid module instantiation\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+```
+Depth of rollout:  76
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.010143432000000008
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [42.36206908 42.24028144 25.42837688  5.04357302  3.75075805]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [42.40858763 25.72228187 25.72228187 20.02356692 15.59340153]  taking action:  0  corresponding to token:  b
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;b
+Tokens: ['e', 'eg', 'egin', 'egi', '<|end|>']
+Probs: [61.68, 29.14, 8.35, 0.69, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  e
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;be
+API response time: 1.224229 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;bealways @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  9
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:12: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+```
+Depth of rollout:  77
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.010584984000000297
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [30.63536278 46.31963251 27.9031138   5.52495743  4.10874959]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.94517438e+02 6.24516707e-01 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [
+Tokens: ['3', '0', ']', '4', ' ']
+Probs: [99.88, 0.07, 0.03, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  3
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3
+API response time: 1.981770 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:  :0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'b0000;
+    end else if (count == 4'b1001) begin
+        count <= 4'b0000;
+    end else begin
+        count <= count + 1;
+    end
+end
+
+assign q = count;
+
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.009722265000000174
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.14338936 33.04732197 30.17886926  5.96763608  4.43795678]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.4698501  31.5032328  31.5032328  24.52376089 19.09793855]  taking action:  1  corresponding to token:  /
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;/
+Tokens: ['  \n', '\n', 'reg', '<|end|>', 'begin']
+Probs: [29.2, 22.74, 13.79, 8.37, 6.52]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:    
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;/  
+
+API response time: 1.644159 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;/  
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000; // Reset the counter to 0
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000; // Reset the counter to 0 after reaching 9
+        end else begin
+            q <= q + 1; // Increment the counter
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  10
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:10: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:12: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:14: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000; // Reset the counter to 0
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000; // Reset the counter to 0 after reaching 9
+        end else begin
+            q <= q + 1; // Increment the counter
+        end
+    end
+endmodule
+```
+Depth of rollout:  102
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.0097899779999997
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.3583527  35.37510323 32.29709079  6.37967132  4.74437536]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.18617117e+02 7.64873634e-01 2.39023011e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.94927277e+02 1.36613030e-01 5.85484413e-02 1.95161471e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  3
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3
+Tokens: [':', '```', "'b", 'bit', ']']
+Probs: [96.81, 1.08, 0.51, 0.51, 0.31]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:
+API response time: 1.414706 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'd0;
+    end else if (count == 4'd9) begin
+        count <= 4'd0;
+    end else begin
+        count <= count + 4'd1;
+    end
+end
+
+assign q = count;
+
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 1 passed!\nTest 2 passed!\nMismatch at index 3: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 4: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 5: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 6: Inputs = [0, 0], Generated = [0100], Reference = [0001]\nMismatch at index 7: Inputs = [1, 0], Generated = [0101], Reference = [0010]\nMismatch at index 8: Inputs = [0, 0], Generated = [0110], Reference = [0010]\nMismatch at index 9: Inputs = [1, 0], Generated = [0111], Reference = [0011]\nMismatch at index 10: Inputs = [0, 1], Generated = [0000], Reference = [0011]\nTest 11 passed!\nTest 12 passed!\nMismatch at index 13: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 14: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 15: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 16: Inputs = [0, 0], Generated = [0100], Reference = [0001]\nMismatch at index 17: Inputs = [1, 0], Generated = [0101], Reference = [0010]\nMismatch at index 18: Inputs = [0, 0], Generated = [0110], Reference = [0010]\nMismatch at index 19: Inputs = [1, 0], Generated = [0111], Reference = [0011]\nMismatch at index 20: Inputs = [0, 0], Generated = [1000], Reference = [0011]\nMismatch at index 21: Inputs = [1, 0], Generated = [1001], Reference = [0100]\nMismatch at index 22: Inputs = [0, 0], Generated = [0000], Reference = [0100]\nMismatch at index 23: Inputs = [1, 0], Generated = [0001], Reference = [0101]\nMismatch at index 24: Inputs = [0, 0], Generated = [0010], Reference = [0101]\nMismatch at index 25: Inputs = [1, 0], Generated = [0011], Reference = [0110]\nMismatch at index 26: Inputs = [0, 0], Generated = [0100], Reference = [0110]\nMismatch at index 27: Inputs = [1, 0], Generated = [0101], Reference = [0111]\nMismatch at index 28: Inputs = [0, 0], Generated = [0110], Reference = [0111]\nMismatch at index 29: Inputs = [1, 0], Generated = [0111], Reference = [1000]\nTest 30 passed!\nTest 31 passed!\nMismatch at index 32: Inputs = [0, 0], Generated = [0000], Reference = [1001]\nMismatch at index 33: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 34: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 35: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 36: Inputs = [0, 0], Generated = [0100], Reference = [0001]\n30 mismatches out of 37 total tests.\n'
+
+Rollout raw response:  ```verilog
+0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'd0;
+    end else if (count == 4'd9) begin
+        count <= 4'd0;
+    end else begin
+        count <= count + 4'd1;
+    end
+end
+
+assign q = count;
+
+endmodule
+```
+Depth of rollout:  84
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.010526952999999839
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.00275004 28.14605242 34.28656796  6.76666328  5.03216998]  taking action:  2  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [132.98302629  48.92698076   6.61597386   1.89306627   1.48322718]  taking action:  0  corresponding to token:  //
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   //
+Tokens: ['//', 'always', 'a', 'b', 'r']
+Probs: [20.91, 16.28, 12.68, 9.88, 7.69]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  //
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   ////
+API response time: 1.227405 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   ////
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:  
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Depth of rollout:  72
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.010288128000000007
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.5580597  29.69694286 23.77884147  7.13268937  5.30437291]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [9.13297330e+01 8.83199997e-01 2.75999999e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.19318092e+02 1.67316107e-01 7.17069032e-02 2.39023011e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  3
+Leaf selection - action scores:  [188.93582001   2.10774389   0.9953235    0.9953235    0.60500056]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:
+Tokens: ['0', '1', ':', ']', '`']
+Probs: [96.79, 1.38, 1.38, 0.4, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0
+API response time: 1.171489 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:   q_reg;
+
+always @(posedge clk) begin
+    if (reset) begin
+        q_reg <= 4'd0;
+    end else if (q_reg == 4'd9) begin
+        q_reg <= 4'd0;
+    end else begin
+        q_reg <= q_reg + 4'd1;
+    end
+end
+
+assign q = q_reg;
+
+endmodule
+Depth of rollout:  84
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.010189072000000188
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [31.03736119 24.73763284 24.97199857  7.48082773  5.56327324]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [29.4873999  17.68839994 36.37679987 28.3175999  22.05239992]  taking action:  2  corresponding to token:  <|end|>
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;<|end|>
+Tokens: ['   ', '    \n', 'always', '\n', ' always']
+Probs: [33.54, 20.34, 15.84, 7.48, 5.83]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;<|end|>   
+API response time: 1.344030 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;<|end|>   
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:      always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.010341556000000196
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.76065275 25.86518371 26.11204581  7.81346973  5.81064939]  taking action:  2  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [80.93513972 59.92306876  8.10288006  2.3185232   1.81657488]  taking action:  0  corresponding to token:  //
+Leaf selection - depth:  2
+Leaf selection - action scores:  [40.80826357 31.77228747 24.74647451 19.28195333 15.00791711]  taking action:  0  corresponding to token:  //
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   ////
+Tokens: ['\n', '//\n', '//', '    \n', '/\n']
+Probs: [43.34, 26.29, 7.53, 7.53, 2.16]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   ////
+
+API response time: 2.143175 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   ////
+// Internal register to hold the counter value
+    reg [3:0] count;
+
+    // Always block triggered on the rising edge of the clock
+    always @(posedge clk) begin
+        if (reset) begin
+            // If reset is high, set the counter to 0
+            count <= 4'b0000;
+        end else if (count == 4'b1001) begin
+            // If the counter reaches 9, reset it to 0
+            count <= 4'b0000;
+        end else begin
+            // Otherwise, increment the counter
+            count <= count + 1;
+        end
+    end
+
+    // Assign the internal counter value to the output
+    assign q = count;
+
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 1 passed!\nTest 2 passed!\nMismatch at index 3: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 4: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 5: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 6: Inputs = [0, 0], Generated = [0100], Reference = [0001]\nMismatch at index 7: Inputs = [1, 0], Generated = [0101], Reference = [0010]\nMismatch at index 8: Inputs = [0, 0], Generated = [0110], Reference = [0010]\nMismatch at index 9: Inputs = [1, 0], Generated = [0111], Reference = [0011]\nMismatch at index 10: Inputs = [0, 1], Generated = [0000], Reference = [0011]\nTest 11 passed!\nTest 12 passed!\nMismatch at index 13: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 14: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 15: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 16: Inputs = [0, 0], Generated = [0100], Reference = [0001]\nMismatch at index 17: Inputs = [1, 0], Generated = [0101], Reference = [0010]\nMismatch at index 18: Inputs = [0, 0], Generated = [0110], Reference = [0010]\nMismatch at index 19: Inputs = [1, 0], Generated = [0111], Reference = [0011]\nMismatch at index 20: Inputs = [0, 0], Generated = [1000], Reference = [0011]\nMismatch at index 21: Inputs = [1, 0], Generated = [1001], Reference = [0100]\nMismatch at index 22: Inputs = [0, 0], Generated = [0000], Reference = [0100]\nMismatch at index 23: Inputs = [1, 0], Generated = [0001], Reference = [0101]\nMismatch at index 24: Inputs = [0, 0], Generated = [0010], Reference = [0101]\nMismatch at index 25: Inputs = [1, 0], Generated = [0011], Reference = [0110]\nMismatch at index 26: Inputs = [0, 0], Generated = [0100], Reference = [0110]\nMismatch at index 27: Inputs = [1, 0], Generated = [0101], Reference = [0111]\nMismatch at index 28: Inputs = [0, 0], Generated = [0110], Reference = [0111]\nMismatch at index 29: Inputs = [1, 0], Generated = [0111], Reference = [1000]\nTest 30 passed!\nTest 31 passed!\nMismatch at index 32: Inputs = [0, 0], Generated = [0000], Reference = [1001]\nMismatch at index 33: Inputs = [1, 0], Generated = [0001], Reference = [0000]\nMismatch at index 34: Inputs = [0, 0], Generated = [0010], Reference = [0000]\nMismatch at index 35: Inputs = [1, 0], Generated = [0011], Reference = [0001]\nMismatch at index 36: Inputs = [0, 0], Generated = [0100], Reference = [0001]\n30 mismatches out of 37 total tests.\n'
+
+Rollout raw response:  ```verilog
+    // Internal register to hold the counter value
+    reg [3:0] count;
+
+    // Always block triggered on the rising edge of the clock
+    always @(posedge clk) begin
+        if (reset) begin
+            // If reset is high, set the counter to 0
+            count <= 4'b0000;
+        end else if (count == 4'b1001) begin
+            // If the counter reaches 9, reset it to 0
+            count <= 4'b0000;
+        end else begin
+            // Otherwise, increment the counter
+            count <= count + 1;
+        end
+    end
+
+    // Assign the internal counter value to the output
+    assign q = count;
+
+endmodule
+```
+Depth of rollout:  164
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.010622648000000012
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.84520387 26.94665321 20.37912577  8.13251714  6.04791563]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [7.63647686e+01 9.87447615e-01 3.08577380e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [9.15229330e+01 1.93199999e-01 8.27999997e-02 2.75999999e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  3
+Leaf selection - action scores:  [115.19908829   2.58144851   1.21901735   1.21901735   0.74097133]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.88896788e+02 2.69322830e+00 2.69322830e+00 7.80645884e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0
+Tokens: [' q', ']', '```', ')', 'q']
+Probs: [95.46, 1.36, 1.36, 0.3, 0.3]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q
+API response time: 1.211332 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:  ;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'd0;
+        end else if (q == 4'd9) begin
+            q <= 4'd0;
+        end else begin
+            q <= q + 4'd1;
+        end
+    end
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.01076639299999993
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [27.88878387 23.15605666 21.16823652  8.43951188  6.27621866]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [33.02693232 19.83524933 19.83524933 31.66003917 24.65533265]  taking action:  0  corresponding to token:  b
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.20375595e+02 5.68700526e+01 1.62959828e+01 1.34661415e+00
+ 7.80645884e-02]  taking action:  0  corresponding to token:  e
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;be
+Tokens: ['gin', 'gi', 'g', ' ', ' gin']
+Probs: [89.28, 7.33, 2.7, 0.17, 0.13]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  gin
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;begin
+API response time: 2.120791 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;beginalways @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  9
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:12: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000;
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000;
+        end else begin
+            q <= q + 1;
+        end
+    end
+endmodule
+```
+Depth of rollout:  78
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.01023957299999978
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.91309381 23.99277966 21.92963308  8.73572473  6.49650351]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.67628171e+01 1.08169467e+00 3.38029583e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.65267718e+01 2.16004166e-01 9.25732139e-02 3.08577380e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  3
+Leaf selection - action scores:  [88.39853301  2.98079999  1.4076      1.4076      0.8556    ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.15175186e+02 3.29851755e+00 3.29851755e+00 9.56092042e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [186.30114015   2.654196     2.654196     0.58548441   0.58548441]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q
+Tokens: [';', '];', ']', ':', '<|end|>']
+Probs: [77.31, 22.15, 0.32, 0.09, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;
+API response time: 1.312542 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;always @(posedge clk) begin
+    if (reset) begin
+        q <= 4'd0;
+    end else if (q == 4'd9) begin
+        q <= 4'd0;
+    end else begin
+        q <= q + 4'd1;
+    end
+end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+always @(posedge clk) begin
+    if (reset) begin
+        q <= 4'd0;
+    end else if (q == 4'd9) begin
+        q <= 4'd0;
+    end else begin
+        q <= q + 4'd1;
+    end
+end
+endmodule
+```
+Depth of rollout:  78
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.010908503000000014
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [24.72466672 21.11603994 22.66604533  9.02221771  6.70955998]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [23.8179428  21.77614954 21.77614954 34.68183525 27.00856371]  taking action:  3  corresponding to token:  
+
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;
+
+Tokens: ['   ', 'always', 'reg', ' ', '//']
+Probs: [43.81, 26.57, 4.62, 3.6, 3.6]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;
+   
+API response time: 1.492652 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;
+   reg [3:0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'b0000;
+    end else if (count == 4'b1001) begin
+        count <= 4'b0000;
+    end else begin
+        count <= count + 1;
+    end
+end
+
+assign q = count;
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [3:0] count;
+
+always @(posedge clk) begin
+    if (reset) begin
+        count <= 4'b0000;
+    end else if (count == 4'b1001) begin
+        count <= 4'b0000;
+    end else begin
+        count <= count + 1;
+    end
+end
+
+assign q = count;
+
+endmodule
+```
+Depth of rollout:  88
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.010108275999999972
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.72392864 21.78833857 23.37978236  9.29988915  6.91605612]  taking action:  2  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [62.32213311 69.19319976  9.35639997  2.67719999  2.09759999]  taking action:  1  corresponding to token:  /
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   /
+Tokens: ['/', '/n', '*', 'n', '/\n']
+Probs: [98.68, 0.66, 0.31, 0.19, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  /
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   //
+API response time: 1.699239 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+   //always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000; // Reset the counter to 0
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000; // Reset the counter to 0 after reaching 9
+        end else begin
+            q <= q + 1; // Increment the counter
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  7
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:9: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:9: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:11: error: Invalid module instantiation\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:13: error: Invalid module instantiation\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 4'b0000; // Reset the counter to 0
+        end else if (q == 4'b1001) begin
+            q <= 4'b0000; // Reset the counter to 0 after reaching 9
+        end else begin
+            q <= q + 1; // Increment the counter
+        end
+    end
+endmodule
+```
+Depth of rollout:  102
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010115235999999861
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.37858802 22.44113782 19.05825447  9.56950698  7.11656304]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [5.99681341e+01 1.16836377e+00 3.65113680e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.69047896e+01 2.36620708e-01 1.01408875e-01 3.38029583e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  3
+Leaf selection - action scores:  [73.93344035  3.3326357   1.57374464  1.57374464  0.95658988]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [8.83801330e+01 3.80879999e+00 3.80879999e+00 1.10400000e+00
+ 2.75999999e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [113.58568297   3.25071294   3.25071294   0.71706903   0.71706903]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.50879333e+02 4.32282658e+01 6.24516707e-01 1.75645324e-01
+ 7.80645884e-02]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;
+Tokens: [']', '<|end|>', '`]', '`', ' ]']
+Probs: [95.37, 1.36, 1.06, 0.83, 0.24]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;]
+API response time: 1.606694 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;]reg [3:0] q;
+
+always @(posedge clk) begin
+    if (reset) begin
+        q <= 4'd0;
+    end else if (q == 4'd9) begin
+        q <= 4'd0;
+    end else begin
+        q <= q + 4'd1;
+    end
+end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg [3:0] q;
+
+always @(posedge clk) begin
+    if (reset) begin
+        q <= 4'd0;
+    end else if (q == 4'd9) begin
+        q <= 4'd0;
+    end else begin
+        q <= q + 4'd1;
+    end
+end
+
+endmodule
+```
+Depth of rollout:  87
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.010543704999999903
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.01530128 20.06653668 19.59748457  9.83173381  7.31157347]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.77973418 23.56099149 23.56099149 18.23033177 29.17258301]  taking action:  4  corresponding to token:  i
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;i
+Tokens: ['n', '<|end|>', '/', 'endmodule', 'nl']
+Probs: [96.83, 2.92, 0.09, 0.03, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  n
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;in
+API response time: 1.555537 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+;in
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//620938_top_module/620938_top_module.v:7: syntax error\nI give up.\n'
+Rollout raw response:      reg [3:0] count;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            count <= 4'b0000;
+        end else if (count == 4'b1001) begin
+            count <= 4'b0000;
+        end else begin
+            count <= count + 1;
+        end
+    end
+
+    assign q = count;
+endmodule
+Depth of rollout:  86
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.009996629000000201
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.55603454 20.60764073 20.1227015  10.08714605  7.5015161 ]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [5.48478395e+01 1.24903341e+00 3.90322942e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.00959239e+01 2.55579576e-01 1.09534104e-01 3.65113680e-02
+ 3.65113680e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  3
+Leaf selection - action scores:  [64.64928791  3.6507195   1.72395088  1.72395088  1.04789171]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  4
+Leaf selection - action scores:  [7.39180115e+01 4.25836784e+00 4.25836784e+00 1.23430952e+00
+ 3.08577380e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  5
+Leaf selection - action scores:  [87.15653301  3.75359999  3.75359999  0.828       0.828     ]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  6
+Leaf selection - action scores:  [91.89434475 52.94359685  0.76487363  0.21512071  0.0956092 ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  7
+Leaf selection - action scores:  [186.12549483   2.654196     2.06871159   1.61984021   0.46838753]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a decade counter that counts from 0 through 9, inclusive, with a period of 10. The reset input is synchronous, and should reset the counter to 0.
+
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+reg [3:0 q;]

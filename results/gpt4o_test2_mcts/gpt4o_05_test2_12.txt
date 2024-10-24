@@ -1,0 +1,3724 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:53:45,789] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Lfsr32.v
+Prompt str:  // Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+Tokens: ['   ', 'reg', '\treg', '\t', '\tassign']
+Probs: [66.03, 11.47, 11.47, 6.96, 1.55]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   
+API response time: 2.503999 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 22 passed!\nMismatch at index 23: Inputs = [0, 0], Generated = [00000000000000000000000000000011], Reference = [00000000000000000000000000000001]\nMismatch at index 24: Inputs = [1, 0], Generated = [00000000000000000000000000000110], Reference = [10000000001000000000000000000011]\nMismatch at index 25: Inputs = [0, 0], Generated = [00000000000000000000000000001101], Reference = [10000000001000000000000000000011]\nMismatch at index 26: Inputs = [1, 0], Generated = [00000000000000000000000000011011], Reference = [11000000001100000000000000000010]\nMismatch at index 27: Inputs = [0, 0], Generated = [00000000000000000000000000110110], Reference = [11000000001100000000000000000010]\nMismatch at index 28: Inputs = [1, 0], Generated = [00000000000000000000000001101101], Reference = [01100000000110000000000000000001]\nMismatch at index 29: Inputs = [0, 0], Generated = [00000000000000000000000011011011], Reference = [01100000000110000000000000000001]\nMismatch at index 30: Inputs = [1, 0], Generated = [00000000000000000000000110110110], Reference = [10110000001011000000000000000011]\nMismatch at index 31: Inputs = [0, 0], Generated = [00000000000000000000001101101101], Reference = [10110000001011000000000000000011]\n9 mismatches out of 32 total tests.\n'
+
+Rollout raw response:  ```verilog
+reg [31:0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+```
+Depth of rollout:  82
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [109.53535137  19.02726761  19.02726761  11.83849421   2.571253  ]  taking action:  0  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   
+Tokens: ['reg', '//', 'r', '//\n', 'assign']
+Probs: [69.33, 15.47, 5.69, 3.45, 2.09]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg
+API response time: 2.637725 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   [31:0] q_reg;
+   
+   always @(posedge clk) begin
+       if (reset) begin
+           q_reg <= 32'h1;
+       end else begin
+           q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+       end
+   end
+   
+   assign q = q_reg;
+   
+endmodule
+Depth of rollout:  90
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.011009820999999587
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [66.57642991 23.30354842 23.30354842 14.49913507  3.14912892]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [135.3054478   30.19147955  11.1046877    6.73307075   4.07887474]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg
+Tokens: ['[', ' [', 'ister', '`', 'istration']
+Probs: [67.88, 32.07, 0.02, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[
+API response time: 2.260129 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.01124015399999978
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [50.96879314 26.90861991 26.90861991 16.74215907  3.63630086]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [82.35732663 36.97685974 13.6004093   8.24629387  4.99558092]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.32475606e+02 6.25882837e+01 3.90322942e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[
+Tokens: ['31', ']', ' ', '3', '0']
+Probs: [99.86, 0.07, 0.02, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31
+API response time: 2.644990 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 22 passed!\nMismatch at index 23: Inputs = [0, 0], Generated = [00000000000000000000000000000011], Reference = [00000000000000000000000000000001]\nMismatch at index 24: Inputs = [1, 0], Generated = [00000000000000000000000000000110], Reference = [10000000001000000000000000000011]\nMismatch at index 25: Inputs = [0, 0], Generated = [00000000000000000000000000001101], Reference = [10000000001000000000000000000011]\nMismatch at index 26: Inputs = [1, 0], Generated = [00000000000000000000000000011011], Reference = [11000000001100000000000000000010]\nMismatch at index 27: Inputs = [0, 0], Generated = [00000000000000000000000000110110], Reference = [11000000001100000000000000000010]\nMismatch at index 28: Inputs = [1, 0], Generated = [00000000000000000000000001101101], Reference = [01100000000110000000000000000001]\nMismatch at index 29: Inputs = [0, 0], Generated = [00000000000000000000000011011011], Reference = [01100000000110000000000000000001]\nMismatch at index 30: Inputs = [1, 0], Generated = [00000000000000000000000110110110], Reference = [10110000001011000000000000000011]\nMismatch at index 31: Inputs = [0, 0], Generated = [00000000000000000000001101101101], Reference = [10110000001011000000000000000011]\n9 mismatches out of 32 total tests.\n'
+
+Rollout raw response:  ```verilog
+:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+```
+Depth of rollout:  85
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.01075321099999993
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [42.77264935 30.08475165 30.08475165 18.71830289  4.06550795]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [63.4169331  42.69719985 15.70439995  9.52199997  5.76839998]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [8.10744098e+01 7.66546795e+01 4.78046021e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.94888245e+02 1.36613030e-01 3.90322942e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  31
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31
+Tokens: [':', ']', '];\n', '];', ':end']
+Probs: [99.82, 0.12, 0.02, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:
+API response time: 3.264486 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Depth of rollout:  98
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.011929244000000061
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [37.32415875 32.95619423 32.95619423 20.50487346  4.45354083]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [52.95917438 47.73692066 17.55805291 10.6459196   6.44926724]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.20829331e+01 8.85131997e+01 5.51999998e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  1  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [
+Tokens: ['31', '3', '0', ']', ':']
+Probs: [99.92, 0.04, 0.03, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31
+API response time: 2.225432 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  :0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.010890181999999804
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.47031304 35.5967582  35.5967582  22.14779466  4.81037388]  taking action:  2  corresponding to token:  	reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg
+Tokens: [' [', '[', 'ister', ' ', '`']
+Probs: [77.7, 22.26, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [
+API response time: 2.527978 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  31:0] r;
+
+	always @(posedge clk) begin
+		if (reset) begin
+			r <= 32'h1;
+		end else begin
+			r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+		end
+	end
+
+	assign q = r;
+endmodule
+Depth of rollout:  76
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.010797938000000062
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [35.82845045 38.05453522 18.52726761 23.67698842  5.14250599]  taking action:  1  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg
+Tokens: [' [', '[', 'ister', '`', ' ']
+Probs: [67.9, 32.07, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [
+API response time: 2.514601 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  31:0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.010908989999999896
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [38.04326153 19.68146493 19.68146493 25.11323861  5.45445129]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [46.25118202 52.29317654 19.23388329 11.66202063  7.06481829]  taking action:  1  corresponding to token:  //
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //
+Tokens: ['a', 'r', 'assign', 'reg', 'q']
+Probs: [39.03, 30.39, 11.18, 6.78, 3.2]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  a
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //a
+API response time: 2.359769 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //a
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ssign q_next = {q[30:0], feedback};
+    wire feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= q_next;
+        end
+    end
+endmodule
+Depth of rollout:  81
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.010828012000000165
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [34.2612131  20.7731319  20.7731319  26.47167781  5.74949649]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [50.00666282 27.74154312 20.77496837 12.59642195  7.63087591]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.94541085e+01 4.89803829e+01 6.17154760e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.18844189e+02 1.67316107e-01 4.78046021e-02 4.78046021e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.94810180e+02 2.34193765e-01 3.90322942e-02 1.95161471e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:
+Tokens: ['0', '1', ':', ']', 'bit']
+Probs: [99.19, 0.52, 0.12, 0.12, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0
+API response time: 3.535684 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   q_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Depth of rollout:  87
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.010881797000000137
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [31.34789616 21.81144896 21.81144896 27.76372991  6.03012279]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [44.4184826  29.69147955 22.20937539 13.46614149  8.15774949]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [56.83862032 53.70304369  0.06760592  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [9.12045330e+01 1.93199999e-01 5.51999998e-02 5.51999998e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.18796385e+02 2.86827613e-01 4.78046021e-02 2.39023011e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.93580663e+02 1.01483965e+00 2.34193765e-01 2.34193765e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0
+Tokens: [' q', ']', '```', '"]', ';']
+Probs: [35.72, 27.82, 27.82, 1.38, 0.84]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q
+API response time: 1.826906 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ];
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Depth of rollout:  73
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.01112092099999984
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.02285776 22.80354842 22.80354842 28.99827014  6.29825784]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.2751713  31.52289989 23.55659992 14.28299995  8.65259997]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [48.94783315 58.04597853  0.07302274  0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.95005342e+02 7.80645884e-02 5.85484413e-02 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31
+Tokens: [':', '];', ']', '];\n', ']:']
+Probs: [98.84, 0.4, 0.19, 0.15, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:
+API response time: 3.084951 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 22 passed!\nMismatch at index 23: Inputs = [0, 0], Generated = [00000000000000000000000000000011], Reference = [00000000000000000000000000000001]\nMismatch at index 24: Inputs = [1, 0], Generated = [00000000000000000000000000000110], Reference = [10000000001000000000000000000011]\nMismatch at index 25: Inputs = [0, 0], Generated = [00000000000000000000000000001101], Reference = [10000000001000000000000000000011]\nMismatch at index 26: Inputs = [1, 0], Generated = [00000000000000000000000000011011], Reference = [11000000001100000000000000000010]\nMismatch at index 27: Inputs = [0, 0], Generated = [00000000000000000000000000110110], Reference = [11000000001100000000000000000010]\nMismatch at index 28: Inputs = [1, 0], Generated = [00000000000000000000000001101101], Reference = [01100000000110000000000000000001]\nMismatch at index 29: Inputs = [0, 0], Generated = [00000000000000000000000011011011], Reference = [01100000000110000000000000000001]\nMismatch at index 30: Inputs = [1, 0], Generated = [00000000000000000000000110110110], Reference = [10110000001011000000000000000011]\nMismatch at index 31: Inputs = [0, 0], Generated = [00000000000000000000001101101101], Reference = [10110000001011000000000000000011]\n9 mismatches out of 32 total tests.\n'
+
+Rollout raw response:  ```verilog
+0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+```
+Depth of rollout:  85
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.011402304000000196
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [27.20614473 23.75510221 23.75510221 30.18235649  6.5554346 ]  taking action:  3  corresponding to token:  	
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	
+Tokens: ['reg', '//', 'always', 'assign', 'r']
+Probs: [93.0, 2.19, 2.19, 1.03, 0.49]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg
+API response time: 2.701191 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.010970888999999762
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.26032998 24.67070911 24.67070911 15.16085579  6.80289599]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [37.1690224  33.25510031 24.83083656 15.05560389  9.1206412 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [52.37024258 41.35885581  0.07806459  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [7.62863429e+01 2.16004166e-01 6.17154760e-02 6.17154760e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [9.11677330e+01 3.31199999e-01 5.51999998e-02 2.75999999e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.18043462e+02 1.24291966e+00 2.86827613e-01 2.86827613e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [69.71167742 54.29392121 54.29392121  2.6932283   1.63935636]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q
+Tokens: [';', '];', ';\n', '];\n', '[']
+Probs: [97.34, 1.39, 1.08, 0.07, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;
+API response time: 3.223765 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n'
+Rollout raw response:  ```
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+```
+Depth of rollout:  76
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.011555505000000021
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.52499217 25.55415919 25.55415919 15.71052581  7.04166633]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [34.56882253 34.90264788 26.04280109 15.79045057  9.56580919]  taking action:  1  corresponding to token:  //
+Leaf selection - depth:  2
+Leaf selection - action scores:  [76.17152211 59.30957102 21.81905245 13.23194773  6.24516707]  taking action:  0  corresponding to token:  a
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //a
+Tokens: ['ss', 'sync', '[', ' <=', '<=']
+Probs: [68.84, 15.36, 3.43, 3.43, 2.67]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ss
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //ass
+API response time: 3.518841 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //ass
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ign reg [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Depth of rollout:  102
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.011079746000000057
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.05106326 26.40861991 26.40861991 16.24215907  7.27260172]  taking action:  2  corresponding to token:  	reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.51640463e+02 4.34429434e+01 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [
+Tokens: ['31', ']', '30', ' ', '3']
+Probs: [99.95, 0.03, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31
+API response time: 2.377737 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  :0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  78
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.010713441999999684
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.84564021 27.23677053 17.82451367 16.75742256  7.49642626]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.32514639e+02 6.25882837e+01 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [
+Tokens: ['31', ']', '3', ' ', '30']
+Probs: [99.97, 0.02, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31
+API response time: 2.785718 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  :0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010966981999999792
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.61717119 18.36060092 18.36060092 17.25774132  7.71375899]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [36.13658965 23.98457314 27.20081861 16.49258773  9.99116184]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [46.1538665  43.88993317  0.0828      0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.67112684e+01 2.36620708e-01 6.76059167e-02 6.76059167e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [7.62554851e+01 3.70292856e-01 6.17154760e-02 3.08577380e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [9.05881330e+01 1.43520000e+00 3.31199999e-01 3.31199999e-01
+ 2.75999999e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [42.1895097  66.49620155 66.49620155  3.29851755  2.00779329]  taking action:  1  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0]
+Tokens: [' q', ' state', ' r', ' next', ' nxt']
+Probs: [90.12, 4.49, 1.65, 1.65, 0.37]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q
+API response time: 2.291415 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Depth of rollout:  73
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.01141012099999994
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.18543283 18.88199246 18.88199246 17.74434487  7.92513399]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [33.77625596 24.99115721 28.31150963 17.16602956 10.39913095]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [41.58920879 46.28388566  0.08727886  0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.19365896e+02 9.56092042e-02 7.17069032e-02 2.39023011e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.92897598e+02 7.80645884e-01 3.70806795e-01 2.92742206e-01
+ 1.36613030e-01]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:
+Tokens: ['0', '1', ']', '`', 'q']
+Probs: [62.28, 22.91, 6.56, 1.88, 1.46]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0
+API response time: 2.873766 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   q_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Depth of rollout:  87
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.010796668000000231
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.94151389 19.38983441 19.38983441 18.21830289  8.13101591]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [31.7985969  25.95971552 29.38024203 17.81403076 10.7916882 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [43.6546909  36.17063407  0.09153884  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.99337534e+01 2.55579576e-01 7.30227359e-02 7.30227359e-02
+ 3.65113680e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [6.66842260e+01 4.05635500e-01 6.76059167e-02 3.38029583e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [7.57694758e+01 1.60460238e+00 3.70292856e-01 3.70292856e-01
+ 3.08577380e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [48.79359983 37.89159987 76.78319973  3.80879999  2.31839999]  taking action:  2  corresponding to token:  ```
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0```
+Tokens: [' q', ']', '```', ')', ' reg']
+Probs: [48.98, 29.71, 14.03, 1.9, 1.48]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0``` q
+API response time: 2.318719 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0``` q
+Compilation check...
+Verilog compilation failed, error:  3
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: Stray tic (`) here. Perhaps you put white space\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10:      : between the tic and preprocessor directive?\nI give up.\n'
+Rollout raw response:  ];
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+
+endmodule
+Depth of rollout:  74
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  20.0
+Iteration TIME (sec):  0.011592752999999956
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.84900699 19.88513124 19.88513124 18.68055281  8.33181197]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [30.11243581 26.89425731 30.41143973 18.43927365 11.17045853]  taking action:  2  corresponding to token:  r
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   r
+Tokens: ['eg', 'e', 'egi', 'egen', 'egin']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  eg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg
+API response time: 3.980212 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   [31:0] q_reg;
+   
+   always @(posedge clk) begin
+       if (reset) begin
+           q_reg <= 32'h1;
+       end else begin
+           q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+       end
+   end
+   
+   assign q = q_reg;
+endmodule
+Depth of rollout:  90
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  21.0
+Iteration TIME (sec):  0.010728873999999777
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.88047887 20.36876913 20.36876913 19.13192169  8.52788143]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [31.12513324 27.79813322 15.20439995 19.04399993 11.53679996]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [39.79970491 37.80233978  0.0956092   0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.48252128e+01 2.73226059e-01 7.80645884e-02 7.80645884e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.99094125e+01 4.38136416e-01 7.30227359e-02 3.65113680e-02
+ 3.65113680e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [6.62583087e+01 1.75775383e+00 4.05635500e-01 4.05635500e-01
+ 3.38029583e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [54.61192004 42.42311353 42.42311353  4.25836784  2.59204999]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.89970176e+02 2.71274445e+00 2.10774389e+00 1.36613030e-01
+ 7.80645884e-02]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;
+Tokens: [']', '`', '];', '<|end|>', '`]']
+Probs: [94.64, 1.35, 1.05, 0.82, 0.64]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;]
+API response time: 2.337920 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;]always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  8
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:12: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:14: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+```
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  22.0
+Iteration TIME (sec):  0.011676836999999995
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.01484993 20.84153458 20.84153458 19.57314356  8.71954314]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [29.55998296 28.67417747 15.68772494 19.63010582 11.8918612 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [36.73865015 39.36736003  0.09951321  0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [9.15597330e+01 1.10400000e-01 8.27999997e-02 2.75999999e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [117.62517185   0.95609204   0.45414372   0.35853452   0.16731611]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [121.5465641   44.71149299  12.80259249   3.66903565   2.84935748]  taking action:  0  corresponding to token:  0
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0
+Tokens: [' q', ' n', ' data', 'q', ';']
+Probs: [95.97, 0.65, 0.5, 0.5, 0.39]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q
+API response time: 2.190104 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+
+endmodule
+Depth of rollout:  73
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  23.0
+Iteration TIME (sec):  0.010947078000000054
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.23564375 21.30412947 21.30412947 20.00487346  8.90708166]  taking action:  2  corresponding to token:  	reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [9.23604396e+01 5.32065222e+01 2.39023011e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.95063890e+02 5.85484413e-02 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31
+Tokens: [':', '```', ']', '];', ']_']
+Probs: [90.95, 2.75, 2.14, 0.79, 0.79]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31:
+API response time: 3.044924 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  78
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  24.0
+Iteration TIME (sec):  0.010736317000000106
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.67033047 21.75718324 16.06788744 20.42769884  9.09075215]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [8.06483121e+01 7.66546795e+01 2.39023011e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.95102922e+02 3.90322942e-02 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31
+Tokens: [':', ']', '```', 'm', '];']
+Probs: [99.88, 0.03, 0.03, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:
+API response time: 3.090797 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  25.0
+Iteration TIME (sec):  0.011038952999999907
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.09640698 16.40094725 16.40094725 20.84214895  9.27078452]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [28.19402452 29.52481287 16.15703154 20.19921224 12.23662423]  taking action:  1  corresponding to token:  //
+Leaf selection - depth:  2
+Leaf selection - action scores:  [46.14534052 72.63909293 26.72277259 16.20576012  7.64873634]  taking action:  1  corresponding to token:  r
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //r
+Tokens: ['eg', 'e', '```', '[', 'egen']
+Probs: [99.9, 0.06, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  eg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //reg
+API response time: 3.109795 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Depth of rollout:  100
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  26.0
+Iteration TIME (sec):  0.010939672999999761
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.32939887 16.72766132 16.72766132 21.2487026   9.44738676]  taking action:  3  corresponding to token:  	
+Leaf selection - depth:  1
+Leaf selection - action scores:  [181.50016797   4.27403621   4.27403621   2.01016315   0.95629121]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg
+Tokens: ['[', ' [', 'ister', 'istration', ' ']
+Probs: [62.2, 37.73, 0.03, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[
+API response time: 2.584688 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  27.0
+Iteration TIME (sec):  0.010145725000000105
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.7180924  17.0483791  17.0483791  14.09852975  9.62074777]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [28.98852846 22.51409742 16.61347308 20.7527178  12.57193629]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [38.15527885 32.49860674  0.10326974  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.08025498e+01 2.89799999e-01 8.27999997e-02 8.27999997e-02
+ 4.13999999e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.48029086e+01 4.68387530e-01 7.80645884e-02 3.90322942e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.95260432e+01 1.89859113e+00 4.38136416e-01 4.38136416e-01
+ 3.65113680e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [39.58138904 46.51991504 46.51991504  4.66480825  2.8394485 ]  taking action:  1  corresponding to token:  ]
+Leaf selection - depth:  7
+Leaf selection - action scores:  [175.8795176    8.76275004   3.22016427   3.22016427   0.72209744]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q
+Tokens: [';', '_next', '_reg', 'reg', ' =']
+Probs: [97.23, 1.78, 0.66, 0.08, 0.06]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q;
+API response time: 2.805483 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  
+    wire feedback;
+
+    assign feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], feedback};
+        end
+    end
+endmodule
+Depth of rollout:  84
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  28.0
+Iteration TIME (sec):  0.010994149000000064
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.99490956 17.36341912 17.36341912 14.35988095  9.79103971]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [27.71155966 23.11846033 17.05805291 21.29183921 12.89853448]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [35.46993893 33.66101483  0.10689434  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [4.75314848e+01 3.05476021e-01 8.72788631e-02 8.72788631e-02
+ 4.36394316e-02]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.07818498e+01 4.96799998e-01 8.27999997e-02 4.13999999e-02
+ 4.13999999e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.44516180e+01 2.02967930e+00 4.68387530e-01 4.68387530e-01
+ 3.90322942e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [42.80620211 33.19154187 50.28731284  5.03856878  3.06695491]  taking action:  2  corresponding to token:  ```
+Leaf selection - depth:  7
+Leaf selection - action scores:  [95.59008846 57.98247301 27.38115437  3.70806795  2.88838977]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0``` q
+Tokens: ['```', '``', ' q', ' reg', ']']
+Probs: [84.67, 6.95, 1.99, 1.99, 1.55]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ```
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0``` q```
+API response time: 2.113582 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0``` q```
+Compilation check...
+Verilog compilation failed, error:  3
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: Stray tic (`) here. Perhaps you put white space\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10:      : between the tic and preprocessor directive?\nI give up.\n'
+Rollout raw response:  ];
+   
+   always @(posedge clk) begin
+       if (reset) begin
+           q <= 32'h1;
+       end else begin
+           q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+       end
+   end
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  29.0
+Iteration TIME (sec):  0.011574591000000023
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.33469483 17.67307264 17.67307264 14.61676362  9.95842003]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [26.57748508 23.70789379 17.49165037 21.81764281 13.21706477]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [33.23614529 34.78527987  0.1104      0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [7.65576295e+01 1.23430952e-01 9.25732139e-02 3.08577380e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [90.266133  1.104     0.5244    0.414     0.1932  ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [73.93176551 54.76017173 15.6799095   4.4936326   3.48973596]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [187.29646365   1.26854956   0.97580735   0.97580735   0.76112974]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q
+Tokens: [';', ';\n', ';.', '_;', 'reg']
+Probs: [99.96, 0.02, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q;
+API response time: 2.658260 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q;reg [31:0] q;
+
+   always @(posedge clk) begin
+       if (reset) begin
+           q <= 32'h1;
+       end else begin
+           q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+       end
+   end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+   reg [31:0] q;
+
+   always @(posedge clk) begin
+       if (reset) begin
+           q <= 32'h1;
+       end else begin
+           q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+       end
+   end
+endmodule
+```
+Depth of rollout:  87
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  30.0
+Iteration TIME (sec):  0.011700327999999871
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.72914128 17.97760687 17.97760687 14.86939942 10.12303317]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.56220013 24.28345239 17.91504125 22.33106936 13.52809709]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [34.28449489 29.72910596  0.11379771  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [44.80534478  0.32038595  0.09153884  0.09153884  0.04576942]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [4.75120895e+01 5.23673179e-01 8.72788631e-02 4.36394316e-02
+ 4.36394316e-02]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.04558248e+01 2.15279999e+00 4.96799998e-01 4.96799998e-01
+ 4.13999999e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [45.80778493 35.52928079 35.52928079  5.3864566   3.27871271]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.15832499e+02 3.32241985e+00 2.58144851e+00 1.67316107e-01
+ 9.56092042e-02]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [184.70081609   2.63467986   2.04919544   1.60032406   1.24903341]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;]
+Tokens: [';\n', ';', '(', '[', '<|end|>']
+Probs: [30.05, 23.4, 8.61, 4.07, 4.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];
+
+API response time: 3.077748 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+```
+Depth of rollout:  80
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  31.0
+Iteration TIME (sec):  0.011685213999999888
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.17136541 18.27726761 18.27726761 15.11799226 10.28501198]  taking action:  2  corresponding to token:  	reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [7.08173331e+01 6.14375998e+01 2.75999999e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.18951750e+02 7.17069032e-02 2.39023011e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [177.49935781   5.36694045   4.17645548   1.54177562   1.54177562]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31:
+Tokens: ['0', '1', 'q', ':', '31']
+Probs: [40.95, 40.95, 9.14, 2.62, 2.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31:0
+API response time: 3.556877 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg [31:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+
+endmodule
+Depth of rollout:  96
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  32.0
+Iteration TIME (sec):  0.011293873000000065
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.46672607 18.5722816  14.65782527 15.36273025 10.44447904]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.18013331e+01 8.85131997e+01 2.75999999e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  1  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg[
+Tokens: ['31', ' ', ']', '0', ':']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg[31
+API response time: 2.756197 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg[31
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  :0] r;
+
+always @(posedge clk) begin
+    if (reset) begin
+        r <= 32'h1;
+    end else begin
+        r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+    end
+end
+
+assign q = r;
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  33.0
+Iteration TIME (sec):  0.010367880999999635
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.75764446 14.89028681 14.89028681 15.60378734 10.60154769]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [24.64683875 24.84607213 18.32891408 22.8329538  13.83213723]  taking action:  1  corresponding to token:  //
+Leaf selection - depth:  2
+Leaf selection - action scores:  [53.36139981 41.43819986 30.85679989 18.71279994  8.83199997]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  3
+Leaf selection - action scores:  [134.34915659  29.97680194   6.69403845   6.69403845   5.21081127]  taking action:  0  corresponding to token:  ss
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //ass
+Tokens: ['ign', 'ignment', 'ig', 'igns', 'igning']
+Probs: [99.26, 0.67, 0.02, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //assign
+API response time: 3.600302 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //assignreg [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  9
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: error: Unable to bind wire/reg/memory `q_reg['sd31]' in `top_module_tb.UUT'\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: error: Unable to bind wire/reg/memory `q_reg['sd21]' in `top_module_tb.UUT'\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: error: Unable to bind wire/reg/memory `q_reg['sd1]' in `top_module_tb.UUT'\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: error: Unable to bind wire/reg/memory `q_reg['sd0]' in `top_module_tb.UUT'\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:13: error: Unable to elaborate r-value: (((q_reg['sd31])^(q_reg['sd21]))^(q_reg['sd1]))^(q_reg['sd0])\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:23: error: Unable to bind wire/reg/memory `q_reg' in `top_module_tb.UUT'\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:23: error: Unable to elaborate r-value: q_reg\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:17: error: Could not find variable ``q_reg'' in ``top_module_tb.UUT''\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:19: error: Could not find variable ``q_reg'' in ``top_module_tb.UUT''\n9 error(s) during elaboration.\n"
+Rollout raw response:  ```verilog
+    reg [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule
+```
+Depth of rollout:  109
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  34.0
+Iteration TIME (sec):  0.01100143099999995
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.20913536 15.11935421 15.11935421 15.84132478 10.756323  ]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.19510112 20.1172706  18.73388329 23.32404125 14.12963658]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [32.27723492 30.61080853  0.11709688  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [42.48879605  0.33463221  0.0956092   0.0956092   0.0478046 ]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [44.78703701  0.54923306  0.09153884  0.04576942  0.04576942]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.72066135e+01 2.26925044e+00 5.23673179e-01 5.23673179e-01
+ 4.36394316e-02]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [36.22019987 37.72493318 37.72493318  5.71319998  3.47759999]  taking action:  1  corresponding to token:  ]
+Leaf selection - depth:  7
+Leaf selection - action scores:  [107.20376858  10.73213318   3.94387968   3.94387968   0.88438514]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  8
+Leaf selection - action scores:  [1.89755498e+02 3.47387418e+00 1.28806571e+00 1.56129177e-01
+ 1.17096883e-01]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q;
+Tokens: [';\n', ';', ';\n\n', '=', '   ']
+Probs: [59.71, 36.22, 3.82, 0.05, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q;;
+
+API response time: 2.574008 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0] q;;
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+```
+Depth of rollout:  80
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  35.0
+Iteration TIME (sec):  0.011856207000000119
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.70076552 15.34517193 15.34517193 16.07549238 10.90890258]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [24.32510513 20.54859991 19.13049993 23.80499992 14.42099995]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [30.55517241 31.46834105  0.12030561  0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.69318319e+01 1.35211833e-01 1.01408875e-01 3.38029583e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [75.49947056  1.23430952  0.58629702  0.46286607  0.21600417]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [56.63093312 63.23159978 18.10559994  5.18879998  4.02959999]  taking action:  1  corresponding to token:  1
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:1
+Tokens: [']', '];', ']]', '```', '];\n\n']
+Probs: [40.91, 15.05, 11.72, 11.72, 7.11]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:1]
+API response time: 3.320925 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:1]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:1], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = {lfsr[31:1], lfsr[0]};
+
+endmodule
+Depth of rollout:  109
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  36.0
+Iteration TIME (sec):  0.011240104000000084
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.22805231 15.56787448 15.56787448 16.30642962 11.05937731]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [23.53253648 20.97138551 19.51926044 24.27643182 14.70659203]  taking action:  3  corresponding to token:  //
+
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //
+
+Tokens: ['assign', '   ', 'always', '  ', ')']
+Probs: [43.82, 34.13, 7.62, 2.18, 1.7]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //
+assign
+API response time: 2.890935 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //
+assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:11: syntax error\nI give up.\n'
+Rollout raw response:   q_next = {q[30:0], feedback_value};
+    wire feedback_value;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= q_next;
+        end
+    end
+
+    assign feedback_value = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+endmodule
+Depth of rollout:  86
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  37.0
+Iteration TIME (sec):  0.01047829999999994
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.78716765 15.78758732 15.78758732 16.53426662 11.20783197]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [23.99719797 21.38611583 19.90061396 11.8694408  14.98674277]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [31.37112695 27.54593307  0.12343095  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [40.48912346  0.34829625  0.09951321  0.09951321  0.04975661]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [42.47141255  0.57365523  0.0956092   0.0478046   0.0478046 ]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [44.49868965  2.38000994  0.54923306  0.54923306  0.04576942]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [38.22001238 29.60122465 39.80163285  6.02224156  3.66571225]  taking action:  2  corresponding to token:  ```
+Leaf selection - depth:  7
+Leaf selection - action scores:  [58.0367353  71.01373645 33.53492839  4.5414372   3.53754056]  taking action:  1  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0```]
+Tokens: [' q', 'q', '```', ' reg', '<|end|>']
+Probs: [56.87, 16.29, 12.69, 3.64, 2.2]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0```] q
+API response time: 2.124168 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0```] q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  ;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  38.0
+Iteration TIME (sec):  0.011618137999999778
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.37482192 16.00442773 16.00442773 16.75912496 11.35434579]  taking action:  3  corresponding to token:  	
+Leaf selection - depth:  1
+Leaf selection - action scores:  [110.64569994   5.23460393   5.23460393   2.46193701   1.17121275]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.21390435e+02 7.36344230e+01 5.85484413e-02 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[
+Tokens: ['31', ']', '3', ' ', '`']
+Probs: [99.98, 0.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[31
+API response time: 3.711811 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Some testbench tests failed.
+Simulation output:  b'Test 22 passed!\nMismatch at index 23: Inputs = [0, 0], Generated = [00000000000000000000000000000011], Reference = [00000000000000000000000000000001]\nMismatch at index 24: Inputs = [1, 0], Generated = [00000000000000000000000000000110], Reference = [10000000001000000000000000000011]\nMismatch at index 25: Inputs = [0, 0], Generated = [00000000000000000000000000001101], Reference = [10000000001000000000000000000011]\nMismatch at index 26: Inputs = [1, 0], Generated = [00000000000000000000000000011011], Reference = [11000000001100000000000000000010]\nMismatch at index 27: Inputs = [0, 0], Generated = [00000000000000000000000000110110], Reference = [11000000001100000000000000000010]\nMismatch at index 28: Inputs = [1, 0], Generated = [00000000000000000000000001101101], Reference = [01100000000110000000000000000001]\nMismatch at index 29: Inputs = [0, 0], Generated = [00000000000000000000000011011011], Reference = [01100000000110000000000000000001]\nMismatch at index 30: Inputs = [1, 0], Generated = [00000000000000000000000110110110], Reference = [10110000001011000000000000000011]\nMismatch at index 31: Inputs = [0, 0], Generated = [00000000000000000000001101101101], Reference = [10110000001011000000000000000011]\n9 mismatches out of 32 total tests.\n'
+
+Rollout raw response:  ```verilog
+:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+```
+Depth of rollout:  85
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  39.0
+Iteration TIME (sec):  0.0114777880000001
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.59489222 16.21850551 16.21850551 12.71083893 11.49899297]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [23.241268   21.79323449 20.27496837 12.09642195 15.26175181]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [29.79785903 28.24417413  0.12647909  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [38.74044841  0.3614441   0.10326974  0.10326974  0.05163487]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [40.47253793  0.59707929  0.09951321  0.04975661  0.04975661]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [42.19762256  2.48583931  0.57365523  0.57365523  0.0478046 ]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [40.1220938  31.08263297 31.08263297  6.31618023  3.84463144]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  7
+Leaf selection - action scores:  [88.886133    3.83639999  2.98079999  0.1932      0.1104    ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [112.60568862   3.22681064   2.50974161   1.95998869   1.52974727]  taking action:  0  corresponding to token:  ]
+Leaf selection - depth:  9
+Leaf selection - action scores:  [58.64602202 45.6677842  16.80340265  7.94307187  7.94307187]  taking action:  0  corresponding to token:  ;
+
+Adding child.
+Leaf selection - depth:  10
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];
+
+Tokens: ['   \n', ' q', '  \n', '    \n', '`']
+Probs: [28.03, 21.83, 10.31, 6.25, 4.87]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];
+   
+
+API response time: 5.941238 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];
+   
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule
+```
+Depth of rollout:  81
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  40.0
+Iteration TIME (sec):  0.012150500000000175
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.19801366 16.42992362 16.42992362 12.87526559 11.64184308]  taking action:  2  corresponding to token:  	reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [5.91911560e+01 6.86893247e+01 3.08577380e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  1  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[
+Tokens: ['31', '3', ']', ' ', '0']
+Probs: [99.94, 0.06, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  31
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[31
+API response time: 3.001390 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+	reg[31
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  :0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  78
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  41.0
+Iteration TIME (sec):  0.01616087700000035
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.40531168 16.63877881 13.69898237 13.03769898 11.78296149]  taking action:  1  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.91746803e+01 4.89803829e+01 3.08577380e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.18975652e+02 4.78046021e-02 2.39023011e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.94927277e+02 5.85484413e-02 5.85484413e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  :
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:
+Tokens: ['0', '1', ':', ']', '31']
+Probs: [97.42, 2.29, 0.11, 0.05, 0.03]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  0
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0
+API response time: 4.108016 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:   q_reg;
+
+always @(posedge clk) begin
+    if (reset) begin
+        q_reg <= 32'h1;
+    end else begin
+        q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+    end
+end
+
+assign q = q_reg;
+
+endmodule
+Depth of rollout:  83
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  42.0
+Iteration TIME (sec):  0.011658943999999671
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.61015621 13.87096842 13.87096842 13.19820988 11.92240967]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [22.5467179  22.19314579 20.64269548 12.31938478 15.53189228]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [28.41812537 28.92597907  0.12945547  0.          0.        ]  taking action:  1  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.01202648e+01 1.46045472e-01 1.09534104e-01 3.65113680e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [66.02168802  1.35211833  0.64225621  0.50704438  0.23662071]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [63.39399737 34.84753886 20.24267612  5.80125474  4.50522975]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [114.19519165   1.55364957   1.19511505   1.19511505   0.93218974]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.95083406e+02 3.90322942e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q;
+Tokens: [']', ']\n', '`', '];\n', '`\n']
+Probs: [45.81, 27.79, 13.12, 3.76, 1.78]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q;]
+API response time: 2.780541 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg [31:0 q;]
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  
+   reg [31:0] q;
+
+   always @(posedge clk) begin
+       if (reset) begin
+           q <= 32'h1;
+       end else begin
+           q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+       end
+   end
+
+endmodule
+Depth of rollout:  83
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  43.0
+Iteration TIME (sec):  0.01191724900000013
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.21887791 14.040966   14.040966   13.35686498 12.06024558]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [21.90590196 22.58621949 21.00413526 12.53853544 15.79741395]  taking action:  1  corresponding to token:  //
+Leaf selection - depth:  2
+Leaf selection - action scores:  [39.47925043 46.38833286 34.49895106 20.92154635  9.87447615]  taking action:  1  corresponding to token:  r
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.94966309e+02 1.17096883e-01 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  eg
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //reg
+Tokens: [' [', '[', ' q', 'ister', '[n']
+Probs: [67.61, 31.94, 0.22, 0.08, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //reg [
+API response time: 2.664272 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   //reg [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//637833_top_module/637833_top_module.v:10: syntax error\nI give up.\n'
+Rollout raw response:  31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule
+Depth of rollout:  81
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  44.0
+Iteration TIME (sec):  0.011037924000000032
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.85070294 14.20904251 14.20904251 13.51372719 12.19652386]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [22.28252521 18.977329   21.35959959 12.75406302 16.05854592]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [29.07644259 25.76839959  0.13236495  0.          0.        ]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [37.19453142  0.37413019  0.10689434  0.10689434  0.05344717]  taking action:  0  corresponding to token:  31
+Leaf selection - depth:  4
+Leaf selection - action scores:  [38.72456076  0.61961846  0.10326974  0.05163487  0.05163487]  taking action:  0  corresponding to token:  :
+Leaf selection - depth:  5
+Leaf selection - action scores:  [40.21131574  2.58734359  0.59707929  0.59707929  0.04975661]  taking action:  0  corresponding to token:  0
+Leaf selection - depth:  6
+Leaf selection - action scores:  [33.35160775 32.49810078 32.49810078  6.59703509  4.01558658]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  7
+Leaf selection - action scores:  [74.34230538  4.28922558  3.3326357   0.21600417  0.12343095]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [86.40213301  3.72599999  2.89799999  2.26319999  1.76639999]  taking action:  0  corresponding to token:  ]
+Leaf selection - depth:  9
+Leaf selection - action scores:  [35.41320735 55.93138448 20.57988121  9.72823653  9.72823653]  taking action:  1  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  10
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+   reg[31:0 q;];

@@ -19,6 +19,7 @@ from peft import PeftModel
 from datetime import datetime
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 
+
 class CsvLogger:
     def __init__(self, filename):
         self.filename = filename
@@ -104,7 +105,7 @@ if __name__ == '__main__':
             print("ORIG MODILE: ", module_name)
             print("--------MCTS-------")
             merged_tree = initialize_MCTS_tree(LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, \
-                                                           file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir))
+                                                           file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir, temp = 0))
             merged_tree = execute_episode(merged_tree,simulation_per_episode)
             print("END ROBUST/MAX VALUES:")
             evalMctsRobustValue, evalMctsMaxValue = test_episode(merged_tree)
@@ -112,6 +113,29 @@ if __name__ == '__main__':
             time_difference = end_time - start_time
             seconds = time_difference.total_seconds()
             print("MCTS Total Time: ", seconds)
+
+        elif(operation == "sample"):
+            env = LLMQueryEnv(csv_logger, row_data, orig_prompt=prompt_str, op = operation, orig_module=module_name, \
+                                                           file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir, temp = 1)
+            start_time = datetime.now()
+            for i in range(simulation_per_episode):
+                print(simulation_per_episode)
+                print("----GREEDY LLM OUTPUT - ITERATION: ", i, " ----")
+                print("---------------")
+                print("Done setting up env.")
+                env.row_data['episode'] = idx_ep
+                env.row_data['currentRun'] = i
+                
+                finalState = env.get_best_terminal_state(prompt_str, 0)
+                #promptGen = env.get_prompt_from_state(finalState)
+                filteredGen=env.trim_with_stopwords(finalState)
+                score = env.getPromptScore()
+                env.csv_logger.log(env.row_data)
+            end_time = datetime.now()
+            time_difference = end_time - start_time
+            seconds = time_difference.total_seconds()
+            print("Greedy Total Time: ", seconds)
+            break
 
         else:
             print("Error reading --op parameter. Please only state 'beam', 'greedy', or 'mcts' as your input.")

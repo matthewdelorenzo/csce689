@@ -16,7 +16,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-Nk4FoBjiJLwSjR0mgsE
 
 def get_completion(
     messages: list[dict[str, str]],
-    model: str = "gpt-4",
+    model: str = "gpt-4o",
     max_tokens=2048,
     temperature=0,
     stop=None,
@@ -50,7 +50,7 @@ def get_completion(
 
 class LLMQueryEnv(gym.Env, StaticEnv):
     
-    def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = ""):
+    def __init__(self, csv_logger=None, row_data=None, op = "mcts", orig_prompt="def hello_world():", orig_module="hello_world", file_path = "", tb_path = "", dump_path = "", temp = 0):
         self.op = op
         self.csv_logger = csv_logger
         self.row_data = row_data
@@ -59,6 +59,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         self.num_tokens=0
         self.n_actions = 5
         self.stopwords = ['endmodule']
+        self.temp = temp
         self.depth=2048
         self.orig_module = orig_module
         self.prompt_path = file_path
@@ -71,6 +72,36 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         self.first_successful_product = None
         self.beam_count = 0
         self.cumul_token_time = 0
+
+    def extract_verilog_code(self, input_string):
+        """
+        Extracts and trims the code between the first and last instance of backticks of any length,
+        and removes the word 'verilog' if it appears directly after the first set of backticks.
+        
+        Args:
+        input_string (str): The input string containing the code block.
+        
+        Returns:
+        str: The trimmed code, or an empty string if no code is found.
+        """
+        # Match the first occurrence of backticks of any length and the content within
+        pattern = re.compile(r"(`+)(.*?)\1", re.DOTALL)
+        match = pattern.search(input_string)
+        
+        if match:
+            print("trimming text between  ```")
+            # Get the content between the first match
+            content = match.group(2)
+            
+            # Remove the word 'verilog' if it appears directly after the first set of backticks
+            if content.strip().lower().startswith('verilog'):
+                print("trimming text with ```verilog")
+                content = content[len('verilog'):].strip()
+            
+            return content.strip()
+        else:
+            print("No trimming of ``` needed.")
+            return input_string
 
     def get_tokenized_state(self,prompt):
         input_ids = self.tokenizer(prompt, return_tensors="pt").input_ids
@@ -92,7 +123,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 currentState = currentState[:-len(w)], w
                 # print('Trimmed', repr(currentState))
                 return currentState
-
 
     def isPromptComplete(self,currentState,depth):
         #start_time = datetime.now()
@@ -130,8 +160,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         #Setting the testbench file path (assuming in same location as prompt file).
         self.compilable = self.compilation_check(output_file_path, self.tb_path)
         #Call functionality check if compilable.
-        
-        
         if self.compilable:
             self.functional = self.functionality_check()
         
@@ -304,10 +332,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         return None
 
     def next_state(self, state, action):
-        # if not (state.endswith(" ")  or state.endswith("\n") ) and not (action.startswith(" ") or action.startswith("\n")):
-        #     nextState = state + " " + action
-        # else:
-        #     nextState = state + action
         nextState = state + action
         return nextState
 
@@ -321,75 +345,69 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             return False
 
     def getLLMestimates(self,state):
-
-        print("LLMEstimates: prior state: \n", state)
-        API_RESPONSE, response_time = get_completion(
-            [
-                  {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt, and determine a correct implementation. \
-                In your response, directly complete the rest of the top_module code (including any spaces, tabs, and newlines) such that the response can be directly appended to the provided code. \
-                   Make sure the code formatting would be correct (spaces, newlines, etc) if your response was directly added to the provided Verilog."},
-                {"role": "user", "content": state}
-            ],
-            model="gpt-4",
-            logprobs=True,
-            max_tokens=1,
-            top_logprobs=self.n_actions,
-            )
-        
-        # Extract the token usage details from the main response object
-        usage = API_RESPONSE.usage
-        prompt_tokens = usage.prompt_tokens
-        completion_tokens = usage.completion_tokens
-        total_tokens = usage.total_tokens
-        response_text = API_RESPONSE.choices[0].message.content
+        print("getLLMestimates: prior state:")
+        print(state)
+        completion = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+              {"role": "system", "content": "You are a code completion model. \
+            You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
+            In your response, you must generate only the single next token that correctly continues the code sequence from the end of the prompt. \
+            This token should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
+            (i.e. Make sure the token contains prepended spaces or newlines if needed). \
+            Do not generate any formatting tokens, such as ```verilog or ```."},
+                        {"role": "user", "content": state}
+        ],
+        logprobs=True,
+        top_logprobs=self.n_actions,
+        max_tokens=1,
+        temperature=0
+        )
 
         linear_probs = []
         tokens = []
-
-        logprobs = API_RESPONSE.choices[0].logprobs
-        for token_index, token_logprobs in enumerate(logprobs.content):
-            print("Token index (should only be 1): ", token_index)
-            for i, logprob in enumerate(token_logprobs.top_logprobs, start=1):
-                linear_probs.append(np.round(np.exp(logprob.logprob) * 100, 2))
-                print("Token:", logprob.token)
-                tokens.append(logprob.token)
-                print("Output token: ", i, " Token: ", logprob.token)
-                print("linear prob: ", np.round(np.exp(logprob.logprob) * 100, 2))
-
-        print("Token list: ", tokens)
+        if completion.choices and completion.choices[0].logprobs and completion.choices[0].logprobs.content:
+            for item in completion.choices[0].logprobs.content[0].top_logprobs:
+                linear_probs.append(np.round(np.exp(item.logprob) * 100, 2))
+                tokens.append(item.token)
+        else:
+            print("Logprobs or content is missing")
+            tokens = ["n/a", "n/a", "n/a", "n/a", "n/a"]
+            linear_probs = [.2, .2, .2, .2, .2]
+        print("Tokens:", tokens)
+        print("Probs:", linear_probs)
         return linear_probs, tokens
     
     def get_best_terminal_state(self,state,depth):
-        print("Getting terminal state (rollout).")
+        print("Getting terminal state (rollout). Temp: ", self.temp)
         print("Current prompt:")
         print(state)
         API_RESPONSE, response_time = get_completion(
             [
-                  {"role": "system", "content": "You are a professional computer hardware designer. Analyze the Verilog module instructions provided in the prompt, and determine a correct implementation. \
-                In your response, directly complete the rest of the top_module code (including any spaces, tabs, and newlines) such that the response can be directly appended to the provided code. \
-                   Make sure the code formatting would be correct (spaces, newlines, etc) if your response was directly added to the provided Verilog."},
+                      {"role": "system", "content": "You are a code completion model. \
+            You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
+            In your response, you must generate the rest of the tokens that correctly completes the code sequence from the end of the prompt. \
+            This token sequence should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
+            (i.e. Make sure the tokens contain prepended spaces or newlines if needed). \
+            Do not generate any formatting tokens, such as ```verilog or ```."},
                 {"role": "user", "content": state}
             ],
-            model="gpt-4",
+            model="gpt-4o",
             max_tokens=2048,
+            temperature=self.temp
         )
-        
-        # Extract the token usage details from the main response object
+
         usage = API_RESPONSE.usage
         prompt_tokens = usage.prompt_tokens
         completion_tokens = usage.completion_tokens
         total_tokens = usage.total_tokens
+
         response_text = API_RESPONSE.choices[0].message.content
         depth = depth + completion_tokens
-        # if not (state.endswith(" ")  or state.endswith("\n") ) and not (response_text.startswith(" ") or response_text.startswith("\n")):
-        #     state = state + " " + response_text
-        # else:
-        #     state = state + response_text
-        state = state + response_text
-        response_complete = self.is_done_state(state, depth)
-        if not response_complete:
-            print("Error - LLM did not provide effective response.")
-        print("Rollout raw response: ", response_text)
+        response_text_trimmed = self.extract_verilog_code(response_text)
+        state = state + response_text_trimmed
+        self.verilogFunctionalityCheck(state)
+        print("Rollout trimmed response: ", response_text_trimmed)
         print("Depth of rollout: ", depth)
 
         return state

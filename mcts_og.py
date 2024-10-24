@@ -136,7 +136,7 @@ class MCTSNode:
             print("Leaf selection - depth: ", current.depth)
             if not current.is_expanded:
                 break
-            print("Leaf selection - action scores: ", current.child_action_score, " taking action: ", np.argmax(current.child_action_score))
+            print("Leaf selection - action scores: ", current.child_action_score, " taking action: ", np.argmax(current.child_action_score), " corresponding to token: ", current.child_ids[np.argmax(current.child_action_score)])
             best_move = np.argmax(current.child_action_score)
             current = current.maybe_add_child(best_move)
         return current
@@ -317,13 +317,6 @@ def initialize_MCTS_tree(TreeEnv):
     first_node.incorporate_estimates(probs, first_node_rolloutReturn, first_node_rolloutReturn,first_node)
     mcts.root.inject_noise()
     return mcts
-
-def initialize_thread_tree(index, prompt_str, problem_name, file_dir, model_name, tokenizer, model):
-    # Create a partially applied function with the required parameters
-    return initialize_MCTS_tree(
-        LLMQueryEnv(orig_prompt=prompt_str, orig_module=problem_name, file_path=file_dir,
-                    model_name=model_name, tokenizer=tokenizer, model=model)
-    )
 
 def execute_episode(mctsTree, simulation_budget):
     file_name = "output" + ".jsonl"

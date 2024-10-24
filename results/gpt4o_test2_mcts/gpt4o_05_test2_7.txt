@@ -1,0 +1,3976 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:47:10,042] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Exams_m2014_q3.v
+Prompt str:  // Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Tokens: ['a', 'assign', '\tassign', 'w', '   ']
+Probs: [28.44, 22.15, 22.15, 13.43, 8.15]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  a
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+a
+API response time: 1.391600 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+a
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  ssign f = (~x[4] & ~x[3] & x[2] & ~x[1]) | (x[4] & x[3] & ~x[2]) | (x[4] & x[3] & ~x[1]) | (x[4] & ~x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  84
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [47.17833398 36.74402594 36.74403185 22.57139401 13.5198109 ]  taking action:  0  corresponding to token:  a
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+a
+Tokens: ['ss', 'nd', 'ssi', 's', 'n']
+Probs: [90.78, 7.45, 0.79, 0.48, 0.18]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ss
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+ass
+API response time: 1.302824 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+ass
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  ign f = (~x[4] & ~x[3] & x[2] & x[1]) | (x[4] & x[3] & ~x[2]) | (x[4] & x[3] & ~x[1]) | (x[4] & ~x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  83
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.010404897000000357
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.39071129 45.00205732 45.00206456 27.64419905 16.55831906]  taking action:  2  corresponding to token:  	assign
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign
+Tokens: [' f', 'f', 'assign', ' (', '(']
+Probs: [95.26, 4.74, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   f
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f
+API response time: 1.109442 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2]) | (x[4] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.009761305000000053
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.86011988 51.96389982 25.48195409 31.92077153 19.11989993]  taking action:  1  corresponding to token:  assign
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign
+Tokens: [' f', 'f', '<|end|>', '(f', '(']
+Probs: [99.98, 0.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   f
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+API response time: 0.915847 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2] & x[1]);
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.00985760400000002
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [36.7977479  28.54870309 28.54870777 35.68850752 21.37669799]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [177.16758331  14.53952958   1.54177562   0.93677506   0.35129065]  taking action:  0  corresponding to token:  ss
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+ass
+Tokens: ['ign', 'ig', 'sign', '\n', 'i']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign
+API response time: 0.933803 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[1]);
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.01016972100000002
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.57175714 31.3212599  31.32126502 39.09480122 23.41699939]  taking action:  3  corresponding to token:  w
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+w
+Tokens: ['ire', 'i', 'ir', 'ир', 'ires']
+Probs: [99.63, 0.32, 0.06, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ire
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire
+API response time: 2.733351 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   w1, w2, w3, w4;
+
+// Define the minterms based on the Karnaugh map
+assign w1 = x[3] & x[4];          // Covers minterms where x_3x_4 = 1
+assign w2 = x[3] & ~x[4] & x[1];  // Covers minterms where x_3x_4' = 1 and x_1 = 1
+assign w3 = ~x[3] & x[2] & x[4];  // Covers minterms where x_3'x_2x_4 = 1
+assign w4 = x[1] & x[2] & ~x[3];  // Covers minterms where x_1x_2x_3' = 1
+
+// Combine the minterms to form the function f
+assign f = w1 | w2 | w3 | w4;
+
+endmodule
+Depth of rollout:  201
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.010008511000000109
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.75419362 33.87088902 33.87089455 20.61360578 25.29325016]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [185.91081721   9.25065372   0.           0.           0.        ]  taking action:  0  corresponding to token:   f
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f
+Tokens: [' =', '=', '<|end|>', ' =(', ' ']
+Probs: [99.22, 0.67, 0.09, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f =
+API response time: 1.454921 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   (x[4] & x[3]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]) | (x[1] & ~x[2] & x[3] & x[4]);
+
+endmodule
+Depth of rollout:  75
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.010911633000000087
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [30.78555597 36.24402594 23.82935455 22.07139401 27.0396218 ]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.95122439e+02 1.95161471e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+Tokens: [' =', '=', '<|end|>', ' =(', '=(']
+Probs: [98.18, 1.8, 0.02, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+API response time: 1.347568 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   (x[4] & x[3]) | (x[4] & ~x[3] & x[2]) | (~x[4] & x[3] & ~x[2] & x[1]) | (x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  69
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.01016705600000023
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.6934532  25.31528322 25.3152874  23.44057865 28.6798499 ]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [107.99254452  17.80721429   1.88828178   1.14731045   0.43024142]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [195.16147093   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  ign
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign
+Tokens: [' f', 'f', '<|end|>', '(f', '(']
+Probs: [99.98, 0.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   f
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+API response time: 1.226079 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2]) | (x[4] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.010695120999999919
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.62349046 26.72071324 26.72071764 24.73558568 30.23121621]  taking action:  4  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   
+Tokens: ['assign', 'wire', ' ', 'always', 'ass']
+Probs: [99.93, 0.07, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign
+API response time: 0.893354 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[1]); 
+
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.009891384000000336
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.91075015 28.0574597  28.05746432 25.96730555 15.35338353]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [113.34665996  11.3296907    0.           0.           0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.93639211e+02 1.30758186e+00 1.75645324e-01 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f =
+Tokens: [' (', '(x', '(', ' x', 'x']
+Probs: [91.87, 4.57, 2.16, 1.02, 0.14]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   (
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (
+API response time: 0.769610 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  x[4] & x[3]) | (x[4] & ~x[3] & x[2]) | (~x[4] & x[3] & ~x[2] & x[1]);
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.010224329000000143
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.14071129 29.33470486 21.75103228 27.14419905 16.05831906]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.18987603e+02 2.39023011e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.91609532e+02 3.51290648e+00 3.90322942e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+Tokens: [' (', '(x', '(', ' x', 'x']
+Probs: [92.38, 4.6, 1.69, 1.03, 0.08]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   (
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+API response time: 0.769764 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2]));
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.0099034979999999
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.3204057  22.66981316 22.66981693 28.27299463 16.7344449 ]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [82.85093302 20.56199993  2.18039999  1.3248      0.4968    ]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [119.01150531   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.95122439e+02 1.95161471e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f
+Tokens: [' =', '=', '<|end|>', ' =(', ' ']
+Probs: [97.65, 2.3, 0.04, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+API response time: 0.815291 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   (x[4] & x[3]) | (x[4] & ~x[2]) | (~x[3] & x[2] & x[1]);
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.010176927999999918
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [24.16442779 23.5538887  23.55389261 29.35914765 17.38502871]  taking action:  3  corresponding to token:  w
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.94439373e+02 6.24516707e-01 1.17096883e-01 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ire
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire
+Tokens: [' [', ' w', ' f', ' y', '[']
+Probs: [32.02, 24.93, 15.12, 7.14, 5.56]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [
+API response time: 1.082757 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  4:1] x_not;
+
+assign x_not = ~x;
+
+assign f = (x[4] & x[3]) | (x[4] & x_not[2]) | (x[3] & x[2] & x_not[1]);
+
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.009519507999999899
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.04063774 24.40691483 24.40691887 19.93810274 18.01276351]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [69.28163635 22.9890148   2.4377613   1.48117142  0.55543928]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [91.333333  0.        0.        0.        0.      ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.18987603e+02 2.39023011e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.90575176e+02 4.48871383e+00 7.80645884e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f =
+Tokens: [' (', '(x', '(', ' x', 'x']
+Probs: [92.38, 4.6, 1.69, 1.03, 0.08]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   (
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+API response time: 1.134577 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  x[3] & x[4]) | (x[3] & ~x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.010250415000000235
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.40674661 25.23194991 25.23195409 20.61384767 18.61989993]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [86.97253301 13.08239995  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.18079316e+02 1.60145417e+00 2.15120710e-01 2.39023011e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [179.29484335   8.91887922   4.21548777   1.990647     0.27322606]  taking action:  0  corresponding to token:   (
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (
+Tokens: ['x', '(x', '~', '!', '(~']
+Probs: [98.79, 0.85, 0.19, 0.05, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  x
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x
+API response time: 0.933690 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  [4] & x[3]) | (x[3] & x[2]) | (x[1] & x[4]) | (x[1] & x[2] & ~x[3]);
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.010324376999999885
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.09121635 26.03158096 20.6252682  21.26878543 19.20834174]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [9.13149330e+01 2.75999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.16836396e+02 4.30241419e+00 4.78046021e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.80290167e+02 8.97742766e+00 3.29822886e+00 2.01016315e+00
+ 1.56129177e-01]  taking action:  0  corresponding to token:   (
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+Tokens: ['x', '(x', '`', '(~', '~']
+Probs: [91.25, 7.49, 0.79, 0.29, 0.03]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  x
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+API response time: 1.701526 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  [4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[1] & x[2] & ~x[3]) | (x[1] & x[4] & ~x[3]);
+
+endmodule
+Depth of rollout:  64
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010122210999999659
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.75583368 21.24641555 21.2464191  21.90472732 19.77971635]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [60.57265114 25.18320396  2.67043371  1.622542    0.60845325]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [76.39434496  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [9.13149330e+01 2.75999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.16202985e+02 5.49752924e+00 9.56092042e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.80290167e+02 8.97742766e+00 3.29822886e+00 2.01016315e+00
+ 1.56129177e-01]  taking action:  0  corresponding to token:   (
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (
+Tokens: ['x', '(x', '(~', '~', ' x']
+Probs: [87.14, 11.79, 0.59, 0.28, 0.08]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  x
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+API response time: 1.047390 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  [4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[1] & x[2] & ~x[3]) | (x[1] & ~x[2] & x[3]);
+
+endmodule
+Depth of rollout:  66
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.010579659000000241
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.91619875 21.85053879 21.85054243 22.5232362  20.33542791]  taking action:  3  corresponding to token:  w
+Leaf selection - depth:  1
+Leaf selection - action scores:  [118.56931274   0.76487363   0.14341381   0.           0.        ]  taking action:  0  corresponding to token:  ire
+Leaf selection - depth:  2
+Leaf selection - action scores:  [62.49070299 48.6537547  29.50841441 13.93452902 10.85097778]  taking action:  0  corresponding to token:   [
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [
+Tokens: ['4', '3', '16', '15', '1']
+Probs: [67.4, 19.31, 7.1, 1.59, 0.96]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  4
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [4
+API response time: 0.992860 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [4
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  :1] x_not;
+
+assign x_not = ~x;
+
+assign f = (x[4] & x[3]) | (x[4] & x[2]) | (x[3] & x[1]) | (x_not[4] & x_not[3] & x[2]);
+
+endmodule
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.0099807489999999
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.45585593 22.43896246 22.4389662  17.09425376 20.87669799]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [72.73770301 14.6265678   0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [9.06157330e+01 1.84919999e+00 2.48399999e-01 2.75999999e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [109.29521993  10.92335159   5.16289703   2.43803471   0.33463221]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.92800017e+02 1.65887250e+00 3.70806795e-01 9.75807355e-02
+ 7.80645884e-02]  taking action:  0  corresponding to token:  x
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x
+Tokens: ['[', '==', '1', '3', '```']
+Probs: [99.83, 0.06, 0.03, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[
+API response time: 0.915068 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  3] & x[4]) | (x[1] & x[3]) | (x[1] & x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  20.0
+Iteration TIME (sec):  0.010467302999999983
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.98218207 23.01285042 19.01071191 17.53491897 21.40459718]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [7.63789161e+01 3.08577380e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [8.96589330e+01 4.96799998e+00 5.51999998e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [109.9047286   10.99505849   4.03948888   2.46193701   0.19121841]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.78084842e+02 1.46175942e+01 1.54177562e+00 5.65968266e-01
+ 5.85484413e-02]  taking action:  0  corresponding to token:  x
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+Tokens: ['[', '==', '\\[', '1', '```']
+Probs: [99.68, 0.15, 0.06, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+API response time: 0.707599 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  3] & x[4]) | (x[1] & x[3]) | (x[1] & x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  21.0
+Iteration TIME (sec):  0.01005971299999997
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.49611886 19.47769124 19.47769451 17.96521123 21.92006999]  taking action:  4  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.95024858e+02 1.36613030e-01 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  assign
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign
+Tokens: [' f', 'f', '(', '(f', ' ']
+Probs: [99.79, 0.19, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   f
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign f
+API response time: 1.122696 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign f
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2]) | (x[4] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  66
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  22.0
+Iteration TIME (sec):  0.009573218999999966
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.99850207 19.93417576 19.9341791  18.38583029 14.61596978]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [54.40836642 27.20096914  2.88439807  1.75254566  0.65720462]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [66.80591666  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [7.63789161e+01 3.08577380e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [89.171333    6.34799998  0.1104      0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [109.9047286   10.99505849   4.03948888   2.46193701   0.19121841]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.70063706e+02 2.30095374e+01 1.15145268e+00 5.46452119e-01
+ 1.56129177e-01]  taking action:  0  corresponding to token:  x
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x
+Tokens: ['[', '==', '\\[', '1', '```']
+Probs: [99.68, 0.15, 0.06, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+API response time: 1.059023 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  3] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3]) | (x[1] & ~x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  23.0
+Iteration TIME (sec):  0.010379196000000146
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.55381787 20.38083995 20.38084337 18.79740061 14.94466624]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [63.60139621 16.02260225  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.57926191e+01 2.06746844e+00 2.77719642e-01 3.08577380e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [83.85373302 12.61319996  5.96159998  2.81519999  0.3864    ]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.17565416e+02 2.03169559e+00 4.54143720e-01 1.19511505e-01
+ 9.56092042e-02]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.94829696e+02 1.17096883e-01 5.85484413e-02 1.95161471e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[
+Tokens: ['3', '1', '4', '2', '<|end|>']
+Probs: [46.21, 28.03, 21.83, 3.79, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  3
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3
+API response time: 0.868126 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  ] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  24.0
+Iteration TIME (sec):  0.010799306000000009
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.97507493 20.81829161 17.70139577 19.20048221 15.26658326]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.67923955e+01 3.38029583e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.49903179e+01 5.55439284e+00 6.17154760e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [84.32293302 12.69599996  4.66439998  2.84279999  0.2208    ]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.08554249e+02 1.79028235e+01 1.88828178e+00 6.93166731e-01
+ 7.17069032e-02]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.94536954e+02 2.92742206e-01 1.17096883e-01 5.85484413e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+Tokens: ['3', '4', '1', '2', '])']
+Probs: [40.14, 31.26, 24.35, 4.23, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  3
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+API response time: 1.345577 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  ] & x[4]) | (x[3] & ~x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  25.0
+Iteration TIME (sec):  0.009939285999999825
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.38798778 18.06892422 18.06892726 19.59557962 15.58212379]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [49.76216665 29.07905917  3.08355124  1.87355012  0.7025813 ]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [60.01894663  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.67923955e+01 3.38029583e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [74.58145285  7.09727974  0.12343095  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [84.32293302 12.69599996  4.66439998  2.84279999  0.2208    ]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [103.64232573  28.18081295   1.41023576   0.66926443   0.19121841]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.94536954e+02 2.92742206e-01 1.17096883e-01 5.85484413e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  [
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[
+Tokens: ['3', '1', '4', '2', '<|end|>']
+Probs: [56.81, 26.83, 12.68, 3.63, 0.03]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  3
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+API response time: 1.065484 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  ] & x[4]) | (x[3] & ~x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  26.0
+Iteration TIME (sec):  0.011141147000000018
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.3715853  18.42945313 18.42945623 19.98314929 15.89165237]  taking action:  3  corresponding to token:  w
+Leaf selection - depth:  1
+Leaf selection - action scores:  [90.992933  0.8832    0.1656    0.        0.      ]  taking action:  0  corresponding to token:  ire
+Leaf selection - depth:  2
+Leaf selection - action scores:  [37.767584   59.58843655 36.14027921 17.06624296 13.28967939]  taking action:  1  corresponding to token:   w
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire w
+Tokens: ['1', '=', '0', 'i', ';']
+Probs: [94.09, 2.21, 1.72, 0.81, 0.81]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  1
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire w1
+API response time: 2.234859 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire w1
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  , w2, w3, w4;
+
+// Assign intermediate wires based on the Karnaugh map
+assign w1 = ~x[4] & x[3]; // Covers the minterms (x_3x_4)
+assign w2 = x[4] & x[3];  // Covers the minterms (x_3x_4')
+assign w3 = x[1] & x[2];  // Covers the minterm (x_1x_2)
+assign w4 = ~x[1] & x[2] & x[3]; // Covers the minterm (x_3'x_2)
+
+// Combine the intermediate wires to form the output function
+assign f = w1 | w2 | w3 | w4;
+
+endmodule
+Depth of rollout:  163
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  27.0
+Iteration TIME (sec):  0.010529709000000054
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.72501798 18.78336515 18.7833683  16.09088461 16.19550009]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [57.13454856 17.30638842  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.62785905e+01 2.26479821e+00 3.04226625e-01 3.38029583e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [70.12250971 14.10198626  6.6652714   3.14748927  0.43200833]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [90.220133    2.34599999  0.5244      0.138       0.1104    ]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.18808336e+02 1.43413806e-01 7.17069032e-02 2.39023011e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [90.18411572 54.7037603  42.6037491   7.39661975  0.13661303]  taking action:  0  corresponding to token:  3
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3
+Tokens: [']', ']&', '])', '&', ' &']
+Probs: [98.22, 0.85, 0.52, 0.31, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3]
+API response time: 1.040287 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[4]) | (x[3] & ~x[2]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  28.0
+Iteration TIME (sec):  0.011146105999999989
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.07219372 19.13101175 16.6146381  16.38986153 16.49396869]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.00067762e+01 3.65113680e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [65.57548897  6.0845325   0.06760592  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [70.51594587 14.19455947  5.21495772  3.17834701  0.2468619 ]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [8.32833330e+01 2.06723999e+01 2.18039999e+00 8.00399997e-01
+ 8.27999997e-02]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.18629068e+02 3.58534516e-01 1.43413806e-01 7.17069032e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [7.83378144e+01 6.10074758e+01 4.75218182e+01 8.25533022e+00
+ 1.95161471e-02]  taking action:  0  corresponding to token:  3
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+Tokens: [']', '&', '])', ']&', '`']
+Probs: [69.66, 15.54, 9.43, 2.7, 0.77]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+API response time: 0.976238 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[4]) | (x[3] & ~x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  29.0
+Iteration TIME (sec):  0.010959374000000022
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.41343353 16.91362507 16.91362793 16.68372661 16.78733413]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [46.10364984 30.84299989  3.27059999  1.98719999  0.7452    ]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [54.9032774  0.         0.         0.         0.       ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.00067762e+01 3.65113680e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [65.21717761  7.77468042  0.13521183  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [70.51594587 14.19455947  5.21495772  3.17834701  0.2468619 ]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [79.50213304 32.54039989  1.62839999  0.7728      0.2208    ]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.18629068e+02 3.58534516e-01 1.43413806e-01 7.17069032e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  8
+Leaf selection - action scores:  [1.10871232e+02 5.23618227e+01 2.47464745e+01 7.08436139e+00
+ 5.85484413e-02]  taking action:  0  corresponding to token:  3
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3
+Tokens: [']', ']&', '])', '&', "]'"]
+Probs: [99.64, 0.25, 0.06, 0.04, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+API response time: 0.913628 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[4]) | (x[3] & ~x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  30.0
+Iteration TIME (sec):  0.010808549000000056
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.67412869 17.20767185 17.20767476 16.9727334  17.07584956]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [43.12875107 32.51137651  3.44751509  2.09469271  0.78550977]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [50.87499982  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.48921253e+01 3.90322942e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [58.58891805  8.39761463  0.14604547  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [61.65434581 15.54936083  5.71269996  3.48170471  0.27042367]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [66.4735822  36.38127308  1.82060654  0.86401666  0.2468619 ]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  7
+Leaf selection - action scores:  [9.10389330e+01 4.13999999e-01 1.65599999e-01 8.27999997e-02
+ 5.51999998e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  8
+Leaf selection - action scores:  [67.39448617 64.12987375 30.30811775  8.67653529  0.0717069 ]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  9
+Leaf selection - action scores:  [1.94458890e+02 4.87903677e-01 1.17096883e-01 7.80645884e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  10
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+Tokens: ['&', ' &', '&&', ' &&', ')']
+Probs: [57.47, 34.86, 2.86, 2.23, 1.74]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  &
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&
+API response time: 1.143394 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  x[4]) | (x[1]&x[2]&~x[3]) | (~x[1]&x[2]&x[3]) | (x[1]&x[2]&~x[4]);
+
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  31.0
+Iteration TIME (sec):  0.011363336000000057
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.24666688 17.49701297 17.49701592 17.2571152  17.35974785]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [52.26023348 18.50130744  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.95442988e+01 2.44626165e+00 3.28602312e-01 3.65113680e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [61.30955563 15.44795196  7.301439    3.44790175  0.47324142]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [75.46089838  2.62290773  0.58629702  0.15428869  0.12343095]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [9.11769330e+01 1.65599999e-01 8.27999997e-02 2.75999999e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [54.7262666  66.99814988 52.17872322  9.0589721   0.16731611]  taking action:  1  corresponding to token:  1
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[1
+Tokens: [']', '&', ']&', '])', ' &']
+Probs: [98.36, 0.85, 0.4, 0.31, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[1]
+API response time: 0.834217 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[1]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[3]) | (x[3] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  58
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  32.0
+Iteration TIME (sec):  0.010414496000000106
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.51266348 17.78186737 15.69499588 17.53708717 17.63924381]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [5.48921253e+01 3.90322942e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [58.91143514  6.57204623  0.07302274  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [61.65434581 15.54936083  5.71269996  3.48170471  0.27042367]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [69.64421477 23.11244575  2.4377613   0.8948744   0.09257321]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [9.10389330e+01 4.13999999e-01 1.65599999e-01 8.27999997e-02
+ 5.51999998e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [4.74719182e+01 7.47185931e+01 5.82021031e+01 1.01106733e+01
+ 2.39023011e-02]  taking action:  1  corresponding to token:  4
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4
+Tokens: [']', '])', ']&', '&', "]'"]
+Probs: [98.3, 0.66, 0.66, 0.15, 0.09]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4]
+API response time: 0.999224 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[3]) | (x[4] & ~x[3] & x[2]) | (~x[4] & x[3] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  33.0
+Iteration TIME (sec):  0.011015934999999644
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.77465945 15.94438889 15.9443916  17.81284831 17.91453611]  taking action:  4  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [118.92784726   0.16731611   0.           0.           0.        ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.94751632e+02 3.70806795e-01 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign f
+Tokens: [' =', '=', '<|end|>', ' =(', ' ']
+Probs: [99.46, 0.52, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign f =
+API response time: 0.811217 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   assign f =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   (x[4] & x[3]) | (x[4] & ~x[2]) | (~x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  34.0
+Iteration TIME (sec):  0.010245054999999947
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.03283005 16.19014317 16.19014592 18.0845831  13.38935668]  taking action:  3  corresponding to token:  w
+Leaf selection - depth:  1
+Leaf selection - action scores:  [76.10891088  0.98744762  0.18514643  0.          0.        ]  taking action:  0  corresponding to token:  ire
+Leaf selection - depth:  2
+Leaf selection - action scores:  [43.68759985 33.90339988 41.73119986 19.70639993 15.34559995]  taking action:  0  corresponding to token:   [
+Leaf selection - depth:  3
+Leaf selection - action scores:  [131.53883141  37.68568004  13.85646444   3.10306739   1.87355012]  taking action:  0  corresponding to token:  4
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [4
+Tokens: [':', ']', ']:', '];', ']]']
+Probs: [99.55, 0.32, 0.03, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  :
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [4:
+API response time: 1.146288 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire [4:
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  1] x_not;
+
+assign x_not = ~x;
+
+assign f = (x_not[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & x_not[3] & x_not[2] & x_not[1]);
+
+endmodule
+Depth of rollout:  72
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  35.0
+Iteration TIME (sec):  0.01088187499999993
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.28733809 16.43241104 16.43241383 15.12705245 13.58992495]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.64948127 34.09821935  3.61578433  2.19693225  0.8238496 ]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [47.59936839  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.08646498e+01 4.13999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [53.59290752  8.97742766  0.15612918  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [55.3820029  16.79522926  6.17042119  3.7606709   0.29209094]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [58.11179577 39.85368788  1.99437454  0.94648283  0.27042367]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  7
+Leaf selection - action scores:  [7.61474831e+01 4.62866070e-01 1.85146428e-01 9.25732139e-02
+ 6.17154760e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  8
+Leaf selection - action scores:  [51.59853313 74.05079974 34.99679988 10.01879997  0.0828    ]  taking action:  1  corresponding to token:  1
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1
+Tokens: [']', '&', ']&', '])', ' &']
+Probs: [99.71, 0.12, 0.09, 0.06, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1]
+API response time: 1.048425 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[3]) | (x[3] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & ~x[2] & ~x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  36.0
+Iteration TIME (sec):  0.011307925000000107
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.99347392 16.67133681 16.67133964 15.3472061  13.78772636]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [48.42204983 19.62359993  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.44683461e+01 2.61516371e+00 3.51290648e-01 3.90322942e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [55.07165627 16.68569516  7.88645548  3.72415953  0.51115915]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [65.98788506  2.87325146  0.64225621  0.16901479  0.13521183]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [7.62631996e+01 1.85146428e-01 9.25732139e-02 3.08577380e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [63.26979978 38.18139987 60.25079979 10.46039996  0.1932    ]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.91687597e+02 1.65887250e+00 1.01483965e+00 6.05000560e-01
+ 9.75807355e-02]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3]
+Tokens: [' &', '&', ')', ' &&', '&&']
+Probs: [59.09, 27.91, 4.85, 4.85, 1.78]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   &
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3] &
+API response time: 1.029784 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[3] &
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:      x[4]) | (x[1] & x[2] & ~x[3]) | (~x[1] & x[2] & x[3] & ~x[4]) | (x[1] & ~x[2] & x[3] & x[4]);
+
+endmodule
+Depth of rollout:  76
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  37.0
+Iteration TIME (sec):  0.01076796499999988
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.22046583 16.90705509 15.11635219 15.56440427 13.98287236]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [5.08646498e+01 4.13999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [53.88843775  7.02581295  0.07806459  0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [55.3820029  16.79522926  6.17042119  3.7606709   0.29209094]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [60.89039895 25.31841579  2.67043371  0.98028579  0.10140888]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [7.61474831e+01 4.62866070e-01 1.85146428e-01 9.25732139e-02
+ 6.17154760e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [5.48931998e+01 4.26387999e+01 6.72059998e+01 1.16748000e+01
+ 2.75999999e-02]  taking action:  2  corresponding to token:  1
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1
+Tokens: [']', ']&', '])', '&', ' &']
+Probs: [99.62, 0.15, 0.12, 0.06, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1]
+API response time: 1.321491 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[1]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[3]) | (x[1] & x[4]) | (x[2] & x[3]) | (~x[1] & x[2] & x[4]);
+
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  38.0
+Iteration TIME (sec):  0.011166272000000088
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.44449014 15.32572254 15.32572515 15.77876288 14.1754671 ]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [38.54274343 35.61442858  3.77656357  2.2946209   0.86048284]  taking action:  0  corresponding to token:  ss
+Leaf selection - depth:  2
+Leaf selection - action scores:  [44.86942197  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ign
+Leaf selection - depth:  3
+Leaf selection - action scores:  [4.75896707e+01 4.36394316e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  4
+Leaf selection - action scores:  [49.65887483  9.52199997  0.1656      0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  5
+Leaf selection - action scores:  [50.65433338 17.95485533  6.59645772  4.0203263   0.31225835]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  6
+Leaf selection - action scores:  [52.19334343 43.04690283  2.15417071  1.0223183   0.29209094]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  7
+Leaf selection - action scores:  [66.58957772  0.50704438  0.20281775  0.10140888  0.06760592]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  8
+Leaf selection - action scores:  [57.76760314 40.8956555  39.12761176 11.20135889  0.09257321]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  9
+Leaf selection - action scores:  [1.18581264e+02 5.97557527e-01 1.43413806e-01 9.56092042e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  ]
+Leaf selection - depth:  10
+Leaf selection - action scores:  [112.15929735  68.03328877   5.58161807   4.3521008    3.39580959]  taking action:  0  corresponding to token:  &
+Adding child.
+Leaf selection - depth:  11
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&
+Tokens: ['x', '`', '```', ' x', '&nbsp']
+Probs: [98.99, 0.86, 0.03, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  x
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&x
+API response time: 0.924697 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&x
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  [4]) | (~x[1]&x[2]&x[3]) | (x[1]&x[2]&~x[4]) | (x[1]&x[3]&x[4]);
+
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  39.0
+Iteration TIME (sec):  0.011262926000000117
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.30676336 15.53242798 15.53243062 15.99039047 14.36560811]  taking action:  3  corresponding to token:  w
+Leaf selection - depth:  1
+Leaf selection - action scores:  [66.55577476  1.08169467  0.20281775  0.          0.        ]  taking action:  0  corresponding to token:  ire
+Leaf selection - depth:  2
+Leaf selection - action scores:  [32.26882565 37.9641704  46.65689983 22.03242492 17.15690232]  taking action:  2  corresponding to token:   f
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire f
+Tokens: [';', '1', '=', '0', '_']
+Probs: [55.63, 33.74, 5.86, 3.56, 0.48]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire f;
+API response time: 1.201031 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+wire f;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  
+assign f = (~x[4] & x[3]) | (x[4] & ~x[3]) | (x[2] & x[1] & x[3]) | (~x[2] & ~x[1] & x[4]);
+endmodule
+Depth of rollout:  64
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  40.0
+Iteration TIME (sec):  0.010513436000000098
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.50838401 15.73656534 15.73656802 13.74233327 14.55338684]  taking action:  2  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [45.301025   20.68509056  0.          0.          0.        ]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.04713498e+01 2.77379999e+00 3.72599999e-01 4.13999999e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [50.36995523 17.83775844  8.43097554  3.98129401  0.54645212]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [59.28263404  3.10346628  0.69371599  0.18255684  0.14604547]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [6.66909866e+01 2.02817750e-01 1.01408875e-01 3.38029583e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [46.86453572 42.74711978 67.36244202 11.6950827   0.21600417]  taking action:  2  corresponding to token:  4
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[4
+Tokens: [']', '])', '&', ']&', ':']
+Probs: [89.48, 5.72, 2.7, 1.64, 0.1]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ]
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[4]
+API response time: 0.861383 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+	assign f = (x[4]
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:   & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2]) | (x[4] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  41.0
+Iteration TIME (sec):  0.011142104999999791
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.70756051 15.93822804 14.39839154 13.91930308 14.73888921]  taking action:  1  corresponding to token:  assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [4.75896707e+01 4.36394316e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   f
+Leaf selection - depth:  2
+Leaf selection - action scores:  [49.93314982  7.45199997  0.0828      0.          0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [50.65433338 17.95485533  6.59645772  4.0203263   0.31225835]  taking action:  0  corresponding to token:   (
+Leaf selection - depth:  4
+Leaf selection - action scores:  [54.69437214 27.34701461  2.88439807  1.05882967  0.1095341 ]  taking action:  0  corresponding to token:  x
+Leaf selection - depth:  5
+Leaf selection - action scores:  [66.58957772  0.50704438  0.20281775  0.10140888  0.06760592]  taking action:  0  corresponding to token:  [
+Leaf selection - depth:  6
+Leaf selection - action scores:  [6.14314801e+01 4.77306445e+01 3.70692960e+01 1.30528232e+01
+ 3.08577380e-02]  taking action:  0  corresponding to token:  3
+Leaf selection - depth:  7
+Leaf selection - action scores:  [135.94948065  30.32809258  18.40372671   5.26935972   1.50274333]  taking action:  0  corresponding to token:  ]
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]
+Tokens: ['&', ' &', '&&', ' &&', ')']
+Probs: [57.47, 34.86, 2.86, 2.23, 1.74]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  &
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&
+API response time: 0.959485 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3]&
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//633273_top_module/633273_top_module.v:5: syntax error\nI give up.\n"
+Rollout raw response:  & x[4]) | (x[3] & ~x[2]) | (~x[1] & x[4]) | (x[1] & x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  42.0
+Iteration TIME (sec):  0.010879849000000164
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.90437963 14.579549   14.57955149 14.09417835 14.92219605]  taking action:  0  corresponding to token:  a
+Leaf selection - depth:  1
+Leaf selection - action scores:  [36.72420683 37.06867253  3.93077199  2.38831716  0.89561893]  taking action:  1  corresponding to token:  nd
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+and

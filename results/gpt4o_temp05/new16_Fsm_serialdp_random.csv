@@ -1,0 +1,5527 @@
+Area,Delay,Score,Current Run,Episode,Verilog
+N/A,N/A,-1,0,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+        end else begin
+            state <= next_state;
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                if (bit_count == 0)
+                    next_state = DATA;
+                else
+                    next_state = START;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = STOP;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic and data path
+    always @(posedge clk) begin
+        if (reset) begin
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            case (state)
+                IDLE: begin
+                    bit_count <= 0;
+                end
+                START: begin
+                    bit_count <= bit_count + 1;
+                end
+                DATA: begin
+                    data_reg <= {in, data_reg[7:1]};
+                    bit_count <= bit_count + 1;
+                end
+                PARITY: begin
+                    parity_bit <= in;
+                end
+                STOP: begin
+                    if (in == 1 && odd_parity && parity_bit == odd_parity) begin
+                        out_byte <= data_reg;
+                        done <= 1;
+                    end else begin
+                        done <= 0;
+                    end
+                end
+            endcase
+        end
+    end
+
+endmodule"
+N/A,N/A,-1,1,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,2,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                if (parity_bit == odd_parity)
+                    next_state = STOP;
+                else
+                    next_state = ERROR;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1);
+
+endmodule"
+N/A,N/A,-1,3,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == IDLE) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && (odd_parity == 1)) // Stop bit and parity check
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1);
+
+endmodule"
+N/A,N/A,-1,4,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,5,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset || (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = IDLE; // Parity error, reset to IDLE
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,6,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit to return to IDLE
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,7,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,8,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,9,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+        end else begin
+            state <= next_state;
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                if (bit_count == 4'd8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            DATA: begin
+                next_state = (bit_count == 4'd8) ? PARITY : DATA;
+            end
+            PARITY: begin
+                if (odd_parity == 1'b1) // Check for odd parity
+                    next_state = STOP;
+                else
+                    next_state = ERROR;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic and data path
+    always @(posedge clk) begin
+        if (reset) begin
+            bit_count <= 4'd0;
+            data <= 8'd0;
+            parity_bit <= 1'b0;
+        end else begin
+            case (state)
+                IDLE: begin
+                    bit_count <= 4'd0;
+                end
+                START: begin
+                    bit_count <= bit_count + 1;
+                end
+                DATA: begin
+                    data <= {in, data[7:1]};
+                    bit_count <= bit_count + 1;
+                end
+                PARITY: begin
+                    parity_bit <= in;
+                end
+                STOP: begin
+                    if (in == 1 && odd_parity == 1'b1) begin
+                        out_byte <= data;
+                    end
+                end
+                ERROR: begin
+                    // Do nothing, wait for stop bit
+                end
+            endcase
+        end
+    end
+
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1'b1);
+
+endmodule"
+N/A,N/A,-1,10,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,11,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+                bit_count = 0;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = IDLE; // Parity error, reset to IDLE
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity && parity_bit);
+
+endmodule"
+N/A,N/A,-1,12,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,13,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            parity_reset <= 1;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        parity_reset = 0;
+        case (state)
+            IDLE: begin
+                if (in == 0) begin // Start bit detected
+                    next_state = START;
+                    parity_reset = 1;
+                end
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) begin
+                    next_state = PARITY;
+                end
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) begin
+                        next_state = IDLE;
+                    end else begin
+                        next_state = IDLE; // Parity error, reset to IDLE
+                    end
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == parity_bit);
+
+endmodule"
+N/A,N/A,-1,14,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = IDLE; // Parity error, go to IDLE
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity && parity_bit);
+
+endmodule"
+N/A,N/A,-1,15,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,16,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count; // To count bits received
+    reg [7:0] data_reg;  // To store received data
+    reg parity_bit;      // To store received parity bit
+    wire odd_parity;     // Output from parity module
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]}; // Shift in the data bits
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in; // Capture the parity bit
+            end else if (state == STOP) begin
+                bit_count <= 0; // Reset bit count for next byte
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) // 8 data bits received
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE; // Correct byte received
+                    else
+                        next_state = IDLE; // Incorrect parity, discard byte
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,17,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_reset <= 1;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        parity_reset = 0;
+        case (state)
+            IDLE: begin
+                if (~in) begin // Start bit detected
+                    next_state = START;
+                    parity_reset = 1;
+                end
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) begin
+                    next_state = PARITY;
+                end
+            end
+            PARITY: begin
+                if (odd_parity == in) begin // Check parity bit
+                    next_state = STOP;
+                end else begin
+                    next_state = ERROR;
+                end
+            end
+            STOP: begin
+                if (in) begin // Stop bit detected
+                    next_state = IDLE;
+                end else begin
+                    next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in) begin // Wait for stop bit
+                    next_state = IDLE;
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && in;
+
+endmodule"
+N/A,N/A,-1,18,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && odd_parity == 1 && parity_bit == 1) // Stop bit and parity check
+                    next_state = IDLE;
+                else if (in == 1)
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,19,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = IDLE; // Parity error, reset to IDLE
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,20,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,21,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count; // To count bits received
+    reg [7:0] data_reg;  // To store received data
+    reg parity_bit;      // To store received parity bit
+    wire odd_parity;     // Output from parity module
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]}; // Shift in the data bits
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in; // Capture the parity bit
+            end else if (state == STOP) begin
+                bit_count <= 0; // Reset bit count for next byte
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = STOP; // Wait for stop bit
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,22,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = STOP; // Wait for stop bit
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,23,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+                bit_count = 0;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && odd_parity == 1 && parity_bit == 1) // Stop bit and parity check
+                    next_state = IDLE;
+                else if (in == 1) // Stop bit detected but parity failed
+                    next_state = IDLE;
+                else // Wait for stop bit
+                    next_state = STOP;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,24,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,25,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit (0)
+            end
+            START: begin
+                if (in) next_state = DATA; // Move to data state after start bit
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY; // After 8 data bits, move to parity
+            end
+            PARITY: begin
+                next_state = STOP; // Move to stop bit after parity
+            end
+            STOP: begin
+                if (in) begin // Check for stop bit (1)
+                    if (parity_bit == odd_parity) next_state = IDLE; // If parity is correct, go to IDLE
+                    else next_state = ERROR; // If parity is incorrect, go to ERROR
+                end
+            end
+            ERROR: begin
+                if (in) next_state = IDLE; // Wait for stop bit to return to IDLE
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && in && (parity_bit == odd_parity);
+
+endmodule"
+N/A,N/A,-1,26,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = IDLE; // Parity error, reset to IDLE
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity && parity_bit);
+
+endmodule"
+N/A,N/A,-1,27,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                if (parity_bit == odd_parity)
+                    next_state = STOP;
+                else
+                    next_state = ERROR;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1);
+
+endmodule"
+N/A,N/A,-1,28,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,29,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && (odd_parity ^ parity_bit)) // Stop bit and parity check
+                    next_state = IDLE;
+                else if (in == 1)
+                    next_state = ERROR;
+                else
+                    next_state = STOP;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity ^ parity_bit);
+
+endmodule"
+N/A,N/A,-1,30,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                if (parity_bit == odd_parity)
+                    next_state = STOP;
+                else
+                    next_state = ERROR;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1);
+
+endmodule"
+N/A,N/A,-1,31,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count; // To count the bits received
+    reg [7:0] data_reg;  // To store the received data byte
+    reg parity_bit;      // To store the received parity bit
+    wire odd_parity;     // Output from the parity module
+
+    // Instantiate the parity module
+    parity parity_inst (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]}; // Shift in the data bits
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in; // Capture the parity bit
+            end else if (state == STOP) begin
+                bit_count <= 0; // Reset bit count for next byte
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,32,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end else
+                    next_state = STOP;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,33,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START;
+                else next_state = IDLE;
+            end
+            START: begin
+                if (in) next_state = IDLE; // False start bit
+                else next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY;
+                else next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in && (odd_parity == 1'b1) && (parity_bit == 1'b1)) next_state = IDLE;
+                else if (~in) next_state = ERROR;
+                else next_state = IDLE;
+            end
+            ERROR: begin
+                if (in) next_state = IDLE;
+                else next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in) && (odd_parity == 1'b1) && (parity_bit == 1'b1);
+
+endmodule"
+N/A,N/A,-1,34,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit (0)
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in) begin // Stop bit should be 1
+                    if (parity_bit == odd_parity) next_state = IDLE; // Check parity
+                    else next_state = ERROR;
+                end else begin
+                    next_state = ERROR; // Stop bit not detected
+                end
+            end
+            ERROR: begin
+                if (in) next_state = IDLE; // Wait for stop bit to return to IDLE
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in) && (parity_bit == odd_parity);
+
+endmodule"
+N/A,N/A,-1,35,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count; // To count the number of bits received
+    reg [7:0] data_reg;  // To store the received data byte
+    reg parity_bit;      // To store the received parity bit
+    wire odd_parity;     // Output from the parity module
+
+    // Instantiate the parity module
+    parity parity_inst (
+        .clk(clk),
+        .reset(reset | (state == IDLE)), // Reset parity at the start of each byte
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+        end else begin
+            state <= next_state;
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = STOP; // Wait for stop bit
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic and data path
+    always @(posedge clk) begin
+        if (reset) begin
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            case (state)
+                IDLE: begin
+                    bit_count <= 0;
+                end
+                START: begin
+                    bit_count <= 0;
+                end
+                DATA: begin
+                    data_reg[bit_count] <= in;
+                    bit_count <= bit_count + 1;
+                end
+                PARITY: begin
+                    parity_bit <= in;
+                end
+                STOP: begin
+                    // No action needed
+                end
+            endcase
+        end
+    end
+
+    // Done signal logic
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1);
+
+    // Output the received byte
+    assign out_byte = data_reg;
+
+endmodule"
+N/A,N/A,-1,36,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = STOP;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,37,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+                else
+                    next_state = IDLE; // Wait for stop bit
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,38,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && (odd_parity == 1)) // Stop bit and parity check
+                    next_state = IDLE;
+                else if (in == 1) // Stop bit but parity failed
+                    next_state = IDLE;
+                else
+                    next_state = STOP; // Wait for stop bit
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1);
+
+endmodule"
+N/A,N/A,-1,39,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            parity_reset <= 1;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        parity_reset = 0;
+        case (state)
+            IDLE: begin
+                if (in == 0) begin // Start bit detected
+                    next_state = START;
+                    parity_reset = 1;
+                end
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) begin
+                    next_state = PARITY;
+                end
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) begin
+                        done = 1;
+                        out_byte = data;
+                    end else begin
+                        done = 0;
+                    end
+                    next_state = IDLE;
+                end else begin
+                    next_state = IDLE; // Wait for stop bit
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign done = (state == STOP) && (in == 1) && (odd_parity == parity_bit);
+    assign out_byte = data;
+
+endmodule"
+N/A,N/A,-1,40,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_reset <= 1;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end
+            if (state == PARITY) begin
+                parity_reset <= 0;
+            end else if (state == IDLE || state == START) begin
+                parity_reset <= 1;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit (0)
+            end
+            START: begin
+                if (in) next_state = DATA; // Move to data state after start bit
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY; // After 8 data bits, check parity
+            end
+            PARITY: begin
+                if (odd_parity == in) next_state = STOP; // Check if parity is correct
+                else next_state = ERROR; // Parity error
+            end
+            STOP: begin
+                if (in) next_state = IDLE; // Stop bit should be 1
+                else next_state = ERROR; // Stop bit error
+            end
+            ERROR: begin
+                if (in) next_state = IDLE; // Wait for stop bit to return to IDLE
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in);
+
+endmodule"
+N/A,N/A,-1,41,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        parity_reset = 0;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit
+            end
+            START: begin
+                next_state = DATA;
+                parity_reset = 1; // Reset parity checker at start of data
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY;
+            end
+            PARITY: begin
+                if (odd_parity == in) next_state = STOP; // Check parity bit
+                else next_state = ERROR;
+            end
+            STOP: begin
+                if (in) next_state = IDLE; // Check stop bit
+                else next_state = ERROR;
+            end
+            ERROR: begin
+                if (in) next_state = IDLE; // Wait for stop bit to return to IDLE
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in);
+
+endmodule"
+N/A,N/A,-1,42,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    wire odd_parity;
+    reg parity_reset;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(parity_reset),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_reset <= 1;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end
+            if (state == PARITY) begin
+                parity_reset <= 0;
+            end else if (state == IDLE || state == START) begin
+                parity_reset <= 1;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit (0)
+            end
+            START: begin
+                if (in) next_state = DATA; // Move to data state on next clock
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY; // After 8 data bits, check parity
+            end
+            PARITY: begin
+                if (odd_parity == in) next_state = STOP; // Check if parity matches
+                else next_state = ERROR; // Parity error
+            end
+            STOP: begin
+                if (in) next_state = IDLE; // Stop bit should be 1
+                else next_state = ERROR; // Stop bit error
+            end
+            ERROR: begin
+                if (in) next_state = IDLE; // Wait for stop bit to return to IDLE
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in);
+
+endmodule"
+N/A,N/A,-1,43,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+    assign out_byte = data;
+
+endmodule"
+N/A,N/A,-1,44,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data[bit_count] <= in;
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == IDLE || state == STOP || state == ERROR) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1 && (odd_parity ^ parity_bit)) // Stop bit and parity check
+                    next_state = IDLE;
+                else if (in == 1)
+                    next_state = ERROR;
+                else
+                    next_state = STOP;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity ^ parity_bit);
+
+endmodule"
+N/A,N/A,-1,45,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (~in) next_state = START; // Detect start bit (0)
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8) next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in) begin // Stop bit should be 1
+                    if (parity_bit == odd_parity) begin
+                        next_state = IDLE;
+                    end else begin
+                        next_state = IDLE; // Parity error, go to IDLE
+                    end
+                end
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && in && (parity_bit == odd_parity);
+
+endmodule"
+N/A,N/A,-1,46,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && odd_parity && parity_bit;
+
+endmodule"
+N/A,N/A,-1,47,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data <= {in, data[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,48,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE,
+        START,
+        DATA,
+        PARITY,
+        STOP
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        next_state = state;
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) // Stop bit detected
+                    next_state = IDLE;
+            end
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity == 1) && (parity_bit == 1);
+
+endmodule"
+N/A,N/A,-1,49,0,"// We want to add parity checking to the serial receiver. Parity checking adds one extra bit after each data byte. We will use odd parity, where the number of 1s in the 9 bits received must be odd. For example, 101001011 satisfies odd parity (there are 5 1s), but 001001011 does not.
+
+// Change your FSM and datapath to perform odd parity checking. Assert the done signal only if a byte is correctly received and its parity check passes. Like the serial receiver FSM, this FSM needs to identify the start bit, wait for all 9 (data and parity) bits, then verify that the stop bit was correct. If the stop bit does not appear when expected, the FSM must wait until it finds a stop bit before attempting to receive the next byte.
+
+// You are provided with the following module that can be used to calculate the parity of the input stream (It's a TFF with reset). The intended use is that it should be given the input bit stream, and reset at appropriate times so it counts the number of 1 bits in each byte.
+    // Modify FSM and datapath from Fsm_serialdata
+    // New: Add parity checking.
+
+module parity (
+    input clk,
+    input reset,
+    input in,
+    output reg odd);
+
+    always @(posedge clk)
+        if (reset) odd <= 0;
+        else if (in) odd <= ~odd;
+
+endmodule
+
+// Note that the serial protocol sends the least significant bit first, and the parity bit after the 8 data bits.
+
+module top_module(
+    input clk,
+    input in,
+    input reset,    // Synchronous reset
+    output [7:0] out_byte,
+    output done
+);
+
+// State encoding
+    typedef enum logic [2:0] {
+        IDLE = 3'b000,
+        START = 3'b001,
+        DATA = 3'b010,
+        PARITY = 3'b011,
+        STOP = 3'b100,
+        ERROR = 3'b101
+    } state_t;
+
+    state_t state, next_state;
+    reg [3:0] bit_count;
+    reg [7:0] data_reg;
+    reg parity_bit;
+    wire odd_parity;
+
+    // Instantiate the parity module
+    parity parity_checker (
+        .clk(clk),
+        .reset(reset | (state == IDLE)),
+        .in(in),
+        .odd(odd_parity)
+    );
+
+    // State transition logic
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            bit_count <= 0;
+            data_reg <= 8'b0;
+            parity_bit <= 0;
+        end else begin
+            state <= next_state;
+            if (state == DATA) begin
+                data_reg <= {in, data_reg[7:1]};
+                bit_count <= bit_count + 1;
+            end else if (state == PARITY) begin
+                parity_bit <= in;
+            end else if (state == STOP) begin
+                bit_count <= 0;
+            end
+        end
+    end
+
+    // Next state logic
+    always @(*) begin
+        case (state)
+            IDLE: begin
+                if (in == 0) // Start bit detected
+                    next_state = START;
+                else
+                    next_state = IDLE;
+            end
+            START: begin
+                next_state = DATA;
+            end
+            DATA: begin
+                if (bit_count == 8)
+                    next_state = PARITY;
+                else
+                    next_state = DATA;
+            end
+            PARITY: begin
+                next_state = STOP;
+            end
+            STOP: begin
+                if (in == 1) begin // Stop bit detected
+                    if (odd_parity && parity_bit) // Check for odd parity
+                        next_state = IDLE;
+                    else
+                        next_state = ERROR;
+                end else
+                    next_state = STOP;
+            end
+            ERROR: begin
+                if (in == 1) // Wait for stop bit
+                    next_state = IDLE;
+                else
+                    next_state = ERROR;
+            end
+            default: next_state = IDLE;
+        endcase
+    end
+
+    // Output logic
+    assign out_byte = data_reg;
+    assign done = (state == STOP) && (in == 1) && (odd_parity && parity_bit);
+
+endmodule"

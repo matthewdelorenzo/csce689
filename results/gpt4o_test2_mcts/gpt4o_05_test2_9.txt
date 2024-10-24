@@ -1,0 +1,79 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:49:35,625] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Hadd.v
+Prompt str:  // Create a half adder. A half adder adds two bits (with no carry-in) and produces a sum and carry-out.
+
+module top_module( 
+    input a, b,
+    output cout, sum );
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Create a half adder. A half adder adds two bits (with no carry-in) and produces a sum and carry-out.
+
+module top_module( 
+    input a, b,
+    output cout, sum );
+
+Tokens: [';', '\n', ' ', '   ', 'assign']
+Probs: [27.6, 16.74, 13.04, 10.15, 7.91]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// Create a half adder. A half adder adds two bits (with no carry-in) and produces a sum and carry-out.
+
+module top_module( 
+    input a, b,
+    output cout, sum );
+;
+API response time: 1.521873 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// Create a half adder. A half adder adds two bits (with no carry-in) and produces a sum and carry-out.
+
+module top_module( 
+    input a, b,
+    output cout, sum );
+;assign sum = a ^ b;  // XOR operation for sum
+    assign cout = a & b; // AND operation for carry-out
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//634719_top_module/634719_top_module.v:6: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//634719_top_module/634719_top_module.v:6: error: invalid module item.\n'
+Rollout raw response:  ```
+    assign sum = a ^ b;  // XOR operation for sum
+    assign cout = a & b; // AND operation for carry-out
+endmodule
+```
+Depth of rollout:  36
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [45.78488108 28.05877918 21.63169749 16.8376125  13.12511358]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// Create a half adder. A half adder adds two bits (with no carry-in) and produces a sum and carry-out.
+
+module top_module( 
+    input a, b,
+    output cout, sum );
+;

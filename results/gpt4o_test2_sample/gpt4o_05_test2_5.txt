@@ -1,0 +1,4540 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:53:59,185] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Edgedetect2.v
+Prompt str:  // For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+********-- EPISODE-1--************
+100
+----GREEDY LLM OUTPUT - ITERATION:  0  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.851994 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  1  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.611427 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  2  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.634249 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  3  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.393897 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  4  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.533410 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  5  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.810048 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  6  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.526194 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  7  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.064386 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  8  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.678916 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  9  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.597036 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  10  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.109704 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  11  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 3.278314 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  12  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 3.425128 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  13  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.565706 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  14  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.943554 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  15  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.886467 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  16  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.499075 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  17  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.216399 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  18  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.781024 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in ^ prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  37
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  19  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.680341 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  20  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.871660 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  21  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.174580 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  22  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.877308 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  23  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.098242 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  24  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.573966 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  25  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.692245 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  26  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.742361 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  27  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.662191 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  28  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.560929 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  29  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.289563 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  30  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.658989 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  31  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.582040 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  32  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.820027 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  33  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.804069 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  34  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.108700 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  35  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.125325 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  36  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.513531 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  37  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.604766 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  38  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.966910 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  39  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.773739 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  40  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.121936 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  41  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.080303 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  42  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.516094 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  43  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.883540 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  44  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.859893 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  45  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.552257 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  46  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.744484 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  47  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.211052 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  48  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.733782 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  49  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.607854 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  50  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.385031 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  51  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.794626 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  52  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.828436 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  53  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.822155 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  54  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.884780 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  55  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.145273 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  56  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.014638 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  57  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.838699 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  58  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 3.396186 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  59  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.920526 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  60  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.545994 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  45
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  61  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.013184 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  62  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.980514 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  63  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.887132 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  64  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.439845 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  65  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.594344 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  66  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.294356 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  67  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.412621 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  68  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.476189 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  69  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.356376 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  70  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.246067 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  71  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.850055 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  72  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.846991 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  73  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.836908 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  74  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.822646 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  39
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  75  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.929275 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  76  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.211041 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  77  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.362101 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:8: syntax error\nI give up.\n'
+Rollout raw response:      reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  78  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.112063 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  79  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.265939 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  80  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 3.332692 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  81  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.132880 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  82  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.993253 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  83  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.682715 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  84  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.597177 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  85  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.346268 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  86  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.558101 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  87  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 4.794734 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  88  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 2.030771 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  89  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.857523 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  90  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.708950 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  91  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.896606 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  92  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.952022 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  93  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.806323 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  94  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.489585 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  95  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.977647 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  96  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.897749 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  97  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.685094 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:12: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule
+```
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  98  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.545169 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----GREEDY LLM OUTPUT - ITERATION:  99  ----
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  0.5
+Current prompt:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+API response time: 1.658752 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  1
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:11: error: anyedge is not a valid l-value in top_module_tb.UUT.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/mcts_dump//637962_top_module/637962_top_module.v:6:      : anyedge is declared here as wire.\n1 error(s) during elaboration.\n'
+Rollout raw response:  ```verilog
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule
+```
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+Greedy Total Time:  201.606669

@@ -1,0 +1,1878 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 03:44:36,580] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Dualedge.v
+Prompt str:  // You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+Tokens: ['reg', '\n', ' reg', '   ', '  \n']
+Probs: [54.5, 15.61, 9.47, 9.47, 1.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg
+API response time: 1.289897 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:   q_pos, q_neg;
+
+always @(posedge clk) begin
+    q_pos <= d;
+end
+
+always @(negedge clk) begin
+    q_neg <= d;
+end
+
+assign q = clk ? q_pos : q_neg;
+
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [90.40855478 25.89499984 16.00226137 15.7095226   1.6588725 ]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg
+Tokens: [' q', ' p', ' pos', ' [', 'q']
+Probs: [81.42, 14.15, 4.05, 0.16, 0.12]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q
+API response time: 0.997852 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  1, q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.010364432999999895
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [54.8637069  31.71476825 19.59868755 19.24015724  2.03169559]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [158.90046963  27.61534814   7.90403957   0.31225835   0.23419377]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q
+Tokens: ['1', ';', '0', 'p', ',']
+Probs: [98.29, 0.96, 0.58, 0.13, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  1
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1
+API response time: 0.990335 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  , q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.009923972999999808
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [41.95233475 36.62105997 22.63061506 22.21661992  2.34599999]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [96.80626762 33.821756    9.68043193  0.38243682  0.28682761]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.91824210e+02 1.87355012e+00 1.13193653e+00 2.53709912e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:  1
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1
+Tokens: [';', ',', ';\n', ';,', ';\n\n']
+Probs: [98.9, 0.86, 0.25, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;
+API response time: 0.991049 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.010403165999999686
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [34.98711913 40.94358975 25.30179683 24.83893619  2.62290773]  taking action:  1  corresponding to token:  
+
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+
+Tokens: ['reg', 'wire', '\n', '   ', 'r']
+Probs: [95.97, 2.9, 0.31, 0.31, 0.14]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg
+API response time: 0.736334 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:   q_pos, q_neg;
+
+always @(posedge clk) begin
+    q_pos <= d;
+end
+
+always @(negedge clk) begin
+    q_neg <= d;
+end
+
+assign q = clk ? q_pos : q_neg;
+
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.010124390000000094
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [38.39805258 21.92572769 27.71672974 27.20969131  2.87325146]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [74.23973305 39.05399987 11.17799996  0.4416      0.3312    ]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.16967859e+02 2.29462090e+00 1.38633346e+00 3.10729914e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [193.01469475   1.67838865   0.48790368   0.           0.        ]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;
+Tokens: [',', ';', ';\n', ',\n', '<|end|>']
+Probs: [39.37, 39.37, 11.28, 5.33, 1.96]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ,
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;,
+API response time: 1.229191 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;,reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+```
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.00990375099999996
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.02778367 23.72255436 29.93748974 29.38982564  3.10346628]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [62.06092566 43.66369925 12.49738388  0.49372381  0.37029286]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [8.97601330e+01 2.64959999e+00 1.60079999e+00 3.58799999e-01
+ 2.75999999e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [117.69687875   2.05559789   0.59755753   0.           0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [76.83507111 76.83507111 22.01421392 10.4021064   3.82516483]  taking action:  0  corresponding to token:  ,
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;,
+Tokens: [' q', '<|end|>', 'q', ' reg', 'reg']
+Probs: [86.18, 9.08, 4.29, 0.17, 0.17]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q
+API response time: 0.939836 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.010720850999999865
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.30285161 25.39499984 32.00452275 31.41904521  3.31774501]  taking action:  2  corresponding to token:   reg
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg
+Tokens: [' q', ' [', 'q', '[', 'ister']
+Probs: [98.67, 1.1, 0.19, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg q
+API response time: 0.910815 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  ;
+ reg q_pos, q_neg;
+
+ always @(posedge clk) begin
+     q_pos <= d;
+ end
+
+ always @(negedge clk) begin
+     q_neg <= d;
+ end
+
+ always @(*) begin
+     q = clk ? q_pos : q_neg;
+ end
+
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.00944436400000015
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [31.13091777 26.96579498 16.4729613  33.32492988  3.51899999]  taking action:  3  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   
+Tokens: ['reg', '`\n', '``', '\n', 'wire']
+Probs: [62.59, 13.97, 8.47, 4.0, 4.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   reg
+API response time: 0.972102 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   reg
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:   q_pos, q_neg;
+
+    always @(posedge clk) begin
+        q_pos <= d;
+    end
+
+    always @(negedge clk) begin
+        q_neg <= d;
+    end
+
+    assign q = clk ? q_pos : q_neg;
+
+endmodule
+Depth of rollout:  57
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.009954372999999794
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [32.85994572 28.45148996 17.39107211 17.06378022  3.70935168]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [54.24473734 47.83118604 13.69019813  0.54084733  0.4056355 ]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.50751767e+01 2.96234285e+00 1.78974880e+00 4.01150594e-01
+ 3.08577380e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [90.321333    2.37359999  0.69        0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [46.55167964 94.10335928 26.9617956  12.73992647  4.68485101]  taking action:  1  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;
+Tokens: ['  \n', 'reg', '\n', '   \n', 'q']
+Probs: [54.42, 15.59, 9.46, 5.74, 4.47]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:    
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+API response time: 1.070016 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+```
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.01052860599999983
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.43240786 29.86457883 18.26431474 17.9210481   3.89040087]  taking action:  1  corresponding to token:  
+
+Leaf selection - depth:  1
+Leaf selection - action scores:  [187.29646365   5.65968266   0.60500056   0.60500056   0.27322606]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg
+Tokens: [' q', ' p', ' pos', ' [', 'q']
+Probs: [93.73, 2.83, 2.83, 0.49, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg q
+API response time: 0.821427 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  1, q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.01012015299999991
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [30.77926108 20.47651214 19.09868755 18.74015724  4.06339118]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [48.71259302 51.66358567 14.78710403  0.58418189  0.43813642]  taking action:  1  corresponding to token:   p
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg p
+Tokens: ['os', 'o', 'q', '_q', '_']
+Probs: [70.94, 26.1, 0.79, 0.61, 0.42]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  os
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg pos
+API response time: 1.156100 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg pos
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  edge_q, negedge_q;
+
+always @(posedge clk) begin
+    posedge_q <= d;
+end
+
+always @(negedge clk) begin
+    negedge_q <= d;
+end
+
+assign q = clk ? posedge_q : negedge_q;
+
+endmodule
+Depth of rollout:  58
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.010024253000000094
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [27.93718656 21.33985156 19.89896075 19.52579058  4.22931163]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [52.1334899  27.11534814 15.80807915  0.62451671  0.46838753]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.56498555e+01 3.24508400e+00 1.96057158e+00 4.39438458e-01
+ 3.38029583e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [75.54575716  2.65376547  0.77144345  0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [53.83059981 53.83059981 31.13279989 14.71079995  5.40959998]  taking action:  0  corresponding to token:  ,
+Leaf selection - depth:  5
+Leaf selection - action scores:  [168.19015565  17.72066156   8.3724271    0.3317745    0.3317745 ]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q
+Tokens: ['2', '1', '<|end|>', '0', 'q']
+Probs: [99.72, 0.25, 0.02, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  2
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2
+API response time: 0.895677 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  ;
+    
+    always @(posedge clk) begin
+        q1 <= d;
+    end
+    
+    always @(negedge clk) begin
+        q2 <= d;
+    end
+    
+    assign q = clk ? q1 : q2;
+    
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.010080889999999787
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.68872803 22.17057657 20.66900201 20.28174501  4.3889641 ]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [47.29697125 28.7904999  16.76699994  0.6624      0.4968    ]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.89783726e+01 3.50509132e+00 2.11765934e+00 4.74647784e-01
+ 3.65113680e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [66.06225157  2.90705442  0.84507396  0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [39.82897146 60.24345722 34.80752844 16.44717434  6.04811664]  taking action:  1  corresponding to token:  ;
+Leaf selection - depth:  5
+Leaf selection - action scores:  [106.20687248  30.42567332  18.46227515  11.20226843   8.72371775]  taking action:  0  corresponding to token:    
+
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+Tokens: ['\n', 'q', '  \n', 'reg', ' q']
+Probs: [64.69, 11.24, 11.24, 6.82, 1.95]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+
+API response time: 1.125102 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n'
+Rollout raw response:  ```verilog
+reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+```
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.01016765399999997
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.85940245 22.97212588 21.41199881 21.01114974  4.54300945]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [43.53903147 30.37489783 17.67396978  0.6982309   0.52367318]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.39497742e+01 3.74710024e+00 2.26387306e+00 5.07419824e-01
+ 3.90322942e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [59.34957155  3.13997765  0.9127842   0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [43.6940823  43.6940823  38.129737   18.01697679  6.62537983]  taking action:  0  corresponding to token:  ,
+Leaf selection - depth:  5
+Leaf selection - action scores:  [102.49501528  21.70328936  10.25408716   0.40633912   0.40633912]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.94615019e+02 4.87903677e-01 3.90322942e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  2
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2
+Tokens: [';', ';\n', ' q', '<|end|>', 'q']
+Probs: [76.66, 13.32, 8.08, 0.85, 0.66]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2;
+API response time: 0.887443 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2;
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  53
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.01111127699999992
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.33763712 23.74737329 22.13061506 21.71661992  4.69199998]  taking action:  1  corresponding to token:  
+
+Leaf selection - depth:  1
+Leaf selection - action scores:  [114.19519165   6.93166731   0.74097133   0.74097133   0.33463221]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.82924847e+02 5.52306963e+00 5.52306963e+00 9.56291208e-01
+ 7.80645884e-02]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg q
+Tokens: ['1', '0', 'p', ';', 'a']
+Probs: [99.63, 0.15, 0.12, 0.09, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  1
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg q1
+API response time: 0.943906 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+
+reg q1
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  , q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.009803572999999677
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.05308787 18.1240623  22.82710407 22.40036765  4.83640288]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.51718149 31.88186603 18.53661589  0.73231075  0.54923306]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [4.99900748e+01 3.97439999e+00 2.40119999e+00 5.38199998e-01
+ 4.13999999e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [54.28991278  3.3567773   0.97580735  0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [35.18631392 47.24841854 41.18482307 19.46055913  7.15622812]  taking action:  1  corresponding to token:  ;
+Leaf selection - depth:  5
+Leaf selection - action scores:  [64.53816119 37.26368736 22.6115768  13.71992081 10.68432857]  taking action:  0  corresponding to token:    
+
+Leaf selection - depth:  6
+Leaf selection - action scores:  [126.24995555  21.93614933  21.93614933  13.31001232   3.80564868]  taking action:  0  corresponding to token:  
+
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+
+Tokens: ['reg', 'q', '\n', 'always', '  \n']
+Probs: [59.11, 16.93, 10.27, 6.23, 3.78]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  reg
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+reg
+API response time: 0.920678 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;  
+
+reg
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:15: syntax error\nI give up.\n'
+Rollout raw response:   q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010444180999999997
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.68547201 18.67124988 23.50339206 23.0642839   4.97661751]  taking action:  2  corresponding to token:   reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.92565823e+02 2.14677618e+00 3.70806795e-01 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   q
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg q
+Tokens: ['1', '0', '_pos', 'p', ';']
+Probs: [99.07, 0.76, 0.07, 0.04, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  1
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg q1
+API response time: 0.983178 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+ reg q1
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  , q2;
+
+ always @(posedge clk) begin
+     q1 <= d;
+ end
+
+ always @(negedge clk) begin
+     q2 <= d;
+ end
+
+ assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.010090815000000308
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.30482336 19.20343745 15.774094   23.71000028  5.11298844]  taking action:  3  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [122.15156466  27.26405749  16.53017659   7.80645884   7.80645884]  taking action:  0  corresponding to token:  reg
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   reg
+Tokens: [' q', ' p', ' pos', ' [', 'q']
+Probs: [73.73, 21.12, 3.67, 1.05, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   reg q
+API response time: 1.017920 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+   reg q
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\nI give up.\n'
+Rollout raw response:  , q_pos, q_neg;
+
+    always @(posedge clk) begin
+        q_pos <= d;
+    end
+
+    always @(negedge clk) begin
+        q_neg <= d;
+    end
+
+    always @(*) begin
+        q = clk ? q_pos : q_neg;
+    end
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.009652738999999855
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.9080794  19.72179487 16.20119787 15.89262411  5.24581546]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [38.02250707 33.321756   19.36086386  0.76487363  0.57365523]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [4.67702192e+01 4.18938543e+00 2.53108703e+00 5.67312610e-01
+ 4.36394316e-02]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [50.30574982  3.56039999  1.035       0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [37.66753555 37.66753555 44.02842784 20.8042128   7.65032966]  taking action:  2  corresponding to token:  ;
+
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;
+
+Tokens: ['q', 'reg', ' q', '\n', '\\n']
+Probs: [42.39, 33.02, 12.15, 5.74, 2.11]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  q
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;
+q
+API response time: 1.078555 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;;
+q
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:13: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//629444_top_module/629444_top_module.v:14: syntax error\nI give up.\n'
+Rollout raw response:  reg q2;
+
+always @(posedge clk) begin
+    q1 <= d;
+end
+
+always @(negedge clk) begin
+    q2 <= d;
+end
+
+assign q = clk ? q1 : q2;
+
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  20.0
+Iteration TIME (sec):  0.010784000999999765
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.61209232 20.22734742 16.61775107 16.30155706  5.37536127]  taking action:  0  corresponding to token:  reg
+Leaf selection - depth:  1
+Leaf selection - action scores:  [35.91984522 34.70279976 20.15142601  0.79610572  0.59707929]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  2
+Leaf selection - action scores:  [44.08676486  4.39386451  2.65462647  0.59500249  0.04576942]  taking action:  0  corresponding to token:  1
+Leaf selection - depth:  3
+Leaf selection - action scores:  [47.06599756  3.75299111  1.09098579  0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  4
+Leaf selection - action scores:  [39.99794986 39.99794986 22.84959992 22.06619992  8.11439997]  taking action:  0  corresponding to token:  ,
+Leaf selection - depth:  5
+Leaf selection - action scores:  [78.61893304 25.06079991 11.84039996  0.4692      0.4692    ]  taking action:  0  corresponding to token:   q
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.18676873e+02 5.97557527e-01 4.78046021e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  2
+Leaf selection - depth:  7
+Leaf selection - action scores:  [149.61078362  25.99550793  15.76904685   1.6588725    1.28806571]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+// You're familiar with flip-flops that are triggered on the positive edge of the clock, or negative edge of the clock. A dual-edge triggered flip-flop is triggered on both edges of the clock. However, FPGAs don't have dual-edge triggered flip-flops, and always @(posedge clk or negedge clk) is not accepted as a legal sensitivity list.
+
+// Build a circuit that functionally behaves like a dual-edge triggered flip-flop
+
+// Hint: You can't create a dual-edge triggered flip-flop on an FPGA. But you can create both positive-edge triggered and negative-edge triggered flip-flops.
+// This problem is a moderately difficult circuit design problem, but requires only basic Verilog language features. (This is a circuit design problem, not a coding problem.) It may help to first sketch a circuit by hand before attempting to code it.
+
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+reg q1;, q2;

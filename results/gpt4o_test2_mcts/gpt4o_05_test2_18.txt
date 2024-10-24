@@ -1,0 +1,3298 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-23 04:09:46,657] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/prompt_tb_files/mult/multiplier_16.v
+Prompt str:  //Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+
+********-- EPISODE-1--************
+ORIG MODILE:  top_module
+--------MCTS-------
+Initializing MCTS tree.
+Initialize search (creating root node)
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+
+Tokens: ['   ', ' ', ' assign', '  ', '\tassign']
+Probs: [39.35, 30.64, 8.78, 4.15, 3.23]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:     
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   
+API response time: 4.179819 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  wire [31:0] partial_product [15:0];
+    
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: mult_gen
+            assign partial_product[i] = A * {16'b0, B[i]} << i;
+        end
+    endgenerate
+    
+    assign product = partial_product[0] + partial_product[1] + partial_product[2] + partial_product[3] +
+                     partial_product[4] + partial_product[5] + partial_product[6] + partial_product[7] +
+                     partial_product[8] + partial_product[9] + partial_product[10] + partial_product[11] +
+                     partial_product[12] + partial_product[13] + partial_product[14] + partial_product[15];
+endmodule
+Depth of rollout:  178
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [65.27663299 50.82788019 14.85761607  6.8843209   5.35815818]  taking action:  0  corresponding to token:     
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   
+Tokens: ['assign', '   ', 'wire', ' assign', '\n']
+Probs: [84.6, 4.21, 2.55, 1.99, 1.21]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign
+API response time: 0.821366 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   product = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  2.0
+Iteration TIME (sec):  0.010784378999999955
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [39.47361074 62.25118559 18.19678908  8.43153671  6.56237676]  taking action:  1  corresponding to token:   
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ 
+Tokens: ['assign', 'wire', ' ', '//', '\n']
+Probs: [86.55, 7.1, 3.36, 0.45, 0.35]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign
+API response time: 0.680702 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   product = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  3.0
+Iteration TIME (sec):  0.010066699999999873
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [45.65754984 35.44073876 21.01184215  9.73589998  7.57757997]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [165.10660441   8.21629793   4.97661751   3.88371327   2.3614538 ]  taking action:  0  corresponding to token:  assign
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign
+Tokens: [' product', 'product', '(product', '<|end|>', ' user']
+Probs: [84.86, 14.75, 0.21, 0.08, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   product
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product
+API response time: 0.449446 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  4.0
+Iteration TIME (sec):  0.010581832999999818
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [33.73713969 39.68296751 23.49195369 10.88506709  8.47199196]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [168.91225309  13.85646444   6.55742542   0.87822662   0.68306515]  taking action:  0  corresponding to token:  assign
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign
+Tokens: [' product', 'product', '``', '```', '`']
+Probs: [77.61, 22.24, 0.06, 0.03, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   product
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+API response time: 0.846007 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  5.0
+Iteration TIME (sec):  0.011177245999999919
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [37.02081494 28.67882363 25.73414591 11.92399357  9.28060221]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [100.60673349  10.06286875   6.09508677   4.75655791   2.89217843]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.65614024e+02 2.87863170e+01 4.09839089e-01 1.56129177e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:   product
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product
+Tokens: [' =', '=', '=A', '<|end|>', '=user']
+Probs: [97.89, 1.79, 0.19, 0.09, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =
+API response time: 0.591083 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  6.0
+Iteration TIME (sec):  0.010818778999999612
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [29.7803495  31.03008554 27.79605446 12.87938507 10.02419608]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [102.93720785  16.97063375   8.03117316   1.07560355   0.83658054]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.51464818e+02 4.34039111e+01 1.17096883e-01 5.85484413e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:   product
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+Tokens: [' =', '=', '=A', '<|end|>', ' ']
+Probs: [99.18, 0.67, 0.12, 0.03, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+API response time: 0.639811 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  7.0
+Iteration TIME (sec):  0.010134942000000091
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [31.8883165  24.6639401  29.71523214 13.76864179 10.71631637]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [77.16533304 11.61959996  7.03799998  5.49239998  3.33959999]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.00917463e+02 3.52558941e+01 5.01948322e-01 1.91218408e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.91043564e+02 3.49339033e+00 3.70806795e-01 1.75645324e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =
+Tokens: [' A', 'A', ' (', '<|end|>', '(A']
+Probs: [87.88, 11.89, 0.1, 0.04, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   A
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A
+API response time: 0.565853 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  8.0
+Iteration TIME (sec):  0.010628723000000395
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [26.89452989 26.20555407 31.51776323 14.60384997 11.36636996]  taking action:  2  corresponding to token:   assign
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign
+Tokens: [' product', 'product', '``', '```', '`']
+Probs: [72.98, 26.85, 0.07, 0.04, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   product
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+API response time: 1.216064 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   = A * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  9.0
+Iteration TIME (sec):  0.010719275000000028
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [28.39259773 27.66364882 16.11131976 15.3938095  11.98120593]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [64.51411583 12.99110769  7.86872319  6.14068986  3.7337863 ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.74045330e+01 4.07099999e+01 5.79599998e-01 2.20799999e-01
+ 2.75999999e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.16489813e+02 4.27851189e+00 4.54143720e-01 2.15120710e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.71507901e+02 2.32046989e+01 1.95161471e-01 7.80645884e-02
+ 7.80645884e-02]  taking action:  0  corresponding to token:   A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A
+Tokens: [' *', '*', ' \\', '\\', '*b']
+Probs: [88.05, 11.92, 0.01, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A *
+API response time: 0.849933 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A *
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  10.0
+Iteration TIME (sec):  0.010540533000000352
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [24.68121236 29.05048629 16.92209914 16.14516361 12.5659948 ]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [78.95933304 19.59599993  9.27359997  1.242       0.966     ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [9.22528793e+01 5.31587176e+01 1.43413806e-01 7.17069032e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.93561147e+02 1.30758186e+00 2.34193765e-01 5.85484413e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+Tokens: ['A', ' A', ';', ';\n', '{']
+Probs: [93.8, 6.0, 0.11, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  A
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+API response time: 0.680742 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  11.0
+Iteration TIME (sec):  0.01001556300000006
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [25.81574051 24.10047422 17.69678908 16.86307342 13.12475351]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [56.39460549 14.23104546  8.61975438  6.72678871  4.09015796]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [6.47146911e+01 4.55151635e+01 6.48012498e-01 2.46861904e-01
+ 3.08577380e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [8.93921330e+01 4.94039998e+00 5.24399998e-01 2.48399999e-01
+ 2.75999999e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.04526711e+02 2.84198360e+01 2.39023011e-01 9.56092042e-02
+ 9.56092042e-02]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.71839675e+02 2.32632473e+01 1.95161471e-02 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A *
+Tokens: [' B', 'B', '<|end|>', ' ', ' A']
+Probs: [99.96, 0.04, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B
+API response time: 0.664263 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  12.0
+Iteration TIME (sec):  0.011038806000000179
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.91763038 25.11723528 18.43981857 17.55164329 13.66067657]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [66.01843056 21.90899397 10.36819996  1.38859821  1.08002083]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [7.07345331e+01 6.13823998e+01 1.65599999e-01 8.27999997e-02
+ 5.51999998e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.18031511e+02 1.60145417e+00 2.86827613e-01 7.17069032e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.83061460e+02 1.17096883e+01 2.14677618e-01 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+Tokens: ['*', ' *', '\\', ' \\', ' *\n']
+Probs: [49.97, 49.97, 0.05, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+API response time: 0.417675 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  13.0
+Iteration TIME (sec):  0.010659738999999835
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [23.81510532 21.57965513 19.1547786  18.21420104 14.17635404]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [50.64769552 15.37128591  9.31039883  7.26576223  4.41787552]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.65703809e+01 4.98593635e+01 7.09862125e-01 2.70423667e-01
+ 3.38029583e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [7.47665993e+01 5.52353510e+00 5.86297022e-01 2.77719642e-01
+ 3.08577380e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [80.18293303 32.81639989  0.276       0.1104      0.1104    ]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.04729880e+02 2.84915429e+01 2.39023011e-02 2.39023011e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.95083406e+02 7.80645884e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   B
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B
+Tokens: [';', ';\n', ';\r\r\n', ' ;', ';}']
+Probs: [100.0, 0.0, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;
+API response time: 0.339670 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  
+endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  14.0
+Iteration TIME (sec):  0.011266005000000412
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.47092773 22.3663138  19.84462868 18.85348924 14.67392052]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [57.71292086 24.00010042 11.357794    1.52113313  1.18310354]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.91217261e+01 6.86276093e+01 1.85146428e-01 9.25732139e-02
+ 6.17154760e-02]  taking action:  1  corresponding to token:  product
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct
+Tokens: [' =', '=', '<|end|>', ' ', '=A']
+Probs: [99.59, 0.25, 0.15, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =
+API response time: 0.419014 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  15.0
+Iteration TIME (sec):  0.010511315000000021
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [22.20377492 19.68042214 20.51184215 19.47179996 15.15515995]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [46.31617268 16.43259585  9.95323502  7.76742654  4.7229076 ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.08059114e+01 5.38542678e+01 7.66738727e-01 2.92090944e-01
+ 3.65113680e-02]  taking action:  1  corresponding to token:  product
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct
+Tokens: [' =', '=', ' [', ' ', ' <=']
+Probs: [99.59, 0.25, 0.07, 0.04, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct =
+API response time: 0.943043 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B; 
+endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  16.0
+Iteration TIME (sec):  0.010743746999999804
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.25693926 20.31249459 21.15851114 20.07107199 15.62158131]  taking action:  2  corresponding to token:   assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.42428841e+02 5.24008549e+01 1.36613030e-01 7.80645884e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:   product
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product
+Tokens: [' =', '=', '=A', '<|end|>', ' ']
+Probs: [98.46, 1.09, 0.24, 0.15, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+API response time: 0.840336 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  17.0
+Iteration TIME (sec):  0.010851609000000373
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.86998877 20.92623436 14.19094938 20.65296269 16.07447455]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [51.83431498 25.92307126 12.26781964  1.64301156  1.27789788]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [64.83618991 37.08888967  0.20281775  0.10140888  0.06760592]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [9.05789330e+01 1.84919999e+00 3.31199999e-01 8.27999997e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.11601792e+02 1.43413806e+01 2.62925312e-01 4.78046021e-02
+ 2.39023011e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [9.75221870e+01 9.75221870e+01 9.75807355e-02 1.95161471e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  *
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+Tokens: [' B', 'B', '``', '```', '`']
+Probs: [93.99, 6.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B
+API response time: 0.727656 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  18.0
+Iteration TIME (sec):  0.011114949999999624
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [21.4662328  18.70775603 14.59808274 21.21890207 16.51495267]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [42.90549985 17.42939994 10.55699996  8.23859997  5.00939998]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [5.43713414e+01 2.82863170e+01 8.19678178e-01 3.12258353e-01
+ 3.90322942e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [6.53794318e+01 6.05072954e+00 6.42256208e-01 3.04226625e-01
+ 3.38029583e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [67.04445035 36.68985046  0.30857738  0.12343095  0.12343095]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [8.03393330e+01 3.28991999e+01 2.75999999e-02 2.75999999e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [1.18963701e+02 9.56092042e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [195.16147093   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;
+Tokens: [';\n', 'endmodule', ';', ' end', '\\n']
+Probs: [44.91, 44.91, 10.02, 0.09, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+
+API response time: 0.397559 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:6: syntax error\nI give up.\n'
+Rollout raw response:  endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  19.0
+Iteration TIME (sec):  0.011268379999999745
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.74228385 19.21648376 14.99463577 21.77013417 16.94398393]  taking action:  3  corresponding to token:    
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  
+Tokens: ['assign', '//', 'wire', '/', ' ']
+Probs: [63.03, 10.95, 8.53, 2.44, 2.44]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  assign
+API response time: 0.778237 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   product = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  20.0
+Iteration TIME (sec):  0.009963180999999821
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [20.25204663 19.71264449 15.38139284 10.65387465 17.36241691]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [40.13217677 18.37220069 11.12805505  8.68424688  5.28037122]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [4.93314855e+01 3.00324999e+01 8.69399997e-01 3.31199999e-01
+ 4.13999999e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.87349635e+01 6.53553487e+00 6.93715991e-01 3.28602312e-01
+ 3.65113680e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [58.61207956 40.19171746  0.33802958  0.13521183  0.13521183]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [6.71755957e+01 3.67824237e+01 3.08577380e-02 3.08577380e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [91.296533  0.1104    0.        0.        0.      ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [119.01150531   0.           0.           0.           0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [8.76470166e+01 8.76470166e+01 1.95551794e+01 1.75645324e-01
+ 3.90322942e-02]  taking action:  0  corresponding to token:  ;
+
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+
+Tokens: ['endmodule', '`', '  ', '<|end|>', 'end']
+Probs: [99.58, 0.19, 0.09, 0.04, 0.03]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+API response time: 0.339874 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Rollout raw response:  
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  21.0
+Iteration TIME (sec):  0.01065410699999969
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.77255445 20.19712594 15.75904591 10.91635467 17.77100027]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [47.40350088 27.71292887 13.11485085  1.75645324  1.3661303 ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [55.87294535 40.10064118  0.21906821  0.1095341   0.07302274]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [75.76176133  2.06746844  0.37029286  0.09257321  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [8.56293330e+01 1.65599999e+01 3.03599999e-01 5.51999998e-02
+ 2.75999999e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.92198992e+01 1.19439798e+02 1.19511505e-01 2.39023011e-02
+ 0.00000000e+00]  taking action:  1  corresponding to token:   *
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A *
+Tokens: [' B', 'B', '```', '`', '``']
+Probs: [99.33, 0.67, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B
+API response time: 0.372591 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  22.0
+Iteration TIME (sec):  0.010697614000000133
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [19.21489384 18.26285865 16.12820914 11.17293401 18.17039845]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [37.82093099 19.26892664 11.6712026   9.10811497  5.53810006]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [4.54155270e+01 3.16840808e+01 9.16428063e-01 3.49115452e-01
+ 4.36394316e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [5.37267325e+01 6.98678066e+00 7.41613590e-01 3.51290648e-01
+ 3.90322942e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [52.6436503  43.41201651  0.36511368  0.14604547  0.14604547]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.87270096e+01 4.02931263e+01 3.38029583e-02 3.38029583e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [76.36348722  0.12343095  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [91.333333  0.        0.        0.        0.      ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [5.31726170e+01 1.07345234e+02 2.39501057e+01 2.15120710e-01
+ 4.78046021e-02]  taking action:  1  corresponding to token:  endmodule
+Adding child.
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  23.0
+Iteration TIME (sec):  0.0034010800000001673
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.01874083 18.67477131 16.48943059 11.42399357 18.56120442]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [43.91462485 29.3939999  13.91039995  1.86299999  1.44899999]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [49.65493922 42.90391114  0.23419377  0.11709688  0.07806459]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [66.25154814  2.26479821  0.4056355   0.10140888  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [7.16113956e+01 1.85146428e+01 3.39435118e-01 6.17154760e-02
+ 3.08577380e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [6.84585998e+01 6.84585998e+01 1.38000000e-01 2.75999999e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [183.43226653  11.7292044    0.           0.           0.        ]  taking action:  0  corresponding to token:   B
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B
+Tokens: [';', ';\n', ' ;', ';.', ';\r\r\n']
+Probs: [99.97, 0.03, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;
+API response time: 0.614004 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  24.0
+Iteration TIME (sec):  0.01192709199999964
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.40731245 17.0703694  16.84320177 11.66987497 18.94394993]  taking action:  4  corresponding to token:  	assign
+Adding child.
+Leaf selection - depth:  1
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign
+Tokens: [' product', 'product', '<|end|>', '(product', '`']
+Probs: [72.74, 26.76, 0.14, 0.11, 0.05]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   product
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign product
+API response time: 1.159098 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign product
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   = A * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  25.0
+Iteration TIME (sec):  0.01008537899999995
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.78818729 17.42625285 17.1899655  11.91088599  9.15955704]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [35.95699405 20.12573749 12.19017354  9.51311582  5.78435686]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [42.38881276 33.25494869  0.96115786  0.36615538  0.04576942]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [4.99205748e+01 7.41059997e+00 7.86599997e-01 3.72599999e-01
+ 4.13999999e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [48.30225734 46.40939779  0.39032294  0.15612918  0.15612918]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.29304325e+01 4.35215506e+01 3.65113680e-02 3.65113680e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [66.99887426  0.13521183  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [76.66934496  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [6.14757998e+01 6.20257998e+01 2.76551999e+01 2.48399999e-01
+ 5.51999998e-02]  taking action:  1  corresponding to token:  endmodule
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  26.0
+Iteration TIME (sec):  0.0032674649999999694
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.69551269 17.7753557  17.5301224  12.14730507  9.34356513]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [41.07769779 30.98399641 14.662849    1.96377442  1.5273801 ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [45.0436284  45.53679984  0.2484      0.1242      0.0828    ]  taking action:  1  corresponding to token:  product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [194.3613089    0.48790368   0.29274221   0.           0.        ]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =
+Tokens: ['A', ' A', ';', '(A', '<|end|>']
+Probs: [56.13, 43.72, 0.03, 0.03, 0.03]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  A
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =A
+API response time: 0.465238 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =A
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  27.0
+Iteration TIME (sec):  0.011440085999999905
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [18.03406128 16.38004664 17.86403629 12.37938507  9.52419608]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [34.34507495 20.94753173 12.68793489  9.90156488  6.0205495 ]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [39.88698536 34.75589407  1.00389664  0.38243682  0.0478046 ]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [4.68207106e+01 7.81145825e+00 8.29149200e-01 3.92754884e-01
+ 4.36394316e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [44.87789982 49.22459983  0.414       0.1656      0.1656    ]  taking action:  1  corresponding to token:  A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A
+Tokens: [' *', '*', '\\', ' \\', ';']
+Probs: [56.17, 43.74, 0.04, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A *
+API response time: 0.417070 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A *
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  28.0
+Iteration TIME (sec):  0.010780153999999875
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.98328669 16.68607284 18.19203879 12.60735648  9.70162925]  taking action:  2  corresponding to token:   assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [8.67194966e+01 6.41776784e+01 1.67316107e-01 9.56092042e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.92155984e+02 2.12726003e+00 4.68387530e-01 2.92742206e-01
+ 1.95161471e-02]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  3
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =
+Tokens: ['A', ' A', ';', ';\n', '{']
+Probs: [96.07, 3.73, 0.09, 0.05, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  A
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+API response time: 1.062982 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  29.0
+Iteration TIME (sec):  0.011085595999999587
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [17.28680808 16.98686666 13.6358249  12.83143009  9.87602871]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [32.84853967 21.73828101 13.1668923  10.27533948  6.24781948]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [37.67587002 36.19549798  1.04488876  0.39805286  0.04975661]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [44.12368714  8.19272653  0.86961902  0.4119248   0.04576942]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [47.33791554 25.44364206  0.43639432  0.17455773  0.17455773]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.85541929e+01 4.65264947e+01 3.90322942e-02 3.90322942e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [60.36127233  0.14604547  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [67.24591668  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [6.87910506e+01 4.62607004e+01 3.09194535e+01 2.77719642e-01
+ 6.17154760e-02]  taking action:  0  corresponding to token:  ;
+
+Leaf selection - depth:  9
+Leaf selection - action scores:  [1.94341793e+02 3.70806795e-01 1.75645324e-01 7.80645884e-02
+ 5.85484413e-02]  taking action:  0  corresponding to token:  endmodule
+Adding child.
+Leaf selection - depth:  10
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  30.0
+Iteration TIME (sec):  0.0019852359999998903
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.34629077 17.28268765 13.87362324 13.05179924 10.04754493]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [38.71343472 32.49628958 15.37852577  2.05962399  1.60192977]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [47.52651832 31.68469858  0.26183659  0.13091829  0.08727886]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [59.51995794  2.44626165  0.43813642  0.1095341   0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [6.26143498e+01 2.02817750e+01 3.71832542e-01 6.76059167e-02
+ 3.38029583e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.07320389e+01 7.65980584e+01 1.54288690e-01 3.08577380e-02
+ 0.00000000e+00]  taking action:  1  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [193.85388908   1.30758186   0.           0.           0.        ]  taking action:  0  corresponding to token:   B
+Adding child.
+Leaf selection - depth:  7
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B
+Tokens: [';', ';\n', ' ;', ';\r\r\n', '`;']
+Probs: [99.99, 0.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;
+API response time: 0.592412 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  31.0
+Iteration TIME (sec):  0.011378712999999596
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.6204355  16.02596004 14.10761607 13.26864179 10.21631637]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [31.52593277 22.50125857 13.62902835 10.63598683  6.46710757]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [35.7811268  37.58071792  1.08433231  0.41307897  0.05163487]  taking action:  1  corresponding to token:  product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.94361309e+02 4.87903677e-01 1.36613030e-01 7.80645884e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:   =
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct =
+Tokens: [' A', 'A', ' (', '(A', ' ']
+Probs: [98.52, 1.41, 0.03, 0.02, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   A
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct = A
+API response time: 0.608001 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct = A
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  32.0
+Iteration TIME (sec):  0.010684234000000181
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.77218359 16.28865209 14.33798044 13.48212184 10.38247072]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [36.70443919 33.94126751 16.06234631  2.1512071   1.67316107]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [43.52706047 33.26373145  0.27461653  0.13730827  0.09153884]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [54.44604195  2.61516371  0.46838753  0.11709688  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.62461053e+01 2.19068208e+01 4.01625048e-01 7.30227359e-02
+ 3.65113680e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [5.56377942e+01 5.56377942e+01 1.69014792e-01 3.38029583e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [111.82886384  14.36528294   0.           0.           0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.95102922e+02 5.85484413e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;
+Tokens: ['endmodule', ';', ';\n', ' end', '.']
+Probs: [56.13, 34.05, 7.6, 2.18, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;endmodule
+API response time: 0.394969 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Rollout raw response:  
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  33.0
+Iteration TIME (sec):  0.012038652999999844
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [16.02140334 15.28220916 14.5648801  13.69239111 10.54612608]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [30.34613326 23.23919992 14.07599995 10.98479996  6.67919998]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [37.0627237  25.61152523  1.12239057  0.42757736  0.05344717]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [41.83265907  8.55702378  0.90828744  0.43024142  0.0478046 ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [44.04685332 26.70992135  0.45769422  0.18307769  0.18307769]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.49658748e+01 4.93487998e+01 4.13999999e-02 4.13999999e-02
+ 0.00000000e+00]  taking action:  1  corresponding to token:  *
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A*
+Tokens: [' B', 'B', '<|end|>', ' ']
+Probs: [92.4, 7.58, 0.02, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A* B
+API response time: 0.475876 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A* B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  34.0
+Iteration TIME (sec):  0.011048965000000077
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.25127931 15.51755986 14.78846682 13.89959026 10.70739192]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [35.06195312 35.32719127 16.7182201   2.23904733  1.74148126]  taking action:  1  corresponding to token:  wire
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ wire
+Tokens: ['[', ' [', ';', 'signed', '\\[']
+Probs: [56.07, 43.67, 0.18, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  [
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ wire[
+API response time: 1.214370 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ wire[
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  31:0] partial_product;
+
+ assign partial_product = A * B;
+ assign product = partial_product;
+
+endmodule
+Depth of rollout:  25
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  35.0
+Iteration TIME (sec):  0.009692283000000135
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.47913529 14.55317379 15.00888161 14.10384997 10.86636996]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [29.28527092 23.95441898 14.50920865 11.32287263  6.88476175]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [35.27901525 26.47333322  1.1592      0.4416      0.0552    ]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [39.85561916  8.90643273  0.94537554  0.44780947  0.04975661]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [41.33068434 27.91983596  0.47804602  0.19121841  0.19121841]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.74306493e+01 2.55091012e+01 4.36394316e-02 4.36394316e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [55.19525893  0.15612918  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [60.38561328  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [49.93636194 50.6696953  33.87056425  0.30422663  0.06760592]  taking action:  1  corresponding to token:  endmodule
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  36.0
+Iteration TIME (sec):  0.003221847999999916
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.83696757 14.76564139 15.22625577 14.3052919  11.02315488]  taking action:  2  corresponding to token:   assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [6.64749331e+01 7.41059997e+01 1.93199999e-01 1.10400000e-01
+ 5.51999998e-02]  taking action:  1  corresponding to token:  product
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct
+Tokens: [' =', '=', ';', ' ', ' <=']
+Probs: [97.71, 1.39, 0.4, 0.07, 0.07]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =
+API response time: 0.458702 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  37.0
+Iteration TIME (sec):  0.01094769799999984
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [15.04634712 14.9752567  12.15256939 14.50402954 11.17783502]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [28.38940085 24.64889378 14.92985253 11.65113981  7.08436139]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [33.79597887 27.30860489  1.19487601  0.45519086  0.05689886]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [38.21182768  9.24264204  0.98106256  0.46471385  0.05163487]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [39.14191508 29.08030312  0.49756607  0.19902643  0.19902643]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [44.25552886 26.77857548  0.04576942  0.04576942  0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [51.26679979  0.1656      0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [55.37470597  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [53.99085116 41.06813839 36.5843907   0.32860231  0.07302274]  taking action:  0  corresponding to token:  ;
+
+Leaf selection - depth:  9
+Leaf selection - action scores:  [1.18509557e+02 4.54143720e-01 2.15120710e-01 9.56092042e-02
+ 7.17069032e-02]  taking action:  0  corresponding to token:  endmodule
+Leaf selection - depth:  10
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  38.0
+Iteration TIME (sec):  0.0019709479999998614
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.39756882 15.18213158 12.32189121 14.70016897 11.33049294]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [36.41665127 17.83037947 17.34931691  2.32356923  1.80722051]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [40.45683525 34.77247835  0.28682761  0.14341381  0.0956092 ]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [50.58814981  2.77379999  0.4968      0.1242      0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [5.16032742e+01 2.34193765e+01 4.29355236e-01 7.80645884e-02
+ 3.90322942e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.51368264e+01 6.01491019e+01 1.82556840e-01 3.65113680e-02
+ 0.00000000e+00]  taking action:  1  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [118.21077822   1.60145417   0.           0.           0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.95141955e+02 1.95161471e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  8
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;
+Tokens: [';', ';\n', 'endmodule', ' end', ';\r\n']
+Probs: [54.62, 42.54, 2.72, 0.05, 0.04]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  ;
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+API response time: 0.394466 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+Compilation check...
+Verilog compilation failed, error:  4
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  39.0
+Iteration TIME (sec):  0.011401777000000113
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.59084098 14.29394608 12.48905579 14.8938095  11.48120593]  taking action:  3  corresponding to token:    
+Leaf selection - depth:  1
+Leaf selection - action scores:  [123.01027513  21.37018107  16.64727347   4.76193989   4.76193989]  taking action:  0  corresponding to token:  assign
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  assign
+Tokens: [' product', 'product', '(product', '<|end|>', '```']
+Probs: [73.0, 26.85, 0.07, 0.02, 0.02]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   product
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  assign product
+API response time: 0.676461 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+  assign product
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   = A * B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  40.0
+Iteration TIME (sec):  0.010775613999999933
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.78171197 14.48220108 12.65414356  9.72336283 11.6300465 ]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [27.51070743 25.32433099 15.33896533 11.97040824  7.27848943]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [32.40947154 28.11965028  1.22951727  0.46838753  0.05854844]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [36.67816764  9.56704343  1.01549623  0.48102453  0.05344717]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [37.17227104 30.19693126  0.51634872  0.20653949  0.20653949]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [41.52195212 27.99154287  0.0478046   0.0478046   0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [47.9466397   0.17455773  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [51.28749982  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [43.0735083  43.8985083  39.11035878  0.35129065  0.07806459]  taking action:  1  corresponding to token:  endmodule
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  41.0
+Iteration TIME (sec):  0.0032142269999999584
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.22675569 14.66817394 12.81723005  9.84930718 11.77708273]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [34.74501973 18.47374535 17.95824912  2.40512265  1.87065095]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [37.826103   36.21956495  0.29853964  0.14926982  0.09951321]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [47.32398693  2.92384191  0.52367318  0.13091829  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [4.78039998e+01 2.48399999e+01 4.55399998e-01 8.27999997e-02
+ 4.13999999e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.82860935e+01 4.80110935e+01 1.95161471e-01 3.90322942e-02
+ 0.00000000e+00]  taking action:  0  corresponding to token:  *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [86.17079972 16.58759994  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.19525652e+02 7.17069032e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [1.09544134e+02 6.64524809e+01 1.48322718e+01 4.25452007e+00
+ 1.95161471e-02]  taking action:  0  corresponding to token:  endmodule
+Adding child.
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  42.0
+Iteration TIME (sec):  0.0034080940000000837
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.40376488 13.92994911 12.97838631  9.97376091 11.92237871]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [26.76383834 25.98221538 15.73744637 12.28137972  7.46757259]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [31.2410441  28.90846254  1.26320891  0.48122244  0.06015281]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [35.38351989  9.88079997  1.0488      0.4968      0.0552    ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [35.54567151 31.27434256  0.5344717   0.21378868  0.21378868]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [39.31881162 29.15493803  0.04975661  0.04975661  0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [45.29111414  0.18307769  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [48.08825728  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [45.73184984 37.26547987 41.48279986  0.3726      0.0828    ]  taking action:  0  corresponding to token:  ;
+
+Leaf selection - depth:  9
+Leaf selection - action scores:  [9.09469330e+01 5.24399998e-01 2.48399999e-01 1.10400000e-01
+ 8.27999997e-02]  taking action:  0  corresponding to token:  endmodule
+Leaf selection - depth:  10
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  43.0
+Iteration TIME (sec):  0.0021217060000000565
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.83688329 14.10024319 13.1376793  10.09677572 12.0659948 ]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [33.35399993 19.09599993 18.54719994  2.48399999  1.93199999]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [35.72165812 37.61198491  0.30980923  0.15490462  0.10326974]  taking action:  1  corresponding to token:  product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [118.52150814   0.59755753   0.35853452   0.           0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.09544134e+02 8.53245951e+01 5.85484413e-02 5.85484413e-02
+ 5.85484413e-02]  taking action:  0  corresponding to token:  A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =A
+Tokens: ['*', ' *', ';', '*b', '\\']
+Probs: [85.1, 14.79, 0.1, 0.01, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =A*
+API response time: 0.657008 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct =A*
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  44.0
+Iteration TIME (sec):  0.011373215000000325
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [14.00163135 13.37045917 13.2951722  10.2184004  12.20798794]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [26.02032737 26.62384818 16.12608381 12.58466933  7.65198487]  taking action:  1  corresponding to token:     
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+      
+Tokens: ['assign', '\n', ' ', ' assign', 'wire']
+Probs: [63.9, 5.25, 4.08, 4.08, 3.18]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  assign
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+      assign
+API response time: 0.490557 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+      assign
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   product = A * B;
+endmodule
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  45.0
+Iteration TIME (sec):  0.010195289999999968
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.47526071 13.52717358 13.45092469 10.33868104 12.34841196]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [32.04397411 19.69909439 19.1180161   2.56044858  1.99146001]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [37.0003169  28.96662652  0.32068302  0.16034151  0.10689434]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [44.71411268  3.06655127  0.54923306  0.13730827  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [4.48375409e+01 2.61836589e+01 4.80033747e-01 8.72788631e-02
+ 4.36394316e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [4.10151599e+01 5.09689498e+01 2.06999999e-01 4.13999999e-02
+ 0.00000000e+00]  taking action:  1  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [90.716933    1.84919999  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [1.18999554e+02 2.39023011e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [1.06597195e+02 8.30216897e+01 5.30839201e+00 9.75807355e-02
+ 7.80645884e-02]  taking action:  0  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+Tokens: ['endmodule', ' assign', ' end', ';', '<|end|>']
+Probs: [90.56, 5.79, 1.29, 1.01, 0.22]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;endmodule
+API response time: 1.237028 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Rollout raw response:  module multiplier_16(output [31:0] product, input [15:0] A, B);
+    assign product = A * B;
+endmodule
+Depth of rollout:  41
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  46.0
+Iteration TIME (sec):  0.011447392
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.62910092 12.86651622 13.60499322 10.45766123 12.48731775]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [26.64983296 13.12518869 16.505573   12.88081972  7.83205621]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [30.12456057 29.67677566  1.296025    0.49372381  0.06171548]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [34.14893225 10.18489548  1.08107829  0.51208972  0.05689886]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [34.03554268 32.31639989  0.552       0.2208      0.2208    ]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [37.33708714 30.27438357  0.05163487  0.05163487  0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [42.93225475  0.19121841  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [45.30942191  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [38.39693741 39.27693742 43.72671042  0.39275488  0.08727886]  taking action:  2  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+Tokens: ['endmodule', '<|end|>', '  ', 'end', '`']
+Probs: [97.42, 1.39, 0.24, 0.24, 0.11]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;endmodule
+API response time: 0.516700 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Rollout raw response:  
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  47.0
+Iteration TIME (sec):  0.011689381999999693
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.1386473  13.01137462 13.75743125 10.57538226 12.62475351]  taking action:  2  corresponding to token:   assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [7.43999239e+01 4.09265132e+01 2.16004166e-01 1.23430952e-01
+ 6.17154760e-02]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  2
+Leaf selection - action scores:  [1.17171028e+02 2.60535082e+00 5.73655225e-01 3.58534516e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.87491625e+02 7.27952287e+00 1.75645324e-01 9.75807355e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:  A
+Adding child.
+Leaf selection - depth:  4
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A
+Tokens: ['*', ' *', '\\', '*A', '*b']
+Probs: [95.25, 4.74, 0.01, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+API response time: 0.515607 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  48.0
+Iteration TIME (sec):  0.010765905999999603
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.28273265 13.15473179 11.42357461 10.69188329 12.76076495]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.9192256  13.43141094 16.87653107 13.17031248  8.00807945]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [29.11393188 30.4261093   1.32803043  0.50591635  0.06323954]  taking action:  1  corresponding to token:  product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.18521508e+02 5.97557527e-01 1.67316107e-01 9.56092042e-02
+ 4.78046021e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.92273081e+02 2.75177674e+00 5.85484413e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:   A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct = A
+Tokens: ['*', ' *', '\\', ';', '*b']
+Probs: [56.16, 43.73, 0.04, 0.04, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct = A*
+API response time: 0.380595 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assignproduct = A*
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  49.0
+Iteration TIME (sec):  0.010347544000000042
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.82429862 13.29663344 11.54801341 10.80720147 12.89539546]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [30.8710475  20.28469665 19.67227627  2.63467986  2.04919544]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [34.96726653 29.94119989  0.3312      0.1656      0.1104    ]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [42.39327668  3.20290834  0.57365523  0.14341381  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [42.25171778 27.46165317  0.50346364  0.09153884  0.04576942]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [43.25324792 42.81324789  0.21819716  0.04363943  0.        ]  taking action:  0  corresponding to token:  *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [72.30796984 18.54550053  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [9.20390664e+01 8.27999997e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [6.71318079e+01 8.13873351e+01 1.81657488e+01 5.21070163e+00
+ 2.39023011e-02]  taking action:  1  corresponding to token:  ;
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;;
+Tokens: ['endmodule', ' end', ' assign', 'end', ';']
+Probs: [96.12, 2.26, 0.65, 0.5, 0.11]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;;endmodule
+API response time: 0.508759 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B;;endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Rollout raw response:  
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  50.0
+Iteration TIME (sec):  0.010980867000000227
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.95961836 12.67727443 11.67121393 10.92137213 13.02868626]  taking action:  4  corresponding to token:  	assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [1.41960454e+02 5.22252096e+01 2.73226059e-01 2.14677618e-01
+ 9.75807355e-02]  taking action:  0  corresponding to token:   product
+Adding child.
+Leaf selection - depth:  2
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign product
+Tokens: [' =', '=', '=A', '`', 'module']
+Probs: [99.36, 0.52, 0.07, 0.01, 0.01]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   =
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign product =
+API response time: 0.478991 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+	assign product =
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   A * B;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  51.0
+Iteration TIME (sec):  0.010500861999999778
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [13.09361781 12.80907124 11.7932124  11.03442884  8.44045103]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [25.24300256 13.73104546 17.23950875 13.45357742  8.18031592]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [29.81553215 23.11835312  1.35928248  0.5178219   0.06472774]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [33.0312172  10.48017099  1.11242038  0.52693597  0.05854844]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [32.6951439  33.32637075  0.56898857  0.22759543  0.22759543]  taking action:  1  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [1.09622198e+02 8.53636274e+01 7.80645884e-02 3.90322942e-02
+ 1.95161471e-02]  taking action:  0  corresponding to token:   *
+Adding child.
+Leaf selection - depth:  6
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A *
+Tokens: [' B', 'B', ' ', ';', '`']
+Probs: [99.59, 0.41, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A * B
+API response time: 0.343628 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product =A * B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  52.0
+Iteration TIME (sec):  0.01072712599999992
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.65728148 12.93960676 11.91404334 11.1464036   8.52760246]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [29.81309    20.85424585 20.21134255  2.70687623  2.10534818]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [33.21477172 30.88576473  0.34139314  0.17069657  0.11379771]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [40.39050269  3.3336927   0.59707929  0.14926982  0.        ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [40.05519704 28.68276127  0.52585062  0.0956092   0.0478046 ]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [37.65163358 44.94196028  0.22884711  0.04576942  0.        ]  taking action:  1  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [75.87747785  2.06746844  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [9.13241330e+01 2.75999999e-02 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [6.47771842e+01 1.01680389e+02 6.50142589e+00 1.19511505e-01
+ 9.56092042e-02]  taking action:  1  corresponding to token:  ;
+
+Adding child.
+Leaf selection - depth:  9
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+
+Tokens: ['endmodule', ' assign', ' end', '<|end|>', '`']
+Probs: [86.34, 11.68, 0.58, 0.27, 0.17]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:  endmodule
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+endmodule
+API response time: 0.606343 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Rollout raw response:  
+Depth of rollout:  10
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  53.0
+Iteration TIME (sec):  0.0110857929999999
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.78349347 12.36547067 12.03373964 11.25732688  8.61393552]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [24.61478261 14.02449995 17.59499994 13.73099995  8.34899997]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [28.84339378 23.65478758  1.38983197  0.5294598   0.06618247]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [32.01310058 10.76735213  1.1429033   0.54137525  0.06015281]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [33.66158009 22.53803221  0.58548441  0.23419377  0.23419377]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [35.61556396 31.35451332  0.05344717  0.05344717  0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [40.89725398  0.19902643  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [42.94963824  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [40.31009478 41.19009479 22.4304804   0.4119248   0.09153884]  taking action:  1  corresponding to token:  endmodule
+Leaf selection - depth:  9
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;endmodule
+Compilation check...
+Output Verilog module compiles successfully.
+Functionality check...
+Verilog testbench simulation ran successfully.
+Simulation output:  b'Test 1 passed\nTest 2 passed\nTest 3 passed\nTest 4 passed\nTest 5 passed\nTest 6 passed\nTest 7 passed\nTest 8 passed\nall tests passed\n'
+
+All testbench tests passed!
+Running getPromptScore: 
+top_module
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/synth_script.sh
+Running bash
+Retrieving snythesis results.
+
+Currently displaying area/delay scores for  top_module  module.
+Area of the chip design is:  2089.43
+Delay value for the chip design is:  1388.67
+Product:  2901528.7580999997
+Score (1/chip area):  0.1
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  54.0
+Iteration TIME (sec):  0.0032458150000000963
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.41590588 12.48718265 12.15233268 11.36722776  8.69947284]  taking action:  1  corresponding to token:   
+Leaf selection - depth:  1
+Leaf selection - action scores:  [28.85263585 21.40899397 20.73639992  2.77719642  2.16004166]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [31.68531804 31.80293335  0.35129065  0.17564532  0.11709688]  taking action:  1  corresponding to token:  product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [90.956133  0.69      0.414     0.        0.      ]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [6.65818079e+01 1.04500860e+02 7.17069032e-02 7.17069032e-02
+ 7.17069032e-02]  taking action:  1  corresponding to token:   A
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct = A
+Tokens: [' *', '*', ';', '\\', ' &']
+Probs: [88.07, 11.92, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   *
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct = A *
+API response time: 0.664102 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assignproduct = A *
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:   B;
+endmodule
+Depth of rollout:  9
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  55.0
+Iteration TIME (sec):  0.010925912999999898
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.53505678 11.95980297 12.26985242 11.476134    8.78423601]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [24.07501377 14.31214173 17.94344961 14.00292734  8.51434275]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [28.01019049 24.17968177  1.41972425  0.54084733  0.06760592]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [31.13856818 11.0470702   1.17259404  0.55543928  0.06171548]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [32.44517826 23.17389511  0.60152805  0.24061122  0.24061122]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [34.18114269 32.39919989  0.0552      0.0552      0.        ]  taking action:  0  corresponding to token:   *
+Leaf selection - depth:  6
+Leaf selection - action scores:  [39.20324441  0.20653949  0.          0.          0.        ]  taking action:  0  corresponding to token:   B
+Leaf selection - depth:  7
+Leaf selection - action scores:  [41.00550615  0.          0.          0.          0.        ]  taking action:  0  corresponding to token:  ;
+Leaf selection - depth:  8
+Leaf selection - action scores:  [42.13809362 35.86507803 23.45010566  0.43024142  0.0956092 ]  taking action:  0  corresponding to token:  ;
+
+Leaf selection - depth:  9
+Leaf selection - action scores:  [76.07033871  0.58629702  0.27771964  0.12343095  0.09257321]  taking action:  0  corresponding to token:  endmodule
+Leaf selection - depth:  10
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Leaf is terminal - getting return value.
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+   assign product = A * B;;
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: error: invalid module item.\n'
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  56.0
+Iteration TIME (sec):  0.0019599359999999955
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.14747636 12.07364896 12.38632747 11.58407213  8.86824568]  taking action:  2  corresponding to token:   assign
+Leaf selection - depth:  1
+Leaf selection - action scores:  [60.92349748 44.88047156  0.23662071  0.13521183  0.06760592]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  2
+Leaf selection - action scores:  [8.99165330e+01 3.00839999e+00 6.62399998e-01 4.13999999e-01
+ 2.75999999e-02]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  3
+Leaf selection - action scores:  [1.14314703e+02 8.91555830e+00 2.15120710e-01 1.19511505e-01
+ 2.39023011e-02]  taking action:  0  corresponding to token:  A
+Leaf selection - depth:  4
+Leaf selection - action scores:  [1.85891301e+02 9.25065372e+00 1.95161471e-02 0.00000000e+00
+ 0.00000000e+00]  taking action:  0  corresponding to token:  *
+Adding child.
+Leaf selection - depth:  5
+Getting LLM token estimates (probs/ids).
+getLLMestimates: prior state:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A*
+Tokens: [' B', 'B', '<|end|>', ' ', ' A']
+Probs: [93.99, 6.01, 0.0, 0.0, 0.0]
+MCTS Stage 2 - Expansion: next action:  0  corresponding to state:   B
+
+MCTS Stage 3 - Rollout: Getting rollout return of leaf.
+
+Getting terminal state (rollout). Temp:  0
+Current prompt:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B
+API response time: 0.582047 seconds
+Initiating comile/functionality check.
+VERILOG CODE:
+//Please finish designing the 16 bit multiplier module (multiplier_16) below.
+//There are two 16 bit inputs (A and B) and a 32 bit output (product).
+//The module should utilize the inputs (A and B) to determine the output product correctly in its implementation.
+module top_module(output [31:0] product, input [15:0] A, B);
+ assign product =A* B
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b'/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump//646147_top_module/646147_top_module.v:5: syntax error\nI give up.\n'
+Rollout raw response:  ;
+endmodule
+Depth of rollout:  8
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+MCTS Stage 4 - Backpropogation: incorporating estimates.
+
+-------------------------------------------------------
+MCTS Iteration:  57.0
+Iteration TIME (sec):  0.01080208500000035
+MCTS Stage 1 - Selection: finding leaf node.
+
+Leaf selection - depth:  0
+Leaf selection - action scores:  [12.26020108 12.1865006  10.57295873 11.69106752  8.95152161]  taking action:  0  corresponding to token:     
+Leaf selection - depth:  1
+Leaf selection - action scores:  [23.52561609 14.59430312 18.28526031 14.26967373  8.67653529]  taking action:  0  corresponding to token:  assign
+Leaf selection - depth:  2
+Leaf selection - action scores:  [27.19209521 24.69374991  1.44899999  0.552       0.069     ]  taking action:  0  corresponding to token:   product
+Leaf selection - depth:  3
+Leaf selection - action scores:  [30.27759504 11.31987844  1.20155134  0.5691559   0.06323954]  taking action:  0  corresponding to token:   =
+Leaf selection - depth:  4
+Leaf selection - action scores:  [31.2856237  23.79323362  0.61715476  0.2468619   0.2468619 ]  taking action:  0  corresponding to token:   A
+Leaf selection - depth:  5
+Leaf selection - action scores:  [32.83296265 33.41171903  0.05689886  0.05689886  0.        ]  taking action:  1  corresponding to token:  *
+Leaf selection - depth:  6
