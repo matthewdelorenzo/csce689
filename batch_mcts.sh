@@ -89,31 +89,31 @@ TB_PATHS=(
 
 #change to wherever you want to be saved
 CSV_FILES=(
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_adder16_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_mac16_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_mult16_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_7420_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_adder16_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_mac16_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_mult16_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_7420_mcts.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Andgate_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Bcdadd100_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Bcdadd4_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Count10_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Count_clock_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Dff_1_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Dualedge_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Edgedetect2_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Exams_2012_q1g_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Exams_m2014_q3_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Fsm_serialdata_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Count10_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Count_clock_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Dff_1_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Dualedge_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Edgedetect2_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Exams_2012_q1g_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Exams_m2014_q3_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Fsm_serialdata_mcts.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Fsm_serialdp_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Hadd_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Kmap3_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Kmap4_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Lfsr32_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Hadd_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Kmap3_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Kmap4_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Lfsr32_mcts.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Module_1_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Module_name_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Mux256to1v_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Popcount255_mcts.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/new16_Reduction_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Mux256to1v_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Popcount255_mcts.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/new16_Reduction_mcts.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Tb_clock_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Tb_tff_05_fix.csv"
     
@@ -134,7 +134,7 @@ for i in "${!PROMPT_PATHS[@]}"; do
         --module_name "$MODULE_NAME" \
         --op "$OP" \
         --csv "${CSV_FILES[i]}" \
-        > "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_mcts_fix/gpt4o_05_test2_${i}.txt"  # Redirect output to individual text files
+        > "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_mcts/gpt4o_mcts_test3_${i}.txt"  # Redirect output to individual text files
 done
 
 #alter .txt filepath if needed

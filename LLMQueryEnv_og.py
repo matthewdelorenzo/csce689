@@ -56,9 +56,11 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         self.row_data = row_data
         self.orig_prompt = orig_prompt
         self.init_state = orig_prompt
-        self.num_tokens=0
+        self.num_gen_tokens=0
+        self.sim_gen_tokens=0
         self.n_actions = 5
-        self.stopwords = ['endmodule']
+        self.stopwords = ['<|endoftext|>']
+        self.trimword = ['endmodule']
         self.temp = temp
         self.depth=2048
         self.orig_module = orig_module
@@ -102,6 +104,14 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         else:
             print("No trimming of ``` needed.")
             return input_string
+        
+    def replace_escaped_sequences(self, text):
+        # This pattern matches any backslash followed by a character
+        print("Handling escape sequences.")
+        pattern = re.compile(r'\\(.)')
+        # Replace each match with the corresponding character
+        return pattern.sub(lambda match: match.group(1), text)
+
 
     def get_tokenized_state(self,prompt):
         input_ids = self.tokenizer(prompt, return_tensors="pt").input_ids
@@ -118,15 +128,13 @@ class LLMQueryEnv(gym.Env, StaticEnv):
 
     def trim_with_stopwords(self, currentState):
         print("Trimming the result to last instance of endmodule...")
-        for w in sorted(self.stopwords, key=len, reverse=True):
+        for w in sorted(self.trimword, key=len, reverse=True):
             if currentState.endswith(w):
                 currentState = currentState[:-len(w)], w
                 # print('Trimmed', repr(currentState))
                 return currentState
 
     def isPromptComplete(self,currentState,depth):
-        #start_time = datetime.now()
-        #print('Decoded state: ',repr(decoded))
         for w in sorted(self.stopwords, key=len, reverse=True):
             if currentState.endswith(w):
                 self.verilogFunctionalityCheck(currentState)
@@ -354,7 +362,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
             In your response, you must generate only the single next token that correctly continues the code sequence from the end of the prompt. \
             This token should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
-            (i.e. Make sure the token contains prepended spaces or newlines if needed). \
+            (i.e. Make sure the token contains prepended spaces or newlines if needed).\
             Do not generate any formatting tokens, such as ```verilog or ```."},
                         {"role": "user", "content": state}
         ],
@@ -371,11 +379,21 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 linear_probs.append(np.round(np.exp(item.logprob) * 100, 2))
                 tokens.append(item.token)
         else:
-            print("Logprobs or content is missing")
-            tokens = ["n/a", "n/a", "n/a", "n/a", "n/a"]
+            print("ERROR: Logprobs or content is missing")
+            tokens = [" ", " ", " ", " ", " "]
             linear_probs = [.2, .2, .2, .2, .2]
         print("Tokens:", tokens)
         print("Probs:", linear_probs)
+
+        while len(linear_probs) < self.n_actions:
+            print("ERROR: less than 5 probs...")
+            linear_probs.append(0.0)
+        while len(tokens) < self.n_actions:
+            print("ERROR: less than 5 tokens...")
+            tokens.append(" ")
+
+        self.sim_gen_tokens += 5
+        self.num_gen_tokens += 5
         return linear_probs, tokens
     
     def get_best_terminal_state(self,state,depth):
@@ -388,7 +406,7 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
             In your response, you must generate the rest of the tokens that correctly completes the code sequence from the end of the prompt. \
             This token sequence should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
-            (i.e. Make sure the tokens contain prepended spaces or newlines if needed). \
+            (i.e. Make sure the tokens contain prepended spaces or newlines if needed).\
             Do not generate any formatting tokens, such as ```verilog or ```."},
                 {"role": "user", "content": state}
             ],
@@ -406,20 +424,25 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         depth = depth + completion_tokens
         response_text_trimmed = self.extract_verilog_code(response_text)
         state = state + response_text_trimmed
-        self.verilogFunctionalityCheck(state)
+        state = self.replace_escaped_sequences(state)
+        self.is_done_state(state, depth)
         print("Rollout trimmed response: ", response_text_trimmed)
         print("Depth of rollout: ", depth)
+        self.sim_gen_tokens += completion_tokens
+        self.num_gen_tokens += completion_tokens
 
         return state
     
     def get_montecarlo_return(self,state,depth):
         best_terminal_state = self.get_best_terminal_state(state,depth)
-        filteredGen = self.trim_with_stopwords(best_terminal_state)
+        #filteredGen = self.trim_with_stopwords(best_terminal_state)
         score = self.getPromptScore()
         return score
 
     def get_return(self,state,depth):
         ##Sanity Check##
+        print("Getting return based on tokens - no rollout needed!")
+        state = self.replace_escaped_sequences(state)
         if not self.is_done_state(state,depth):
             print("Serious error")
             exit(1)

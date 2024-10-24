@@ -25,12 +25,12 @@ class CsvLogger:
         self.filename = filename
         with open(self.filename, 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Area", "Delay", "Score", "Current Run", "Episode", "Verilog"])  # Add header row
+            writer.writerow(["Area", "Delay", "Score", "Current Run", "Episode", "Verilog", "Time", "Tokens"])  # Add header row
 
     def log(self, data):
         with open(self.filename, 'a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog']])
+            writer.writerow([data['area'], data['delay'], data['score'], data['currentRun'], data['episode'], data['verilog'], data['time'], data['gen_tokens']])
 
 
 
@@ -120,7 +120,7 @@ if __name__ == '__main__':
             start_time = datetime.now()
             for i in range(simulation_per_episode):
                 print(simulation_per_episode)
-                print("----GREEDY LLM OUTPUT - ITERATION: ", i, " ----")
+                print("----SAMPLE LLM OUTPUT - ITERATION: ", i, " ---- TEMP: 1")
                 print("---------------")
                 print("Done setting up env.")
                 env.row_data['episode'] = idx_ep
@@ -130,11 +130,17 @@ if __name__ == '__main__':
                 #promptGen = env.get_prompt_from_state(finalState)
                 filteredGen=env.trim_with_stopwords(finalState)
                 score = env.getPromptScore()
+                sim_end_time = datetime.now()
+                sim_time_difference = sim_end_time - start_time
+                sim_seconds = sim_time_difference.total_seconds()
+                env.row_data['time'] = sim_seconds
+                env.row_data['gen_tokens'] = env.sim_gen_tokens
                 env.csv_logger.log(env.row_data)
             end_time = datetime.now()
             time_difference = end_time - start_time
             seconds = time_difference.total_seconds()
             print("Greedy Total Time: ", seconds)
+            print("Total gen tokens: ", env.num_gen_tokens)
             break
 
         else:

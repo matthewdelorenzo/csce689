@@ -163,6 +163,8 @@ class MCTSNode:
                                              self.TreeEnv,
                                              action=action, parent=self,childType=self.childType)
             self.child_visited[action] = 1
+        else:
+            print("Child already created - returning child node.")
         return self.children[action]
         
     def incorporate_estimates(self,action_probs,predValue,actualValue,up_to):
@@ -328,6 +330,7 @@ def execute_episode(mctsTree, simulation_budget):
         episode_start_time = time.process_time()
         
         while mctsTree.root.N < current_runs + simulation_budget:
+            mctsTree.TreeEnv.sim_gen_tokens = 0
             if mctsTree.root.N > 0 and mctsTree.root.N % 100 == 0:
                 print("ROBUST FINAL VALUE, ITERATION: ", current_runs)
                 evalMctsRobustValue, evalMctsMaxValue = test_episode(mctsTree)
@@ -343,13 +346,15 @@ def execute_episode(mctsTree, simulation_budget):
             
             mctsTree.TreeEnv.row_data['episode'] = mctsTree.num_simulations
             mctsTree.TreeEnv.row_data['currentRun'] = mctsTree.root.N
+            mctsTree.TreeEnv.row_data['time'] = elapsed_time
+            mctsTree.TreeEnv.row_data['gen_tokens'] = mctsTree.TreeEnv.sim_gen_tokens
             #output_data = {"task_id": task_id, "completion": output}
             #output_file.write(json.dumps(output_data) + '\n')
             mctsTree.TreeEnv.csv_logger.log(mctsTree.TreeEnv.row_data)
         
         # Record the end time of the episode
         episode_end_time = time.process_time()
-        
+        print("TOTAL GENERATED TOKENS: ", mctsTree.TreeEnv.num_gen_tokens)
         # Calculate the total time for the episode
         total_episode_time = episode_end_time - episode_start_time
         print("MCTS EXECUTION TIME (sec): ", total_episode_time)
