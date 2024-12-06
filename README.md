@@ -1,6 +1,6 @@
 # CSCE 689 Project - LLM-based High-Quality RTL Code Generation Using MCTS (Expansion) - Evaluation of Models and Strategies
 
-In this project, the MCTS algorithm is applied to the LLM inference procedure to more effectively complete Verilog modules. Through this framework, feedback (based on analyzing the LLM generated Verilog codes for functionality and PPA metrics) is found on each MCTS iteration, enabling more effective paths to be explored. In this branch of the project, GPT-4o is utilized as the base model. To explore how local models can be utilized (including VeriGen and Codellama), please see other branches including master (original MCTS formulation), and line-by-line (an updated MCTS framework).
+In this project, the MCTS algorithm is applied to the LLM inference procedure to more effectively complete Verilog modules. Through this framework, feedback (based on analyzing the LLM-generated Verilog codes for functionality and PPA metrics) is found on each MCTS iteration, enabling more effective paths to be explored. In this branch of the project, GPT-4o is utilized as the base model. To explore how local models can be utilized (including VeriGen and Codellama), please see other branches including master (original MCTS formulation), and line-by-line (an updated MCTS framework).
 
 ## Get Started
 
@@ -13,7 +13,7 @@ In this project, the MCTS algorithm is applied to the LLM inference procedure to
    Conda is also a recommended option. You can use the following commands to directly create a Conda environment for the project from the included .yml file:
    ```
    conda env create -f environment.yml
-   conda acivate rltf
+   conda activate rltf
    ```
 4. **Prepare Verilog Files**: You will need an example Verilog prompt (.v) file, ideally containing an English description of the module along with its instantiation. This will serve as the input prompt to the LLM. Along with this Verilog module, a Verilog testbench must also be provided to analyze the final generated module, enabling compilability and functionality to be determined.
 
