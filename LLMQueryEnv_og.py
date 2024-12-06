@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
 from openai import OpenAI
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-Nk4FoBjiJLwSjR0mgsE3dhzBFcZAI1a3jZv3K8csIMT3BlbkFJbIJxQWwCHDJPhyP4wwUhdbcCqvk-geEM-1U0nez0QA"))
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "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"))
 
 def get_completion(
     messages: list[dict[str, str]],
