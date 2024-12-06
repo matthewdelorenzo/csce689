@@ -1,0 +1,5796 @@
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/miniconda3/envs/rltf/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2024-10-25 14:02:46,568] [INFO] [real_accelerator.py:161:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Using CPU
+/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/research/mcts_new/test_prompts/Exams_m2014_q3.v
+Prompt str:  // Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+********-- EPISODE-1--************
+100
+----SAMPLE LLM OUTPUT - ITERATION:  0  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.311803 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[3] & x[1] & x[2]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[3] & x[1] & x[2]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  1  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.560521 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[3] & x[1] & ~x[2]) | (x[4] & ~x[3]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[3] & x[1] & ~x[2]) | (x[4] & ~x[3]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  56
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  2  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.154456 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3]) | (x[4] & ~x[2]) | (x[3] & x[2] & ~x[1]) | (x[4] & x[3] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3]) | (x[4] & ~x[2]) | (x[3] & x[2] & ~x[1]) | (x[4] & x[3] & x[1]);
+
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  3  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.775174 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[1] & x[2] & x[3]) | (x[3] & x[4]) | (x[1] & ~x[2] & x[4]) | (x[1] & x[2] & ~x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[1] & x[2] & x[3]) | (x[3] & x[4]) | (x[1] & ~x[2] & x[4]) | (x[1] & x[2] & ~x[3]);
+endmodule
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  4  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.036191 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3]) | (x[4] & x[1]) | (x[3] & x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3]) | (x[4] & x[1]) | (x[3] & x[2]);
+
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  5  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.269776 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] &  x[3] & ~x[1]) | ( x[4] & ~x[3]) | ( x[2] &  x[1] & x[3] & ~x[4]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] &  x[3] & ~x[1]) | ( x[4] & ~x[3]) | ( x[2] &  x[1] & x[3] & ~x[4]);
+
+endmodule
+Depth of rollout:  58
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  6  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.487990 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3]) | (x[4] & x[2] & x[1]) | (x[3] & ~x[2] & x[1]) | (~x[4] & x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3]) | (x[4] & x[2] & x[1]) | (x[3] & ~x[2] & x[1]) | (~x[4] & x[3] & x[2]);
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  7  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.849255 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  8  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.572902 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[1] &  x[2] &  x[3] & ~x[4]) |
+               ( x[1] & ~x[2] &  x[3] & ~x[4]) |
+               ( x[1] &  x[2] & ~x[3] & ~x[4]) |
+               ( x[1] &  x[2] &  x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[1] &  x[2] &  x[3] & ~x[4]) |
+               ( x[1] & ~x[2] &  x[3] & ~x[4]) |
+               ( x[1] &  x[2] & ~x[3] & ~x[4]) |
+               ( x[1] &  x[2] &  x[3]);
+endmodule
+Depth of rollout:  103
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  9  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.047292 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & ~x[3] & x[1]) |
+               (x[3] & x[4]) |
+               (x[3] & ~x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & ~x[3] & x[1]) |
+               (x[3] & x[4]) |
+               (x[3] & ~x[2]);
+
+endmodule
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  10  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.062841 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+assign f = (x[4] & x[3]) | (~x[3] & x[2] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+assign f = (x[4] & x[3]) | (~x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  31
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  11  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.045776 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  12  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.077317 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  13  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.223535 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (~x[2] & x[1] & x[3]) | (x[4] & x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (~x[2] & x[1] & x[3]) | (x[4] & x[2] & ~x[1]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  14  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.898177 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[3] & x[1] & x[2]) |
+               (x[3] & ~x[4] & x[1]) |
+               (x[3] & x[4] & ~x[1]) |
+               (x[3] & x[2] & x[4]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[3] & x[1] & x[2]) |
+               (x[3] & ~x[4] & x[1]) |
+               (x[3] & x[4] & ~x[1]) |
+               (x[3] & x[2] & x[4]);
+
+endmodule
+Depth of rollout:  74
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  15  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.985198 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & (x[2] | x[1])) |
+               (x[4] & (x[3] | x[2])) |
+               (x[4] & ~x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & (x[2] | x[1])) |
+               (x[4] & (x[3] | x[2])) |
+               (x[4] & ~x[3] & x[1]);
+endmodule
+Depth of rollout:  63
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  16  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.099336 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[1] & x[3] & x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[1] & x[3] & x[2]);
+
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  17  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.884827 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[3] & x[4]) | (~x[1] & x[2] & ~x[3]) | (x[1] & x[2] & x[3] & ~x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[3] & x[4]) | (~x[1] & x[2] & ~x[3]) | (x[1] & x[2] & x[3] & ~x[4]);
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  18  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 2.627325 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & ~x[3]) | (~x[4] & ~x[3] & x[1] & x[2]) | (x[4] & x[3] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & ~x[3]) | (~x[4] & ~x[3] & x[1] & x[2]) | (x[4] & x[3] & ~x[2]);
+endmodule
+Depth of rollout:  73
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  19  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.447114 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[4] & x[2]) | (x[3] & x[4]) | (x[3] & ~x[4] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[4] & x[2]) | (x[3] & x[4]) | (x[3] & ~x[4] & ~x[2]);
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  20  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.146713 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3]) | (x[4] & ~x[3] & ~x[1]) | (~x[4] & x[3] & x[2]) | (x[3] & x[2] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3]) | (x[4] & ~x[3] & ~x[1]) | (~x[4] & x[3] & x[2]) | (x[3] & x[2] & x[1]);
+
+endmodule
+Depth of rollout:  66
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  21  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.013134 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (~x[3] & x[2] & ~x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (~x[3] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  22  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.401523 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[3] & x[2]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[3] & x[2]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[1]);
+endmodule
+Depth of rollout:  56
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  23  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.319208 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (~x[1] & x[3] & ~x[2]) | (x[1] & x[2] & ~x[4]) | (x[1] & ~x[2] & ~x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (~x[1] & x[3] & ~x[2]) | (x[1] & x[2] & ~x[4]) | (x[1] & ~x[2] & ~x[3]);
+endmodule
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  24  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.777327 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    
+    
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[2] & x[3]);
+    
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      
+    
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[2] & x[3]);
+    
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  25  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.928757 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[1] & x[2] & ~x[3]) | (x[1] & ~x[2] & ~x[3] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[1] & x[2] & ~x[3]) | (x[1] & ~x[2] & ~x[3] & x[4]);
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  26  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 2.190354 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (x[4] & x[3] & x[2]) |
+               (x[4] & x[3] & x[1]) |
+               (x[3] & ~x[2] & x[1]) |
+               (x[2] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (x[4] & x[3] & x[2]) |
+               (x[4] & x[3] & x[1]) |
+               (x[3] & ~x[2] & x[1]) |
+               (x[2] & x[1]);
+
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  27  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.888467 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[3] & x[2]) | (x[1] & x[4] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[3] & x[2]) | (x[1] & x[4] & ~x[2]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  28  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.121573 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & ~x[3] & x[1]) | (x[4] & x[3] & (x[1] | x[2])) | (x[4] & ~x[3] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & ~x[3] & x[1]) | (x[4] & x[3] & (x[1] | x[2])) | (x[4] & ~x[3] & ~x[2]);
+endmodule
+Depth of rollout:  62
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  29  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.001860 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[4] & x[1] & x[2]) | (x[3] & x[4]) | (x[3] & ~x[4] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[4] & x[1] & x[2]) | (x[3] & x[4]) | (x[3] & ~x[4] & ~x[2]);
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  30  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.801491 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[4] & ~x[2]) | (~x[3] & x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[4] & ~x[2]) | (~x[3] & x[2] & x[1]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  31  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.073358 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & (~x[2] | x[1])) | (x[4] & (x[3] | (x[2] & ~x[1])));
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & (~x[2] | x[1])) | (x[4] & (x[3] | (x[2] & ~x[1])));
+endmodule
+Depth of rollout:  51
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  32  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.179059 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & ~x[3]) | (x[4] & x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & ~x[3]) | (x[4] & x[2] & ~x[1]);
+endmodule
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  33  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.818939 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1] & ~x[4]) |
+               (x[3] & (x[2] | ~x[4]));
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1] & ~x[4]) |
+               (x[3] & (x[2] | ~x[4]));
+
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  34  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.919846 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3] & x[2]) | (x[3] & ~x[4]) | (~x[1] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[3] & x[2]) | (x[3] & ~x[4]) | (~x[1] & x[4]);
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  35  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.959505 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[4] & ~x[3]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[4] & ~x[3]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  36  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.950473 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[4] & x[1] & x[2]) |  // x3'x4 + x1x2
+               (x[3] & x[4]) |                // x3x4
+               (x[3] & ~x[4] & ~x[1] & ~x[2]);// x3x4'x1'x2'
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[4] & x[1] & x[2]) |  // x3'x4 + x1x2
+               (x[3] & x[4]) |                // x3x4
+               (x[3] & ~x[4] & ~x[1] & ~x[2]);// x3x4'x1'x2'
+endmodule
+Depth of rollout:  97
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  37  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 2.006049 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & ~x[3] & x[2] & ~x[1]) | // 2nd row (d can be 1 in minimized expression)
+               (x[4] & ~x[3] & ~x[2]) |       // 3rd row, col 1 and 2 (minterms 8 and 9)
+               (x[3] & x[2]);                  // 3rd row, col 3 and 4 (minterms 10 and 11)
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & ~x[3] & x[2] & ~x[1]) | // 2nd row (d can be 1 in minimized expression)
+               (x[4] & ~x[3] & ~x[2]) |       // 3rd row, col 1 and 2 (minterms 8 and 9)
+               (x[3] & x[2]);                  // 3rd row, col 3 and 4 (minterms 10 and 11)
+endmodule
+Depth of rollout:  118
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  38  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.922503 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[4] & x[1]) | (x[3] & x[2]) | (x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[4] & x[1]) | (x[3] & x[2]) | (x[2] & x[1]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  39  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.089739 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1]) | (x[3] & x[2]) | (x[3] & ~x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1]) | (x[3] & x[2]) | (x[3] & ~x[4]);
+endmodule
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  40  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.568805 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3] & ~x[2]) | (x[3] & x[2]) | (x[4] & ~x[3] & x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3] & ~x[2]) | (x[3] & x[2]) | (x[4] & ~x[3] & x[2] & x[1]);
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  41  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.005782 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[1]);
+endmodule
+Depth of rollout:  52
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  42  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.661508 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+\
+    assign f = (x[3] & x[2]) | (x[1] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  \
+    assign f = (x[3] & x[2]) | (x[1] & x[4]);
+endmodule
+Depth of rollout:  27
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  43  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.882609 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[1] & ~x[2] & x[3]) | (x[4] & x[1] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[1] & ~x[2] & x[3]) | (x[4] & x[1] & x[2]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  44  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.649130 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (~x[4] & x[3]) | (x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (~x[4] & x[3]) | (x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  45  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.929182 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & x[1]) | 
+               (x[4] & ~x[3]) | 
+               (x[4] & x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & x[1]) | 
+               (x[4] & ~x[3]) | 
+               (x[4] & x[2]);
+
+endmodule
+Depth of rollout:  48
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  46  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.068949 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & ~x[3]) | (~x[4] & x[3] & x[2] & x[1]) | (x[4] & x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & ~x[3]) | (~x[4] & x[3] & x[2] & x[1]) | (x[4] & x[3] & x[1]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  47  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.146209 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[3] & x[2]) | (x[4] & x[1] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[3] & x[2]) | (x[4] & x[1] & ~x[2]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  48  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.160255 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (x[4] & x[3]) | (~x[4] & ~x[3] & x[2]) | (x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (x[4] & x[3]) | (~x[4] & ~x[3] & x[2]) | (x[2] & x[1]);
+endmodule
+Depth of rollout:  43
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  49  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.256828 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & ~x[2] & x[1]) |
+               (x[3] & x[2]) |
+               (x[3] & ~x[4] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & ~x[2] & x[1]) |
+               (x[3] & x[2]) |
+               (x[3] & ~x[4] & ~x[1]);
+endmodule
+Depth of rollout:  58
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  50  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.449525 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[4]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  47
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  51  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.056183 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[1] & x[2] & x[3]) | (x[1] & x[2] & ~x[4]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  52  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.249592 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[4] & x[1]) | (x[4] & x[2] & ~x[1]) | (x[3] & ~x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[4] & x[1]) | (x[4] & x[2] & ~x[1]) | (x[3] & ~x[2] & ~x[1]);
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  53  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.073841 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (~x[4] & ~x[3] & x[2]) | (x[4] & x[3]) | (x[3] & ~x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (~x[4] & ~x[3] & x[2]) | (x[4] & x[3]) | (x[3] & ~x[2] & ~x[1]);
+endmodule
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  54  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 2.349564 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+assign f = (~x[3] & x[2] & x[1]) |
+           (x[3] & x[4] & ~x[1]) |
+           (x[3] & ~x[4] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+assign f = (~x[3] & x[2] & x[1]) |
+           (x[3] & x[4] & ~x[1]) |
+           (x[3] & ~x[4] & x[2]);
+endmodule
+Depth of rollout:  56
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  55  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.017315 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & ~x[1] & x[4]) | (x[3] & x[2]) | (x[3] & ~x[1] & ~x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & ~x[1] & x[4]) | (x[3] & x[2]) | (x[3] & ~x[1] & ~x[4]);
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  56  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.693891 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[3] & x[2]) |
+               (x[4] & ~x[3]) |
+               (x[4] & x[3] & ~x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[3] & x[2]) |
+               (x[4] & ~x[3]) |
+               (x[4] & x[3] & ~x[2] & ~x[1]);
+endmodule
+Depth of rollout:  64
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  57  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.092191 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[2]) | (x[3] & ~x[1]) | (x[4] & x[3] & x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[2]) | (x[3] & ~x[1]) | (x[4] & x[3] & x[2] & ~x[1]);
+endmodule
+Depth of rollout:  61
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  58  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.108358 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[3] & ~x[2]) | (~x[4] & x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[3] & ~x[2]) | (~x[4] & x[3] & x[2]);
+endmodule
+Depth of rollout:  66
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  59  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.484235 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & ~x[3] & x[1] & x[2]) |
+               ( x[4] & x[3] & ~x[2])        |
+               ( x[4] & x[3] & ~x[1])        |
+               ( x[4] & ~x[3] & ~x[1] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & ~x[3] & x[1] & x[2]) |
+               ( x[4] & x[3] & ~x[2])        |
+               ( x[4] & x[3] & ~x[1])        |
+               ( x[4] & ~x[3] & ~x[1] & ~x[2]);
+endmodule
+Depth of rollout:  90
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  60  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.943338 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[2]) | (x[3] & x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[2]) | (x[3] & x[4] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  48
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  61  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.893391 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (x[4] & ~x[3]) | (x[3] & x[2]) | (x[3] & x[1] & ~x[2]) | (x[2] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (x[4] & ~x[3]) | (x[3] & x[2]) | (x[3] & x[1] & ~x[2]) | (x[2] & x[4]);
+endmodule
+Depth of rollout:  55
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  62  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.256241 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2] & ~x[1]);
+endmodule
+Depth of rollout:  62
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  63  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.243429 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[4] & ~x[1]) | (~x[3] & x[1] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[4] & ~x[1]) | (~x[3] & x[1] & x[2]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  64  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.040826 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (~x[3] & x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (~x[3] & x[2] & x[1]);
+endmodule
+Depth of rollout:  37
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  65  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.634912 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] &  x[3] & ~x[2]) |
+               (~x[4] &  x[3] & ~x[1]) |
+               ( x[3] &  x[2])         |
+               ( x[4] &  x[3] & ~x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] &  x[3] & ~x[2]) |
+               (~x[4] &  x[3] & ~x[1]) |
+               ( x[3] &  x[2])         |
+               ( x[4] &  x[3] & ~x[1]);
+
+endmodule
+Depth of rollout:  80
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  66  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.218410 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1] & x[4]) | (x[3] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1] & x[4]) | (x[3] & ~x[1]) | (x[3] & x[2]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  67  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.096195 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1] & x[4]) | (x[3] & x[4] & (~x[2] & ~x[1] | x[2] & ~x[1]));
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1] & x[4]) | (x[3] & x[4] & (~x[2] & ~x[1] | x[2] & ~x[1]));
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  68  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.098618 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & ~x[2] & ~x[3] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[3] & x[4]) | (~x[1] & x[2] & x[3]) | (x[1] & ~x[2] & ~x[3] & x[4]);
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  69  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.182118 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & x[1]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[2]) | (x[4] & x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & x[1]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[2]) | (x[4] & x[3] & x[1]);
+endmodule
+Depth of rollout:  71
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  70  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.127860 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[1] & ~x[2] & x[3] & x[4]) |
+               (x[1] & ~x[2] & x[3]) |
+               (x[1] & x[2] & x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[1] & ~x[2] & x[3] & x[4]) |
+               (x[1] & ~x[2] & x[3]) |
+               (x[1] & x[2] & x[3]);
+endmodule
+Depth of rollout:  67
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  71  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.177397 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[2] & ~x[1]) | (~x[4] & ~x[3] & x[2] & ~x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[2] & ~x[1]) | (~x[4] & ~x[3] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  72  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.579740 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[3] & x[2] & x[1]) |
+               (x[3] & x[4]) |
+               (x[3] & x[2]) |
+               (x[4] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[3] & x[2] & x[1]) |
+               (x[3] & x[4]) |
+               (x[3] & x[2]) |
+               (x[4] & x[1]);
+
+endmodule
+Depth of rollout:  57
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  73  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.053336 seconds
+No trimming of ``` needed.
+State does not end with endmodule - not complete.
+Rollout trimmed response:  
+    assign f = (~x[4] & ~x[2] & x[1]) | (x[3] & x[4] & x[1]) | (~x[3] & x[2] & x[4]) | (x[3] & ~x[4] & x[1]);
+
+endmodule
+
+Depth of rollout:  72
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  74  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.076704 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & x[3]) | (x[3] & x[1]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  75  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.717319 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   
+    assign f = (~x[4] & x[3] & ~x[2]) | // x3x2'x1
+               (x[4] & x[3] & ~x[1]) | // x4x3x1'
+               (~x[4] & x[2] & x[1]) | // x4'x2x1
+               (x[4] & ~x[3]);        // x4x3'
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:     
+    assign f = (~x[4] & x[3] & ~x[2]) | // x3x2'x1
+               (x[4] & x[3] & ~x[1]) | // x4x3x1'
+               (~x[4] & x[2] & x[1]) | // x4'x2x1
+               (x[4] & ~x[3]);        // x4x3'
+
+endmodule
+Depth of rollout:  101
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  76  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.129289 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3] & (~x[1] | ~x[2])) |
+               (~x[4] & ~x[3] & x[1] & x[2]) |
+               (x[4] & ~x[3] & ~x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3] & (~x[1] | ~x[2])) |
+               (~x[4] & ~x[3] & x[1] & x[2]) |
+               (x[4] & ~x[3] & ~x[2]);
+
+endmodule
+Depth of rollout:  70
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  77  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.323149 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3] & x[4]) | (x[3] & ~x[4]) | (x[1] & x[2] & x[4]) | (x[1] & ~x[2] & x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[3] & x[4]) | (x[3] & ~x[4]) | (x[1] & x[2] & x[4]) | (x[1] & ~x[2] & x[3]);
+endmodule
+Depth of rollout:  64
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  78  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.528615 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & ~x[3] & x[2]) |
+               (x[4] & x[3] & ~x[1]) |
+               (~x[4] & x[3] & x[2]) |
+               (x[4] & x[3] & x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & ~x[3] & x[2]) |
+               (x[4] & x[3] & ~x[1]) |
+               (~x[4] & x[3] & x[2]) |
+               (x[4] & x[3] & x[2]);
+
+endmodule
+Depth of rollout:  79
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  79  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.752423 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (x[4] & x[3]) | (x[4] & ~x[1]) | (~x[4] & x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (x[4] & x[3]) | (x[4] & ~x[1]) | (~x[4] & x[3] & x[1]);
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  80  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.948283 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[3] & x[4]) | (x[4] & ~x[1]) | (x[3] & x[2]) | (x[1] & x[2] & x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[3] & x[4]) | (x[4] & ~x[1]) | (x[3] & x[2]) | (x[1] & x[2] & x[3]);
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  81  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.747849 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    // Extract inputs from the input vector x
+    wire x1 = x[4];
+    wire x2 = x[3];
+    wire x3 = x[2];
+    wire x4 = x[1];
+
+    // Implement the function using a combination of logic gates
+    assign f = (~x1 & x3 & x4) | (x1 & x3) | (x1 & x2 & ~x4);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    // Extract inputs from the input vector x
+    wire x1 = x[4];
+    wire x2 = x[3];
+    wire x3 = x[2];
+    wire x4 = x[1];
+
+    // Implement the function using a combination of logic gates
+    assign f = (~x1 & x3 & x4) | (x1 & x3) | (x1 & x2 & ~x4);
+
+endmodule
+Depth of rollout:  94
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  82  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.100347 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2]); 
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2]); 
+
+endmodule
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  83  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.018335 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & ~x[2]) | (x[3] & x[2]) | (x[3] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & ~x[2]) | (x[3] & x[2]) | (x[3] & x[1]);
+endmodule
+Depth of rollout:  42
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  84  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.401181 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (~x[1] & x[3] & x[2] & ~x[4]) | (x[1] & x[3] & ~x[2] & ~x[4]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (~x[1] & x[3] & x[2] & ~x[4]) | (x[1] & x[3] & ~x[2] & ~x[4]);
+
+endmodule
+Depth of rollout:  77
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  85  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.282855 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & ~x[3] & x[2]) |
+               (x[3] & x[2] & ~x[1]) |
+               (x[4] & x[3] & ~x[1]) |
+               (x[4] & x[3] & x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & ~x[3] & x[2]) |
+               (x[3] & x[2] & ~x[1]) |
+               (x[4] & x[3] & ~x[1]) |
+               (x[4] & x[3] & x[2]);
+
+endmodule
+Depth of rollout:  80
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  86  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.902379 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (x[3] & x[2]) | (x[3] & ~x[4]) | (~x[1] & x[2] & ~x[3]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (x[3] & x[2]) | (x[3] & ~x[4]) | (~x[1] & x[2] & ~x[3]);
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  87  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.891961 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[3] & ~x[2]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[4] & x[3] & x[1]) | (x[4] & x[3]) | (x[3] & ~x[2]);
+
+endmodule
+Depth of rollout:  44
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  88  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.104265 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (x[2] & ~x[1] & x[3]) | (~x[4] & x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (x[2] & ~x[1] & x[3]) | (~x[4] & x[2] & x[1]);
+endmodule
+Depth of rollout:  54
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  89  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.576296 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[2]) |
+               (x[4] & x[3]) |
+               (x[4] & ~x[3] & ~x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[2]) |
+               (x[4] & x[3]) |
+               (x[4] & ~x[3] & ~x[2] & x[1]);
+endmodule
+Depth of rollout:  63
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  90  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.317337 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+    assign f = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2] & ~x[1]) | (~x[4] & x[3] & ~x[2] & x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:      assign f = (x[4] & x[3]) | (~x[4] & x[3] & x[2]) | (x[4] & ~x[3] & ~x[2] & ~x[1]) | (~x[4] & x[3] & ~x[2] & x[1]);
+endmodule
+Depth of rollout:  77
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  91  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.941777 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[2]) | (x[3] & x[4]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[3] & x[2] & x[1]) | (x[3] & ~x[2]) | (x[3] & x[4]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  92  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.181350 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+    assign f = (~x[3] & x[2] & x[1] & x[4]) | 
+               (x[3] & ~x[4]) | 
+               (x[3] & x[2] & ~x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  
+    assign f = (~x[3] & x[2] & x[1] & x[4]) | 
+               (x[3] & ~x[4]) | 
+               (x[3] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  93  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.921727 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[1] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[4] & ~x[3] & x[1] & x[2]);
+endmodule
+Depth of rollout:  60
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  94  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.138399 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3]) | (x[4] & ~x[3]) | (x[3] & x[2] & ~x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3]) | (x[4] & ~x[3]) | (x[3] & x[2] & ~x[1]);
+
+endmodule
+Depth of rollout:  50
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  95  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.847056 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[4] & x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[1]) | (x[4] & x[3]) | (x[4] & x[2]);
+endmodule
+Depth of rollout:  49
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  96  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.054294 seconds
+No trimming of ``` needed.
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+   
+assign f = (~x[4] & x[3] & ~x[2]) | (~x[4] & x[3] & x[1]) | (x[4] & x[2]) | (x[4] & ~x[3] & x[1]);
+
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:     
+assign f = (~x[4] & x[3] & ~x[2]) | (~x[4] & x[3] & x[1]) | (x[4] & x[2]) | (x[4] & ~x[3] & x[1]);
+
+endmodule
+Depth of rollout:  65
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  97  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.424770 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & ~x[2]) | (x[4] & ~x[3]) | (x[4] & x[3] & ~x[1]);
+endmodule
+Depth of rollout:  56
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  98  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 0.891253 seconds
+trimming text between  ```
+trimming text with ```verilog
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (x[4] & x[3]) | (~x[4] & x[1] & ~x[2]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (x[4] & x[3]) | (~x[4] & x[1] & ~x[2]);
+endmodule
+Depth of rollout:  38
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+100
+----SAMPLE LLM OUTPUT - ITERATION:  99  ---- TEMP: 1
+---------------
+Done setting up env.
+Getting terminal state (rollout). Temp:  1
+Current prompt:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+
+Temp:  1
+API response time: 1.896987 seconds
+trimming text between  ```
+State ends with endmodule
+Initiating comile/functionality check.
+VERILOG CODE:
+// Consider the function f shown in the Karnaugh map below.
+
+// Implement this function. d is don't-care, which means you may choose to output whatever value is convenient.
+
+         x_1'x_2'	x_1'x_2 	x_1x_2		x_1x_2'
+
+x_3'x_4'	d		0		d		d
+x_3'x_4		0		d		1		0
+x_3x_4  	1		1		d		d
+x_3x_4'		1		1		0		d
+
+
+module top_module (
+    input [4:1] x, 
+    output f );
+
+assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2] & ~x[1]);
+endmodule
+Compilation check...
+Verilog compilation failed, error:  2
+Compilation output:  b"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: warning: Using SystemVerilog 'N bit vector.  Use at least -g2005-sv to remove this warning.\n/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/dump/1254176_top_module/1254176_top_module.v:5: syntax error\nI give up.\n"
+Rollout trimmed response:  assign f = (~x[4] & x[3] & x[2]) | (x[4] & x[3]) | (x[4] & ~x[3] & ~x[2] & ~x[1]);
+endmodule
+Depth of rollout:  59
+Trimming the result to last instance of endmodule...
+Running getPromptScore: 
+Greedy Total Time:  141.151134
+Total gen tokens:  5853

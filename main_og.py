@@ -119,6 +119,7 @@ if __name__ == '__main__':
                                                            file_path=prompt_filepath, tb_path = tb_filepath, dump_path = rootDumpDir, temp = 1)
             start_time = datetime.now()
             for i in range(simulation_per_episode):
+                sim_start_time = datetime.now()
                 print(simulation_per_episode)
                 print("----SAMPLE LLM OUTPUT - ITERATION: ", i, " ---- TEMP: 1")
                 print("---------------")
@@ -131,7 +132,7 @@ if __name__ == '__main__':
                 filteredGen=env.trim_with_stopwords(finalState)
                 score = env.getPromptScore()
                 sim_end_time = datetime.now()
-                sim_time_difference = sim_end_time - start_time
+                sim_time_difference = sim_end_time - sim_start_time
                 sim_seconds = sim_time_difference.total_seconds()
                 env.row_data['time'] = sim_seconds
                 env.row_data['gen_tokens'] = env.sim_gen_tokens

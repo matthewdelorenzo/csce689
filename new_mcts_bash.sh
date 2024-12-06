@@ -89,31 +89,31 @@ TB_PATHS=(
 
 #change to wherever you want to be saved
 CSV_FILES=(
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_adder16_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_mac16_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_mult16_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_7420_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_adder16_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_mac16_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_mult16_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_7420_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Andgate_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Bcdadd100_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Bcdadd4_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Count10_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Count_clock_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Dff_1_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Dualedge_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Edgedetect2_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Exams_2012_q1g_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Exams_m2014_q3_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Fsm_serialdata_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Count10_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Count_clock_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Dff_1_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Dualedge_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Edgedetect2_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Exams_2012_q1g_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Exams_m2014_q3_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Fsm_serialdata_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Fsm_serialdp_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Hadd_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Kmap3_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Kmap4_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Lfsr32_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Hadd_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Kmap3_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Kmap4_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Lfsr32_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Module_1_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Module_name_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Mux256to1v_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Popcount255_05_fix.csv"
-    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/new16_Reduction_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Mux256to1v_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Popcount255_05_fix.csv"
+    "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/new16_Reduction_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Tb_clock_05_fix.csv"
     #"/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/new16_Tb_tff_05_fix.csv"
     
@@ -134,7 +134,7 @@ for i in "${!PROMPT_PATHS[@]}"; do
         --module_name "$MODULE_NAME" \
         --op "$OP" \
         --csv "${CSV_FILES[i]}" \
-        > "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test2_sample_fix/gpt4o_05_test2_${i}.txt"  # Redirect output to individual text files
+        > "/mnt/shared-scratch/Rajendran_J/matthewdelorenzo/github_mcts/MCTS/results/gpt4o_test3_sample_fix/gpt4o_05_test3_${i}.txt"  # Redirect output to individual text files
 done
 
 #alter .txt filepath if needed

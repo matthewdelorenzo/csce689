@@ -13,14 +13,12 @@ from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", "sk-Nk4FoBjiJLwSjR0mgsE3dhzBFcZAI1a3jZv3K8csIMT3BlbkFJbIJxQWwCHDJPhyP4wwUhdbcCqvk-geEM-1U0nez0QA"))
 
-
 def get_completion(
     messages: list[dict[str, str]],
     model: str = "gpt-4o",
     max_tokens=2048,
-    temperature=0,
+    temperature=1,
     stop=None,
-    seed=123,
     tools=None,
     logprobs=None,
     top_logprobs=None,
@@ -31,7 +29,6 @@ def get_completion(
         "max_tokens": max_tokens,
         "temperature": temperature,
         "stop": stop,
-        "seed": seed,
         "logprobs": logprobs,
         "top_logprobs": top_logprobs,
     }
@@ -41,12 +38,11 @@ def get_completion(
     start_time = time.time()
     completion = client.chat.completions.create(**params)
     end_time = time.time()
-    
+    print("Temp: ", temperature)
     response_time = end_time - start_time
     print(f"API response time: {response_time:.6f} seconds")
     
     return completion, response_time
-
 
 class LLMQueryEnv(gym.Env, StaticEnv):
     
@@ -104,13 +100,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         else:
             print("No trimming of ``` needed.")
             return input_string
-        
-    def replace_escaped_sequences(self, text):
-        # This pattern matches any backslash followed by a character
-        print("Handling escape sequences.")
-        pattern = re.compile(r'\\(.)')
-        # Replace each match with the corresponding character
-        return pattern.sub(lambda match: match.group(1), text)
 
 
     def get_tokenized_state(self,prompt):
@@ -135,18 +124,24 @@ class LLMQueryEnv(gym.Env, StaticEnv):
                 return currentState
 
     def isPromptComplete(self,currentState,depth):
-        for w in sorted(self.stopwords, key=len, reverse=True):
+        for w in sorted(self.trimword, key=len, reverse=True):
             if currentState.endswith(w):
+                print("State ends with endmodule")
                 self.verilogFunctionalityCheck(currentState)
                 if self.compilable:     #if compilable, finish prompt generation.
                     return True
-                else:  
+                elif b'Unknown module type' in self.compilation_output:    #if unknown module, continue generation.
+                    return False
+                else:
                     return True
             else:
+                print("State does not end with endmodule - not complete.")
                 return False
             
     def verilogFunctionalityCheck(self, currentState):
         verilog_code = currentState
+        verilog_code = verilog_code.replace('\\n', '\n')
+        verilog_code = verilog_code.replace('\\t', '\t')
         print("Initiating comile/functionality check.")
         print("VERILOG CODE:")
         print(verilog_code)
@@ -358,8 +353,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         completion = client.chat.completions.create(
         model="gpt-4o",
         messages=[
-              {"role": "system", "content": "You are a code completion model. \
-            You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
+              {"role": "system", "content": "You are a code completion model. You generate Verilog code that has correct syntax and functionality. \
+            You must first analyze the provided information about a Verilog module and its incomplete Verilog module code (top_module()). \
             In your response, you must generate only the single next token that correctly continues the code sequence from the end of the prompt. \
             This token should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
             (i.e. Make sure the token contains prepended spaces or newlines if needed).\
@@ -392,8 +387,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
             print("ERROR: less than 5 tokens...")
             tokens.append(" ")
 
-        self.sim_gen_tokens += 5
-        self.num_gen_tokens += 5
+        self.sim_gen_tokens += 1
+        self.num_gen_tokens += 1
         return linear_probs, tokens
     
     def get_best_terminal_state(self,state,depth):
@@ -402,8 +397,8 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         print(state)
         API_RESPONSE, response_time = get_completion(
             [
-                      {"role": "system", "content": "You are a code completion model. \
-            You must first analyze the provided information about the Verilog module and the incomplete Verilog module code (top_module()) \
+                      {"role": "system", "content": "You are a code completion model. You generate Verilog code that has correct syntax and functionality.\
+            You must first analyze the provided information about a Verilog module and its incomplete Verilog module code (top_module()). \
             In your response, you must generate the rest of the tokens that correctly completes the code sequence from the end of the prompt. \
             This token sequence should be able to be directly be appended to the end of the Verilog in the prompt string without syntax issues. \
             (i.e. Make sure the tokens contain prepended spaces or newlines if needed).\
@@ -424,7 +419,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
         depth = depth + completion_tokens
         response_text_trimmed = self.extract_verilog_code(response_text)
         state = state + response_text_trimmed
-        state = self.replace_escaped_sequences(state)
         self.is_done_state(state, depth)
         print("Rollout trimmed response: ", response_text_trimmed)
         print("Depth of rollout: ", depth)
@@ -442,7 +436,6 @@ class LLMQueryEnv(gym.Env, StaticEnv):
     def get_return(self,state,depth):
         ##Sanity Check##
         print("Getting return based on tokens - no rollout needed!")
-        state = self.replace_escaped_sequences(state)
         if not self.is_done_state(state,depth):
             print("Serious error")
             exit(1)

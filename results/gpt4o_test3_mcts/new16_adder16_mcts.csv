@@ -1,0 +1,1784 @@
+Area,Delay,Score,Current Run,Episode,Verilog,Time,Tokens
+149.758,638.61,0.1,2.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+       assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.012284466000000105,18
+149.758,638.61,0.1,3.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [16:0] full_sum;
+
+    // Perform the addition of the two 16-bit inputs and the carry-in
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the lower 16 bits to the sum output
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to the carry-out output
+    assign cout = full_sum[16];
+
+endmodule",0.012444116000000172,99
+149.758,638.61,0.1,4.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.012387164999999811,24
+N/A,N/A,-0.1,5.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011741063999999746,30
+142.044,943.12,-0.30076119473847285,6.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_bit
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+            end else begin
+                // Subsequent bits include the carry from the previous bit
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule",0.012332613999999964,175
+149.758,638.61,0.1,7.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011900470000000052,23
+147.896,629.56,0.126428597434209,8.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_bit
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(cin),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end else begin
+                // Subsequent bits use the carry from the previous bit
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(carry[i-1]),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule
+
+// Full adder module
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign sum = a ^ b ^ cin;
+    assign cout = (a & b) | (b & cin) | (a & cin);
+endmodule",0.012709268000000051,267
+N/A,N/A,-0.1,9.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011327844999999837,29
+N/A,N/A,1,10.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`add
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.011325683000000364,19
+N/A,N/A,-1,11.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum_internal;
+    wire carry_out;
+
+    // Use a 16-bit adder to calculate the sum and carry out
+    assign {carry_out, sum_internal} = in1 + in2 + cin;
+
+    // Assign the outputs
+    assign sum = sum_internal;
+    assign cout = carry_out;
+
+endmodule",0.011081093000000042,65
+N/A,N/A,-0.1,12.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010760969999999759,28
+N/A,N/A,-1,13.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010041542000000181,20
+N/A,N/A,-1,14.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+    wire carry_out;
+
+    // Use the Verilog '+' operator to perform addition
+    assign {carry_out, sum} = in1 + in2 + cin;
+
+    // Assign the carry out
+    assign cout = carry_out;
+
+endmodule",0.010802174000000164,51
+N/A,N/A,-1,15.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;    wire [15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(cin),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end else begin
+                // Subsequent bits use the carry from the previous bit
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(carry[i-1]),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule
+
+// Full adder module
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign {cout, sum} = a + b + cin;
+endmodule",0.011518392000000155,254
+142.044,943.12,-0.30076119473847285,16.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+ // Use a generate block to create a chain of full adders
+ genvar i;
+ generate
+     for (i = 0; i < 16; i = i + 1) begin: adder_chain
+         if (i == 0) begin
+             // First bit addition includes the carry-in
+             assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+         end else begin
+             // Subsequent bits include the carry from the previous bit
+             assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+         end
+     end
+ endgenerate
+
+ // The final carry-out is the carry from the last bit
+ assign cout = carry[15];
+
+endmodule",0.011989717000000066,173
+N/A,N/A,-0.1,17.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011464024999999989,27
+142.044,943.12,-0.30076119473847285,18.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+    // Full adder for the least significant bit
+    assign {carry[0], sum[0]} = in1[0] + in2[0] + cin;
+
+    // Full adders for the remaining bits
+    genvar i;
+    generate
+        for (i = 1; i < 16; i = i + 1) begin: adder_loop
+            assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+endmodule",0.012029877999999883,138
+142.044,943.12,-0.30076119473847285,19.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire[15:0] carry;
+
+    // Full adder for the least significant bit
+    assign {carry[0], sum[0]} = in1[0] + in2[0] + cin;
+
+    // Full adders for the remaining bits
+    genvar i;
+    generate
+        for (i = 1; i < 16; i = i + 1) begin: adder
+            assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+
+endmodule",0.012570607000000233,135
+N/A,N/A,-1,20.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+    wire [15:0] carry;
+
+    // Full adder for the least significant bit
+    assign {carry[0], sum[0]} = in1[0] + in2[0] + cin;
+
+    // Full adders for the remaining bits
+    genvar i;
+    generate
+        for (i = 1; i < 16; i = i + 1) begin: adder
+            assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+endmodule",0.012109702000000055,139
+N/A,N/A,1,21.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`add_full
+    wire [16:0] full_sum;
+
+    // Perform the addition of the two 16-bit numbers and the carry-in
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+
+endmodule",0.01188075799999977,97
+N/A,N/A,-0.1,22.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011234464000000166,26
+N/A,N/A,-1,23.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  wire [15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011129319000000137,33
+149.758,638.61,0.1,24.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+ assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011405247999999979,21
+N/A,N/A,-0.1,25.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010686565999999953,30
+N/A,N/A,-0.1,26.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010705708999999786,31
+N/A,N/A,-1,27.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]wire [15:0] carry;
+
+    // Use a generate block to create a 16-bit adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_bit
+            if (i == 0) begin
+                // First bit addition includes cin
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+            end else begin
+                // Subsequent bits include carry from previous bit
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule",0.011703011999999902,179
+N/A,N/A,-1,28.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010091871000000197,20
+N/A,N/A,-1,29.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   ]    wire [15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_bit
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+            end else begin
+                // Subsequent bits include the carry from the previous bit
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+endmodule",0.011452891999999881,179
+N/A,N/A,-1,30.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`++verilog
+    wire [16:0] full_sum;
+
+    // Perform the addition of in1, in2, and cin
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+endmodule",0.01030820400000021,97
+N/A,N/A,-0.1,31.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011031254000000157,24
+N/A,N/A,-0.1,32.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010280093000000434,31
+149.758,638.61,0.1,33.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011967528000000005,20
+N/A,N/A,-1,34.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0) sum;
+    wire carry_out;
+
+    // Use the built-in Verilog addition operator to add the inputs and carry-in
+    assign {carry_out, sum} = in1 + in2 + cin;
+
+    // Assign the carry-out
+    assign cout = carry_out;
+endmodule",0.011399179999999731,57
+N/A,N/A,-0.1,35.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011124499000000121,23
+149.758,638.61,0.1,36.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011297051999999752,23
+N/A,N/A,-1,37.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]
+    wire [15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011684370000000222,27
+142.044,943.12,-0.30076119473847285,38.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire[15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_bit
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(cin),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end else begin
+                // Subsequent bits use the carry from the previous bit
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(carry[i-1]),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule
+
+// Full adder module
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign {cout, sum} = a + b + cin;
+endmodule",0.012331447999999856,250
+N/A,N/A,-1,39.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in```22 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011675523000000076,31
+N/A,N/A,-1,40.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0 result;
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010603496999999962,19
+N/A,N/A,-1,41.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   ] wirewire [15:0] carry;
+
+   assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011127455000000008,33
+N/A,N/A,-1,42.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`include """"full_adder.v""
+
+    wire [15:0] carry;
+
+    // Instantiate 16 full adders
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder
+            if (i == 0) begin
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(cin),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end else begin
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(carry[i-1]),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+
+endmodule",0.010369744000000125,184
+N/A,N/A,-1,43.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.01000352700000029,19
+N/A,N/A,-1,44.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]
+      wire [15:0] carry;
+
+    // Full adder for the least significant bit
+    assign {carry[0], sum[0]} = in1[0] + in2[0] + cin;
+
+    // Full adders for the remaining bits
+    genvar i;
+    generate
+        for (i = 1; i < 16; i = i + 1) begin: adder
+            assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+endmodule",0.01168735600000037,139
+N/A,N/A,-0.1,45.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011414813000000024,22
+N/A,N/A,-1,46.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   ] wire[15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011467319000000309,30
+N/A,N/A,-1,47.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in```222 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.012274303000000764,25
+N/A,N/A,-1,48.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  endmodule",0.0025140830000003334,0
+N/A,N/A,-1,49.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0 result;
+ wire [15:0] result;
+ wire carry_out;
+
+ // Perform the addition using the built-in Verilog addition operator
+ assign {carry_out, result} = in1 + in2 + cin;
+
+ // Assign the results to the module outputs
+ assign sum = result;
+ assign cout = carry_out;
+
+endmodule",0.01093058899999999,64
+N/A,N/A,-0.1,50.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010579754000000108,29
+N/A,N/A,-1,51.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]<|end|>wire [16:0] full_sum;
+
+    // Perform the addition of in1, in2, and cin
+    assign full_sum = in1 + in2 + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+
+endmodule",0.011285127999999922,80
+142.044,943.12,-0.30076119473847285,52.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+ // Use a generate block to create a chain of full adders
+ genvar i;
+ generate
+     for (i = 0; i < 16; i = i + 1) begin: adder_chain
+         if (i == 0) begin
+             // First bit addition includes the carry-in
+             assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+         end else begin
+             // Subsequent bits use the carry from the previous bit
+             assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+         end
+     end
+ endgenerate
+
+ // The final carry-out is the carry from the last bit addition
+ assign cout = carry[15];
+
+endmodule",0.011853845000000085,174
+N/A,N/A,1,53.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`definedefine
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.011632615999999985,19
+N/A,N/A,-1,54.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in``22 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011069308999999805,31
+142.044,943.12,-0.30076119473847285,55.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire[15:0] carry;
+
+    // Full adder for the least significant bit
+    assign {carry[0], sum[0]} = in1[0] + in2[0] + cin;
+
+    // Full adders for the remaining bits
+    genvar i;
+    generate
+        for (i = 1; i < 16; i = i + 1) begin: adder_loop
+            assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[15];
+
+endmodule",0.012129663999999707,134
+N/A,N/A,-1,56.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0) sum;wire [16:0] full_sum;
+
+    // Perform the addition using the inputs and carry-in
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the sum and carry-out
+    assign sum = full_sum[15:0];
+    assign cout = full_sum[16];
+
+endmodule",0.011494341999999769,84
+N/A,N/A,-1,57.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin{assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010094929000000086,22
+N/A,N/A,-0.1,58.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+   assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011246017000000386,22
+N/A,N/A,-1,59.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:1] carry;
+
+ // Full adder for the least significant bit
+ assign {carry[1], sum[0]} = in1[0] + in2[0] + cin;
+
+ // Full adders for the remaining bits
+ genvar i;
+ generate
+     for (i = 1; i < 16; i = i + 1) begin: adder
+         assign {carry[i+1], sum[i]} = in1[i] + in2[i] + carry[i];
+     end
+ endgenerate
+
+ // Assign the final carry-out
+ assign cout = carry[16];
+
+endmodule",0.011240968000000073,124
+N/A,N/A,-1,60.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   endmodule",0.0024437900000000568,0
+N/A,N/A,-1,61.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in```2222 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011167918000000832,31
+N/A,N/A,-1,62.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`add_full_adder u1 (
+    .a(in1),
+    .b(in2),
+    .cin(cin),
+    .sum(sum),
+    .cout(cout)
+);
+
+endmodule",0.009968574000000174,35
+N/A,N/A,-1,63.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]);
+    wire [16:0] full_sum;
+
+    // Perform the addition with carry-in
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the sum and carry-out
+    assign sum = full_sum[15:0];
+    assign cout = full_sum[16];
+
+endmodule",0.011302034000000738,75
+N/A,N/A,-1,64.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   ] wire[15:0] carry;
+
+    // Use a generate block to create a 16-bit ripple carry adder
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : adder_bit
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + cin;
+            end else begin
+                // Subsequent bits include the carry from the previous bit
+                assign {carry[i], sum[i]} = in1[i] + in2[i] + carry[i-1];
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last bit
+    assign cout = carry[15];
+
+endmodule",0.01180539399999958,181
+N/A,N/A,-0.1,65.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010657519999999643,30
+N/A,N/A,-1,66.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0 sum;wire [15:0] carry;
+
+ // Use a generate block to create a 16-bit adder using full adders
+ genvar i;
+ generate
+     for (i = 0; i < 16; i = i + 1) begin: adder
+         if (i == 0) begin
+             // First bit addition includes the carry-in
+             full_adder fa (
+                 .a(in1[i]),
+                 .b(in2[i]),
+                 .cin(cin),
+                 .sum(sum[i]),
+                 .cout(carry[i])
+             );
+         end else begin
+             // Subsequent bits use the carry from the previous bit
+             full_adder fa (
+                 .a(in1[i]),
+                 .b(in2[i]),
+                 .cin(carry[i-1]),
+                 .sum(sum[i]),
+                 .cout(carry[i])
+             );
+         end
+     end
+ endgenerate
+
+ // The final carry-out is the carry from the last bit
+ assign cout = carry[15];
+
+endmodule
+
+// Full adder module
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign {cout, sum} = a + b + cin;
+endmodule",0.011053030000000241,255
+N/A,N/A,-0.1,67.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+   assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011827891000000257,21
+N/A,N/A,-1,68.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [16];
+    wire [16:0] carry;
+
+    // Assign the carry-in to the first carry bit
+    assign carry[0] = cin;
+
+    // Generate the sum and carry-out for each bit
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder
+            assign {carry[i+1], sum[i]} = in1[i] + in2[i] + carry[i];
+        end
+    endgenerate
+
+    // Assign the final carry-out
+    assign cout = carry[16];
+
+endmodule",0.010617863000000227,126
+149.758,638.61,0.1,69.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+	wire [16:0] full_sum;
+
+    // Perform the addition of in1, in2, and cin
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+
+endmodule",0.011832033999999325,92
+149.758,638.61,0.1,70.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.012505410999999356,27
+N/A,N/A,-1,71.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+assign{ sum = in1 + in2 + cin;
+    cout = (in1 + in2 + cin) >> 16;
+endmodule",0.015351542999999523,28
+N/A,N/A,-1,72.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin{module
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010481451000000419,19
+N/A,N/A,-1,73.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in```22222 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011573064000000244,31
+N/A,N/A,1,74.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`ifdefS    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.011326475999999808,18
+N/A,N/A,-1,75.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  wire[15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011497227000000443,24
+N/A,N/A,-1,76.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0 carry;wire [15:0] carry;
+
+ assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.010759214000000128,31
+142.044,943.12,-0.30076119473847285,77.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire[15:0] carry;
+
+    // Use a generate block to create a chain of full adders
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: adder_chain
+            if (i == 0) begin
+                // First bit addition includes the carry-in
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(cin),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end else begin
+                // Subsequent bits use the carry from the previous bit
+                full_adder fa (
+                    .a(in1[i]),
+                    .b(in2[i]),
+                    .cin(carry[i-1]),
+                    .sum(sum[i]),
+                    .cout(carry[i])
+                );
+            end
+        end
+    endgenerate
+
+    // The final carry-out is the carry from the last full adder
+    assign cout = carry[15];
+
+endmodule
+
+// Full adder module definition
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign {cout, sum} = a + b + cin;
+endmodule",0.01238301999999969,249
+149.758,638.61,0.1,78.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.012130539000000162,14
+N/A,N/A,-0.1,79.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010986878999999838,28
+N/A,N/A,-1,80.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   ]wire [15:0] carry;
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.01134495400000013,30
+N/A,N/A,-1,81.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  ]
+  wire [16:0] full_sum;
+
+    // Perform the addition of in1, in2, and cin
+    assign full_sum = in1 + in2 + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+
+endmodule",0.012493338999999715,80
+N/A,N/A,-1,82.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`++`assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.010447558000000079,22
+N/A,N/A,-0.1,83.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+  assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011707249999999725,21
+N/A,N/A,-1,84.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0 result;]
+wire [15:0] result;
+ wire carry_out;
+
+ // Perform the addition using Verilog's addition operator
+ assign {carry_out, result} = in1 + in2 + cin;
+
+ // Assign the results to the module outputs
+ assign sum = result;
+ assign cout = carry_out;
+
+endmodule",0.010793581999999802,67
+149.758,638.61,0.1,85.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire carry[15:0];
+
+    assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011870288999999978,23
+N/A,N/A,-1,86.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in```222222 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.0121595000000001,31
+149.758,638.61,0.1,87.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:0] carry;
+
+assign {cout, sum} = in1 + in2 + cin;
+
+endmodule",0.011923936999999718,20
+N/A,N/A,-1,88.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+\begin{module
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.011197108000000178,18
+N/A,N/A,-1,89.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0) sum;
+    wire [16:0] full_sum;
+
+    // Perform the addition with carry-in
+    assign full_sum = in1 + in2 + cin;
+
+    // Assign the lower 16 bits to sum
+    assign sum = full_sum[15:0];
+
+    // Assign the 17th bit to cout
+    assign cout = full_sum[16];
+
+endmodule",0.011672804999999897,76
+N/A,N/A,-1,90.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+   endmodule",0.002348142999999858,0
+N/A,N/A,-1,91.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in``2;assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.011089718000000026,24
+N/A,N/A,-1,92.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  endmodule",0.0024233129999995384,0
+142.044,943.12,-0.30076119473847285,93.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire [15:0] carry;
+
+ // Use a generate block to create a 16-bit ripple carry adder
+ genvar i;
+ generate
+     for (i = 0; i < 16; i = i + 1) begin: adder_bit
+         if (i == 0) begin
+             // First bit addition includes the carry-in
+             full_adder fa (
+                 .a(in1[i]),
+                 .b(in2[i]),
+                 .cin(cin),
+                 .sum(sum[i]),
+                 .cout(carry[i])
+             );
+         end else begin
+             // Subsequent bits use the carry from the previous bit
+             full_adder fa (
+                 .a(in1[i]),
+                 .b(in2[i]),
+                 .cin(carry[i-1]),
+                 .sum(sum[i]),
+                 .cout(carry[i])
+             );
+         end
+     end
+ endgenerate
+
+ // The final carry-out is the carry from the last bit
+ assign cout = carry[15];
+
+endmodule
+
+// Full adder module
+module full_adder(input a, b, cin,
+                  output sum, cout);
+    assign {cout, sum} = a + b + cin;
+endmodule",0.011856813000000521,245
+N/A,N/A,1,94.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+`include """"adder.vh""
+
+    wire [16:0] full_sum;
+
+    // Perform the addition with carry-in
+    assign full_sum = {1'b0, in1} + {1'b0, in2} + cin;
+
+    // Assign the sum and carry-out
+    assign sum = full_sum[15:0];
+    assign cout = full_sum[16];
+
+endmodule",0.011854872999999877,79
+N/A,N/A,-0.1,95.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign sum = in1 + in2 + cin;
+  assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011918800000000118,20
+149.758,638.61,0.1,96.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire[15:0] sum;
+    wire carry_out;
+
+    // Use the built-in Verilog addition operator to add the inputs and carry-in
+    assign {carry_out, sum} = in1 + in2 + cin;
+
+    // Assign the carry-out
+    assign cout = carry_out;
+
+endmodule",0.012038933999999557,57
+149.758,638.61,0.1,97.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0] c;
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.012468017999999859,19
+N/A,N/A,-0.1,98.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   assign{sum, cout} = in1 + in2 + cin;
+endmodule",0.011013311000000137,14
+N/A,N/A,-0.1,99.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+ assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.010564876999999306,29
+N/A,N/A,-1,100.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+
+   wire [15:0 sum;
+  assign sum = in1 + in2 + cin;
+    assign cout = (in1 + in2 + cin) > 16'hFFFF;
+endmodule",0.011306191000000076,30
+149.758,638.61,0.1,101.0,1,"//Design a 16-bit adder.
+//There are two 16 bit inputs (in1 and in2) and a single carry-in input bit, cin.
+//The outputs are a 16 bit value, [15:0] sum, and a single carry-out output bit, cout.
+//The module should utilize the inputs (in1 and in2) and the cin bit to obtain the output sum and cout values.
+module top_module(output [15:0] sum,
+                      output cout,
+                      input [15:0] in1, in2,
+                      input cin);
+ wire[15:1] c;
+    assign {cout, sum} = in1 + in2 + cin;
+endmodule",0.01203244399999992,73

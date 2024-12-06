@@ -1,0 +1,1515 @@
+Area,Delay,Score,Current Run,Episode,Verilog,Time,Tokens
+N/A,N/A,-1,0,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",2.10805,39
+N/A,N/A,-1,1,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in; // Detect rising edge transitions
+        prev_in <= in;                  // Store the current value for comparison in the next cycle
+    end
+
+endmodule",4.140065,100
+N/A,N/A,-1,2,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule",1.527063,145
+N/A,N/A,-1,3,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule",2.042799,206
+N/A,N/A,-1,4,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous_in;
+
+    always @(posedge clk) begin
+        anyedge <= (previous_in ^ in) & ~previous_in;
+        previous_in <= in;
+    end
+
+endmodule",2.122063,249
+N/A,N/A,-1,5,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.430057,287
+N/A,N/A,-1,6,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & in; // detect 0 to 1 transition
+        prev_in <= in;
+    end
+
+endmodule",1.621063,337
+N/A,N/A,-1,7,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+    
+endmodule",1.827053,379
+N/A,N/A,-1,8,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        // Detect any edge by comparing current input with previous input
+        anyedge <= in & ~prev_in;
+        // Store the current input for the next clock cycle
+        prev_in <= in;
+    end
+
+endmodule",1.714055,443
+N/A,N/A,-1,9,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous_in;
+
+    always @(posedge clk) begin
+        anyedge <= (previous_in ^ in) & in;
+        previous_in <= in;
+    end
+
+endmodule",1.403109,484
+N/A,N/A,-1,10,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",1.636056,523
+N/A,N/A,-0.1,11,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;  // Store the current input value for the next cycle
+    end
+
+    assign anyedge = (in ^ prev_in);
+endmodule",1.684063,580
+N/A,N/A,-1,12,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.66806,621
+N/A,N/A,-1,13,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule",1.372102,662
+N/A,N/A,-1,14,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.15906,706
+N/A,N/A,-1,15,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev;
+
+    always @(posedge clk) begin
+        // Detect edge by comparing current and previous input values
+        anyedge <= in & ~prev;
+        // Store current input as previous for the next clock cycle
+        prev <= in;
+    end
+
+endmodule",1.511058,766
+N/A,N/A,-1,16,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+endmodule",1.209074,811
+N/A,N/A,-1,17,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        // Detect any edge by comparing current and previous input states
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        // Store the current state of input for the next comparison
+        prev_in <= in;
+    end
+
+endmodule",2.12407,880
+N/A,N/A,-1,18,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in; // Detecting rising edge
+        prev_in <= in;
+    end
+
+endmodule",1.196048,930
+N/A,N/A,-1,19,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.257064,973
+N/A,N/A,-1,20,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.205064,1015
+N/A,N/A,-1,21,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= prev_in ^ in;
+        prev_in <= in;
+    end
+
+endmodule",1.088104,1052
+N/A,N/A,-1,22,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule",1.320053,1097
+N/A,N/A,-1,23,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= ~prev_in & in;
+    end
+
+endmodule",1.63606,1135
+N/A,N/A,-1,24,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.325064,1179
+N/A,N/A,-1,25,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        // Detect the edges by comparing the current input with the previous input
+        anyedge <= in & ~prev_in;
+        // Store the current input as previous for the next clock cycle
+        prev_in <= in;
+    end
+
+endmodule",1.558051,1246
+N/A,N/A,-1,26,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.146064,1288
+N/A,N/A,-1,27,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.152054,1330
+N/A,N/A,-0.1,28,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Store the input value to compare in the next clock cycle
+    end
+
+    assign anyedge = (prev_in != in) ? 8'b11111111 : 8'b00000000;
+
+endmodule",1.619077,1398
+N/A,N/A,-0.1,29,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Store the current input for edge detection in the next cycle
+    end
+
+    assign anyedge = in & ~prev_in; // Detect 0 to 1 transition for each bit
+
+endmodule",1.78354,1462
+N/A,N/A,-1,30,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",2.187174,1511
+N/A,N/A,-1,31,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~previous) | (~in & previous);
+        previous <= in;
+    end
+
+endmodule",1.096053,1553
+N/A,N/A,-1,32,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.03106,1592
+N/A,N/A,-1,33,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Store the current input for comparison in the next cycle
+        anyedge <= in ^ prev_in; // Detect any change between current and previous
+    end
+
+endmodule",1.286052,1650
+N/A,N/A,-1,34,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous_in;
+
+    always @(posedge clk) begin
+        // Detect any transition
+        anyedge <= in ^ previous_in;
+        // Update previous input
+        previous_in <= in;
+    end
+
+endmodule",1.877065,1699
+N/A,N/A,-1,35,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+endmodule",1.235055,1748
+N/A,N/A,-1,36,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & ~prev_in;
+    end
+    
+endmodule",3.293124,1792
+N/A,N/A,-1,37,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.23806,1835
+N/A,N/A,-1,38,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",4.264066,1874
+N/A,N/A,-1,39,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in ^ prev_in; // Detect edge (0^1 or 1^0)
+        prev_in <= in;  // Capture the current state of 'in' for next cycle comparison
+    end
+
+endmodule",1.725059,1945
+N/A,N/A,-1,40,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",2.08205,1987
+N/A,N/A,-1,41,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule",1.894057,2028
+N/A,N/A,-1,42,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] in_delayed;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~in_delayed;
+        in_delayed <= in;
+    end
+
+endmodule",1.741057,2073
+N/A,N/A,-1,43,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.352064,2114
+N/A,N/A,-1,44,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & in;
+    end
+
+endmodule",1.118053,2155
+N/A,N/A,-1,45,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.654055,2193
+N/A,N/A,-1,46,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (prev_in ^ in) & ~prev_in;
+    end
+
+endmodule",1.310098,2236
+N/A,N/A,-1,47,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.256061,2279
+N/A,N/A,-1,48,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.326063,2318
+N/A,N/A,-1,49,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.920059,2360
+N/A,N/A,-1,50,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",1.404107,2399
+N/A,N/A,-1,51,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+endmodule",3.362058,2437
+N/A,N/A,-1,52,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+    
+endmodule",1.826063,2476
+N/A,N/A,-1,53,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.676367,2518
+N/A,N/A,-1,54,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Capture previous input state
+        anyedge <= (prev_in ^ in) & ~prev_in; // Detect 0 to 1 transitions
+    end
+
+endmodule",1.575061,2576
+N/A,N/A,-1,55,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",1.951072,2615
+N/A,N/A,-1,56,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev) & in;
+        prev <= in;
+    end
+
+endmodule",1.335096,2653
+N/A,N/A,-1,57,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in; // Detect any edge and check for rising edge
+        prev_in <= in; // Update the previous input state
+    end
+
+endmodule",2.530074,2713
+N/A,N/A,-1,58,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in ^ prev_in) & in;
+    end
+
+endmodule",2.286069,2758
+N/A,N/A,-1,59,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in);
+        prev_in <= in;
+    end
+
+endmodule",1.748808,2800
+N/A,N/A,-1,60,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] in_reg;
+    
+    always @(posedge clk) begin
+        anyedge <= (in & ~in_reg);
+        in_reg <= in;
+    end
+
+endmodule",2.038063,2840
+N/A,N/A,-1,61,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= in & ~prev_in;
+    end
+
+endmodule",1.364059,2879
+N/A,N/A,-1,62,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev; // Detect rising edges
+        prev <= in;            // Store current state for next comparison
+    end
+
+endmodule",1.717056,2928
+N/A,N/A,-1,63,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in); // Detect rising edge for each bit
+        prev_in <= in;              // Store current state for next comparison
+    end
+
+endmodule",1.74806,2984
+N/A,N/A,-1,64,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Store current input state
+        anyedge <= in & ~prev_in; // Detect rising edge for each bit
+    end
+endmodule",1.461067,3036
+N/A,N/A,-1,65,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] in_d;
+
+    always @(posedge clk) begin
+        in_d <= in;  // Register the input signal
+        anyedge <= (in & ~in_d);  // Detect a rising edge for each bit
+    end
+
+endmodule",4.277122,3092
+N/A,N/A,-0.1,66,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Store the current input for the next cycle
+    end
+
+    assign anyedge = (in ^ prev_in) & in; // Detect rising edges
+endmodule",1.759073,3149
+N/A,N/A,-1,67,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule",1.104059,3187
+N/A,N/A,-1,68,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.313057,3226
+N/A,N/A,-1,69,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (in & ~prev_in);
+    end
+
+endmodule",2.407061,3266
+N/A,N/A,-1,70,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",6.224066,3304
+N/A,N/A,-1,71,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= prev_in ^ in; // XOR to detect any edge
+    end
+
+endmodule",1.476018,3348
+N/A,N/A,-1,72,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.449057,3387
+N/A,N/A,-1,73,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_state;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_state ^ in) & in;
+        prev_state <= in;
+    end
+
+endmodule",2.38206,3428
+N/A,N/A,-1,74,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.654059,3469
+N/A,N/A,-1,75,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~previous_in;
+        previous_in <= in;
+    end
+    
+endmodule",1.324071,3508
+N/A,N/A,-1,76,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] in_d;
+
+    always @(posedge clk) begin
+        in_d <= in;
+        anyedge <= (in ^ in_d) & in;
+    end
+
+endmodule",1.295056,3549
+N/A,N/A,-1,77,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in);
+        prev_in <= in;
+    end
+endmodule",1.168057,3593
+N/A,N/A,-1,78,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] in_prev;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~in_prev;
+        in_prev <= in;
+    end
+
+endmodule",1.267719,3632
+N/A,N/A,-1,79,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.221062,3674
+N/A,N/A,-1,80,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in); // Detect rising edge for each bit
+        prev_in <= in;              // Store current input for next cycle comparison
+    end
+
+endmodule",1.367042,3732
+N/A,N/A,-1,81,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev;
+
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev) & ~prev;
+        prev <= in;
+    end
+
+endmodule",1.227054,3771
+N/A,N/A,-1,82,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (~prev_in & in);
+    end
+
+endmodule",1.202063,3809
+N/A,N/A,-1,83,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in;
+        anyedge <= (~prev_in & in);
+    end
+
+endmodule",1.123343,3864
+N/A,N/A,-1,84,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~in;
+        prev_in <= in;
+    end
+
+endmodule",1.41005,3907
+N/A,N/A,-0.1,85,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        prev_in <= in; // Capture the current input value on the positive edge of the clock
+    end
+
+    assign anyedge = (in ^ prev_in) & in; // Detect the rising edges
+
+endmodule",1.727055,3969
+N/A,N/A,-1,86,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & (~prev_in & in);
+        prev_in <= in;
+    end
+    
+endmodule",1.836048,4015
+N/A,N/A,-1,87,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.193045,4059
+N/A,N/A,-1,88,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (~prev_in & in);
+        prev_in <= in;
+    end
+
+endmodule",1.13105,4101
+N/A,N/A,-1,89,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~in;
+        prev_in <= in;
+    end
+    
+endmodule",1.25605,4144
+N/A,N/A,-1,90,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] previous_state;
+
+    always @(posedge clk) begin
+        anyedge <= (previous_state ^ in) & in;
+        previous_state <= in;
+    end
+
+endmodule",1.227059,4185
+N/A,N/A,-1,91,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in;
+        prev_in <= in;
+    end
+
+endmodule",1.099057,4227
+N/A,N/A,-1,92,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in; // Detect 0 to 1 transitions
+        prev_in <= in; // Store the current state for comparison in the next cycle
+    end
+    
+endmodule",1.634051,4298
+N/A,N/A,-1,93,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & ~prev_in & in;
+        prev_in <= in;
+    end
+
+endmodule",2.045135,4343
+N/A,N/A,-1,94,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+endmodule",1.389054,4383
+N/A,N/A,-1,95,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",2.029059,4428
+N/A,N/A,-1,96,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (prev_in ^ in) & in; // Detect 0 to 1 transitions
+        prev_in <= in;                  // Update previous input
+    end
+
+endmodule",2.296056,4484
+N/A,N/A,-1,97,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+    
+    always @(posedge clk) begin
+        anyedge <= (in ^ prev_in) & in;
+        prev_in <= in;
+    end
+    
+endmodule",4.324049,4526
+N/A,N/A,-1,98,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= in & ~prev_in;
+        prev_in <= in;
+    end
+
+endmodule",1.377086,4564
+N/A,N/A,-1,99,0,"// For each bit in an 8-bit vector, detect when the input signal changes from one clock cycle to the next (detect any edge). The output bit should be set the cycle after a 0 to 1 transition occurs.
+
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] prev_in;
+
+    always @(posedge clk) begin
+        anyedge <= (in & ~prev_in);
+        prev_in <= in;
+    end
+
+endmodule",1.109058,4603

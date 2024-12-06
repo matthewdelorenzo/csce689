@@ -1,0 +1,2085 @@
+Area,Delay,Score,Current Run,Episode,Verilog,Time,Tokens
+N/A,N/A,-0.1,0,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.938098,103
+N/A,N/A,-1,1,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], feedback};
+        end
+    end
+
+    wire feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+endmodule",1.464866,179
+N/A,N/A,-1,2,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q[31:0] <= {q[30:0], feedback};
+        end
+    end
+
+    wire feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+endmodule",1.417863,260
+N/A,N/A,-0.1,3,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    assign feedback = r[31] ^ r[21] ^ r[1] ^ r[0]; // Taps at positions 32, 22, 2, and 1
+    assign q = r;
+
+endmodule",2.153806,369
+N/A,N/A,-0.1,4,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r[31:1] <= r[30:0];
+            r[0] <= r[31] ^ r[21] ^ r[1] ^ r[0];
+        end
+    end
+    
+    assign q = r;
+    
+endmodule",1.677654,464
+N/A,N/A,-1,5,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.123305,528
+N/A,N/A,-1,6,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.156114,598
+N/A,N/A,-0.1,7,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",1.92169,699
+N/A,N/A,-1,8,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.345679,769
+N/A,N/A,-0.1,9,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1; // Initialize LFSR to 1 on reset
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",1.736991,881
+N/A,N/A,-0.1,10,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    wire feedback = r[31] ^ r[21] ^ r[1] ^ r[0];
+    
+    assign q = r;
+endmodule",1.552187,973
+N/A,N/A,-1,11,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.242036,1043
+N/A,N/A,-0.1,12,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end
+        else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.492856,1130
+N/A,N/A,-0.1,13,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.709771,1209
+N/A,N/A,-0.1,14,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",1.607011,1312
+N/A,N/A,-0.1,15,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1; // Initialize to 1 on reset
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.846845,1417
+N/A,N/A,-0.1,16,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    reg [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset)
+            q_reg <= 32'h1; // Load with initial state on reset
+        else
+            q_reg <= {q_reg[30:0], feedback}; // Shift left and insert feedback at LSB
+    end
+
+    assign q = q_reg; // Output the current state
+endmodule",1.93893,1533
+N/A,N/A,-1,17,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    always @(posedge clk) begin
+        if (reset)
+            q <= 32'h1;
+        else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+
+endmodule",1.091671,1595
+N/A,N/A,-1,18,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            // Calculate the feedback from taps
+            wire feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+            // Shift the LFSR and insert the feedback at q[0]
+            q <= {q[30:0], feedback};
+        end
+    end
+endmodule",1.24968,1693
+N/A,N/A,-0.1,19,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.352328,1773
+N/A,N/A,-0.1,20,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",2.127652,1858
+N/A,N/A,-0.1,21,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.729848,1943
+N/A,N/A,-0.1,22,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    wire feedback = r[31] ^ r[21] ^ r[1] ^ r[0];
+
+    assign q = r;
+
+endmodule",1.415095,2035
+N/A,N/A,-0.1,23,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], (lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0])};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.846336,2140
+N/A,N/A,-1,24,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            // Calculate the feedback bit
+            wire feedback = r[31] ^ r[21] ^ r[1] ^ r[0];
+            // Shift and feedback
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    assign q = r;
+endmodule",1.626924,2244
+N/A,N/A,-1,25,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1; // Set to initial value on reset
+        end else begin
+            q <= {q[30:0], feedback_value}; // Shift left, insert feedback at LSB
+        end
+    end
+
+    // Feedback value is the XOR of tap positions
+    wire feedback_value;
+    assign feedback_value = q[31] ^ q[21] ^ q[1] ^ q[0];
+
+endmodule",1.864085,2354
+N/A,N/A,-0.1,26,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.944059,2437
+N/A,N/A,-0.1,27,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r; // Register to hold the LFSR state
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1; // Set to 32'b1 on reset
+        end else begin
+            // Galois LFSR update equation
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    wire feedback = r[31] ^ r[21] ^ r[1] ^ r[0]; // Feedback tap connections
+
+    assign q = r; // Output current LFSR state
+
+endmodule",3.400068,2572
+N/A,N/A,-1,28,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.375053,2642
+N/A,N/A,-0.1,29,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+    
+    assign q = lfsr;
+endmodule",2.212055,2746
+N/A,N/A,-0.1,30,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            // Taps at positions 32, 22, 2, and 1. Feedback is also xor-ed with the LSB.
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",2.322081,2860
+N/A,N/A,-0.1,31,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",2.540067,2939
+N/A,N/A,-0.1,32,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.847042,3024
+N/A,N/A,-0.1,33,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            // Compute the feedback tap
+            // The XOR operation uses zero-based index
+            // Feedback tap is lfsr[0] ^ lfsr[1] ^ lfsr[21] ^ lfsr[31]
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",2.670056,3170
+N/A,N/A,-0.1,34,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] q_reg, q_next;
+
+    always @(posedge clk) begin
+        if (reset)
+            q_reg <= 32'h1;
+        else
+            q_reg <= q_next;
+    end
+
+    always @* begin
+        q_next = {q_reg[30:0], feedback};
+    end
+
+    wire feedback;
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    assign q = q_reg;
+
+endmodule",2.310119,3286
+N/A,N/A,-0.1,35,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset)
+            r <= 32'h1;
+        else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.429051,3363
+N/A,N/A,-0.1,36,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.925071,3448
+N/A,N/A,-0.1,37,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], feedback_bit};
+        end
+    end
+
+    wire feedback_bit;
+    assign feedback_bit = r[31] ^ r[21] ^ r[1] ^ r[0];
+
+    assign q = r;
+endmodule",2.11705,3546
+N/A,N/A,-0.1,38,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            // Galois LFSR next state computation
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.85106,3643
+N/A,N/A,-0.1,39,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1; // Initialize LFSR to 1 on reset
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]}; // Shift and feedback based on taps
+        end
+    end
+
+    assign q = r; // Output the current state of LFSR
+endmodule",1.840127,3758
+N/A,N/A,-1,40,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.418596,3822
+N/A,N/A,-0.1,41,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.941027,3907
+N/A,N/A,-1,42,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.530062,3977
+N/A,N/A,-0.1,43,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",2.102065,4075
+N/A,N/A,-1,44,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= { q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0] };
+        end
+    end
+endmodule",1.779058,4140
+N/A,N/A,-1,45,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;  // Reset to 32'h1
+        end else begin
+            // Feedback polynomial: x^32 + x^22 + x^2 + x^1 + 1
+            // The tap positions are at 31, 21, 1, and 0 (0-indexed)
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",2.168054,4267
+N/A,N/A,-0.1,46,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) 
+            r <= 32'h1;
+        else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",2.398086,4350
+N/A,N/A,-0.1,47,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",2.992071,4451
+N/A,N/A,-0.1,48,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+    
+    assign q = r;
+endmodule",2.936029,4536
+N/A,N/A,-0.1,49,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            // LFSR with taps at positions 32, 22, 2, and 1
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",3.24406,4655
+N/A,N/A,-1,50,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",2.402056,4725
+N/A,N/A,-0.1,51,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], feedback};
+        end
+    end
+
+    // Feedback calculation: XOR the tapped bits
+    wire feedback = r[31] ^ r[21] ^ r[1] ^ r[0];
+
+    // Output the current state
+    assign q = r;
+
+endmodule",3.07112,4827
+N/A,N/A,-0.1,52,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",2.393056,4912
+N/A,N/A,-0.1,53,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.772082,4997
+N/A,N/A,-0.1,54,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] q_reg;
+    wire feedback;
+
+    assign feedback = q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0];
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], feedback};
+        end
+    end
+
+    assign q = q_reg;
+endmodule",2.722055,5099
+N/A,N/A,-0.1,55,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1; // Load the LFSR with an initial value of 32'h1 on reset
+        end else begin
+            lfsr <= {lfsr[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]}; // Shift and XOR taps
+        end
+    end
+
+    assign q = lfsr; // Output current LFSR state
+    
+endmodule",2.089064,5221
+N/A,N/A,-0.1,56,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end 
+        else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.826054,5303
+N/A,N/A,-1,57,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.282059,5371
+N/A,N/A,-1,58,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1; // Initialize to 1 on reset
+        end else begin
+            // LFSR implementation with taps at bit positions 32, 22, 2, and 1
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.601056,5473
+N/A,N/A,-0.1,59,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",1.836068,5576
+N/A,N/A,-1,60,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.583115,5646
+N/A,N/A,-1,61,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.280056,5716
+N/A,N/A,-1,62,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h00000001;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.253073,5788
+N/A,N/A,-0.1,63,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+endmodule",1.813058,5891
+N/A,N/A,-0.1,64,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.799056,5976
+N/A,N/A,-0.1,65,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            // Implement the Galois LFSR with the specified taps
+            // Taps at bit positions 32, 22, 2, and 1 mean feedback from bit 31 (MSB), 21, 1, and 0 respectively
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",2.936102,6134
+N/A,N/A,-0.1,66,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.986124,6219
+N/A,N/A,-0.1,67,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset)
+            r <= 32'h1;
+        else begin
+            r[31:1] <= r[30:0];
+            r[0] <= r[31] ^ r[21] ^ r[1] ^ r[0];
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.710079,6311
+N/A,N/A,-0.1,68,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.630056,6409
+N/A,N/A,-1,69,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.423059,6479
+N/A,N/A,-0.1,70,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.860142,6580
+N/A,N/A,-0.1,71,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.519083,6665
+N/A,N/A,-0.1,72,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.583062,6748
+N/A,N/A,-0.1,73,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.564054,6833
+N/A,N/A,-0.1,74,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+    
+    assign q = r;
+
+endmodule",2.455061,6918
+N/A,N/A,-0.1,75,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",3.075072,6997
+N/A,N/A,-1,76,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.935054,7067
+N/A,N/A,-1,77,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end
+        else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.515056,7139
+N/A,N/A,-1,78,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], feedback};
+        end
+    end
+
+    wire feedback;
+    assign feedback = q[31] ^ q[21] ^ q[1] ^ q[0];
+endmodule",1.354072,7213
+N/A,N/A,-1,79,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.716149,7283
+N/A,N/A,-0.1,80,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.953051,7380
+N/A,N/A,-1,81,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+
+endmodule",1.181112,7450
+N/A,N/A,-1,82,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            // Implementing Galois LFSR for 32-bit with specified taps
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.24107,7538
+N/A,N/A,-0.1,83,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.812229,7617
+N/A,N/A,-1,84,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.274064,7681
+N/A,N/A,-0.1,85,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end else begin
+            lfsr <= {lfsr[30:0], feedback};
+        end
+    end
+
+    wire feedback = lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0];
+    
+    assign q = lfsr;
+endmodule",1.94007,7791
+N/A,N/A,-1,86,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset)
+            q <= 32'h1;
+        else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.296048,7852
+N/A,N/A,-0.1,87,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",2.754086,7937
+N/A,N/A,-0.1,88,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1;
+        end
+        else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+    
+    assign q = lfsr;
+endmodule",2.024066,8043
+N/A,N/A,-0.1,89,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",2.000061,8126
+N/A,N/A,-0.1,90,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] q_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q_reg <= 32'h1;
+        end else begin
+            q_reg <= {q_reg[30:0], q_reg[31] ^ q_reg[21] ^ q_reg[1] ^ q_reg[0]};
+        end
+    end
+
+    assign q = q_reg;
+endmodule",4.765051,8218
+N/A,N/A,-0.1,91,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end
+        else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+endmodule",1.956078,8303
+N/A,N/A,-1,92,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            lfsr <= 32'h1; // Initialize to 1 on reset
+        end else begin
+            // Compute the feedback value
+            wire feedback = lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0];
+            // Shift left and insert feedback
+            lfsr <= {lfsr[30:0], feedback};
+        end
+    end
+    
+    assign q = lfsr;
+endmodule",1.973056,8436
+N/A,N/A,-0.1,93,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] lfsr;
+
+    always @(posedge clk) begin
+        if (reset)
+            lfsr <= 32'h1;
+        else begin
+            lfsr <= {lfsr[30:0], lfsr[31] ^ lfsr[21] ^ lfsr[1] ^ lfsr[0]};
+        end
+    end
+
+    assign q = lfsr;
+
+endmodule",1.866117,8536
+N/A,N/A,-1,94,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.30007,8606
+N/A,N/A,-1,95,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",1.24705,8670
+N/A,N/A,-1,96,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+
+    always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+
+endmodule",3.131053,8735
+N/A,N/A,-0.1,97,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+
+    assign q = r;
+
+endmodule",1.765061,8820
+N/A,N/A,-1,98,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+always @(posedge clk) begin
+        if (reset) begin
+            q <= 32'h1;
+        end else begin
+            q <= {q[30:0], q[31] ^ q[21] ^ q[1] ^ q[0]};
+        end
+    end
+endmodule",4.199065,8890
+N/A,N/A,-0.1,99,0,"// Build a 32-bit Galois LFSR with taps at bit positions 32, 22, 2, and 1.
+
+// Hint: This is long enough that you'd want to use vectors, not 32 instantiations of DFFs.
+
+module top_module(
+    input clk,
+    input reset,    // Active-high synchronous reset to 32'h1
+    output [31:0] q
+);
+reg [31:0] r;
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            r <= 32'h1;
+        end else begin
+            r <= {r[30:0], r[31] ^ r[21] ^ r[1] ^ r[0]};
+        end
+    end
+    
+    assign q = r;
+    
+endmodule",3.062061,8977
