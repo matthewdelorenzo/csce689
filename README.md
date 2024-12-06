@@ -9,8 +9,12 @@ In this project, the MCTS algorithm is applied to the LLM inference procedure to
    ```bash
    pip install -r requirements.txt
    ```
-   Venv or conda environments are recommended for additional environment organization.
-3. **Prepare Verilog Files**: You will need an example Verilog prompt (.v) file, ideally containing an English description of the module along with its instantiation. This will serve as the input prompt to the LLM. Along with this Verilog module, a Verilog testbench must also be provided to analyze the final generated module, enabling compilability and functionality to be determined.
+
+   Conda is also a recommended option. You can use the following command to directly create a Conda environment for the project:
+   ```
+   conda env create -f environment.yml
+   ```
+4. **Prepare Verilog Files**: You will need an example Verilog prompt (.v) file, ideally containing an English description of the module along with its instantiation. This will serve as the input prompt to the LLM. Along with this Verilog module, a Verilog testbench must also be provided to analyze the final generated module, enabling compilability and functionality to be determined.
 
    Some examples of these are included in the repository for ease of use.
 
