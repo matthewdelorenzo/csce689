@@ -10,7 +10,7 @@ In this project, the MCTS algorithm is applied to the LLM inference procedure to
    pip install -r requirements.txt
    ```
 
-   Conda is also a recommended option. You can use the following command to directly create a Conda environment for the project:
+   Conda is also a recommended option. You can use the following command to directly create a Conda environment for the project from the included .yml file:
    ```
    conda env create -f environment.yml
    ```
