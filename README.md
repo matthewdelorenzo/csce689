@@ -1,6 +1,6 @@
 # CSCE 689 Project - LLM-based High-Quality RTL Code Generation Using MCTS (Expansion) - Evaluation of Models and Strategies
 
-In this project, the MCTS algorithm is applied to the LLM inference procedure to more effectively complete Verilog modules. Through this framework, feedback (based on code functionality and PPA metrics) is found on each MCTS iteration, enabling more effective paths to be explored. In this branch of the project, GPT-4o is utilized as the base model. To explore how local models can be utilized (including VeriGen and Codellama), please see other branches including master (original MCTS formulation), and line-by-line (an updated MCTS framework).
+In this project, the MCTS algorithm is applied to the LLM inference procedure to more effectively complete Verilog modules. Through this framework, feedback (based on analyzing the LLM generated Verilog codes for functionality and PPA metrics) is found on each MCTS iteration, enabling more effective paths to be explored. In this branch of the project, GPT-4o is utilized as the base model. To explore how local models can be utilized (including VeriGen and Codellama), please see other branches including master (original MCTS formulation), and line-by-line (an updated MCTS framework).
 
 ## Get Started
 
