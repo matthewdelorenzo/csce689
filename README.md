@@ -20,7 +20,7 @@ In this project, the MCTS algorithm is applied to the LLM inference procedure to
    Some examples of these are included in the repository for ease of use.
 
 ## Run the Code
-
+First, set your OpenAI key in LLMQueryEnv_og.py line 5.
 Run the `main_og.py` file to test the project. This will require additional hyperparameters. These are listed below:
 
 - `--dumpdir`: The filepath of a directory in which intermediate files can be stored.
